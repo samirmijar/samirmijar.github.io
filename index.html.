@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sewabyte · Digital Services in Nepal</title>
+  <meta name="description" content="Games Top-Up, Subscriptions, AI Tools & Digital Vouchers in Nepal. Fast delivery with eSewa, Khalti & Bank transfer." />
+
+  <!-- Trustyhub-style vibe: clean, airy, blue/violet accents -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f172a; --panel:#0b1224ee; --text:#e5e7eb; --muted:#9fb0d3;
+      --line:#1f2b4a; --brand:#5b7cfa; --brand2:#8b5cf6; --ok:#22c55e; --warn:#fbbf24;
+      --max:1100px;
+    }
+    *{box-sizing:border-box} html,body{margin:0;background:radial-gradient(900px 450px at 10% -10%, #1b2a6b33, transparent 60%), radial-gradient(900px 450px at 110% 10%, #6b21a833, transparent 60%), linear-gradient(120deg,#0b1224,#0f172a); color:var(--text); font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif; line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--max);margin:0 auto;padding:24px}
+    header{display:flex;justify-content:space-between;align-items:center;padding:10px 0 4px;border-bottom:1px solid var(--line)}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:grid;place-items:center;font-weight:800}
+    .nav{display:flex;gap:16px;font-size:14px;color:var(--muted)}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:12px;border:1px solid #ffffff22;background:linear-gradient(135deg,#223058,#141b35);font-weight:600}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));border-color:#ffffff22}
+    .btn.slim{padding:8px 12px;font-size:14px}
+    .hero{display:grid;gap:16px;padding:36px 0}
+    .kicker{display:inline-block;color:#dbe3ff;background:#ffffff12;border:1px solid #ffffff22;padding:6px 12px;border-radius:999px;font-size:13px}
+    h1{font-size:clamp(28px,6vw,48px);line-height:1.15;margin:8px 0}
+    .sub{color:#c7d2fe;max-width:720px}
+    .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+
+    section{padding:26px 0}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+    .card h3{margin:0 0 6px;font-size:18px}
+    .badge{font-size:12px;color:#d1d5db;background:#ffffff14;border:1px solid #ffffff22;padding:2px 8px;border-radius:999px}
+    ul.clean{margin:10px 0 0;padding:0;list-style:none}
+    ul.clean li{padding:6px 0;border-bottom:1px dashed #25345f}
+    ul.clean li:last-child{border-bottom:none}
+
+    .pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+    .plan{background:linear-gradient(180deg,#0d1631,#0b1328);border:1px solid #233155;border-radius:18px;padding:18px}
+    .price{font-size:32px;font-weight:800;margin:6px 0}
+    .np{font-size:14px;color:var(--muted)}
+    .feat{display:flex;align-items:center;gap:8px;margin:8px 0;color:#cfe7ff}
+
+    details{background:#0b1328;border:1px solid #223254;border-radius:14px;padding:14px}
+    details+details{margin-top:10px}
+    summary{cursor:pointer;font-weight:600}
+    footer{padding:28px 0;border-top:1px solid var(--line);color:#aab1c7;font-size:14px}
+    .sep{opacity:.35;margin:0 8px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- HEADER -->
+    <header>
+      <div class="brand">
+        <div class="logo">S</div>
+        <div>
+          <div style="font-weight:800;">Sewabyte · SajiloTopup</div>
+          <div style="font-size:12px;color:#9fb0d3;margin-top:-4px;">Digital Top-Up • Subscriptions • AI Tools • Vouchers</div>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn slim" href="https://wa.me/9779860003403">WhatsApp</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <span class="kicker">🚀 Fast digital delivery in Nepal</span>
+      <h1>Top-Ups, Subscriptions & AI Tools — <br/>Quick, trusted and Nepali-payment friendly.</h1>
+      <p class="sub">Pay with <strong>eSewa, Khalti, Bank transfer</strong>. Get instant proof and support in chat. Works worldwide where supported.</p>
+      <div class="cta">
+        <a class="btn primary" href="https://wa.me/9779860003403">💬 Order on WhatsApp</a>
+        <a class="btn" href="mailto:sewabyte@gmail.com">✉️ Email us</a>
+        <a class="btn" href="https://t.me/sewabyte">📦 Telegram Store</a>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <h2 style="margin:0 0 10px">What we provide</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>🎮 Games Top-Up</h3>
+          <span class="badge">PUBG • Free Fire • MLBB • Roblox • Efootball • Supercell</span>
+          <ul class="clean">
+            <li>Instant/Manual with bill proof</li>
+            <li>Region-wise recommendations</li>
+            <li>Best-value bundles</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📺 Subscriptions</h3>
+          <span class="badge">Spotify • Netflix • YouTube Premium • Prime Video</span>
+          <ul class="clean">
+            <li>Monthly / Yearly options</li>
+            <li>Individual & Family (where available)</li>
+            <li>Codes delivered to email</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🤖 AI & Productivity</h3>
+          <span class="badge">ChatGPT Plus • Perplexity Pro • CapCut • Google One • Adobe</span>
+          <ul class="clean">
+            <li>Private access & after-sales support</li>
+            <li>Creator workflows setup</li>
+            <li>Quick troubleshooting</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🛒 Digital Vouchers</h3>
+          <span class="badge">PlayStation • Steam • Apple • Google Play</span>
+          <ul class="clean">
+            <li>Gift cards & wallet reloads</li>
+            <li>Fast delivery with proof</li>
+            <li>Global use where supported</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING (sample, EDIT) -->
+    <section id="pricing">
+      <h2 style="margin:0 0 10px">Popular picks (sample)</h2>
+      <div class="pricing">
+        <div class="plan">
+          <div class="badge">Spotify</div>
+          <div class="price">NPR 2,650</div>
+          <div class="np">12 months code · Email delivery</div>
+          <div class="feat">✅ Genuine code • Works worldwide</div>
+          <a class="btn primary" href="https://wa.me/9779860003403?text=Spotify%2012M">Buy on WhatsApp</a>
+        </div>
+        <div class="plan">
+          <div class="badge">ChatGPT Plus</div>
+          <div class="price">NPR 3,750</div>
+          <div class="np">3 months · Private access</div>
+          <div class="feat">✅ Faster model • Priority features</div>
+          <a class="btn primary" href="https://wa.me/9779860003403?text=ChatGPT%20Plus%203M">Buy on WhatsApp</a>
+        </div>
+        <div class="plan">
+          <div class="badge">CapCut Pro</div>
+          <div class="price">NPR 1,080</div>
+          <div class="np">1 month · Creator tools</div>
+          <div class="feat">✅ Unlock premium features</div>
+          <a class="btn primary" href="https://wa.me/9779860003403?text=CapCut%20Pro%201M">Buy on WhatsApp</a>
+        </div>
+      </div>
+      <p style="color:#c7d2fe;margin-top:8px">Need a custom pack or reseller rates? Message us on WhatsApp.</p>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <h2 style="margin:0 0 10px">FAQ</h2>
+      <details>
+        <summary>How do I pay?</summary>
+        <p>We accept <strong>eSewa, Khalti, bank transfer</strong>. Screenshot proof is shared after every order.</p>
+      </details>
+      <details>
+        <summary>How fast is delivery?</summary>
+        <p>Many products are <strong>instant</strong>. Some game top-ups or region-specific items may take a short time; we’ll update you in chat.</p>
+      </details>
+      <details>
+        <summary>Is this safe for Facebook/Instagram?</summary>
+        <p>All visuals/text here are ad-safe and generic. Avoid using “hack/cheap/guaranteed” type words in creatives.</p>
+      </details>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div>© <span id="y"></span> Sewabyte / Samir Mijar<span class="sep">•</span>WhatsApp: 9860003403<span class="sep">•</span>Email: sewabyte@gmail.com</div>
+    </footer>
+  </div>
+  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</body>
+</html>
