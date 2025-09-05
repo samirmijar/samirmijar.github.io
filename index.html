@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>SM Digital Store — Subscriptions & AI Tools</title>
   <meta name="description" content="Apeuni VIP, Spotify 12M, ChatGPT Plus, Perplexity Pro. Full private, delivered to your email. Pay via Fonepay, MyPay, eSewa, Khalti, Bank.">
-  <!-- Preload hero video for faster start -->
   <link rel="preload" as="video" href="welcome.mp4" type="video/mp4">
-
   <style>
     :root{
       --bg1:#0b1224;--bg2:#0f172a;--panel:#0e1833ee;--line:#1e2a4d;
@@ -24,54 +22,56 @@
         linear-gradient(120deg,var(--bg1),var(--bg2));
     }
     a{color:inherit;text-decoration:none}
-    .container{max-width:var(--max);margin:0 auto;padding:20px 24px}
+    img{max-width:100%;height:auto}
+    .container{max-width:var(--max);margin:0 auto;padding:16px 18px}
 
     /* header */
-    header{display:flex;gap:16px;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding:18px 0}
-    .brand{font-size:24px;font-weight:900;white-space:nowrap;display:flex;align-items:center;gap:14px}
-    .brand img{height:60px}
-    nav.nav{display:flex;gap:16px;align-items:center;color:var(--muted);font-size:14px;flex-wrap:wrap}
+    header{position:sticky;top:0;background:linear-gradient(120deg,var(--bg1),var(--bg2));z-index:50}
+    .hwrap{display:flex;gap:12px;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding:12px 0}
+    .brand{font-size:20px;font-weight:900;display:flex;align-items:center;gap:12px;white-space:nowrap}
+    .brand img{height:56px}
+    nav.nav{display:flex;gap:14px;align-items:center;color:var(--muted);font-size:14px;flex-wrap:wrap}
     a.icon{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:10px;background:#101b36;border:1px solid #24335a}
 
     /* sections */
-    section{padding:26px 0}
-    h1{margin:18px 0 6px;font-size:clamp(26px,5.4vw,44px)}
+    section{padding:24px 0}
+    h1{margin:14px 0 6px;font-size:clamp(24px,5.4vw,42px)}
     .sub{color:#cfe0ff}
-    h2{margin:0 0 12px;font-size:26px}
+    h2{margin:0 0 12px;font-size:24px}
 
     /* grids & cards */
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
     .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px}
     .badges{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
     .badge{font-size:12px;background:#ffffff19;border:1px solid #ffffff2a;padding:4px 10px;border-radius:999px}
 
     /* product controls */
     label{font-size:14px;color:#d5e2ff}
-    select{
-      width:100%;padding:10px;border-radius:10px;border:1px solid #2a3a63;background:#0b1328;color:#e7ecff
-    }
+    select{width:100%;padding:10px;border-radius:10px;border:1px solid #2a3a63;background:#0b1328;color:#e7ecff}
     .price{font-size:26px;font-weight:900;color:var(--good);margin-top:8px}
     .buy{display:inline-block;margin-top:10px;padding:10px 14px;border-radius:12px;
       background:linear-gradient(135deg,var(--brand),var(--brand2));font-weight:800}
 
-    /* steps (kept for future expansion) */
-    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-    .step{background:#0b1328;border:1px solid #223254;border-radius:16px;padding:14px}
-    .step-num{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-weight:900;background:linear-gradient(135deg,var(--brand),var(--brand2))}
-
-    /* logo frames (used earlier sections; kept in case you re-add them) */
-    .frame{background:#0b1328;border:1px solid #223254;border-radius:14px;padding:20px;box-shadow:0 6px 20px #0005}
-    .row{display:flex;flex-wrap:wrap;justify-content:center;gap:28px;align-items:center}
-    .frame h3{margin:0 0 14px;text-align:center;color:#cfe0ff}
-
-    /* icons left of product headings */
+    /* icon-left in product title */
     .icon-left{height:22px;vertical-align:middle;margin-right:6px}
 
+    /* blocks */
+    .frame{background:#0b1328;border:1px solid #223254;border-radius:14px;padding:18px;box-shadow:0 6px 20px #0005}
+    .row{display:flex;flex-wrap:wrap;justify-content:center;gap:22px;align-items:center}
+    .frame h3{margin:0 0 10px;text-align:center;color:#cfe0ff}
+
     /* video hero */
-    .hero-video video{width:100%;border-radius:12px;box-shadow:0 6px 20px #0007;margin-bottom:20px}
+    .hero-video video{width:100%;border-radius:12px;box-shadow:0 6px 20px #0007;margin-bottom:14px}
 
     /* footer */
-    footer{padding:26px 0;border-top:1px solid var(--line);text-align:center;color:#aab1c7;font-size:14px}
+    footer{padding:22px 0;border-top:1px solid var(--line);text-align:center;color:#aab1c7;font-size:14px}
+
+    /* mobile tweaks */
+    @media (max-width:600px){
+      .brand img{height:48px}
+      nav.nav a:not(.icon){font-size:13px}
+      .container{padding:12px}
+    }
   </style>
 </head>
 <body>
@@ -79,22 +79,21 @@
 
     <!-- HEADER -->
     <header>
-      <div class="brand">
-        <img src="logo-sm.png" alt="SM Digital Store Logo">
-        SM DIGITAL STORE
+      <div class="hwrap">
+        <div class="brand">
+          <img src="logo-sm.png" alt="SM Digital Store Logo">
+          SM DIGITAL STORE
+        </div>
+        <nav class="nav">
+          <a href="#products">Products</a>
+          <a href="#pay">Payments</a>
+          <a href="#social">Social</a>
+          <!-- quick action icons -->
+          <a class="icon" title="Call"   href="tel:+9779828560029">📞</a>
+          <a class="icon" title="Viber"  href="viber://chat?number=%2B9779828560029">📲</a>
+          <a class="icon" title="WhatsApp" href="https://wa.me/9779828560029">💬</a>
+        </nav>
       </div>
-      <nav class="nav">
-        <a href="#products">Products</a>
-        <a href="#how">How it works</a>
-        <a href="#pay">Payments</a>
-        <a href="#brands">Subscriptions</a>
-        <a href="#social">Social</a>
-        <!-- quick action icons -->
-        <a class="icon" title="Call"   href="tel:+9779828560029">📞</a>
-        <a class="icon" title="Viber"  href="viber://chat?number=%2B9779828560029">📲</a>
-        <a class="icon" title="WhatsApp" href="https://wa.me/9779828560029">💬</a>
-        <a class="icon" title="TikTok" target="_blank" href="https://www.tiktok.com/@samirmijar.np">🎵</a>
-      </nav>
     </header>
 
     <!-- HERO VIDEO -->
@@ -103,6 +102,7 @@
         <source src="welcome.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
+      <p class="sub" style="text-align:center;margin-top:4px">Instant Delivery · Secure Payments · 24/7 Support</p>
     </section>
 
     <!-- HERO TEXT -->
@@ -131,7 +131,7 @@
             <option value="180D|10500">180 Days — Rs 10500</option>
           </select>
           <div class="price" id="apeuniPrice">Rs 2200</div>
-          <a class="buy" id="apeuniBtn" href="https://wa.me/9779860003403?text=Apeuni%2030D%20Order">Buy Now</a>
+          <a class="buy" id="apeuniBtn" href="https://wa.me/9779828560029?text=Apeuni%2030D%20Order">Buy Now</a>
         </div>
 
         <!-- SPOTIFY -->
@@ -158,7 +158,7 @@
             <option value="3M|3750">3 Months — Rs 3750</option>
           </select>
           <div class="price" id="gptPrice">Rs 2750</div>
-          <a class="buy" id="gptBtn" href="https://wa.me/9779860003403?text=ChatGPT%20Plus%201M%20Order">Buy Now</a>
+          <a class="buy" id="gptBtn" href="https://wa.me/9779828560029?text=ChatGPT%20Plus%201M%20Order">Buy Now</a>
         </div>
 
         <!-- PERPLEXITY -->
@@ -166,9 +166,61 @@
           <h3><img src="logo-perplexity.png" alt="Perplexity" class="icon-left">Perplexity Pro — 1 Year</h3>
           <div class="badges"><span class="badge">In your mail</span></div>
           <div class="price">Rs 2750</div>
-          <a class="buy" href="https://wa.me/9779860003403?text=Perplexity%20Pro%201Y%20Order">Buy Now</a>
+          <a class="buy" href="https://wa.me/9779828560029?text=Perplexity%20Pro%201Y%20Order">Buy Now</a>
         </div>
 
+      </div>
+    </section>
+
+    <!-- PAYMENT METHODS (WE ACCEPT) -->
+    <section id="pay">
+      <h2>Payment Methods</h2>
+      <div class="frame">
+        <h3>✅ We Accept</h3>
+        <div class="row" style="justify-content:center">
+          <!-- Single frame image with all logos -->
+          <img src="logo-pays.png" alt="Payment Methods">
+        </div>
+        <p class="sub" style="text-align:center;margin-top:8px">
+          Pay via Fonepay · MyPay · eSewa · Khalti · Bank Transfer
+        </p>
+      </div>
+    </section>
+
+    <!-- FIND US ON (SOCIAL) -->
+    <section id="social">
+  <h2>Find Us On</h2>
+  <div class="frame">
+    <div class="row" style="flex-direction:column;gap:16px;text-align:center">
+      
+      <!-- Text links -->
+      <div>
+        <a href="https://www.tiktok.com/@samirmijar.np" target="_blank" aria-label="TikTok">@samirmijar.np</a>
+        <span style="opacity:.5">•</span>
+        <a href="viber://chat?number=%2B9779828560029" aria-label="Viber">Viber</a>
+        <span style="opacity:.5">•</span>
+        <a href="https://wa.me/9779828560029" target="_blank" aria-label="WhatsApp">WhatsApp</a>
+      </div>
+
+      <!-- Logo image -->
+      <div class="row" style="justify-content:center">
+        <img src="logo-call.png" alt="WhatsApp & Viber" style="height:60px">
+      </div>
+    </div>
+
+    <p class="sub" style="text-align:center;margin-top:8px">
+      Official number: <b>9828560029</b>
+    </p>
+  </div>
+</section>
+    <!-- CONTACT QUICK -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="grid">
+        <div class="card"><h3>📞 Call</h3><p><a class="buy" href="tel:+9779828560029">Call 9828560029</a></p></div>
+        <div class="card"><h3>📱 Viber</h3><p><a class="buy" href="viber://chat?number=%2B9779828560029">Message on Viber</a></p></div>
+        <div class="card"><h3>💬 WhatsApp</h3><p><a class="buy" href="https://wa.me/9779828560029">Chat on WhatsApp</a></p></div>
+        <div class="card"><h3>✉️ Email</h3><p><a class="buy" href="mailto:sewabyte@gmail.com">sewabyte@gmail.com</a></p></div>
       </div>
     </section>
 
