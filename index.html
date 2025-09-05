@@ -5,6 +5,19 @@
 <title>SM Digital Store — Subscriptions & AI Tools</title>
 <meta name="description" content="Apeuni VIP, Spotify 12M, ChatGPT Plus, Perplexity Pro. Full private, delivered to your email. Pay via Fonepay, MyPay, eSewa, Khalti, Bank.">
 <style>
+  /* product title + small logo */
+h3.title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.picon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: #000;
+}
 :root{
   --bg1:#0b1224;--bg2:#0f172a;--panel:#0e1833ee;--line:#1e2a4d;
   --txt:#e7ecff;--muted:#a8b9de;--brand:#5b7cfa;--brand2:#8b5cf6;--good:#22c55e;
@@ -79,7 +92,7 @@ footer{padding:26px 0;border-top:1px solid var(--line);text-align:center;color:#
       <!-- quick action icons -->
       <a class="icon" title="Call"   href="tel:+9779828560029">📞</a>
       <a class="icon" title="Viber"  href="viber://chat?number=%2B9779828560029">📲</a>
-      <a class="icon" title="WhatsApp" href="https://wa.me/9779860003403">💬</a>
+      <a class="icon" title="WhatsApp" href="https://wa.me/9779828560029">💬</a>
       <a class="icon" title="TikTok" target="_blank" href="https://www.tiktok.com/@samirmijar.np">🎵</a>
     </nav>
   </header>
@@ -97,7 +110,7 @@ footer{padding:26px 0;border-top:1px solid var(--line);text-align:center;color:#
 
       <!-- APEUNI VIP (choose option) -->
       <div class="card">
-        <h3>📝 Apeuni VIP Subscription</h3>
+        <h3 class="title"><img src="logo-apeuni.png" class="picon" alt="Apeuni"> Apeuni VIP Subscription</h3>
         <div class="badges"><span class="badge">On your mail</span><span class="badge">Full private</span><span class="badge">Unlimited AI score</span></div>
         <label for="apeuniOpt">Choose plan:</label>
         <select id="apeuniOpt">
@@ -111,7 +124,7 @@ footer{padding:26px 0;border-top:1px solid var(--line);text-align:center;color:#
 
       <!-- SPOTIFY -->
       <div class="card">
-        <h3>🎶 Spotify Code — 12 Months</h3>
+        <h3 class="title"><img src="logo-spotify.png" class="picon" alt="Spotify"> Spotify Code — 12 Months</h3>
         <div class="badges"><span class="badge">On your mail</span><span class="badge">Full private</span></div>
         <div class="price">Rs 2750</div>
         <a class="buy" href="https://wa.me/9779860003403?text=Spotify%2012M%20Order">Buy Now</a>
@@ -119,7 +132,7 @@ footer{padding:26px 0;border-top:1px solid var(--line);text-align:center;color:#
 
       <!-- CHATGPT PLUS (choose option) -->
       <div class="card">
-        <h3>🤖 ChatGPT Plus</h3>
+        <h3 class="title"><img src="logo-chatgpt.png" class="picon" alt="ChatGPT"> ChatGPT Plus</h3>
         <div class="badges"><span class="badge">Private</span><span class="badge">On your mail</span></div>
         <label for="gptOpt">Choose plan:</label>
         <select id="gptOpt">
@@ -132,7 +145,7 @@ footer{padding:26px 0;border-top:1px solid var(--line);text-align:center;color:#
 
       <!-- PERPLEXITY -->
       <div class="card">
-        <h3>🔮 Perplexity Pro — 1 Year</h3>
+        <h3 class="title"><img src="logo-perplexity.png" class="picon" alt="Perplexity"> Perplexity Pro — 1 Year</h3>
         <div class="badges"><span class="badge">In your mail</span></div>
         <div class="price">Rs 2750</div>
         <a class="buy" href="https://wa.me/9779860003403?text=Perplexity%20Pro%201Y%20Order">Buy Now</a>
