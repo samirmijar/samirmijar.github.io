@@ -14,12 +14,12 @@
   body{margin:0;background:var(--bg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--text)}
   .wrap{max-width:1100px;margin:auto;padding:18px}
 
-  /* Top color bar */
+  /* top bar */
   .topbar{background:linear-gradient(90deg,var(--accent1),#7d55ff,var(--accent2));color:#fff;padding:10px 0}
   .topbar .wrap{padding:0 18px}
-  .topbar h1{margin:0;font-size:20px;text-align:center;letter-spacing:.3px}
+  .topbar h1{margin:0;font-size:20px;text-align:center}
 
-  /* Hero video */
+  /* hero video */
   .hero{position:relative;width:100%;aspect-ratio:16/9;background:#000;overflow:hidden}
   .hero video{width:100%;height:100%;object-fit:cover}
   .hero .overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -27,13 +27,12 @@
   .hero .overlay h2{margin:0 0 6px;font-size:28px}
   .hero .overlay p{margin:0;color:#e7e7e7}
 
-  /* Section titles */
+  /* sections */
   .section-title{margin:22px 0 8px;text-align:center}
   .section-title h3{margin:0;font-size:22px}
   .underline{width:80px;height:3px;background:#ff3b6b;border-radius:6px;margin:8px auto 0}
   .lead{color:var(--muted);text-align:center;margin:8px 0 16px}
 
-  /* Cards/grid */
   .grid{display:grid;gap:16px;grid-template-columns:repeat(2,1fr)}
   @media(min-width:860px){.grid{grid-template-columns:repeat(4,1fr)}}
   .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px;text-align:center}
@@ -41,36 +40,30 @@
   .title{font-weight:800;margin:6px 0 4px}
   .desc{color:var(--muted);font-size:14px;margin:0}
 
-  /* Icons (guarantee show) */
   img.product-icon,img.game-icon,img.pay{display:block;width:88px;height:88px;object-fit:contain;margin:4px auto 10px}
-  img.game-icon{width:88px;height:88px}
   img.pay{width:56px;height:56px}
 
-  /* Payments row */
   .payments{margin:28px 0}
   .payments h4{text-align:center;margin:0 0 12px}
   .paybar{background:#f0f1f5;border-radius:14px;padding:14px;display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
 
-  /* Footer nav */
   .nav{position:sticky;bottom:0;background:#fff;border-top:1px solid #eee}
   .nav .bar{max-width:1100px;margin:auto;display:flex;justify-content:space-around;padding:10px 12px}
   .nav a{display:flex;flex-direction:column;align-items:center;text-decoration:none;color:#444;font-size:12px}
-  .nav img{width:26px;height:26px;object-fit:contain;transition:transform .12s}
-  .nav a:hover img{transform:translateY(-2px)}
+  .nav img{width:26px;height:26px;object-fit:contain}
 </style>
 </head>
 <body>
 
-<!-- New top color bar -->
+<!-- color bar -->
 <div class="topbar">
   <div class="wrap">
     <h1>SM DIGITAL STORE</h1>
   </div>
 </div>
 
-<!-- Hero video -->
+<!-- hero video -->
 <section class="hero">
-  <!-- place welcome.mp4 next to this HTML; change path if needed -->
   <video src="welcome.mp4" autoplay muted loop playsinline poster="images/hero-poster.jpg"></video>
   <div class="overlay">
     <h2>Welcome to SM Digital Store</h2>
@@ -80,150 +73,30 @@
 
 <div class="wrap">
   <!-- Best Selling -->
-  <div class="section-title">
-    <h3>Best Selling</h3>
-    <div class="underline"></div>
-  </div>
+  <div class="section-title"><h3>Best Selling</h3><div class="underline"></div></div>
   <p class="lead">Our most popular subscriptions — delivered instantly</p>
-
   <div class="grid">
-    <div class="card">
-      <img class="product-icon" src="images/apeuni.png?v=1" alt="APEUni VIP">
-      <div class="pill">APEUni VIP</div>
-      <div class="title">From NPR 2200</div>
-      <p class="desc">Unlimited mock tests & AI score.</p>
-    </div>
-    <div class="card">
-      <img class="product-icon" src="images/spotify.png?v=1" alt="Spotify 12 Months">
-      <div class="pill">Spotify 12 Months</div>
-      <div class="title">Ask for today’s price</div>
-      <p class="desc">Individual plan on your mail.</p>
-    </div>
-    <div class="card">
-      <img class="product-icon" src="images/chatgpt.png?v=1" alt="ChatGPT Plus">
-      <div class="pill">ChatGPT Plus</div>
-      <div class="title">1mo – 2750 • 3mo – 3750</div>
-      <p class="desc">Private account via mail.</p>
-    </div>
-    <div class="card">
-      <img class="product-icon" src="images/perplexity.png?v=1" alt="Perplexity Pro AI">
-      <div class="pill">Perplexity Pro AI</div>
-      <div class="title">1 Year – 2750</div>
-      <p class="desc">Private code on your mail.</p>
-    </div>
+    <!-- fill with apeuni, spotify, chatgpt, perplexity cards -->
   </div>
 
   <!-- Games Top-Up -->
-  <div class="section-title" style="margin-top:26px">
-    <h3>Games Top-Up</h3>
-    <div class="underline"></div>
-  </div>
-
+  <div class="section-title"><h3>Games Top-Up</h3><div class="underline"></div></div>
   <div class="grid">
-    <div class="card">
-      <img class="game-icon" src="images/freefire.png?v=1" alt="Free Fire">
-      <div class="pill">Free Fire Diamond</div>
-      <div class="title">In-game direct top-up.</div>
-      <p class="desc">Fast delivery after payment.</p>
-    </div>
-    <div class="card">
-      <img class="game-icon" src="images/pubg.png?v=1" alt="PUBG UC">
-      <div class="pill">PUBG UC</div>
-      <div class="title">Direct UC top-up.</div>
-      <p class="desc">Proof provided on request.</p>
-    </div>
-    <div class="card">
-      <img class="game-icon" src="images/supercell.png?v=1" alt="Supercell">
-      <div class="pill">Clash of Clans</div>
-      <div class="title">Gems & Gold Pass.</div>
-      <p class="desc">Clash, Royale, Brawl Stars.</p>
-    </div>
-    <div class="card">
-      <img class="game-icon" src="images/mlbb.png?v=1" alt="Mobile Legends">
-      <div class="pill">Mobile Legends</div>
-      <div class="title">Diamonds & Starlight.</div>
-      <p class="desc">Secure & quick top-up.</p>
-    </div>
-    <div class="card">
-      <img class="game-icon" src="images/roblox.png?v=1" alt="Roblox">
-      <div class="pill">Roblox</div>
-      <div class="title">Robux & Premium.</div>
-      <p class="desc">Gift codes available.</p>
-    </div>
-    <div class="card">
-      <img class="game-icon" src="images/codm.png?v=1" alt="CODM">
-      <div class="pill">Call of Duty Mobile</div>
-      <div class="title">CP — competitive price.</div>
-      <p class="desc">Trusted top-up.</p>
-    </div>
-    <div class="card">
-      <img class="game-icon" src="images/efootball.png?v=1" alt="eFootball">
-      <div class="pill">eFootball</div>
-      <div class="title">Coins — ask price.</div>
-      <p class="desc">Instant processing.</p>
-    </div>
-    <div class="card">
-      <img class="game-icon" src="images/garena.png?v=1" alt="Garena">
-      <div class="pill">Garena Shells</div>
-      <div class="title">Codes — in stock.</div>
-      <p class="desc">Mail delivery.</p>
-    </div>
+    <!-- fill with pubg, freefire, mlbb, roblox, codm, etc. -->
   </div>
 
   <!-- Gift & Vouchers -->
-  <div class="section-title" style="margin-top:26px">
-    <h3>Gift & Vouchers</h3>
-    <div class="underline"></div>
-  </div>
+  <div class="section-title"><h3>Gift & Vouchers</h3><div class="underline"></div></div>
   <div class="grid">
-    <div class="card">
-      <img class="product-icon" src="images/roblox.png?v=1" alt="Roblox Gift Card">
-      <div class="pill">Roblox Gift Card</div>
-      <div class="title">Various values</div>
-      <p class="desc">Delivery to your mail.</p>
-    </div>
-    <div class="card">
-      <img class="product-icon" src="images/supercell.png?v=1" alt="Supercell">
-      <div class="pill">Supercell Store</div>
-      <div class="title">Gems/Pass codes</div>
-      <p class="desc">Instant redeem.</p>
-    </div>
-    <div class="card">
-      <img class="product-icon" src="images/chatgpt.png?v=1" alt="AI Tools">
-      <div class="pill">AI Tools</div>
-      <div class="title">ChatGPT / Perplexity</div>
-      <p class="desc">Best value bundles.</p>
-    </div>
-    <div class="card">
-      <img class="product-icon" src="images/spotify.png?v=1" alt="Music & OTT">
-      <div class="pill">Music & OTT</div>
-      <div class="title">Spotify / more</div>
-      <p class="desc">Codes & accounts.</p>
-    </div>
+    <!-- fill with gift/voucher cards -->
   </div>
 
-  <!-- Payment Methods Accepted -->
+  <!-- Payment Methods -->
   <section class="payments">
     <h4>Payment Methods Accepted</h4>
     <div class="paybar">
-      <img class="pay" src="images/esewa.png?v=1" alt="eSewa">
-      <img class="pay" src="images/khalti.png?v=1" alt="Khalti">
-      <img class="pay" src="images/mypay.png?v=1" alt="MyPay">
-      <img class="pay" src="images/fonepay.png?v=1" alt="Fonepay">
-      <img class="pay" src="images/bank.png?v=1" alt="Bank">
-    </div>
-  </section>
-</div>
-
-<!-- Footer nav with icons -->
-<footer class="nav">
-  <div class="bar">
-    <a href="index.html"><img src="images/icon-home.png?v=1" alt="Home"><span>Home</span></a>
-    <a href="viber://chat?number=%2B9779828560029"><img src="images/icon-viber.png?v=1" alt="Viber"><span>Viber</span></a>
-    <a href="https://wa.me/9779828560029" target="_blank" rel="noopener"><img src="images/icon-whatsapp.png?v=1" alt="WhatsApp"><span>WhatsApp</span></a>
-    <a href="https://tiktok.com/@samirmijar.np" target="_blank" rel="noopener"><img src="images/icon-tiktok.png?v=1" alt="TikTok"><span>TikTok</span></a>
-  </div>
-</footer>
-
-</body>
-</html>
+      <img class="pay" src="images/esewa.png" alt="eSewa">
+      <img class="pay" src="images/khalti.png" alt="Khalti">
+      <img class="pay" src="images/mypay.png" alt="MyPay">
+      <img class="pay" src="images/fonepay.png" alt="Fonepay">
+      <img class="pay" src="images/bank.pn
