@@ -3,284 +3,368 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SM Digital Store — Subscriptions & AI Tools</title>
-<meta name="description" content="Apeuni VIP, Spotify 12M, ChatGPT Plus, Perplexity Pro. Full private, delivered to your email. Pay via Fonepay, MyPay, eSewa, Khalti, Bank.">
+<title>SM Digital Store — Subscriptions, Top-ups & Tools</title>
+<meta name="description" content="Apeuni VIP, Spotify, ChatGPT Plus, Perplexity Pro. Fast delivery, private, pay with eSewa, Khalti & Bank in Nepal.">
 <style>
 :root{
-  --bg1:#0b1224; --bg2:#0f172a; --panel:#0e1833ee; --line:#1e2a4d;
-  --txt:#e7ecff; --muted:#a8b9de; --good:#22c55e;
-  --brand1:#ff007a; --brand2:#ff9d2d;        /* top bar gradient */
-  --ctaA:#5b7cfa; --ctaB:#8b5cf6;             /* button gradient */
-  --max:1150px;
+  --bg1:#0b1224;--bg2:#0f172a;--panel:#0e1833ee;--line:#1e2a4d;
+  --txt:#e7ecff;--muted:#a8b9de;--brand:#ff2d55;--brand2:#ffb800;--good:#22c55e;
+  --max:1100px
 }
-*{box-sizing:border-box} html,body{margin:0;scroll-behavior:smooth}
+*{box-sizing:border-box}
+html,body{margin:0;scroll-behavior:smooth}
 body{
-  font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial;
-  color:var(--txt);
+  font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--txt);
   background:
-    radial-gradient(900px 480px at -10% -10%, #1b2a6b44 0%, transparent 60%),
-    radial-gradient(900px 480px at 110% 10%, #6b21a844 0%, transparent 60%),
-    linear-gradient(120deg,var(--bg1),var(--bg2));
+    radial-gradient(950px 500px at -10% -10%, #1b2a6b44 0%, transparent 60%),
+    radial-gradient(950px 500px at 110% 10%, #6b21a844 0%, transparent 60%),
+    linear-gradient(120deg,var(--bg1),var(--bg2))
 }
 a{color:inherit;text-decoration:none}
-.container{max-width:var(--max);margin:0 auto;padding:0 22px}
-
-/* top info bar */
-.topbar{background:linear-gradient(90deg,var(--brand1),var(--brand2));color:#fff;font-weight:700;padding:8px 0;text-align:center;font-size:14px}
+.container{max-width:var(--max);margin:0 auto;padding:20px 24px}
 
 /* header */
-header{position:sticky;top:0;z-index:30;background:#0c1327dd;border-bottom:1px solid #1f2a4d;backdrop-filter:blur(6px)}
-.head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
-.brand{display:flex;align-items:center;gap:12px}
-.brand img{height:50px;width:50px;border-radius:10px;object-fit:cover}
-.brand .name{font-size:22px;font-weight:900;letter-spacing:.3px}
-.brand .name b{background:linear-gradient(90deg,var(--brand1),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent}
-nav.nav{display:flex;gap:18px;align-items:center;color:#cdd7ff;font-size:14px;flex-wrap:wrap}
-a.icon{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:#101b36;border:1px solid #24335a}
+header{display:flex;gap:16px;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding:12px 0;position:sticky;top:0;background:linear-gradient(120deg,var(--bg1),var(--bg2));z-index:50}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;white-space:nowrap}
+.brand img.site-logo{height:34px;width:34px;border-radius:8px;object-fit:cover}
+.brand span{font-size:20px;letter-spacing:.5px}
+nav.nav{display:flex;gap:16px;align-items:center;color:var(--muted);font-size:14px;flex-wrap:wrap}
+a.icon{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:10px;background:#101b36;border:1px solid #24335a}
 
-/* hero video */
-.hero-wrap{position:relative;isolation:isolate}
-.hero video{width:100%;height:360px;object-fit:cover;border-bottom:1px solid #1f2a4d;display:block}
-.hero-overlay{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(180deg,#0006,#0002)}
-.hero-inner{max-width:var(--max);padding:0 22px;text-align:center}
-.hero-inner h1{margin:0 0 8px;font-size:clamp(26px,5.4vw,46px)}
-.kicker{display:inline-block;background:#ffffff26;border:1px solid #ffffff3a;border-radius:999px;padding:6px 12px;margin-bottom:10px}
+/* hero */
+.hero{position:relative;min-height:56vh;border-radius:18px;overflow:hidden;margin:18px 0 8px;border:1px solid #16224a}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.5) saturate(1.1)}
+.hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,#0007 0%,#0002 40%,#0009 100%)}
+.hero-text{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#fff;padding:0 20px}
+.hero-text h1{font-size:clamp(28px,6vw,48px);font-weight:900;color:#fff;text-shadow:0 0 14px #000}
+.hero-text p{font-size:clamp(14px,2.6vw,18px);margin:6px 0 12px;color:#eaf2ff}
+.cta{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.btn{padding:12px 22px;border-radius:12px;font-weight:800;text-decoration:none}
+.btn.shop{background:linear-gradient(135deg,var(--brand),#8b5cf6);color:#fff}
+.btn.join{background:linear-gradient(135deg,var(--brand2),#ffd36a);color:#000;font-weight:900}
 
 /* sections */
-section{padding:34px 0}
-h2{margin:0 0 14px;font-size:28px}
-.sub{color:#cfe0ff}
+section{padding:26px 0}
+h2{margin:0 0 12px;font-size:26px}
 
 /* grids & cards */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px}
-.card h3{display:flex;align-items:center;gap:10px;margin:0 0 6px}
-.logo-sm{height:26px;width:26px;border-radius:6px;object-fit:cover;background:#0b1328;border:1px solid #223254}
-.badges{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px}
+.card h3{display:flex;align-items:center;gap:10px}
+.card h3 img.logo{width:28px;height:28px;border-radius:8px;object-fit:cover}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
 .badge{font-size:12px;background:#ffffff19;border:1px solid #ffffff2a;padding:4px 10px;border-radius:999px}
 
 /* product controls */
 label{font-size:14px;color:#d5e2ff}
-select{width:100%;padding:12px;border-radius:12px;border:1px solid #2a3a63;background:#0b1328;color:#e7ecff}
-.price{font-size:28px;font-weight:900;color:var(--good);margin-top:10px}
-.btn{display:inline-block;margin-top:12px;padding:12px 16px;border-radius:14px;
-  background:linear-gradient(135deg,var(--ctaA),var(--ctaB));font-weight:800}
+select{
+  width:100%;padding:10px;border-radius:10px;border:1px solid #2a3a63;background:#0b1328;color:#e7ecff
+}
+.price{font-size:26px;font-weight:900;color:var(--good);margin-top:8px}
+.buy{display:inline-block;margin-top:10px;padding:10px 14px;border-radius:12px;
+  background:linear-gradient(135deg,#5b7cfa,#8b5cf6);font-weight:800;color:#fff}
 
-/* steps & blocks */
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
-.step{background:#0b1328;border:1px solid #223254;border-radius:16px;padding:16px}
-.step-num{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;font-weight:900;background:linear-gradient(135deg,var(--ctaA),var(--ctaB))}
-.block{background:#0b1328;border:1px solid #223254;border-radius:18px;padding:20px}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.step{background:#0b1328;border:1px solid #223254;border-radius:16px;padding:14px}
+.step-num{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-weight:900;background:linear-gradient(135deg,#5b7cfa,#8b5cf6)}
 
-/* frames */
-.frame{background:#0b1328;border:1px solid #223254;border-radius:16px;padding:20px;box-shadow:0 6px 20px #0005}
+/* logo frames */
+.frame{background:#0b1328;border:1px solid #223254;border-radius:14px;padding:20px;box-shadow:0 6px 20px #0005}
 .row{display:flex;flex-wrap:wrap;justify-content:center;gap:28px;align-items:center}
 .frame h3{margin:0 0 14px;text-align:center;color:#cfe0ff}
 
 /* footer */
-footer{margin-top:26px;background:#0b1328;border-top:1px solid #223254}
-.foot-wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;padding:28px 22px}
-.foot h4{margin:0 0 10px}
-.foot ul{margin:0;padding-left:18px}
-.copy{border-top:1px solid #1d284b;text-align:center;color:#aab1c7;padding:12px 0;font-size:14px}
+footer{padding:26px 0;border-top:1px solid var(--line);text-align:center;color:#aab1c7;font-size:14px}
+
+/* modal */
+.modal{position:fixed;inset:0;background:#0009;display:none;align-items:center;justify-content:center;z-index:60}
+.modal .box{width:min(720px,92vw);background:#0b1328;border:1px solid #223254;border-radius:16px;overflow:hidden}
+.modal header{display:flex;justify-content:space-between;align-items:center;background:#0e1833;padding:12px 16px;border-bottom:1px solid #223254}
+.modal header h3{margin:0}
+.modal .close{cursor:pointer;font-weight:900}
+.modal .content{padding:16px}
+.modal label{display:block;margin-top:10px;margin-bottom:6px}
+.modal input,.modal select{width:100%;padding:12px;border-radius:10px;border:1px solid #2a3a63;background:#0b1328;color:#e7ecff}
+.modal .hint{font-size:12px;color:#a8b9de;margin-top:8px}
 </style>
 </head>
 <body>
+<div class="container">
 
-<!-- TOP BAR -->
-<div class="topbar">⚡ Instant Top-Ups • 🔒 Secure Payments • 🕘 24/7 Support</div>
-
-<!-- HEADER -->
-<header>
-  <div class="container head">
+  <!-- HEADER -->
+  <header>
     <div class="brand">
-      <img src="logo-sm.png" alt="SM logo">
-      <div class="name">SM <b>Digital Store</b></div>
+      <img src="logo-chatgpt.png" alt="SM" class="site-logo">
+      <span>SM DIGITAL STORE</span>
     </div>
     <nav class="nav">
       <a href="#products">Products</a>
-      <a href="#why">Why Us</a>
-      <a href="#how">Steps</a>
+      <a href="#how">How it works</a>
       <a href="#pay">Payments</a>
-      <a href="#social">Social</a>
-      <a class="icon" title="Call" href="tel:+9779828560029">📞</a>
-      <a class="icon" title="Viber" href="viber://chat?number=%2B9779828560029">📲</a>
+      <a href="#brands">Subscriptions</a>
+      <a href="#contact">Contact</a>
+      <!-- quick action icons -->
+      <a class="icon" title="Call"   href="tel:+9779828560029">📞</a>
       <a class="icon" title="WhatsApp" href="https://wa.me/9779828560029">💬</a>
+      <a class="icon" title="TikTok" target="_blank" href="https://www.tiktok.com/@samirmijar.np">🎵</a>
     </nav>
-  </div>
-</header>
+  </header>
 
-<!-- HERO VIDEO -->
-<div class="hero-wrap">
-  <div class="hero">
-    <!-- Upload hero.mp4 and (optional) hero-poster.jpg -->
-    <video autoplay muted loop playsinline poster="hero-poster.jpg">
-      <source src="hero.mp4" type="video/mp4">
-    </video>
-  </div>
-  <div class="hero-overlay">
-    <div class="hero-inner">
-      <span class="kicker">Welcome to SM Digital Store</span>
-      <h1>Genuine subscriptions — fast & private</h1>
-      <p class="sub">On your mail • Full private • Pay with Fonepay / MyPay / eSewa / Khalti / Bank</p>
+  <!-- HERO (Video) -->
+  <section>
+    <div class="hero">
+      <video src="hero.mp4" autoplay muted playsinline loop></video>
+      <div class="overlay"></div>
+      <div class="hero-text">
+        <h1>Welcome to SM Digital Store</h1>
+        <p>Instant delivery • Secure payments • 24/7 support</p>
+        <div class="cta">
+          <a href="#products" class="btn shop">Shop Now</a>
+          <a href="https://wa.me/9779828560029?text=Hello%20SM%20Digital%20Store%2C%20I%20need%20help%20with%20an%20order." class="btn join">Chat on WhatsApp</a>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-
-<div class="container">
+  </section>
 
   <!-- PRODUCTS -->
   <section id="products">
     <h2>Products</h2>
     <div class="grid">
 
-      <!-- Apeuni -->
+      <!-- APEUNI VIP -->
       <div class="card">
-        <h3><img class="logo-sm" src="logo-apeuni.png" alt="">Apeuni VIP Subscription</h3>
+        <h3><img class="logo" src="logo-apeuni.png" alt="Apeuni"> Apeuni VIP Subscription</h3>
         <div class="badges"><span class="badge">On your mail</span><span class="badge">Full private</span><span class="badge">Unlimited AI score</span></div>
         <label for="apeuniOpt">Choose plan:</label>
         <select id="apeuniOpt">
-          <option value="30D|2200">30 Days — Rs 2200</option>
-          <option value="90D|4450">90 Days — Rs 4450</option>
-          <option value="180D|10500">180 Days — Rs 10500</option>
+          <option value="30 Days — Rs 2200|2200">30 Days — Rs 2200</option>
+          <option value="90 Days — Rs 4450|4450">90 Days — Rs 4450</option>
+          <option value="180 Days — Rs 10500|10500">180 Days — Rs 10500</option>
         </select>
         <div class="price" id="apeuniPrice">Rs 2200</div>
-        <a class="btn" id="apeuniBtn" href="https://wa.me/9779828560029?text=Apeuni%2030D%20Order">Buy Now</a>
+        <a class="buy" href="#" onclick="openOrder('Apeuni VIP Subscription', document.getElementById('apeuniOpt').value)">Buy Now</a>
       </div>
 
-      <!-- Spotify -->
+      <!-- SPOTIFY -->
       <div class="card">
-        <h3><img class="logo-sm" src="logo-spotify.png" alt="">Spotify Code — 12 Months</h3>
+        <h3><img class="logo" src="logo-spotify.png" alt="Spotify"> Spotify Code — 12 Months</h3>
         <div class="badges"><span class="badge">On your mail</span><span class="badge">Full private</span></div>
         <div class="price">Rs 2750</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=Spotify%2012M%20Order">Buy Now</a>
+        <a class="buy" href="#" onclick="openOrder('Spotify — 12 Months|Rs 2750|2750')">Buy Now</a>
       </div>
 
-      <!-- ChatGPT -->
+      <!-- CHATGPT PLUS -->
       <div class="card">
-        <h3><img class="logo-sm" src="logo-chatgpt.png" alt="">ChatGPT Plus</h3>
+        <h3><img class="logo" src="logo-chatgpt.png" alt="ChatGPT"> ChatGPT Plus</h3>
         <div class="badges"><span class="badge">Private</span><span class="badge">On your mail</span></div>
         <label for="gptOpt">Choose plan:</label>
         <select id="gptOpt">
-          <option value="1M|2750">1 Month — Rs 2750</option>
-          <option value="3M|3750">3 Months — Rs 3750</option>
+          <option value="1 Month — Rs 2750|2750">1 Month — Rs 2750</option>
+          <option value="3 Months — Rs 3750|3750">3 Months — Rs 3750</option>
         </select>
         <div class="price" id="gptPrice">Rs 2750</div>
-        <a class="btn" id="gptBtn" href="https://wa.me/9779828560029?text=ChatGPT%20Plus%201M%20Order">Buy Now</a>
+        <a class="buy" href="#" onclick="openOrder('ChatGPT Plus', document.getElementById('gptOpt').value)">Buy Now</a>
       </div>
 
-      <!-- Perplexity -->
+      <!-- PERPLEXITY -->
       <div class="card">
-        <h3><img class="logo-sm" src="logo-perplexity.png" alt="">Perplexity Pro — 1 Year</h3>
+        <h3><img class="logo" src="logo-perplexity.png" alt="Perplexity"> Perplexity Pro — 1 Year</h3>
         <div class="badges"><span class="badge">In your mail</span></div>
         <div class="price">Rs 2750</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=Perplexity%20Pro%201Y%20Order">Buy Now</a>
+        <a class="buy" href="#" onclick="openOrder('Perplexity Pro — 1 Year|Rs 2750|2750')">Buy Now</a>
       </div>
 
     </div>
   </section>
 
-  <!-- WHY -->
-  <section id="why">
-    <h2>Why Choose SM Digital Store</h2>
-    <div class="block">
-      <ul>
-        <li><b>Affordable Prices:</b> Best value on subscriptions & vouchers.</li>
-        <li><b>Fast Delivery:</b> Instant/quick fulfillment with proof.</li>
-        <li><b>Private & Safe:</b> Delivered to your email — full privacy.</li>
-        <li><b>Support 24/7:</b> WhatsApp & Viber: 9828560029</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- HOW -->
+  <!-- HOW IT WORKS -->
   <section id="how">
-    <h2>Steps</h2>
+    <h2>How it works</h2>
     <div class="steps">
       <div class="step"><div class="step-num">1</div><h3>Choose</h3><p>Select a product and option.</p></div>
-      <div class="step"><div class="step-num">2</div><h3>Message</h3><p>Tap “Buy Now” → WhatsApp with product + your email/ID.</p></div>
-      <div class="step"><div class="step-num">3</div><h3>Pay</h3><p>Pay via <b>Fonepay / MyPay / eSewa / Khalti / Bank</b>.</p></div>
-      <div class="step"><div class="step-num">4</div><h3>Delivery</h3><p>Code/activation sent to your email — genuine & private.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Message</h3><p>Use <b>Buy Now</b> to place order & share email/ID.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Pay</h3><p>Select <b>eSewa / Khalti / Bank</b> and scan QR.</p></div>
+      <div class="step"><div class="step-num">4</div><h3>Delivery</h3><p>Activation/code sent to your email — private & genuine.</p></div>
     </div>
   </section>
 
-  <!-- PAYMENTS -->
+  <!-- PAYMENT METHODS (logos only) -->
   <section id="pay">
     <h2>Payment Methods</h2>
-    <p class="sub">Safe and easy digital payments in Nepal.</p>
+    <p class="sub">Fast, secure, and easy digital payments in Nepal.</p>
+    <div class="frame">
+      <h3>✅ We Accept</h3>
+      <div class="row">
+        <img src="logo-fonepay.png" alt="Fonepay" style="height:60px">
+        <img src="logo-mypay.png" alt="MyPay" style="height:60px">
+        <img src="logo-esewa.png" alt="eSewa" style="height:60px">
+        <img src="logo-khalti.png" alt="Khalti" style="height:60px">
+        <img src="logo-bank.png" alt="Bank" style="height:60px">
+      </div>
+    </div>
+    <p class="sub" style="margin-top:12px">After placing your order, pay with your preferred method and send the reference.</p>
+  </section>
+
+  <!-- SUBSCRIPTIONS WE OFFER (logos) -->
+  <section id="brands">
+    <h2>Subscriptions We Offer</h2>
     <div class="frame">
       <div class="row">
-        <img src="pay-fonepay.png" alt="Fonepay" style="height:60px">
-        <img src="pay-mypay.png"  alt="MyPay"  style="height:60px">
-        <img src="pay-esewa.png"  alt="eSewa"  style="height:60px">
-        <img src="pay-khalti.png" alt="Khalti" style="height:60px">
-        <img src="pay-bank.png"   alt="Bank"   style="height:60px">
+        <img src="logo-apeuni.png" alt="Apeuni" style="height:60px">
+        <img src="logo-chatgpt.png" alt="ChatGPT Plus" style="height:60px">
+        <img src="logo-spotify.png" alt="Spotify" style="height:60px">
+        <img src="logo-perplexity.png" alt="Perplexity Pro" style="height:60px">
       </div>
     </div>
   </section>
 
-  <!-- SOCIAL -->
-  <section id="social">
-    <h2>Find Us On</h2>
-    <div class="frame">
-      <div class="row">
-        <a href="https://www.tiktok.com/@samirmijar.np" target="_blank"><img src="logo-tiktok.png" alt="TikTok" style="height:50px"></a>
-        <a href="viber://chat?number=%2B9779828560029"><img src="logo-viber.png"  alt="Viber"  style="height:50px"></a>
-        <a href="https://wa.me/9779828560029" target="_blank"><img src="logo-whatsapp.png" alt="WhatsApp" style="height:50px"></a>
-      </div>
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="grid">
+      <div class="card"><h3>📞 Call</h3><p><a class="buy" href="tel:+9779828560029">Call 9828560029</a></p></div>
+      <div class="card"><h3>💬 WhatsApp</h3><p><a class="buy" href="https://wa.me/9779828560029">Chat on WhatsApp</a></p></div>
+      <div class="card"><h3>✉️ Email</h3><p><a class="buy" href="mailto:sewabyte@gmail.com">sewabyte@gmail.com</a></p></div>
+      <div class="card"><h3>🎵 TikTok</h3><p><a class="buy" target="_blank" href="https://www.tiktok.com/@samirmijar.np">@samirmijar.np</a></p></div>
     </div>
   </section>
 
+  <footer>© <span id="y"></span> SM Digital Store · Samir Mijar · samirmijar.com.np</footer>
 </div>
 
-<!-- FOOTER -->
-<footer>
-  <div class="container foot-wrap">
-    <div class="foot">
-      <h4>SM DIGITAL STORE</h4>
-      <p>Trusted source for subscriptions, gift cards & software. Easy payments with Fonepay, MyPay, eSewa, Khalti, and Bank transfer.</p>
-    </div>
-    <div class="foot">
-      <h4>Quick Links</h4>
-      <ul>
-        <li><a href="#products">Shop</a></li>
-        <li><a href="#why">Why Us</a></li>
-        <li><a href="#how">Steps</a></li>
-        <li><a href="#pay">Payments</a></li>
-      </ul>
-    </div>
-    <div class="foot">
-      <h4>Contact</h4>
-      <p>📞 <a href="tel:+9779828560029">+977 9828560029</a><br>
-         💬 <a href="https://wa.me/9779828560029">WhatsApp</a><br>
-         ✉️ <a href="mailto:sewabyte@gmail.com">sewabyte@gmail.com</a></p>
+<!-- ORDER MODAL -->
+<div id="orderModal" class="modal" aria-hidden="true">
+  <div class="box">
+    <header>
+      <h3 id="orderTitle">Order</h3>
+      <div class="close" onclick="closeOrder()">✕</div>
+    </header>
+    <div class="content">
+      <div id="orderSummary" class="hint" style="margin-bottom:8px"></div>
+
+      <!-- Account info (shown for items that need email/password/user id) -->
+      <div id="accountFields" style="display:none">
+        <label for="accountEmail">Your Email / Account</label>
+        <input id="accountEmail" type="email" placeholder="Enter your email used for the service">
+        <label for="accountId">User ID / Username (if needed)</label>
+        <input id="accountId" type="text" placeholder="e.g., Apeuni ID, Spotify Email, etc.">
+      </div>
+
+      <label for="paymentSelect">Payment Method</label>
+      <select id="paymentSelect" onchange="showQR(this.value)">
+        <option value="">-- Choose --</option>
+        <option value="esewa">eSewa</option>
+        <option value="khalti">Khalti (IME)</option>
+        <option value="bank">Bank Transfer</option>
+      </select>
+
+      <div id="qrBox" style="margin:16px 0;display:none;text-align:center">
+        <img id="qrImage" src="" alt="Payment QR" style="max-width:220px;border:6px solid #eee;border-radius:14px">
+        <div class="hint">Scan the QR and pay. Write your name in remarks.</div>
+      </div>
+
+      <label>Enter Transaction ID or Your Number</label>
+      <input id="txnId" type="text" placeholder="Transaction ID / Phone Number">
+
+      <a class="buy" style="display:block;text-align:center;margin-top:14px" href="#" onclick="submitOrder()">Submit Order</a>
+      <div class="hint">We’ll verify and activate fast in business hours.</div>
     </div>
   </div>
-  <div class="copy">© <span id="y"></span> SM Digital Store · Samir Mijar · samirmijar.com.np</div>
-</footer>
+</div>
 
 <script>
-const apeuniSel=document.getElementById('apeuniOpt');
-const apeuniPrice=document.getElementById('apeuniPrice');
-const apeuniBtn=document.getElementById('apeuniBtn');
-apeuniSel.addEventListener('change',()=>{
-  const [term,price]=apeuniSel.value.split('|');
-  apeuniPrice.textContent='Rs '+price;
-  const map={'30D':'Apeuni%2030D%20Order','90D':'Apeuni%2090D%20Order','180D':'Apeuni%20180D%20Order'};
-  apeuniBtn.href='https://wa.me/9779828560029?text='+map[term];
+// ---- Prices & WhatsApp links for chooser cards
+const apeuniSel = document.getElementById('apeuniOpt');
+const apeuniPrice = document.getElementById('apeuniPrice');
+apeuniSel.addEventListener('change', () => {
+  apeuniPrice.textContent = 'Rs ' + apeuniSel.value.split('|')[1];
+});
+const gptSel = document.getElementById('gptOpt');
+const gptPrice = document.getElementById('gptPrice');
+gptSel.addEventListener('change', () => {
+  gptPrice.textContent = 'Rs ' + gptSel.value.split('|')[1];
 });
 
-const gptSel=document.getElementById('gptOpt');
-const gptPrice=document.getElementById('gptPrice');
-const gptBtn=document.getElementById('gptBtn');
-gptSel.addEventListener('change',()=>{
-  const [term,price]=gptSel.value.split('|');
-  gptPrice.textContent='Rs '+price;
-  const map={'1M':'ChatGPT%20Plus%201M%20Order','3M':'ChatGPT%20Plus%203M%20Order'};
-  gptBtn.href='https://wa.me/9779828560029?text='+map[term];
-});
+// ---- Footer year
+document.getElementById('y').textContent = new Date().getFullYear();
 
-document.getElementById('y').textContent=new Date().getFullYear();
+// ---- Order modal state
+let currentProduct = { name:'', option:'', price:'' };
+
+function openOrder(productName, optionOrPacked){
+  // productName may be a simple name OR already packed string
+  // optionOrPacked is either undefined (packed in productName) or "Label|price"
+  let label, price;
+  if(optionOrPacked){ // typical two-arg usage
+    const [optLabel, p] = optionOrPacked.split('|');
+    currentProduct = { name: productName, option: optLabel, price: p };
+  }else{ // one-arg packed like "Perplexity — 1Y|Rs 2750|2750"
+    const [labelFull, _, priceOnly] = productName.split('|');
+    currentProduct = { name: labelFull, option: '', price: priceOnly };
+  }
+
+  document.getElementById('orderTitle').textContent = 'Complete Your Purchase';
+  document.getElementById('orderSummary').textContent =
+    `${currentProduct.name}${currentProduct.option ? ' — ' + currentProduct.option : ''} · Price: Rs ${currentProduct.price}`;
+
+  // Show account fields for Apeuni/Spotify/ChatGPT/Perplexity (email/ID helpful)
+  const needAccount = /(Apeuni|Spotify|ChatGPT|Perplexity)/i.test(currentProduct.name);
+  document.getElementById('accountFields').style.display = needAccount ? 'block' : 'none';
+
+  // reset modal inputs
+  document.getElementById('paymentSelect').value = '';
+  document.getElementById('qrBox').style.display = 'none';
+  document.getElementById('txnId').value = '';
+  document.getElementById('accountEmail').value = '';
+  document.getElementById('accountId').value = '';
+
+  document.getElementById('orderModal').style.display = 'flex';
+}
+
+function closeOrder(){
+  document.getElementById('orderModal').style.display = 'none';
+}
+
+function showQR(method){
+  const qrBox = document.getElementById('qrBox');
+  const qrImg = document.getElementById('qrImage');
+  if(!method){ qrBox.style.display = "none"; return; }
+  let img = "";
+  if(method === "esewa") img = "logo-esewaqr.png";
+  if(method === "khalti") img = "logo-khaltiqr.png";
+  if(method === "bank") img = "logo-bankqr.png";
+  qrImg.src = img;
+  qrBox.style.display = "block";
+}
+
+function submitOrder(){
+  const method = document.getElementById('paymentSelect').value;
+  const txn = document.getElementById('txnId').value.trim();
+  const email = (document.getElementById('accountEmail')||{value:''}).value.trim();
+  const accid = (document.getElementById('accountId')||{value:''}).value.trim();
+
+  if(!method){ alert("Please choose a payment method."); return; }
+  if(!txn){ alert("Please enter the Transaction ID or your number."); return; }
+
+  // WhatsApp handoff (fast & simple). Later you can wire this to Google Forms if you want.
+  const msg =
+`New Order — SM Digital Store
+
+Product: ${currentProduct.name}${currentProduct.option ? ' — ' + currentProduct.option : ''}
+Price: Rs ${currentProduct.price}
+
+Payment: ${method.toUpperCase()}
+Txn/Number: ${txn}
+Email/Account: ${email || '-'}
+User ID: ${accid || '-'}
+
+Please confirm & deliver.`;
+  const wa = "https://wa.me/9779828560029?text=" + encodeURIComponent(msg);
+  window.open(wa, "_blank");
+
+  closeOrder();
+}
 </script>
 </body>
 </html>
