@@ -4,310 +4,209 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SM DIGITAL STORE • samirmijar.com.np</title>
-  <meta name="description" content="SM DIGITAL STORE – Games Top‑Up, Subscriptions, Gift Cards. Fast delivery in Nepal via eSewa, Khalti, bank." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="theme-color" content="#0f2b33" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0f2b33;         /* deep teal */
-      --card:#112f38;       /* card bg */
-      --accent:#e94b4b;     /* red accent */
-      --muted:#8fb4bf;      /* muted text */
-      --text:#f3f7f9;       /* main text */
-      --chip:#1c3f49;       /* chip bg */
-      --green:#35c26b;      /* success */
-      --shadow:0 10px 25px rgba(0,0,0,.28);
-      --radius:18px;
+      --bg:#f5f7fb;
+      --card:#ffffff;
+      --accent:#e94b4b;
+      --muted:#555;
+      --text:#111;
+      --shadow:0 4px 10px rgba(0,0,0,.08);
+      --radius:16px;
     }
     *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
-    a{color:inherit;text-decoration:none}
+    body{margin:0;font-family:Inter,sans-serif;background:var(--bg);color:var(--text)}
     img{max-width:100%;display:block}
 
-    /* Top bar */
-    .topbar{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,#10303a,#0f2b33 60%);padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.06)}
-    .row{display:flex;align-items:center;gap:12px}
-    .logo{display:flex;align-items:center;gap:10px}
-    .logo img{width:38px;height:38px;border-radius:10px}
-    .logo .title{line-height:1}
-    .title h1{font-size:16px;margin:0}
-    .title small{color:var(--muted)}
+    header.topbar{background:#fff;padding:14px 16px;box-shadow:var(--shadow);position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between}
+    header .title h1{margin:0;font-size:18px}
+    header .title small{color:var(--muted)}
+    .contact-chips{margin-top:6px;display:flex;gap:8px;flex-wrap:wrap}
+    .chip{background:#f1f1f1;padding:6px 10px;border-radius:999px;display:flex;align-items:center;gap:6px;font-size:13px}
 
-    .contact-chips{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
-    .chip{background:var(--chip);border:1px solid rgba(255,255,255,.08);padding:8px 10px;border-radius:999px;display:flex;gap:8px;align-items:center}
-    .chip svg{width:16px;height:16px;opacity:.9}
+    .section{padding:16px}
+    .section h2{text-align:center;margin:0;font-size:20px}
+    .underline{height:3px;width:60px;background:var(--accent);border-radius:2px;margin:8px auto 18px}
 
-    /* Search */
-    .search{padding:12px 16px}
-    .search input{width:100%;padding:12px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.1);background:#0c242b;color:var(--text)}
-
-    /* Sections */
-    .section{padding:8px 16px 22px}
-    .section h2{font-size:22px;margin:8px 0 10px;display:flex;align-items:center;gap:8px}
-    .underline{height:4px;width:80px;background:var(--accent);border-radius:4px;margin:6px 0 14px}
-
-    /* Grid */
     .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-    @media(min-width:840px){.grid{grid-template-columns:repeat(4,1fr)}}
+    @media(min-width:768px){.grid{grid-template-columns:repeat(4,1fr)}}
 
-    .card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
-    .card .thumb{padding:12px;background:#0c242b;display:flex;align-items:center;justify-content:center}
-    .card .thumb img{width:100px;height:100px;object-fit:contain}
-    .card .body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:8px}
-    .badge{font-size:12px;background:#163943;border:1px solid rgba(255,255,255,.08);padding:4px 8px;border-radius:999px;color:#cfe7ee;width:max-content}
-    .price{font-weight:700}
-    .desc{color:var(--muted);font-size:13px}
+    .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;cursor:pointer;transition:transform .2s}
+    .card:hover{transform:translateY(-3px)}
+    .card .thumb{height:120px;display:flex;align-items:center;justify-content:center;background:#fafafa}
+    .card .thumb img{width:90px;height:90px;object-fit:contain}
+    .card .body{padding:10px}
+    .badge{display:inline-block;font-size:12px;background:#f1f1f1;padding:2px 8px;border-radius:999px;margin-bottom:4px}
+    .price{font-weight:600;font-size:14px;margin-bottom:4px}
+    .desc{font-size:13px;color:var(--muted)}
 
-    /* Options */
-    .options{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
-    .opt{background:#0d2931;border:1px solid rgba(255,255,255,.1);padding:6px 10px;border-radius:999px;font-size:13px;cursor:pointer}
-    .opt[aria-checked="true"]{outline:2px solid var(--accent)}
+    .pay{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+    .pay .method{background:#f1f1f1;padding:6px 10px;border-radius:8px;font-size:13px}
 
-    /* Payment */
-    .pay{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-    .pay .method{background:#0d2931;border:1px solid rgba(255,255,255,.08);padding:8px 10px;border-radius:12px;font-size:13px}
+    nav.nav{position:sticky;bottom:0;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;padding:8px 0;z-index:10}
+    nav.nav a{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;color:#333;text-decoration:none}
+    nav.nav a img{width:22px;height:22px}
+    nav.nav a.active{color:#e94b4b}
 
-    /* Bottom nav */
-    .nav{position:sticky;bottom:0;z-index:30;background:#0f2b33;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-around;padding:10px 8px}
-    .nav a{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;color:#d5e6ea}
-    .nav svg{width:22px;height:22px}
-    .nav a.active{color:#fff}
-
-    .hero{margin:8px 16px 0;background:radial-gradient(1200px 500px at -20% -10%, #164957 0, rgba(22,73,87,0) 60%), linear-gradient(135deg,#142e36 0%,#0f2b33 100%);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:16px 16px}
-    .hero h3{margin:0 0 6px;font-size:18px}
-    .hero p{margin:0;color:var(--muted)}
+    /* Modal sheet */
+    .sheet{position:fixed;inset:0;display:none;z-index:50}
+    .sheet.active{display:block}
+    .sheet .backdrop{position:absolute;inset:0;background:rgba(0,0,0,.55)}
+    .sheet .panel{position:absolute;left:0;right:0;bottom:0;background:#fff;border-top-left-radius:18px;border-top-right-radius:18px;box-shadow:var(--shadow);padding:16px}
+    .sheet header{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+    .sheet header img{width:60px;height:60px;object-fit:contain;border-radius:12px;background:#fafafa;padding:6px}
+    .sheet h3{margin:0;font-size:18px}
+    .sheet small{color:var(--muted)}
+    .sheet p{margin:6px 0 10px;color:var(--muted)}
+    .sheet .sheet-options{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+    .sheet .sheet-options button{background:#f1f1f1;border:none;padding:8px 12px;border-radius:999px;cursor:pointer}
+    .sheet .cta{display:flex;gap:10px;margin-top:12px}
+    .btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;border:none;border-radius:12px;padding:10px 14px;font-weight:600;cursor:pointer}
+    .btn.whatsapp{background:#1f8f4d;color:white}
+    .btn.viber{background:#7d3bd6;color:white}
   </style>
 </head>
 <body>
-  <!-- Top bar -->
   <header class="topbar">
-    <div class="row">
-      <div class="logo">
-        <img src="logo-store.png" alt="SM DIGITAL STORE logo" />
-        <div class="title">
-          <h1>SM DIGITAL STORE</h1>
-          <small>samirmijar.com.np</small>
-        </div>
+    <div class="title">
+      <h1>SM DIGITAL STORE</h1>
+      <small>samirmijar.com.np</small>
+      <div class="contact-chips">
+        <span class="chip"><img src="logo-viber.png" alt="phone"/>+977 9828560029</span>
+        <span class="chip"><img src="logo-whatsapp.png" alt="whatsapp"/>WhatsApp</span>
+        <span class="chip"><img src="logo-tiktok.png" alt="tiktok"/>@samirmijar.np</span>
       </div>
-    </div>
-
-    <div class="contact-chips">
-      <a class="chip" href="tel:+9779828560029" title="Call">
-        <!-- phone icon -->
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.56.57 1 1 0 011 1v3.61a1 1 0 01-.91 1 19 19 0 01-8.33-2.54 18.77 18.77 0 01-6-6A19 19 0 012.5 3.93a1 1 0 011-.91H7.1a1 1 0 011 1 11.36 11.36 0 00.57 3.56 1 1 0 01-.24 1.01l-1.8 1.8z"/></svg>
-        +977 9828560029
-      </a>
-      <a class="chip" href="https://wa.me/9779828560029" target="_blank" rel="noopener">
-        <!-- WhatsApp icon -->
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 3.9A10 10 0 104.2 19.7L3 23l3.4-1.1A10 10 0 1020 3.9zM6 13.6a7 7 0 111.3 2.2l-.1-.1-.8.3.3-.8-.1-.1A7 7 0 016 13.6z"/></svg>
-        WhatsApp
-      </a>
-      <a class="chip" href="viber://chat?number=%2B9779828560029">
-        <!-- Viber icon -->
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.7 2H5.3A3.3 3.3 0 002 5.3v13.4A3.3 3.3 0 005.3 22h8l4.7-4.7V5.3A3.3 3.3 0 0018.7 2zM7 7h10v2H7zm0 4h10v2H7zm0 4h6v2H7z"/></svg>
-        Viber
-      </a>
-      <a class="chip" href="https://www.tiktok.com/@samirmijar.np" target="_blank" rel="noopener">
-        <!-- TikTok icon -->
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 3c.6 1.5 1.8 2.7 3.3 3.3V9a7.1 7.1 0 01-3.3-.8v5.4A5.6 5.6 0 1110.4 8a5.4 5.4 0 011.8.3v3a2.7 2.7 0 00-1.8-.7 2.6 2.6 0 102.6 2.6V2.9H16z"/></svg>
-        @samirmijar.np
-      </a>
     </div>
   </header>
 
-  <div class="hero">
-    <h3>Fast digital delivery in Nepal</h3>
-    <p>Payments: eSewa • Khalti by IME • MyPay • Bank. Delivery via email/Viber/WhatsApp.</p>
-  </div>
-
-  <div class="search"><input id="search" placeholder="Search products… (e.g., Spotify, PUBG)" aria-label="search"/></div>
-
-  <!-- Best Selling -->
-  <section class="section" id="best">
+  <section class="section">
     <h2>Best Selling</h2>
     <div class="underline"></div>
-    <div class="grid" id="grid-best">
-      <!-- APEUni -->
-      <article class="card" data-tags="apeuni vip pte subscription">
-        <div class="thumb"><img src="logo-apeuni.png" alt="APEUni" /></div>
-        <div class="body">
-          <span class="badge">APEUni VIP</span>
-          <div class="price">From NPR 2,200</div>
-          <p class="desc">Private account on your mail. Unlimited mock tests & AI score.</p>
-          <div class="options" role="group" aria-label="APEUni options">
-            <button class="opt" data-price="2200">30 days – 2,200 NPR</button>
-            <button class="opt" data-price="4450">90 days – 4,450 NPR</button>
-            <button class="opt" data-price="10500">180 days – 10,500 NPR</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- Spotify -->
-      <article class="card" data-tags="spotify music subscription code">
-        <div class="thumb"><img src="logo-spotify.png" alt="Spotify" /></div>
-        <div class="body">
-          <span class="badge">Spotify 12 Months</span>
-          <div class="price">Ask for today’s price</div>
-          <p class="desc">Individual plan – delivery on your mail.</p>
-        </div>
-      </article>
-
-      <!-- ChatGPT -->
-      <article class="card" data-tags="chatgpt plus ai tools subscription">
-        <div class="thumb"><img src="logo-chatgpt.png" alt="ChatGPT Plus" /></div>
-        <div class="body">
-          <span class="badge">ChatGPT Plus</span>
-          <div class="price">1 mo – 2,750 NPR • 3 mo – 3,750 NPR</div>
-          <p class="desc">Full private. Delivered to your mail.</p>
-          <div class="options" role="group" aria-label="ChatGPT options">
-            <button class="opt" data-price="2750">1 Month – 2,750 NPR</button>
-            <button class="opt" data-price="3750">3 Months – 3,750 NPR</button>
-          </div>
-        </div>
-      </article>
+    <div class="grid">
+      <div class="card" data-title="Free Fire Diamond" data-desc="In-game direct top-up."><div class="thumb"><img src="logo-freefire.png"/></div><div class="body"><span class="badge">Free Fire Diamond</span><p class="desc">In-game direct top-up.</p></div></div>
+      <div class="card" data-title="PUBG UC" data-desc="Direct UC top-up."><div class="thumb"><img src="logo-pubg.png"/></div><div class="body"><span class="badge">PUBG UC</span><p class="desc">Direct UC top-up.</p></div></div>
+      <div class="card" data-title="Clash of Clans" data-desc="Gems & Gold Pass."><div class="thumb"><img src="logo-coc.png"/></div><div class="body"><span class="badge">Clash of Clans</span><p class="desc">Gems & Gold Pass.</p></div></div>
+      <div class="card" data-title="Mobile Legends" data-desc="Bang Bang diamonds."><div class="thumb"><img src="logo-mlbb.png"/></div><div class="body"><span class="badge">Mobile Legends</span><p class="desc">Bang Bang diamonds.</p></div></div>
+      <div class="card" data-title="Call of Duty Mobile" data-desc="Credit Points (CP)."><div class="thumb"><img src="logo-cod.png"/></div><div class="body"><span class="badge">Call of Duty Mobile</span><p class="desc">Credit Points (CP).</p></div></div>
     </div>
   </section>
 
-  <!-- Games Top Up -->
-  <section class="section" id="games">
+  <section class="section">
     <h2>Games Top‑Up</h2>
     <div class="underline"></div>
     <div class="grid">
-      <article class="card" data-tags="free fire diamond topup">
-        <div class="thumb"><img src="logo-freefire.png" alt="Free Fire Diamond" /></div>
-        <div class="body">
-          <span class="badge">Free Fire Diamond</span>
-          <p class="desc">In‑game top‑up. Fast & secure.</p>
-        </div>
-      </article>
-      <article class="card" data-tags="pubg uc topup">
-        <div class="thumb"><img src="logo-pubg.png" alt="PUBG UC" /></div>
-        <div class="body">
-          <span class="badge">PUBG UC</span>
-          <p class="desc">Direct top‑up to your ID.</p>
-        </div>
-      </article>
-      <article class="card" data-tags="clash of clans gems topup coc">
-        <div class="thumb"><img src="logo-coc.png" alt="Clash of Clans" /></div>
-        <div class="body">
-          <span class="badge">Clash of Clans</span>
-          <p class="desc">Gems & Gold Pass available.</p>
-        </div>
-      </article>
+      <div class="card" data-title="Free Fire Diamond" data-desc="In‑game direct top‑up."><div class="thumb"><img src="logo-freefire.png"/></div><div class="body"><span class="badge">Free Fire Diamond</span><p class="desc">In‑game direct top‑up.</p></div></div>
+      <div class="card" data-title="PUBG UC" data-desc="Direct UC top‑up."><div class="thumb"><img src="logo-pubg.png"/></div><div class="body"><span class="badge">PUBG UC</span><p class="desc">Direct UC top‑up.</p></div></div>
+      <div class="card" data-title="Clash of Clans" data-desc="Gems & Gold Pass."><div class="thumb"><img src="logo-coc.png"/></div><div class="body"><span class="badge">Clash of Clans</span><p class="desc">Gems & Gold Pass.</p></div></div>
     </div>
   </section>
 
-  <!-- Vouchers -->
-  <section class="section" id="vouchers">
+  <section class="section">
     <h2>Vouchers / Gift Cards</h2>
     <div class="underline"></div>
     <div class="grid">
-      <article class="card" data-tags="unipin voucher">
-        <div class="thumb"><img src="logo-unipin.png" alt="UniPin" /></div>
-        <div class="body">
-          <span class="badge">UniPin</span>
-          <p class="desc">Multiple regions available.</p>
-        </div>
-      </article>
-      <article class="card" data-tags="itunes apple gift card">
-        <div class="thumb"><img src="logo-itunes.png" alt="iTunes Gift Card" /></div>
-        <div class="body">
-          <span class="badge">iTunes Gift Card</span>
-          <p class="desc">Email delivery with code.</p>
-        </div>
-      </article>
+      <div class="card" data-title="UniPin" data-desc="Voucher delivery."><div class="thumb"><img src="logo-unipin.png"/></div><div class="body"><span class="badge">UniPin</span><p class="desc">Voucher delivery.</p></div></div>
+      <div class="card" data-title="iTunes Gift Card" data-desc="Email delivery with code."><div class="thumb"><img src="logo-itunes.png"/></div><div class="body"><span class="badge">iTunes Gift Card</span><p class="desc">Email delivery with code.</p></div></div>
     </div>
   </section>
 
-  <!-- Payment methods -->
-  <section class="section" id="payment">
+  <section class="section">
     <h2>Payment Methods</h2>
     <div class="underline"></div>
     <div class="pay">
       <span class="method">eSewa</span>
       <span class="method">Khalti by IME</span>
       <span class="method">MyPay</span>
-      <span class="method">Bank Transfer</span>
+      <span class="method">Bank</span>
     </div>
-
-    <div style="height:10px"></div>
-    <h2 style="font-size:18px;margin-top:14px">Pay via QR</h2>
-    <div class="underline" style="width:60px"></div>
-
-    <div class="grid">
-      <article class="card">
-        <div class="thumb"><img src="logo-esewaqr.png" alt="eSewa QR"/></div>
-        <div class="body">
-          <span class="badge">eSewa</span>
-          <p class="desc">Scan & pay. Send screenshot on WhatsApp/Viber for faster delivery.</p>
-        </div>
-      </article>
-      <article class="card">
-        <div class="thumb"><img src="logo-khaltiqr.png" alt="Khalti by IME QR"/></div>
-        <div class="body">
-          <span class="badge">Khalti by IME</span>
-          <p class="desc">Scan or send to ID. Reference: SM DIGITAL STORE.</p>
-        </div>
-      </article>
-      <article class="card">
-        <div class="thumb"><img src="logo-mypayqr.png" alt="MyPay QR"/></div>
-        <div class="body">
-          <span class="badge">MyPay</span>
-          <p class="desc">Use the QR code or MyPay wallet transfer.</p>
-        </div>
-      </article>
-      <article class="card">
-        <div class="thumb"><img src="logo-bankqr.png" alt="Bank Transfer / QR"/></div>
-        <div class="body">
-          <span class="badge">Bank</span>
-          <p class="desc">Bank QR / account transfer supported. Share slip on WhatsApp/Viber.</p>
-        </div>
-      </article>
+    <div class="grid" style="margin-top:14px">
+      <div class="card"><div class="thumb"><img src="logo-esewaqr.png"/></div><div class="body"><span class="badge">eSewa QR</span></div></div>
+      <div class="card"><div class="thumb"><img src="logo-khaltiqr.png"/></div><div class="body"><span class="badge">Khalti QR</span></div></div>
+      <div class="card"><div class="thumb"><img src="logo-mypayqr.png"/></div><div class="body"><span class="badge">MyPay QR</span></div></div>
+      <div class="card"><div class="thumb"><img src="logo-bankqr.png"/></div><div class="body"><span class="badge">Bank QR</span></div></div>
     </div>
   </section>
 
-  <!-- Bottom Navigation -->
-  <nav class="nav" aria-label="Primary">
-    <a class="active" href="#top" title="Home">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l9 8h-3v9h-5v-6H11v6H6v-9H3z"/></svg>
-      Home
-    </a>
-    <a href="viber://chat?number=%2B9779828560029" title="Viber">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.7 2H5.3A3.3 3.3 0 002 5.3v13.4A3.3 3.3 0 005.3 22h8l4.7-4.7V5.3A3.3 3.3 0 0018.7 2z"/></svg>
-      Viber
-    </a>
-    <a href="https://wa.me/9779828560029" target="_blank" rel="noopener" title="WhatsApp">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 3.9A10 10 0 104.2 19.7L3 23l3.4-1.1A10 10 0 1020 3.9z"/></svg>
-      WhatsApp
-    </a>
-    <a href="https://www.tiktok.com/@samirmijar.np" target="_blank" rel="noopener" title="TikTok">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 3c.6 1.5 1.8 2.7 3.3 3.3V9a7.1 7.1 0 01-3.3-.8v5.4A5.6 5.6 0 1110.4 8a5.4 5.4 0 011.8.3v3a2.7 2.7 0 00-1.8-.7 2.6 2.6 0 102.6 2.6V2.9H16z"/></svg>
-      TikTok
-    </a>
+  <nav class="nav">
+    <a class="active" href="#"><img src="logo-home.png"/>Home</a>
+    <a href="viber://chat?number=%2B9779828560029"><img src="logo-viber.png"/>Viber</a>
+    <a href="https://wa.me/9779828560029"><img src="logo-whatsapp.png"/>WhatsApp</a>
+    <a href="https://www.tiktok.com/@samirmijar.np"><img src="logo-tiktok.png"/>TikTok</a>
   </nav>
 
-  <script>
-    // Simple search filter
-    const input = document.getElementById('search');
-    const cards = [...document.querySelectorAll('.card')];
-    input.addEventListener('input', () => {
-      const q = input.value.trim().toLowerCase();
-      cards.forEach(c => {
-        const txt = (c.innerText + ' ' + (c.dataset.tags||'')).toLowerCase();
-        c.style.display = txt.includes(q) ? '' : 'none';
-      });
-    });
+  <!-- Modal Sheet -->
+  <div class="sheet" id="sheet">
+    <div class="backdrop" data-close></div>
+    <div class="panel">
+      <header>
+        <img id="sheetImg" src="" alt=""/>
+        <div>
+          <h3 id="sheetTitle">Product</h3>
+          <small id="sheetPrice"></small>
+        </div>
+      </header>
+      <p id="sheetDesc"></p>
+      <div class="sheet-options" id="sheetOptions"></div>
+      <div class="cta">
+        <button class="btn whatsapp" id="waBtn">WhatsApp Order</button>
+        <button class="btn viber" id="vbBtn">Viber Order</button>
+      </div>
+    </div>
+  </div>
 
-    // Toggle option selected state
-    document.querySelectorAll('.options').forEach(group => {
-      group.addEventListener('click', (e)=>{
-        const btn = e.target.closest('.opt');
-        if(!btn) return;
-        [...group.querySelectorAll('.opt')].forEach(o=>o.setAttribute('aria-checked','false'));
-        btn.setAttribute('aria-checked','true');
+  <script>
+    const cards = document.querySelectorAll('.card');
+    const sheet = document.getElementById('sheet');
+    const sImg = document.getElementById('sheetImg');
+    const sTitle = document.getElementById('sheetTitle');
+    const sPrice = document.getElementById('sheetPrice');
+    const sDesc = document.getElementById('sheetDesc');
+    const sOpt = document.getElementById('sheetOptions');
+    const waBtn = document.getElementById('waBtn');
+    const vbBtn = document.getElementById('vbBtn');
+
+    function openSheet(card){
+      const title = card.dataset.title;
+      const price = card.dataset.price || '';
+      const desc = card.dataset.desc || '';
+      const img = card.querySelector('img').src;
+      sTitle.textContent=title;
+      sPrice.textContent=price;
+      sDesc.textContent=desc;
+      sImg.src=img;
+      sOpt.innerHTML='';
+      let opts=[];
+      try{opts=JSON.parse(card.dataset.options||'[]')}catch{}
+      if(opts.length===0){ sOpt.innerHTML='<small>No options listed. Contact us.</small>'; }
+      opts.forEach((o,i)=>{
+        const b=document.createElement('button');
+        b.textContent=o.label;
+        if(i===0)b.style.outline='2px solid var(--accent)';
+        sOpt.appendChild(b);
       });
-    });
+
+      function selected(){
+        const act=sOpt.querySelector('button[style*="outline"]');
+        return act?act.textContent:opts[0]?.label||title;
+      }
+      sOpt.onclick=(e)=>{
+        if(e.target.tagName==='BUTTON'){
+          [...sOpt.querySelectorAll('button')].forEach(x=>x.style.outline='none');
+          e.target.style.outline='2px solid var(--accent)';
+        }
+      }
+      const phone='9779828560029';
+      const text=encodeURIComponent(`Order: ${title}\nOption: ${selected()}\nFrom: samirmijar.com.np`);
+      waBtn.onclick=()=>window.open(`https://wa.me/${phone}?text=${text}`,'_blank');
+      vbBtn.onclick=()=>window.location.href=`viber://forward?text=${text}`;
+
+      sheet.classList.add('active');
+    }
+
+    cards.forEach(c=>c.addEventListener('click',()=>openSheet(c)));
+    sheet.addEventListener('click',e=>{if(e.target.hasAttribute('data-close'))sheet.classList.remove('active')});
   </script>
 </body>
 </html>
