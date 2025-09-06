@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SM DIGITAL STORE •
+  <title>SM DIGITAL STORE</title>
   <meta name="theme-color" content="#0f2b33" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
@@ -15,17 +15,29 @@
       --text:#111;
       --shadow:0 4px 10px rgba(0,0,0,.08);
       --radius:16px;
+      --grad1:#6a00ff; --grad2:#ff2d55;
     }
     *{box-sizing:border-box}
     body{margin:0;font-family:Inter,sans-serif;background:var(--bg);color:var(--text)}
     img{max-width:100%;display:block}
 
-    header.topbar{background:#fff;padding:14px 16px;box-shadow:var(--shadow);position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between}
-    header .title h1{margin:0;font-size:18px}
-    header .title small{color:var(--muted)}
-    .contact-chips{margin-top:6px;display:flex;gap:8px;flex-wrap:wrap}
-    .chip{background:#f1f1f1;padding:6px 10px;border-radius:999px;display:flex;align-items:center;gap:6px;font-size:13px}
-    .chip img{width:16px;height:16px}
+    /* Top color bar */
+    .colorbar{background:linear-gradient(90deg,var(--grad1),#7d55ff,var(--grad2));color:#fff}
+    .colorbar .wrap{max-width:1100px;margin:auto;padding:12px 16px}
+    .colorbar h1{margin:0;font-size:18px;text-align:center;letter-spacing:.2px}
+
+    /* Sticky minimal header (kept for structure) */
+    header.topbar{background:#fff;padding:0;position:sticky;top:0;z-index:10;box-shadow:var(--shadow)}
+
+    /* Hero video */
+    .hero{position:relative;width:100%;aspect-ratio:16/9;background:#000;overflow:hidden}
+    .hero video{width:100%;height:100%;object-fit:cover}
+    .hero .overlay{
+      position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+      background:linear-gradient(0deg,rgba(0,0,0,.55),rgba(0,0,0,.15));color:#fff;text-align:center;padding:12px
+    }
+    .hero .overlay h2{margin:0 0 6px;font-size:28px}
+    .hero .overlay p{margin:0;color:#e7e7e7}
 
     .section{padding:16px}
     .section h2{text-align:center;margin:0;font-size:20px}
@@ -70,71 +82,152 @@
   </style>
 </head>
 <body>
+
+  <!-- Gradient color bar header (clean) -->
   <header class="topbar">
-    <div class="title">
-      <h1>SM DIGITAL STORE</h1>
-      <small>samirmijar.com.np</small>
-      <div class="contact-chips">
-        <span class="chip"><img src="logo-viber.png" alt="viber"/>+977 9828560029</span>
-        <span class="chip"><img src="logo-whatsapp.png" alt="whatsapp"/>WhatsApp</span>
-        <span class="chip"><img src="logo-tiktok.png" alt="tiktok"/>@samirmijar.np</span>
+    <div class="colorbar">
+      <div class="wrap">
+        <h1>SM DIGITAL STORE</h1>
       </div>
     </div>
   </header>
 
+  <!-- Hero video -->
+  <section class="hero">
+    <!-- put welcome.mp4 next to this HTML, or update path -->
+    <video src="welcome.mp4" autoplay muted loop playsinline poster="images/hero-poster.jpg"></video>
+    <div class="overlay">
+      <h2>Welcome to SM Digital Store</h2>
+      <p>Games • Subscriptions • AI Tools — instant delivery</p>
+    </div>
+  </section>
+
+  <!-- Best Selling -->
   <section class="section">
     <h2>Best Selling</h2>
     <p style='text-align:center;color:var(--muted);margin:4px 0 14px;font-size:14px'>Our most popular subscriptions – delivered instantly</p>
     <div class="underline"></div>
     <div class="grid">
-      <div class="card" data-title="APEUni VIP" data-price="From NPR 2200" data-desc="Unlimited mock tests & AI score." data-options='[{"label":"30 Days – 2200","price":"2200"},{"label":"90 Days – 4450","price":"4450"},{"label":"180 Days – 10500","price":"10500"}]'><div class="thumb"><img src="logo-apeuni.png"/></div><div class="body"><span class="badge">APEUni VIP</span><div class="price">From NPR 2200</div><p class="desc">Unlimited mock tests & AI score.</p></div></div>
-      <div class="card" data-title="Spotify 12 Months" data-price="Ask for today’s price" data-desc="Individual plan on your mail."><div class="thumb"><img src="logo-spotify.png"/></div><div class="body"><span class="badge">Spotify 12 Months</span><div class="price">Ask for today’s price</div><p class="desc">Individual plan on your mail.</p></div></div>
-      <div class="card" data-title="ChatGPT Plus" data-price="1mo – 2750 • 3mo – 3750" data-desc="Private account via mail." data-options='[{"label":"1 Month – 2750","price":"2750"},{"label":"3 Months – 3750","price":"3750"}]'><div class="thumb"><img src="logo-chatgpt.png"/></div><div class="body"><span class="badge">ChatGPT Plus</span><div class="price">1mo – 2750 • 3mo – 3750</div><p class="desc">Private account via mail.</p></div></div>
-      <div class="card" data-title="Perplexity Pro AI" data-price="1 Year – 2750" data-desc="Private code on your mail." data-options='[{"label":"1 Year – 2750","price":"2750"}]'><div class="thumb"><img src="logo-perplexity.png"/></div><div class="body"><span class="badge">Perplexity Pro AI</span><div class="price">1 Year – 2750</div><p class="desc">Private code on your mail.</p></div></div>
+
+      <div class="card" data-title="APEUni VIP" data-price="From NPR 2200" data-desc="Unlimited mock tests & AI score." data-options='[{"label":"30 Days – 2200","price":"2200"},{"label":"90 Days – 4450","price":"4450"},{"label":"180 Days – 10500","price":"10500"}]'>
+        <div class="thumb"><img src="images/apeuni.png" alt="APEUni"/></div>
+        <div class="body"><span class="badge">APEUni VIP</span><div class="price">From NPR 2200</div><p class="desc">Unlimited mock tests & AI score.</p></div>
+      </div>
+
+      <div class="card" data-title="Spotify 12 Months" data-price="Ask for today’s price" data-desc="Individual plan on your mail.">
+        <div class="thumb"><img src="images/spotify.png" alt="Spotify"/></div>
+        <div class="body"><span class="badge">Spotify 12 Months</span><div class="price">Ask for today’s price</div><p class="desc">Individual plan on your mail.</p></div>
+      </div>
+
+      <div class="card" data-title="ChatGPT Plus" data-price="1mo – 2750 • 3mo – 3750" data-desc="Private account via mail." data-options='[{"label":"1 Month – 2750","price":"2750"},{"label":"3 Months – 3750","price":"3750"}]'>
+        <div class="thumb"><img src="images/chatgpt.png" alt="ChatGPT Plus"/></div>
+        <div class="body"><span class="badge">ChatGPT Plus</span><div class="price">1mo – 2750 • 3mo – 3750</div><p class="desc">Private account via mail.</p></div>
+      </div>
+
+      <div class="card" data-title="Perplexity Pro AI" data-price="1 Year – 2750" data-desc="Private code on your mail." data-options='[{"label":"1 Year – 2750","price":"2750"}]'>
+        <div class="thumb"><img src="images/perplexity.png" alt="Perplexity Pro"/></div>
+        <div class="body"><span class="badge">Perplexity Pro AI</span><div class="price">1 Year – 2750</div><p class="desc">Private code on your mail.</p></div>
+      </div>
+
     </div>
   </section>
 
+  <!-- Games Top-Up -->
   <section class="section">
-    <h2>Games Top‑Up</h2>
+    <h2>Games Top-Up</h2>
     <div class="underline"></div>
     <div class="grid">
-      <div class="card" data-title="Free Fire Diamond" data-desc="In‑game direct top‑up."><div class="thumb"><img src="logo-freefire.png"/></div><div class="body"><span class="badge">Free Fire Diamond</span><p class="desc">In‑game direct top‑up.</p></div></div>
-      <div class="card" data-title="PUBG UC" data-desc="Direct UC top‑up."><div class="thumb"><img src="logo-pubg.png"/></div><div class="body"><span class="badge">PUBG UC</span><p class="desc">Direct UC top‑up.</p></div></div>
-      <div class="card" data-title="Clash of Clans" data-desc="Gems & Gold Pass."><div class="thumb"><img src="logo-coc.png"/></div><div class="body"><span class="badge">Clash of Clans</span><p class="desc">Gems & Gold Pass.</p></div></div>
-      <div class="card" data-title="Mobile Legends" data-desc="Diamonds and Starlight."><div class="thumb"><img src="logo-mlbb.png"/></div><div class="body"><span class="badge">Mobile Legends</span><p class="desc">Diamonds and Starlight.</p></div></div>
-      <div class="card" data-title="Call of Duty Mobile" data-desc="CP Top-up."><div class="thumb"><img src="logo-cod.png"/></div><div class="body"><span class="badge">Call of Duty Mobile</span><p class="desc">CP Top-up.</p></div></div>
+      <div class="card" data-title="Free Fire Diamond" data-desc="In-game direct top-up.">
+        <div class="thumb"><img src="images/freefire.png" alt="Free Fire"/></div>
+        <div class="body"><span class="badge">Free Fire Diamond</span><p class="desc">In-game direct top-up.</p></div>
+      </div>
+
+      <div class="card" data-title="PUBG UC" data-desc="Direct UC top-up.">
+        <div class="thumb"><img src="images/pubg.png" alt="PUBG UC"/></div>
+        <div class="body"><span class="badge">PUBG UC</span><p class="desc">Direct UC top-up.</p></div>
+      </div>
+
+      <div class="card" data-title="Clash of Clans" data-desc="Gems & Gold Pass.">
+        <div class="thumb"><img src="images/supercell.png" alt="Supercell / Clash"/></div>
+        <div class="body"><span class="badge">Clash of Clans</span><p class="desc">Gems & Gold Pass.</p></div>
+      </div>
+
+      <div class="card" data-title="Mobile Legends" data-desc="Diamonds and Starlight.">
+        <div class="thumb"><img src="images/mlbb.png" alt="Mobile Legends"/></div>
+        <div class="body"><span class="badge">Mobile Legends</span><p class="desc">Diamonds and Starlight.</p></div>
+      </div>
+
+      <div class="card" data-title="Call of Duty Mobile" data-desc="CP Top-up.">
+        <div class="thumb"><img src="images/codm.png" alt="CODM"/></div>
+        <div class="body"><span class="badge">Call of Duty Mobile</span><p class="desc">CP Top-up.</p></div>
+      </div>
+
+      <div class="card" data-title="Roblox" data-desc="Robux & Premium.">
+        <div class="thumb"><img src="images/roblox.png" alt="Roblox"/></div>
+        <div class="body"><span class="badge">Roblox</span><p class="desc">Robux & Premium.</p></div>
+      </div>
+
+      <div class="card" data-title="eFootball" data-desc="Coins — ask price.">
+        <div class="thumb"><img src="images/efootball.png" alt="eFootball"/></div>
+        <div class="body"><span class="badge">eFootball</span><p class="desc">Coins — ask price.</p></div>
+      </div>
+
+      <div class="card" data-title="Garena Shells" data-desc="Codes — in stock.">
+        <div class="thumb"><img src="images/garena.png" alt="Garena"/></div>
+        <div class="body"><span class="badge">Garena Shells</span><p class="desc">Codes — in stock.</p></div>
+      </div>
     </div>
   </section>
 
+  <!-- Vouchers / Gift Cards -->
   <section class="section">
     <h2>Vouchers / Gift Cards</h2>
     <div class="underline"></div>
     <div class="grid">
-      <div class="card" data-title="UniPin" data-desc="Voucher delivery."><div class="thumb"><img src="logo-unipin.png"/></div><div class="body"><span class="badge">UniPin</span><p class="desc">Voucher delivery.</p></div></div>
-      <div class="card" data-title="iTunes Gift Card" data-desc="Email delivery with code."><div class="thumb"><img src="logo-itunes.png"/></div><div class="body"><span class="badge">iTunes Gift Card</span><p class="desc">Email delivery with code.</p></div></div>
+      <div class="card" data-title="UniPin" data-desc="Voucher delivery.">
+        <div class="thumb"><img src="logo-unipin.png" alt="UniPin"/></div>
+        <div class="body"><span class="badge">UniPin</span><p class="desc">Voucher delivery.</p></div>
+      </div>
+      <div class="card" data-title="iTunes Gift Card" data-desc="Email delivery with code.">
+        <div class="thumb"><img src="logo-itunes.png" alt="iTunes"/></div>
+        <div class="body"><span class="badge">iTunes Gift Card</span><p class="desc">Email delivery with code.</p></div>
+      </div>
     </div>
   </section>
 
+  <!-- Payment Methods -->
   <section class="section">
     <h2>Payment Methods</h2>
     <div class="underline"></div>
-    <!-- small logos row -->
+
+    <!-- small logos row (now individual icons) -->
     <div class="pay-icons">
-      <img src="./logo-pay.png" alt="pay"/>
+      <img src="images/esewa.png" alt="eSewa"/>
+      <img src="images/khalti.png" alt="Khalti"/>
+      <img src="images/mypay.png" alt="MyPay"/>
+      <img src="images/fonepay.png" alt="Fonepay"/>
+      <img src="images/bank.png" alt="Bank"/>
     </div>
 
-    <!-- big QR cards -->
+    <!-- big QR cards (keep your existing file names) -->
     <div class="grid" style="margin-top:14px">
-      <div class="card"><div class="thumb" style="height:180px"><img src="./logo-esewaqr.png" alt="eSewa QR"/></div><div class="body"><span class="badge">eSewa – Scan & Pay</span><p class="desc">After payment, send screenshot on WhatsApp/Viber with your order details.</p></div></div>
-      <div class="card"><div class="thumb" style="height:180px"><img src="./logo-khaltiqr.png" alt="Khalti by IME QR"/></div><div class="body"><span class="badge">Khalti by IME – Scan & Pay</span><p class="desc">Use reference: <strong>SM DIGITAL STORE</strong>. Share slip on WhatsApp/Viber.</p></div></div>
+      <div class="card">
+        <div class="thumb" style="height:180px"><img src="./logo-esewaqr.png" alt="eSewa QR"/></div>
+        <div class="body"><span class="badge">eSewa – Scan & Pay</span><p class="desc">After payment, send screenshot on WhatsApp/Viber with your order details.</p></div>
+      </div>
+      <div class="card">
+        <div class="thumb" style="height:180px"><img src="./logo-khaltiqr.png" alt="Khalti by IME QR"/></div>
+        <div class="body"><span class="badge">Khalti by IME – Scan & Pay</span><p class="desc">Use reference: <strong>SM DIGITAL STORE</strong>. Share slip on WhatsApp/Viber.</p></div>
+      </div>
     </div>
   </section>
 
+  <!-- Footer nav (icons from /images/) -->
   <nav class="nav">
-    <a class="active" href="#"><img src="logo-home.png"/>Home</a>
-    <a href="viber://chat?number=%2B9779828560029"><img src="logo-viber.png"/>Viber</a>
-    <a href="https://wa.me/9779828560029"><img src="logo-whatsapp.png"/>WhatsApp</a>
-    <a href="https://www.tiktok.com/@samirmijar.np"><img src="logo-tiktok.png"/>TikTok</a>
+    <a class="active" href="#"><img src="images/icon-home.png" alt="Home"/>Home</a>
+    <a href="viber://chat?number=%2B9779828560029"><img src="images/icon-viber.png" alt="Viber"/>Viber</a>
+    <a href="https://wa.me/9779828560029"><img src="images/icon-whatsapp.png" alt="WhatsApp"/>WhatsApp</a>
+    <a href="https://www.tiktok.com/@samirmijar.np"><img src="images/icon-tiktok.png" alt="TikTok"/>TikTok</a>
   </nav>
 
   <!-- Modal Sheet -->
