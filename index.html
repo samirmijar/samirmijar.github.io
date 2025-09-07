@@ -1,312 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SM DIGITAL STORE</title>
-  <meta name="theme-color" content="#0f2b33" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#f5f7fb;
-      --card:#ffffff;
-      --accent:#e94b4b;
-      --muted:#555;
-      --text:#111;
-      --shadow:0 4px 10px rgba(0,0,0,.08);
-      --radius:16px;
-      --grad1:#6a00ff; --grad2:#ff2d55;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,sans-serif;background:var(--bg);color:var(--text)}
+    body{margin:0;font-family:Arial, sans-serif;background:#f9f9f9;color:#111}
     img{max-width:100%;display:block}
+    h2{text-align:center;margin:16px 0 6px}
+    .underline{height:3px;width:60px;background:#e94b4b;margin:0 auto 16px;border-radius:2px}
 
-    /* Top color bar */
-    .colorbar{background:linear-gradient(90deg,var(--grad1),#7d55ff,var(--grad2));color:#fff}
-    .colorbar .wrap{max-width:1100px;margin:auto;padding:12px 16px}
-    .colorbar h1{margin:0;font-size:18px;text-align:center;letter-spacing:.2px}
+    /* Topbar */
+    .colorbar{background:linear-gradient(90deg,#6a00ff,#7d55ff,#ff2d55);color:#fff;padding:12px;text-align:center;font-weight:bold}
 
-    /* Sticky minimal header (kept for structure) */
-    header.topbar{background:#fff;padding:0;position:sticky;top:0;z-index:10;box-shadow:var(--shadow)}
-
-    /* Hero video */
-    .hero{position:relative;width:100%;aspect-ratio:16/9;background:#000;overflow:hidden}
+    /* Hero */
+    .hero{position:relative;aspect-ratio:16/9;overflow:hidden}
     .hero video{width:100%;height:100%;object-fit:cover}
-    .hero .overlay{
-      position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
-      background:linear-gradient(0deg,rgba(0,0,0,.55),rgba(0,0,0,.15));color:#fff;text-align:center;padding:12px
-    }
-    .hero .overlay h2{margin:0 0 6px;font-size:28px}
-    .hero .overlay p{margin:0;color:#e7e7e7}
+    .hero .overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#fff;background:rgba(0,0,0,.4)}
+    .hero .overlay h1{margin:0;font-size:24px}
+    .hero .overlay p{margin:6px 0 0;font-size:14px}
 
-    .section{padding:16px}
-    .section h2{text-align:center;margin:0;font-size:20px}
-    .underline{height:3px;width:60px;background:var(--accent);border-radius:2px;margin:8px auto 18px}
+    /* Grid */
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding:0 16px 20px}
+    .card{background:#fff;border-radius:12px;box-shadow:0 3px 8px rgba(0,0,0,.08);overflow:hidden;text-align:center;padding:12px}
+    .card img{width:70px;height:70px;margin:0 auto 8px;object-fit:contain}
+    .card span{display:block;font-size:14px;font-weight:600;margin-bottom:4px}
+    .card p{font-size:12px;color:#555;margin:0}
 
-    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-    @media(min-width:768px){.grid{grid-template-columns:repeat(4,1fr)}}
+    /* Payment icons */
+    .pay-icons{display:flex;justify-content:center;gap:24px;margin:12px 0}
+    .pay-icons img{width:60px;height:60px;object-fit:contain}
 
-    .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;cursor:pointer;transition:transform .2s}
-    .card:hover{transform:translateY(-3px)}
-    .card .thumb{height:120px;display:flex;align-items:center;justify-content:center;background:#fafafa}
-    .card .thumb img{width:90px;height:90px;object-fit:contain}
-    .card .body{padding:10px}
-    .badge{display:inline-block;font-size:12px;background:#f1f1f1;padding:2px 8px;border-radius:999px;margin-bottom:4px}
-    .price{font-weight:600;font-size:14px;margin-bottom:4px}
-    .desc{font-size:13px;color:var(--muted)}
-
-    .pay-icons{display:flex;justify-content:center;gap:16px;margin-top:12px}
-    .pay-icons img{width:48px;height:48px;object-fit:contain}
-
-    nav.nav{position:sticky;bottom:0;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;padding:8px 0;z-index:10}
-    nav.nav a{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;color:#333;text-decoration:none}
-    nav.nav a img{width:22px;height:22px}
-    nav.nav a.active{color:#e94b4b}
-
-    /* Modal sheet */
-    .sheet{position:fixed;inset:0;display:none;z-index:50}
-    .sheet.active{display:block}
-    .sheet .backdrop{position:absolute;inset:0;background:rgba(0,0,0,.55)}
-    .sheet .panel{position:absolute;left:0;right:0;bottom:0;background:#fff;border-top-left-radius:18px;border-top-right-radius:18px;box-shadow:var(--shadow);padding:16px}
-    .sheet header{display:flex;align-items:center;gap:12px;margin-bottom:8px}
-    .sheet header img{width:60px;height:60px;object-fit:contain;border-radius:12px;background:#fafafa;padding:6px}
-    .sheet h3{margin:0;font-size:18px}
-    .sheet small{color:var(--muted)}
-    .sheet p{margin:6px 0 10px;color:var(--muted)}
-    .sheet .sheet-options{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
-    .sheet .sheet-options button{background:#f1f1f1;border:none;padding:8px 12px;border-radius:999px;cursor:pointer}
-    .sheet .cta{display:flex;gap:10px;margin-top:12px}
-    .btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;border:none;border-radius:12px;padding:10px 14px;font-weight:600;cursor:pointer}
-    .btn.whatsapp{background:#1f8f4d;color:white}
-    .btn.viber{background:#7d3bd6;color:white}
+    /* Bottom nav */
+    nav{position:sticky;bottom:0;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;padding:8px 0}
+    nav a{display:flex;flex-direction:column;align-items:center;font-size:12px;color:#333;text-decoration:none}
+    nav a img{width:22px;height:22px;margin-bottom:4px}
+    nav a.active{color:#e94b4b}
   </style>
 </head>
 <body>
 
-  <!-- Gradient color bar header (clean) -->
-  <header class="topbar">
-    <div class="colorbar">
-      <div class="wrap">
-        <h1>SM DIGITAL STORE</h1>
-      </div>
-    </div>
-  </header>
+  <!-- Topbar -->
+  <div class="colorbar">SM DIGITAL STORE</div>
 
-  <!-- Hero video -->
+  <!-- Hero -->
   <section class="hero">
-    <!-- put welcome.mp4 next to this HTML, or update path -->
-    <video src="welcome.mp4" autoplay muted loop playsinline poster="images/welcome.mp4"></video>
+    <video src="welcome.mp4" autoplay muted loop playsinline></video>
     <div class="overlay">
-      <h2>Welcome to SM Digital Store</h2>
-      <p>Games • Subscriptions • AI Tools — instant delivery</p>
+      <h1>Welcome to SM Digital Store</h1>
+      <p>Games • Subscriptions • AI Tools</p>
     </div>
   </section>
 
   <!-- Best Selling -->
-  <section class="section">
+  <section>
     <h2>Best Selling</h2>
-    <p style='text-align:center;color:var(--muted);margin:4px 0 14px;font-size:14px'>Our most popular subscriptions – delivered instantly</p>
     <div class="underline"></div>
     <div class="grid">
-      <!-- APEUni card -->
-<div class="card" data-title="APEUni VIP" data-price="From NPR 2200"
-     data-desc="Unlimited mock tests & AI score."
-     data-options='[{"label":"30 Days – 2200","price":"2200"},{"label":"90 Days – 4450","price":"4450"},{"label":"180 Days – 10500","price":"10500"}]'>
-  <div class="thumb">
-    <img class="product-icon" src="images/logo-apeuni.png?v=1" alt="APEUni PTE">
-  </div>
-  <div class="body">
-    <span class="badge">APEUni VIP</span>
-    <div class="price">From NPR 2200</div>
-    <p class="desc">Unlimited mock tests &amp; AI score.</p>
-</div>
-      <div class="card" data-title="Spotify 12 Months" data-price="Ask for today’s price" data-desc="Individual plan on your mail.">
-        <div class="thumb"><img src="images/spotify.png" alt="Spotify"/></div>
-        <div class="body"><span class="badge">Spotify 12 Months</span><div class="price">Ask for today’s price</div><p class="desc">Individual plan on your mail.</p></div>
+      <div class="card">
+        <img src="images/apeuni.png" alt="APEUni">
+        <span>APEUni VIP</span>
+        <p>Unlimited mock tests & AI score</p>
       </div>
-
-      <div class="card" data-title="ChatGPT Plus" data-price="1mo – 2750 • 3mo – 3750" data-desc="Private account via mail." data-options='[{"label":"1 Month – 2750","price":"2750"},{"label":"3 Months – 3750","price":"3750"}]'>
-        <div class="thumb"><img src="images/chatgpt.png" alt="ChatGPT Plus"/></div>
-        <div class="body"><span class="badge">ChatGPT Plus</span><div class="price">1mo – 2750 • 3mo – 3750</div><p class="desc">Private account via mail.</p></div>
+      <div class="card">
+        <img src="images/spotify.png" alt="Spotify">
+        <span>Spotify 12 Months</span>
+        <p>Individual plan via mail</p>
       </div>
-
-      <div class="card" data-title="Perplexity Pro AI" data-price="1 Year – 2750" data-desc="Private code on your mail." data-options='[{"label":"1 Year – 2750","price":"2750"}]'>
-        <div class="thumb"><img src="images/perplexity.png" alt="Perplexity Pro"/></div>
-        <div class="body"><span class="badge">Perplexity Pro AI</span><div class="price">1 Year – 2750</div><p class="desc">Private code on your mail.</p></div>
+      <div class="card">
+        <img src="images/chatgpt.png" alt="ChatGPT Plus">
+        <span>ChatGPT Plus</span>
+        <p>Private account via mail</p>
       </div>
-
-    </div>
-  </section>
-
-  <!-- Games Top-Up -->
-  <section class="section">
-    <h2>Games Top-Up</h2>
-    <div class="underline"></div>
-    <div class="grid">
-      <div class="card" data-title="Free Fire Diamond" data-desc="In-game direct top-up.">
-        <div class="thumb"><img src="images/freefire.png" alt="Free Fire"/></div>
-        <div class="body"><span class="badge">Free Fire Diamond</span><p class="desc">In-game direct top-up.</p></div>
-      </div>
-
-      <div class="card" data-title="PUBG UC" data-desc="Direct UC top-up.">
-        <div class="thumb"><img src="images/pubg.png" alt="PUBG UC"/></div>
-        <div class="body"><span class="badge">PUBG UC</span><p class="desc">Direct UC top-up.</p></div>
-      </div>
-
-      <div class="card" data-title="Clash of Clans" data-desc="Gems & Gold Pass.">
-        <div class="thumb"><img src="images/supercell.png" alt="Supercell / Clash"/></div>
-        <div class="body"><span class="badge">Clash of Clans</span><p class="desc">Gems & Gold Pass.</p></div>
-      </div>
-
-      <div class="card" data-title="Mobile Legends" data-desc="Diamonds and Starlight.">
-        <div class="thumb"><img src="images/mlbb.png" alt="Mobile Legends"/></div>
-        <div class="body"><span class="badge">Mobile Legends</span><p class="desc">Diamonds and Starlight.</p></div>
-      </div>
-
-      <div class="card" data-title="Call of Duty Mobile" data-desc="CP Top-up.">
-        <div class="thumb"><img src="images/codm.png" alt="CODM"/></div>
-        <div class="body"><span class="badge">Call of Duty Mobile</span><p class="desc">CP Top-up.</p></div>
-      </div>
-
-      <div class="card" data-title="Roblox" data-desc="Robux & Premium.">
-        <div class="thumb"><img src="images/roblox.png" alt="Roblox"/></div>
-        <div class="body"><span class="badge">Roblox</span><p class="desc">Robux & Premium.</p></div>
-      </div>
-
-      <div class="card" data-title="eFootball" data-desc="Coins — ask price.">
-        <div class="thumb"><img src="images/efootball.png" alt="eFootball"/></div>
-        <div class="body"><span class="badge">eFootball</span><p class="desc">Coins — ask price.</p></div>
-      </div>
-
-      <div class="card" data-title="Garena Shells" data-desc="Codes — in stock.">
-        <div class="thumb"><img src="images/garena.png" alt="Garena"/></div>
-        <div class="body"><span class="badge">Garena Shells</span><p class="desc">Codes — in stock.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Vouchers / Gift Cards -->
-  <section class="section">
-    <h2>Vouchers / Gift Cards</h2>
-    <div class="underline"></div>
-    <div class="grid">
-      <div class="card" data-title="UniPin" data-desc="Voucher delivery.">
-        <div class="thumb"><img src="logo-unipin.png" alt="UniPin"/></div>
-        <div class="body"><span class="badge">UniPin</span><p class="desc">Voucher delivery.</p></div>
-      </div>
-      <div class="card" data-title="iTunes Gift Card" data-desc="Email delivery with code.">
-        <div class="thumb"><img src="logo-itunes.png" alt="iTunes"/></div>
-        <div class="body"><span class="badge">iTunes Gift Card</span><p class="desc">Email delivery with code.</p></div>
+      <div class="card">
+        <img src="images/perplexity.png" alt="Perplexity">
+        <span>Perplexity Pro</span>
+        <p>Private code via mail</p>
       </div>
     </div>
   </section>
 
   <!-- Payment Methods -->
-  <section class="section">
-    <h2>Payment Methods</h2>
+  <section>
+    <h2>Payment Methods Accepted</h2>
     <div class="underline"></div>
-
-    <!-- small logos row (now individual icons) -->
     <div class="pay-icons">
-      <img src="images/esewa.png" alt="eSewa"/>
-      <img src="images/khalti.png" alt="Khalti"/>
-      <img src="images/mypay.png" alt="MyPay"/>
-      <img src="images/fonepay.png" alt="Fonepay"/>
-      <img src="images/bank.png" alt="Bank"/>
-    </div>
-
-    <!-- big QR cards (keep your existing file names) -->
-    <div class="grid" style="margin-top:14px">
-      <div class="card">
-        <div class="thumb" style="height:180px"><img src="./logo-esewaqr.png" alt="eSewa QR"/></div>
-        <div class="body"><span class="badge">eSewa – Scan & Pay</span><p class="desc">After payment, send screenshot on WhatsApp/Viber with your order details.</p></div>
-      </div>
-      <div class="card">
-        <div class="thumb" style="height:180px"><img src="./logo-khaltiqr.png" alt="Khalti by IME QR"/></div>
-        <div class="body"><span class="badge">Khalti by IME – Scan & Pay</span><p class="desc">Use reference: <strong>SM DIGITAL STORE</strong>. Share slip on WhatsApp/Viber.</p></div>
-      </div>
+      <img src="images/esewa.png" alt="eSewa">
+      <img src="images/khalti.png" alt="Khalti">
+      <img src="images/bank.png" alt="Bank">
     </div>
   </section>
 
-  <!-- Footer nav (icons from /images/) -->
-  <nav class="nav">
-    <a class="active" href="#"><img src="images/icon-home.png" alt="Home"/>Home</a>
-    <a href="viber://chat?number=%2B9779828560029"><img src="images/icon-viber.png" alt="Viber"/>Viber</a>
-    <a href="https://wa.me/9779828560029"><img src="images/icon-whatsapp.png" alt="WhatsApp"/>WhatsApp</a>
-    <a href="https://www.tiktok.com/@samirmijar.np"><img src="images/icon-tiktok.png" alt="TikTok"/>TikTok</a>
+  <!-- Bottom nav -->
+  <nav>
+    <a class="active" href="#"><img src="images/icon-home.png" alt="Home">Home</a>
+    <a href="viber://chat?number=%2B9779828560029"><img src="images/icon-viber.png" alt="Viber">Viber</a>
+    <a href="https://wa.me/9779828560029"><img src="images/icon-whatsapp.png" alt="WhatsApp">WhatsApp</a>
+    <a href="https://www.tiktok.com/@samirmijar.np"><img src="images/icon-tiktok.png" alt="TikTok">TikTok</a>
   </nav>
 
-  <!-- Modal Sheet -->
-  <div class="sheet" id="sheet">
-    <div class="backdrop" data-close></div>
-    <div class="panel">
-      <header>
-        <img id="sheetImg" src="" alt=""/>
-        <div>
-          <h3 id="sheetTitle">Product</h3>
-          <small id="sheetPrice"></small>
-        </div>
-      </header>
-      <p id="sheetDesc"></p>
-      <div class="sheet-options" id="sheetOptions"></div>
-      <div class="cta">
-        <button class="btn whatsapp" id="waBtn">WhatsApp Order</button>
-        <button class="btn viber" id="vbBtn">Viber Order</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const cards = document.querySelectorAll('.card');
-    const sheet = document.getElementById('sheet');
-    const sImg = document.getElementById('sheetImg');
-    const sTitle = document.getElementById('sheetTitle');
-    const sPrice = document.getElementById('sheetPrice');
-    const sDesc = document.getElementById('sheetDesc');
-    const sOpt = document.getElementById('sheetOptions');
-    const waBtn = document.getElementById('waBtn');
-    const vbBtn = document.getElementById('vbBtn');
-
-    function openSheet(card){
-      const title = card.dataset.title;
-      const price = card.dataset.price || '';
-      const desc = card.dataset.desc || '';
-      const img = card.querySelector('img').src;
-      sTitle.textContent=title;
-      sPrice.textContent=price;
-      sDesc.textContent=desc;
-      sImg.src=img;
-      sOpt.innerHTML='';
-      let opts=[];
-      try{opts=JSON.parse(card.dataset.options||'[]')}catch{}
-      if(opts.length===0){ sOpt.innerHTML='<small>No options listed. Contact us.</small>'; }
-      opts.forEach((o,i)=>{
-        const b=document.createElement('button');
-        b.textContent=o.label;
-        if(i===0)b.style.outline='2px solid var(--accent)';
-        sOpt.appendChild(b);
-      });
-
-      function selected(){
-        const act=sOpt.querySelector('button[style*="outline"]');
-        return act?act.textContent:opts[0]?.label||title;
-      }
-      sOpt.onclick=(e)=>{
-        if(e.target.tagName==='BUTTON'){
-          [...sOpt.querySelectorAll('button')].forEach(x=>x.style.outline='none');
-          e.target.style.outline='2px solid var(--accent)';
-        }
-      }
-      const phone='9779828560029';
-      const text=encodeURIComponent(`Order: ${title}\nOption: ${selected()}\nFrom: samirmijar.com.np`);
-      waBtn.onclick=()=>window.open(`https://wa.me/${phone}?text=${text}`,'_blank');
-      vbBtn.onclick=()=>window.location.href=`viber://forward?text=${text}`;
-
-      sheet.classList.add('active');
-    }
-
-    cards.forEach(c=>c.addEventListener('click',()=>openSheet(c)));
-    sheet.addEventListener('click',e=>{if(e.target.hasAttribute('data-close'))sheet.classList.remove('active')});
-  </script>
 </body>
 </html>
