@@ -86,10 +86,13 @@
     <h1>Welcome to SM Digital Services</h1>
     <div class="sub">Best-selling subscriptions — instant delivery</div>
 
-    <div class="video-card">
-      <!-- 720p video supported; file name must be welcome.mp4 in the repo root -->
-      <video src="welcome.mp4" autoplay muted loop playsinline preload="metadata"></video>
-    </div>
+    <!-- Welcome video -->
+  <div class="video-card">
+    <video autoplay muted playsinline webkit-playsinline loop preload="metadata" poster="png.images/video-poster.jpg">
+      <source src="welcome.mp4?v=7" type="video/mp4" />
+      Your browser doesn’t support video.
+    </video>
+  </div>
   </header>
 
   <!-- BEST SELLING (only 2 products) -->
