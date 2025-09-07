@@ -3,80 +3,232 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SM DIGITAL STORE • Digital Subscriptions & APEUni VIP</title>
-  <meta name="description" content="Buy APEUni VIP, Spotify 12M code, ChatGPT Plus, and Perplexity Pro. Fast delivery in Nepal. Pay via eSewa, Khalti, or bank." />
-  <meta name="theme-color" content="#0f172a" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <title>SM DIGITAL SERVICES • samirmijar.com.np</title>
+  <meta name="theme-color" content="#0b1115" />
+  <link rel="preload" as="video" href="welcome.mp4">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* (same CSS as before, plus product logo styling) */
-    .prod-head{display:flex;align-items:center;gap:10px;margin-bottom:6px}
-    .prod-head img{width:36px;height:36px;object-fit:contain;border-radius:8px;background:#fff;padding:4px}
+    :root{
+      --bg:#0b1115; --card:#0f1822;
+      --text:#e9eef4; --muted:#b5c0cc;
+      --accent:#ff415f; --accent2:#7f5bff;
+      --shadow:0 8px 28px rgba(0,0,0,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text)}
+    img{max-width:100%;display:block}
+
+    /* TOP colorful bar */
+    .brandbar{position:sticky;top:0;z-index:50;
+      background:linear-gradient(90deg,#7f5bff,#ff415f,#ffa62b);
+      color:#fff;text-align:center;font-weight:800;letter-spacing:.6px;
+      padding:12px 14px}
+
+    header.hero{padding:16px}
+    header.hero h1{margin:8px 0 6px;font-size:26px}
+    .sub{color:var(--muted)}
+    .video-card{margin:14px 0 4px;background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+    .video-card video{width:100%;height:210px;object-fit:cover;display:block}
+
+    .section{padding:16px}
+    .section h2{text-align:center;margin:0;font-size:22px}
+    .underline{height:3px;width:70px;background:linear-gradient(90deg,#7f5bff,#ff415f);border-radius:2px;margin:10px auto 18px}
+
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    @media(min-width:768px){.grid{grid-template-columns:repeat(4,1fr)}}
+
+    .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;cursor:pointer;transition:transform .2s}
+    .card:hover{transform:translateY(-4px)}
+    .card .thumb{height:120px;display:flex;align-items:center;justify-content:center;background:#0d1520}
+    .card .thumb img{width:90px;height:90px;object-fit:contain}
+    .card .body{padding:12px}
+    .badge{display:inline-block;font-size:12px;background:#162433;border:1px solid #223449;color:#dfe6ee;padding:3px 10px;border-radius:999px;margin-bottom:6px}
+    .price{font-weight:700;font-size:14px;margin-bottom:6px}
+    .desc{font-size:13px;color:var(--muted)}
+
+    /* TikTok follow */
+    .follow{display:flex;align-items:center;gap:12px;justify-content:center}
+    .follow img{width:28px;height:28px}
+    .btn{display:inline-flex;align-items:center;gap:8px;border:none;border-radius:12px;padding:10px 14px;font-weight:700;cursor:pointer}
+    .btn.tiktok{background:#121212;color:#fff;border:1px solid #2b2b2b}
+
+    /* Bottom nav */
+    nav.nav{position:sticky;bottom:0;background:#0f1822;border-top:1px solid #1e2b39;display:flex;justify-content:space-around;padding:8px 0;z-index:60}
+    nav.nav a{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;color:#cbd6e2;text-decoration:none}
+    nav.nav a img{width:22px;height:22px}
+    nav.nav a .label{background:linear-gradient(90deg,#7f5bff,#ff415f);-webkit-background-clip:text;background-clip:text;color:transparent}
+    nav.nav a.active .label{filter:brightness(1.15)}
+
+    /* Modal sheet */
+    .sheet{position:fixed;inset:0;display:none;z-index:100}
+    .sheet.active{display:block}
+    .sheet .backdrop{position:absolute;inset:0;background:rgba(0,0,0,.55)}
+    .sheet .panel{position:absolute;left:0;right:0;bottom:0;background:#0f1822;color:var(--text);border-top-left-radius:18px;border-top-right-radius:18px;box-shadow:var(--shadow);padding:16px}
+    .sheet header{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+    .sheet header img{width:60px;height:60px;object-fit:contain;border-radius:12px;background:#0d1520;padding:6px}
+    .sheet h3{margin:0;font-size:18px}
+    .sheet small{color:var(--muted)}
+    .sheet p{margin:6px 0 10px;color:var(--muted)}
+    .sheet .sheet-options{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+    .sheet .sheet-options button{background:#162433;border:1px solid #223449;color:#e6eef7;padding:8px 12px;border-radius:999px;cursor:pointer}
+    .sheet .cta{display:flex;gap:10px;margin-top:12px}
+    .btn.wa{flex:1;background:#1f8f4d;color:white}
+    .btn.vb{flex:1;background:#7d3bd6;color:white}
   </style>
 </head>
 <body>
-  <header> … (same header as before) … </header>
+  <!-- colorful heading -->
+  <div class="brandbar">SM DIGITAL SERVICES</div>
 
-  <main class="container">
-    <section class="hero"> … (same hero section) … </section>
+  <!-- hero + welcome video -->
+  <header class="hero">
+    <h1>Welcome to SM Digital Services</h1>
+    <div class="sub">Best-selling subscriptions — instant delivery</div>
 
-    <h2 class="section-title">Products & Pricing (NPR)</h2>
+    <div class="video-card">
+      <!-- 720p video supported; file name must be welcome.mp4 in the repo root -->
+      <video src="welcome.mp4" autoplay muted loop playsinline preload="metadata"></video>
+    </div>
+  </header>
+
+  <!-- BEST SELLING (only 2 products) -->
+  <section class="section">
+    <h2>Best Selling</h2>
+    <div class="underline"></div>
+
     <div class="grid">
-
       <!-- APEUni VIP -->
-      <article class="product">
-        <div class="prod-head">
-          <img src="apeuni.png" alt="APEUni Logo" onerror="this.style.display='none'">
-          <h3>APEUni VIP</h3>
+      <div class="card"
+           data-title="APEUni VIP Subscription"
+           data-price="From NPR 2200"
+           data-desc="On your mail • Full private • Unlimited AI score • Unlimited mock tests • Best app for PTE students."
+           data-options='[
+             {"label":"30 Days – NPR 2200"},
+             {"label":"90 Days – NPR 4450"},
+             {"label":"180 Days – NPR 10500"}
+           ]'>
+        <div class="thumb"><img src="png.Images/logo-apeuni.png" alt="APEUni"></div>
+        <div class="body">
+          <span class="badge">APEUni VIP</span>
+          <div class="price">30d 2200 • 90d 4450 • 180d 10500</div>
+          <p class="desc">Full private via email. Unlimited AI score & mock tests.</p>
         </div>
-        <span class="pill">PTE Practice</span>
-        <div class="price">30d Rs. 2200 • 90d Rs. 4450 • 180d Rs. 10500</div>
-        <p class="muted">Choose the duration you need. Instant delivery after payment.</p>
-        <div class="btnrow"> … (order buttons) … </div>
-      </article>
-
-      <!-- Spotify -->
-      <article class="product">
-        <div class="prod-head">
-          <img src="spotify.png" alt="Spotify Logo" onerror="this.style.display='none'">
-          <h3>Spotify Code</h3>
-        </div>
-        <span class="pill">12 Months</span>
-        <div class="price">Rs. 2750</div>
-        <p class="muted">12-month subscription code. Delivered to your email.</p>
-        <div class="btnrow"> … (order buttons) … </div>
-      </article>
+      </div>
 
       <!-- ChatGPT Plus -->
-      <article class="product">
-        <div class="prod-head">
-          <img src="chatgpt.png" alt="ChatGPT Logo" onerror="this.style.display='none'">
-          <h3>ChatGPT Plus</h3>
+      <div class="card"
+           data-title="ChatGPT Plus"
+           data-price="From NPR 2750"
+           data-desc="On your mail • Full private / genuine account."
+           data-options='[
+             {"label":"1 Month – NPR 2750"},
+             {"label":"3 Months – NPR 3750"}
+           ]'>
+        <div class="thumb"><img src="png.Images/logo-chatgpt.png" alt="ChatGPT Plus"></div>
+        <div class="body">
+          <span class="badge">ChatGPT Plus</span>
+          <div class="price">1 mo 2750 • 3 mo 3750</div>
+          <p class="desc">Private delivery to your email.</p>
         </div>
-        <span class="pill">1 Month</span>
-        <div class="price">Rs. 2750</div>
-        <p class="muted">Premium access for faster, priority features.</p>
-        <div class="btnrow"> … (order buttons) … </div>
-      </article>
-
-      <!-- Perplexity Pro -->
-      <article class="product">
-        <div class="prod-head">
-          <img src="perplexity.png" alt="Perplexity Logo" onerror="this.style.display='none'">
-          <h3>Perplexity Pro</h3>
-        </div>
-        <span class="pill">12 Months</span>
-        <div class="price">Rs. 2750</div>
-        <p class="muted">1-year subscription for advanced AI search.</p>
-        <div class="btnrow"> … (order buttons) … </div>
-      </article>
-
+      </div>
     </div>
+  </section>
 
-    <h2 class="section-title">Payment</h2>
-    <div class="paybox card pad"> … (same payment section) … </div>
+  <!-- TikTok follow -->
+  <section class="section">
+    <h2>Follow on TikTok</h2>
+    <div class="underline"></div>
+    <div class="follow">
+      <img src="png.Images/logo-tiktok.png" alt="TikTok">
+      <a class="btn tiktok" href="https://www.tiktok.com/@samirmijar.np" target="_blank" rel="noopener">Follow @samirmijar.np</a>
+    </div>
+  </section>
 
-    <footer> … (same footer) … </footer>
-  </main>
+  <!-- bottom colorful nav -->
+  <nav class="nav">
+    <a class="active" href="#"><img src="png.Images/logo-home.png" alt="Home"><span class="label">Home</span></a>
+    <a href="viber://chat?number=%2B9779828560029"><img src="png.Images/logo-viber.png" alt="Viber"><span class="label">Viber</span></a>
+    <a href="https://wa.me/9779828560029"><img src="png.Images/logo-whatsapp.png" alt="WhatsApp"><span class="label">WhatsApp</span></a>
+    <a href="https://www.tiktok.com/@samirmijar.np"><img src="png.Images/logo-tiktok.png" alt="TikTok"><span class="label">TikTok</span></a>
+  </nav>
+
+  <!-- order modal -->
+  <div class="sheet" id="sheet">
+    <div class="backdrop" data-close></div>
+    <div class="panel">
+      <header>
+        <img id="sheetImg" src="" alt="">
+        <div>
+          <h3 id="sheetTitle">Product</h3>
+          <small id="sheetPrice"></small>
+        </div>
+      </header>
+      <p id="sheetDesc"></p>
+      <div class="sheet-options" id="sheetOptions"></div>
+      <div class="cta">
+        <button class="btn wa" id="waBtn">WhatsApp Order</button>
+        <button class="btn vb" id="vbBtn">Viber Order</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // setup order sheet
+    const PHONE = '9779828560029'; // WhatsApp/Viber number
+    const cards = document.querySelectorAll('.card');
+    const sheet = document.getElementById('sheet');
+    const sImg = document.getElementById('sheetImg');
+    const sTitle = document.getElementById('sheetTitle');
+    const sPrice = document.getElementById('sheetPrice');
+    const sDesc = document.getElementById('sheetDesc');
+    const sOpt = document.getElementById('sheetOptions');
+    const waBtn = document.getElementById('waBtn');
+    const vbBtn = document.getElementById('vbBtn');
+
+    function openSheet(card){
+      const title = card.dataset.title;
+      const price = card.dataset.price || '';
+      const desc = card.dataset.desc || '';
+      const img = card.querySelector('img').src;
+      sTitle.textContent = title;
+      sPrice.textContent = price;
+      sDesc.textContent = desc;
+      sImg.src = img;
+
+      sOpt.innerHTML = '';
+      let opts = [];
+      try { opts = JSON.parse(card.dataset.options || '[]'); } catch(e){}
+      if(opts.length===0){ sOpt.innerHTML = '<small>No options listed. Contact us on Viber/WhatsApp.</small>'; }
+
+      opts.forEach((o,i)=>{
+        const b=document.createElement('button');
+        b.textContent=o.label;
+        if(i===0)b.style.outline='2px solid var(--accent)';
+        sOpt.appendChild(b);
+      });
+
+      sOpt.onclick=(e)=>{
+        if(e.target.tagName==='BUTTON'){
+          [...sOpt.querySelectorAll('button')].forEach(x=>x.style.outline='none');
+          e.target.style.outline='2px solid var(--accent)';
+        }
+      };
+
+      function selected(){
+        const b=sOpt.querySelector('button[style*="outline"]');
+        return b?b.textContent:(opts[0]?.label||title);
+      }
+      const text = encodeURIComponent(`Order: ${title}\nOption: ${selected()}\nFrom: samirmijar.com.np`);
+
+      waBtn.onclick=()=>window.open(`https://wa.me/${PHONE}?text=${text}`,'_blank');
+      vbBtn.onclick=()=>window.location.href=`viber://forward?text=${text}`;
+
+      sheet.classList.add('active');
+    }
+
+    cards.forEach(c=>c.addEventListener('click',()=>openSheet(c)));
+    sheet.addEventListener('click',e=>{if(e.target.hasAttribute('data-close'))sheet.classList.remove('active')});
+  </script>
 </body>
 </html>
-
