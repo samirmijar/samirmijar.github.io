@@ -80,28 +80,27 @@
 <body>
   <!-- Your top bar/header -->
   <div class="colorbar">SM DIGITAL SERVICES</div>
-  <!-- 🔽 Add logo slider here -->
-  <div class="logo-slider">
-    <div class="slides">
-      <img src="png.images/logo-ff.png" alt="FreeFire">
-      <img src="png.images/logo-spotify.png" alt="Spotify">
-      <img src="png.images/logo-ott.png" alt="OTT">
-      <img src="png.images/logo-games.png" alt="Games">
-      <img src="png.images/logo-supercell.png" alt="Supercell">
-      <img src="png.images/logo-garena.png" alt="Garena">
-      <img src="png.images/logo-cod.png" alt="COD">
-
-      <!-- Duplicate set -->
-      <img src="images/logo-ff.png" alt="FreeFire">
-      <img src="images/logo-spotify.png" alt="Spotify">
-      <img src="images/logo-ott.png" alt="OTT">
-      <img src="images/logo-games.png" alt="Games">
-      <img src="images/logo-supercell.png" alt="Supercell">
-      <img src="images/logo-garena.png" alt="Garena">
-      <img src="images/logo-cod.png" alt="COD">
-    </div>
-  </div>
-  <!-- Your welcome text/video starts here -->
+ /* Auto-slide logos */
+.logo-frame {
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+.logo-track {
+  display: flex;
+  width: calc(200%);
+  animation: slide-left 25s linear infinite;
+}
+.logo-frame img {
+  height: 60px;
+  margin: 0 30px;
+}
+@keyframes slide-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
   <h1>Welcome to SM Digital Services</h1>
   ...
 </body>
