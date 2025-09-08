@@ -8,17 +8,40 @@
   <link rel="preload" as="video" href="welcome.mp4">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#0b1115; --card:#0f1822;
-      --text:#e9eef4; --muted:#b5c0cc;
-      --accent:#ff415f; --accent2:#7f5bff;
-      --shadow:0 8px 28px rgba(0,0,0,.35);
-      --radius:18px;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text)}
-    img{max-width:100%;display:block}
+    <style>
+/* Hero logo slideshow (one frame, like video) */
+.hero-slider {
+  width: 100%;
+  height: 110px;              /* frame height */
+  background: #fff;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.hero-slide {
+  position: absolute;
+  max-height: 80px;           /* logo size */
+  max-width: 90%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 800ms ease; /* fade speed */
+  will-change: opacity;
+}
+
+/* visible slide */
+.hero-slide.active {
+  opacity: 1;
+}
+
+/* Optional: smaller on mobile */
+@media (max-width: 480px) {
+  .hero-slider { height: 90px; }
+  .hero-slide { max-height: 64px; }
+}
+</style>
     /* TOP colorful bar */
     .brandbar{position:sticky;top:0;z-index:50;
       background:linear-gradient(90deg,#7f5bff,#ff415f,#ffa62b);
@@ -80,30 +103,33 @@
 <body>
   <!-- Your top bar/header -->
   <div class="colorbar">SM DIGITAL SERVICES</div>
-<!-- Auto-slide Logos -->
-<div class="logo-frame">
-  <div class="logo-track">
-    <img src="png.images/logo-ff.png" alt="FreeFire">
-    <img src="png.images/logo-spotify.png" alt="Spotify">
-    <img src="png.images/logo-ott.png" alt="OTT">
-    <img src="png.images/logo-games.png" alt="Games">
-    <img src="png.images/logo-supercell.png" alt="Supercell">
-    <img src="png.images/logo-garena.png" alt="Garena">
-    <img src="png.images/logo-cod.png" alt="COD">
-
-    <!-- Duplicate set for smooth loop -->
-    <img src="png.images/logo-ff.png" alt="FreeFire">
-    <img src="png.images/logo-spotify.png" alt="Spotify">
-    <img src="png.images/logo-ott.png" alt="OTT">
-    <img src="png.images/logo-games.png" alt="Games">
-    <img src="png.images/logo-supercell.png" alt="Supercell">
-    <img src="png.images/logo-garena.png" alt="Garena">
-    <img src="png.images/logo-cod.png" alt="COD">
-  </div>
+  <!-- One-frame auto slideshow (like video autoplay) -->
+<div class="hero-slider" id="logoHero">
+  <img class="hero-slide active" src="png.images/logo-ff.png"        alt="FreeFire">
+  <img class="hero-slide"         src="png.images/logo-spotify.png"  alt="Spotify">
+  <img class="hero-slide"         src="png.images/logo-ott.png"      alt="OTT">
+  <img class="hero-slide"         src="png.images/logo-games.png"    alt="Games">
+  <img class="hero-slide"         src="png.images/logo-supercell.png"alt="Supercell">
+  <img class="hero-slide"         src="png.images/logo-garena.png"   alt="Garena">
+  <img class="hero-slide"         src="png.images/logo-cod.png"      alt="COD">
 </div>
-</body>
+  <script>
+(function () {
+  const slides = document.querySelectorAll('#logoHero .hero-slide');
+  let i = 0;
+  const DURATION = 2200; // ms each slide stays (like video speed)
+
+  // Preload to avoid flashes
+  slides.forEach(img => { const p = new Image(); p.src = img.src; });
+
+  setInterval(() => {
+    slides[i].classList.remove('active');
+    i = (i + 1) % slides.length;
+    slides[i].classList.add('active');
+  }, DURATION);
+})();
+</script>
     <a href="/apeuni.html">  <!-- not ./apeuni.html and not apeuni.htm -->
-  ...
 </a>
 <a class="best-item" href="/apeuni.html" aria-label="APEUni VIP">
   <img class="best-thumb" src="/png.images/logo-apeuni.png" alt="APEUni VIP" loading="lazy">
