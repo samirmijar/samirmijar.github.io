@@ -2,215 +2,333 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>APEUni VIP • SM Digital Services</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Shop • SM DIGITAL SERVICES</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#0b1115">
 <style>
   :root{
-    --bg:#0d0f12; --card:#111623; --line:#23283b; --soft:#151b2e;
-    --text:#eaeaea; --muted:#b8c2d6; --accent:#6a00ff; --ok:#25D366;
+    --bg:#0b1115; --card:#0f1822; --soft:#152233;
+    --text:#e9eef4; --muted:#b9c6d3; --brand:#4da3ff;
+    --accent:#ff7a00; --accent2:#ff415f; --radius:16px;
+    --shadow:0 10px 30px rgba(0,0,0,.35);
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
-  .wrap{max-width:860px;margin:0 auto;padding:18px}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif}
+  a{text-decoration:none;color:inherit}
 
-  /* Topbar */
-  .topbar{display:flex;align-items:center;gap:10px;padding:8px 0 14px}
-  .topbar a{color:#9ecbff;text-decoration:none}
-  .sep{opacity:.5}
-
-  /* Cards */
-  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:14px 0}
-  h1{margin:6px 0 0}
-  h2,h3{margin:0 0 10px;color:#fff}
-  ul{padding-left:18px;margin:0}
-
-  /* Inputs */
-  input,select,textarea{
-    width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);
-    background:var(--soft);color:#fff;margin:8px 0
+  /* Header (simple) */
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+    padding:10px 14px; background:#fff; border-bottom:2px solid #eee;
   }
-  input:focus,select:focus,textarea:focus{outline:2px solid var(--accent)}
-
-  /* Password row */
-  .row-inline{display:flex;gap:10px;flex-wrap:wrap}
-  .row-inline > *{flex:1}
-
-  /* Payment buttons */
-  .pay-row{display:flex;gap:10px;flex-wrap:wrap}
-  .pay-btn{
-    flex:1;min-width:110px;background:var(--soft);border:1px solid var(--line);
-    border-radius:10px;padding:12px;text-align:center;cursor:pointer;transition:.2s
+  .brand{display:flex; align-items:center; gap:10px; color:#111}
+  .brand img{width:38px;height:38px;object-fit:contain}
+  .brand b{font-size:20px; letter-spacing:.4px}
+  .hamburger{
+    width:44px;height:44px;border:none;border-radius:999px;cursor:pointer;
+    display:grid;place-items:center;color:#fff;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    box-shadow:0 6px 16px rgba(255,65,95,.35)
   }
-  .pay-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  .hamburger svg{width:22px;height:22px}
 
-  /* QR + summary */
-  .qr-box{display:none;text-align:center;margin-top:8px}
-  .qr-box img{max-width:210px;background:#fff;border-radius:12px;padding:8px}
-  .warn{color:#ffb3b3;font-weight:700}
-  .red{color:#ff4d4d;font-weight:800}
+  /* Page intro */
+  .hero{padding:18px 16px;border-bottom:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,#0e1722,#0b1115)}
+  .hero h1{margin:6px 0 8px;font-size:26px}
+  .hero p{margin:0;color:#b9c6d3}
 
-  /* Buttons */
-  .submit{
-    background:var(--ok);border:none;padding:14px 16px;border-radius:12px;
-    color:#0b1a0f;font-weight:800;cursor:pointer;width:100%;margin-top:12px
+  /* Section */
+  .section{padding:18px 16px}
+  .section h2{margin:0 0 12px;font-size:22px}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  @media (min-width:900px){.grid{grid-template-columns:repeat(4,1fr)}}
+
+  /* Card */
+  .card{
+    background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);
+    overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column
   }
+  .thumb{aspect-ratio:16/9;background:#0e1722;display:flex;align-items:center;justify-content:center}
+  .thumb img{width:84%;height:84%;object-fit:contain}
+  .body{padding:12px}
+  .title{font-weight:800;margin:2px 0 4px}
+  .meta{font-size:13px;color:var(--muted);min-height:36px;margin-bottom:8px}
+  .row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .price{font-weight:900}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:#152233;color:#fff;
+    font-weight:700;cursor:pointer
+  }
+  .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent2));border:0}
 
-  /* Footer links */
-  .footer-links{display:flex;gap:10px;justify-content:center;margin:18px 0 10px}
-  .footer-links a{color:#b7b7ff;text-decoration:none}
-
-  /* Small helper text */
-  .help{font-size:13px;color:var(--muted);margin-top:4px}
+  /* Modal (Formcarry request) */
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;place-items:center;z-index:70}
+  .modal.open{display:grid}
+  .box{width:min(560px,92vw);background:#0f1822;border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:16px}
+  .close{background:transparent;border:0;color:#b9c6d3;float:right;font-size:22px;cursor:pointer}
+  .form input,.form textarea,.form select{
+    width:100%;margin:8px 0;padding:12px;border-radius:12px;background:#121e30;border:1px solid rgba(255,255,255,.12);color:#e9eef4
+  }
+  footer{padding:20px 16px;border-top:1px solid rgba(255,255,255,.08);background:#0e1722;color:#b7c5d6;text-align:center}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <!-- top bar -->
-    <div class="topbar">
-      <a href="index.html">← Back Home</a>
-      <span class="sep">/</span>
-      <a href="shop.html">Shop</a>
-      <span class="sep">/</span>
-      <span>APEUni VIP</span>
-    </div>
 
-    <h1>APEUni VIP Subscription</h1>
+<header class="topbar">
+  <a class="brand" href="index.html" aria-label="Home">
+    <img src="png.images/logo-mascot.png" alt="SMDS">
+    <b>SM DIGITAL SERVICES</b>
+  </a>
+  <button class="hamburger" aria-label="Menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+</header>
 
-    <!-- Description -->
-    <div class="card">
-      <h2>Description</h2>
-      <ul>
-        <li>Activate on <strong>your own APEUni account</strong>. Provide a valid <strong>email</strong> and <strong>password</strong> for setup.</li>
-        <li>Includes: <strong>Listening, Reading, Speaking, Writing</strong> practice.</li>
-        <li><strong>Instant AI scores</strong> after each test.</li>
-        <li>100% online — practice from <strong>home/room</strong>, no institute required.</li>
-        <li><strong>No warranty/returns.</strong></li>
-        <li class="warn">After activation, <strong>change your password immediately.</strong></li>
-      </ul>
-    </div>
+<section class="hero">
+  <h1>Shop</h1>
+  <p>Best sellers, game top-ups, Supercell, gift cards, SMM services, and more.</p>
+</section>
 
-    <!-- Benefits -->
-    <div class="card">
-      <h2>Benefits</h2>
-      <ul>
-        <li>📚 Improve English skills in <strong>Writing, Listening, and Speaking</strong></li>
-        <li>📝 Based on the <strong>Pearson PTE model</strong></li>
-        <li>⚡ <strong>Unlimited AI scores</strong> & mock tests</li>
-        <li>💰 Affordable for students in Nepal</li>
-        <li>💳 Pay via <strong>eSewa, Khalti, or Bank transfer</strong></li>
-      </ul>
-    </div>
-
-    <!-- Account -->
-    <div class="card">
-      <h2>Your APEUni Account</h2>
-      <input id="email" type="email" placeholder="APEUni Email" autocomplete="email" required>
-      <div class="row-inline">
-        <input id="pass" type="password" placeholder="APEUni Password" autocomplete="current-password" required>
-        <label style="display:flex;align-items:center;gap:8px;min-width:160px">
-          <input id="togglePass" type="checkbox"> Show password
-        </label>
+<!-- ================== BEST SELLING ================== -->
+<section class="section" id="best-selling">
+  <h2>Best Selling</h2>
+  <div class="grid">
+    <!-- ApeUni VIP -->
+    <article class="card">
+      <div class="thumb"><img src="png.images/logo-apeuni.png" alt="APEUni VIP"></div>
+      <div class="body">
+        <div class="title">APEUni VIP Subscription</div>
+        <div class="meta">PTE practice, templates, AI scoring</div>
+        <div class="row">
+          <span class="price">From $9.99</span>
+          <div style="display:flex;gap:8px">
+            <button class="btn primary" onclick="wa('APEUni VIP')">WhatsApp</button>
+            <button class="btn" onclick="openOrder('APEUni VIP')">Form</button>
+          </div>
+        </div>
       </div>
-      <div class="help">We’ll only use this to activate your VIP. You can change it right after activation.</div>
-    </div>
-
-    <!-- Plan -->
-    <div class="card">
-      <h2>Select Plan</h2>
-      <select id="plan">
-        <option value="30 Days — NPR 2200">30 Days — NPR 2200</option>
-        <option value="90 Days — NPR 4450">90 Days — NPR 4450</option>
-        <option value="180 Days — NPR 10500">180 Days — NPR 10500</option>
-      </select>
-    </div>
-
-    <!-- Payment -->
-    <div class="card">
-      <h2>Payment Method</h2>
-      <div class="pay-row">
-        <div class="pay-btn" data-method="eSewa"  data-qr="png.images/logo-esewaqr.png">eSewa</div>
-        <div class="pay-btn" data-method="Khalti" data-qr="png.images/logo-khaltiqr.png">Khalti</div>
-        <div class="pay-btn" data-method="Bank"   data-qr="png.images/logo-bankqr.png">Bank</div>
+    </article>
+    <!-- ChatGPT Plus -->
+    <article class="card">
+      <div class="thumb"><img src="png.images/logo-chatgpt.png" alt="ChatGPT Plus"></div>
+      <div class="body">
+        <div class="title">ChatGPT Plus (1 mo)</div>
+        <div class="meta">Fast access to GPT-4/4o, priority</div>
+        <div class="row">
+          <span class="price">$14.99</span>
+          <div style="display:flex;gap:8px">
+            <button class="btn primary" onclick="wa('ChatGPT Plus (1 mo)')">WhatsApp</button>
+            <button class="btn" onclick="openOrder('ChatGPT Plus (1 mo)')">Form</button>
+          </div>
+        </div>
       </div>
-
-      <!-- QR + summary -->
-      <div id="qrBox" class="qr-box">
-        <h3>Complete Your Purchase</h3>
-        <p id="summary"></p>
-        <p>Email: <span id="sEmail">—</span></p>
-        <p>Password: <span id="sPass">—</span> <span class="help">(masked on screen)</span></p>
-        <img id="qrImg" alt="Payment QR">
-        <p class="red">Scan the QR and do the payment</p>
-        <p class="red">Write your <strong>Name</strong> in remarks please</p>
-        <input id="txn" type="text" placeholder="Enter Transaction ID or Remarks">
-        <button class="submit" onclick="submitNow()">Submit Now</button>
-      </div>
-    </div>
-
-    <div class="footer-links">
-      <a href="viber://chat?number=+9779828560029">Viber</a>
-      <a href="https://wa.me/9779828560029" target="_blank" rel="noopener">WhatsApp</a>
-      <a href="https://tiktok.com/@samirmijar.np" target="_blank" rel="noopener">TikTok</a>
-    </div>
+    </article>
   </div>
+</section>
+
+<!-- ================== GAMES TOP-UP ================== -->
+<section class="section" id="games-topup">
+  <h2>Games Top-up</h2>
+  <div class="grid">
+    <article class="card">
+      <div class="thumb"><img src="png.images/logo-freefire.png" alt="Free Fire"></div>
+      <div class="body"><div class="title">Free Fire Diamonds</div>
+        <div class="meta">Instant top-up</div>
+        <div class="row"><span class="price">From $1.99</span><button class="btn primary" onclick="wa('Free Fire Diamonds')">Order</button></div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="thumb"><img src="png.images/logo-pubg.png" alt="PUBG Mobile"></div>
+      <div class="body"><div class="title">PUBG Mobile UC</div>
+        <div class="meta">Instant top-up</div>
+        <div class="row"><span class="price">From $2.50</span><button class="btn primary" onclick="wa('PUBG Mobile UC')">Order</button></div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="thumb"><img src="png.images/logo-mlbb.png" alt="MLBB"></div>
+      <div class="body"><div class="title">Mobile Legends (MLBB)</div>
+        <div class="meta">Diamonds top-up</div>
+        <div class="row"><span class="price">From $1.99</span><button class="btn primary" onclick="wa('MLBB Diamonds')">Order</button></div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="thumb"><img src="png.images/logo-coc.png" alt="Clash of Clans"></div>
+      <div class="body"><div class="title">Clash of Clans</div>
+        <div class="meta">Gems / Gold Pass</div>
+        <div class="row"><span class="price">Ask</span><button class="btn primary" onclick="wa('Clash of Clans Top-up')">Order</button></div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="thumb"><img src="png.images/logo-efootball.png" alt="eFootball"></div>
+      <div class="body"><div class="title">eFootball</div>
+        <div class="meta">Coins top-up</div>
+        <div class="row"><span class="price">Ask</span><button class="btn primary" onclick="wa('eFootball Coins')">Order</button></div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="thumb"><img src="png.images/logo-roblox.png" alt="Roblox"></div>
+      <div class="body"><div class="title">Roblox Robux</div>
+        <div class="meta">Instant top-up</div>
+        <div class="row"><span class="price">Ask</span><button class="btn primary" onclick="wa('Roblox Robux')">Order</button></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================== SUPERCELL TOP-UP ================== -->
+<section class="section" id="supercell">
+  <h2>Supercell Top-up</h2>
+  <div class="grid">
+    <article class="card">
+      <div class="thumb"><img src="png.images/logo-coc.png" alt="Clash of Clans"></div>
+      <div class="body"><div class="title">Clash of Clans</div>
+        <div class="meta">Gems / Gold Pass</div>
+        <div class="row"><span class="price">Ask</span><button class="btn primary" onclick="wa('Supercell • Clash of Clans')">Order</button></div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="thumb"><img src="png.images/logo-cr.png" alt="Clash Royale"></div>
+      <div class="body"><div class="title">Clash Royale</div>
+        <div class="meta">Gems / Pass Royale</div>
+        <div class="row"><span class="price">Ask</span><button class="btn primary" onclick="wa('Supercell • Clash Royale')">Order</button></div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="thumb"><img src="png.images/logo-brawlstars.png" alt="Brawl Stars"></div>
+      <div class="body"><div class="title">Brawl Stars</div>
+        <div class="meta">Gems / Brawl Pass</div>
+        <div class="row"><span class="price">Ask</span><button class="btn primary" onclick="wa('Supercell • Brawl Stars')">Order</button></div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="thumb"><img src="png.images/logo-hayday.png" alt="Hay Day"></div>
+      <div class="body"><div class="title">Hay Day</div>
+        <div class="meta">Diamonds</div>
+        <div class="row"><span class="price">Ask</span><button class="btn primary" onclick="wa('Supercell • Hay Day')">Order</button></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================== GIFT CARDS / VOUCHERS ================== -->
+<section class="section" id="giftcards">
+  <h2>Gift Cards & Vouchers</h2>
+  <div class="grid">
+    <article class="card">
+      <div class="thumb"><img src="png.images/logo-googleplay.png" alt="Google Play"></div>
+      <div class="body"><div class="title">Google Play Gift Card</div>
+        <div class="meta">$10 / $25 / $50+</div>
+        <div class="row"><span class="price">From $10</span><button class="btn primary" onclick="wa('Google Play Gift Card')">Order</button></div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="thumb"><img src="png.images/logo-apple.png" alt="Apple"></div>
+      <div class="body"><div class="title">Apple Gift Card</div>
+        <div class="meta">$10 / $25 / $50+</div>
+        <div class="row"><span class="price">From $10</span><button class="btn primary" onclick="wa('Apple Gift Card')">Order</button></div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="thumb"><img src="png.images/logo-steam.png" alt="Steam"></div>
+      <div class="body"><div class="title">Steam Wallet Code</div>
+        <div class="meta">$5 / $10 / $50+</div>
+        <div class="row"><span class="price">From $5</span><button class="btn primary" onclick="wa('Steam Wallet Code')">Order</button></div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="thumb"><img src="png.images/logo-amazon.png" alt="Amazon"></div>
+      <div class="body"><div class="title">Amazon Gift Card</div>
+        <div class="meta">$10 / $25 / $50+</div>
+        <div class="row"><span class="price">From $10</span><button class="btn primary" onclick="wa('Amazon Gift Card')">Order</button></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================== SMM SERVICES ================== -->
+<section class="section" id="smm">
+  <h2>SMM Services</h2>
+  <div class="grid">
+    <article class="card">
+      <div class="thumb"><img src="png.images/logo-instagram.png" alt="Instagram"></div>
+      <div class="body"><div class="title">Instagram Growth Package</div>
+        <div class="meta">Targeted reach, reels boost</div>
+        <div class="row"><span class="price">From $5</span><button class="btn primary" onclick="wa('Instagram Growth Package')">Order</button></div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="thumb"><img src="png.images/logo-tiktok.png" alt="TikTok"></div>
+      <div class="body"><div class="title">TikTok Growth Package</div>
+        <div class="meta">Views / followers / live</div>
+        <div class="row"><span class="price">From $5</span><button class="btn primary" onclick="wa('TikTok Growth Package')">Order</button></div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="thumb"><img src="png.images/logo-youtube.png" alt="YouTube"></div>
+      <div class="body"><div class="title">YouTube Promotion</div>
+        <div class="meta">Monetizable watch time</div>
+        <div class="row"><span class="price">Ask</span><button class="btn primary" onclick="wa('YouTube Promotion')">Order</button></div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="thumb"><img src="png.images/logo-facebook.png" alt="Facebook"></div>
+      <div class="body"><div class="title">Facebook Page Boost</div>
+        <div class="meta">Targeted audience</div>
+        <div class="row"><span class="price">Ask</span><button class="btn primary" onclick="wa('Facebook Page Boost')">Order</button></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Order Modal (optional Formcarry request) -->
+<div class="modal" id="orderModal" aria-hidden="true">
+  <div class="box">
+    <button class="close" id="closeModal" aria-label="Close">×</button>
+    <h3 style="margin:0 0 8px">Request Order</h3>
+    <p style="color:#b9c6d3" id="modalProduct">Product:</p>
+    <form class="form" action="https://formcarry.com/s/YOUR_FORM_ID" method="POST">
+      <!-- TODO: replace YOUR_FORM_ID -->
+      <input type="hidden" name="product" id="fcProduct">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <select name="payment" required>
+        <option value="">Payment Method</option>
+        <option>eSewa</option><option>Khalti</option><option>Bank Transfer</option>
+      </select>
+      <textarea name="message" rows="3" placeholder="Notes (username, package, region, etc.)"></textarea>
+      <button class="btn primary" type="submit">Submit Request</button>
+    </form>
+  </div>
+</div>
+
+<footer>
+  © <span id="y"></span> SM Digital Services • Need help? WhatsApp us.
+</footer>
 
 <script>
-  let chosen = { method:"", qr:"" };
+  // Year
+  document.getElementById('y').textContent = new Date().getFullYear();
 
-  // show/hide password
-  document.getElementById('togglePass').addEventListener('change', (e) => {
-    const p = document.getElementById('pass');
-    p.type = e.target.checked ? 'text' : 'password';
-  });
-
-  // payment buttons
-  document.querySelectorAll('.pay-btn').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      document.querySelectorAll('.pay-btn').forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-
-      chosen.method = btn.dataset.method;
-      chosen.qr     = btn.dataset.qr;
-
-      const email = document.getElementById('email').value.trim() || '—';
-      const pass  = document.getElementById('pass').value.trim();
-      const masked = pass ? (pass.slice(0,2) + '••••') : '—'; // mask on screen
-      const plan  = document.getElementById('plan').value;
-
-      // fill summary + show QR
-      document.getElementById('summary').textContent = `Selected APEUni Plan: ${plan} • Method: ${chosen.method}`;
-      document.getElementById('sEmail').textContent = email;
-      document.getElementById('sPass').textContent  = masked;
-      document.getElementById('qrImg').src = chosen.qr;
-      document.getElementById('qrBox').style.display = 'block';
-    });
-  });
-
-  function submitNow(){
-    const email = document.getElementById('email').value.trim();
-    const pass  = document.getElementById('pass').value.trim();
-    const plan  = document.getElementById('plan').value;
-    const txn   = document.getElementById('txn').value.trim();
-
-    if(!email || !pass){ alert('Please enter your APEUni email and password.'); return; }
-    if(!chosen.method){ alert('Please select a payment method.'); return; }
-    if(!txn){ alert('Please enter transaction ID or remarks.'); return; }
-
-    const text = `APEUni Order
-Plan: ${plan}
-Email: ${email}
-Password: ${pass}
-Payment Method: ${chosen.method}
-Transaction/Remarks: ${txn}`;
-
-    // WhatsApp (new tab)
-    window.open(`https://wa.me/9779828560029?text=${encodeURIComponent(text)}`, '_blank');
-    // Viber
-    window.open(`viber://chat?number=+9779828560029&text=${encodeURIComponent(text)}`);
-
-    alert('Order sent! Please attach your payment screenshot in chat if not auto-attached.');
+  // WhatsApp order (prefilled)
+  function wa(name){
+    const num = '9779828560029'; // TODO: your WhatsApp number
+    const txt = encodeURIComponent(`Hello SM Digital Services,%0AI'm interested in: ${name}%0APayment: eSewa/Khalti/Bank%0AMy details:`);
+    window.location.href = `https://wa.me/${num}?text=${txt}`;
   }
+
+  // Form modal
+  const modal = document.getElementById('orderModal');
+  const closeModal = document.getElementById('closeModal');
+  function openOrder(name){
+    document.getElementById('modalProduct').textContent = 'Product: ' + name;
+    document.getElementById('fcProduct').value = name;
+    modal.classList.add('open');
+  }
+  closeModal.onclick = () => modal.classList.remove('open');
+  modal.addEventListener('click',e=>{ if(e.target===modal) modal.classList.remove('open'); });
 </script>
 </body>
 </html>
