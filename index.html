@@ -1,276 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SM DIGITAL HUB • Trusted Digital Services</title>
-  <meta name="theme-color" content="#ffffff" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#0b1115; --card:#0f1822; --soft:#152233;
-      --text:#e9eef4; --muted:#b9c6d3;
-      --accent:#ff8a00; --accent-dark:#cf5e00;
-      --brand:#4da3ff; --brand2:#7f5bff;
-      --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.35);
-    }
-    *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif}
-    a{color:inherit;text-decoration:none}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SM DIGITAL SERVICE • Trusted Digital Services</title>
+<meta name="theme-color" content="#ffffff" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b1115; --card:#0f1822; --soft:#152233;
+    --text:#e9eef4; --muted:#b9c6d3;
+    --accent:#ff8a00; --accent-dark:#cf5e00;
+    --brand:#4da3ff; --brand2:#7f5bff;
+    --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif}
+  a{color:inherit;text-decoration:none}
 
-    /* HEADER */
-    .sm-header{
-      position:sticky;top:0;z-index:100;
-      display:flex;align-items:center;justify-content:space-between;
-      padding:12px 16px;background:#fff;border-bottom:2px solid #eee;
-    }
-    .sm-logo{display:flex;align-items:center;gap:10px}
-    .sm-mascot{width:54px;height:54px;object-fit:contain}
-    .sm-word{
-      display:inline-flex;gap:6px;
-      filter: drop-shadow(0 4px 0 rgba(0,0,0,.25)) drop-shadow(0 8px 16px rgba(0,0,0,.3));
-    }
-    .sm-word b{
-      font-weight:900;font-size:26px;padding:.18em .38em;color:#fff;
-      background:linear-gradient(#ffffff,#f8f8f8);border-radius:10px;
-      box-shadow:0 0 0 8px var(--accent), inset 0 -6px 0 rgba(0,0,0,.07), inset 0 6px 0 rgba(255,255,255,.55);
-      border:2px solid var(--accent-dark);
-    }
-    .sm-badge{width:32px;height:32px;margin-left:8px}
+  /* ===== Header (smaller mascot + blue tick) ===== */
+  .sm-header{
+    position:sticky;top:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:10px 14px;background:#fff;color:#111;border-bottom:2px solid #eee;
+  }
+  .sm-logo{display:flex;align-items:center;gap:8px}
+  .sm-mascot{width:42px;height:42px;object-fit:contain}
+  .sm-word{
+    display:inline-flex;gap:5px;
+    filter: drop-shadow(0 3px 0 rgba(0,0,0,.22)) drop-shadow(0 6px 12px rgba(0,0,0,.25));
+  }
+  .sm-word b{
+    font-weight:900;font-size:18px;padding:.16em .34em;color:#fff;
+    background:linear-gradient(#ffffff,#f8f8f8);border-radius:10px;
+    box-shadow:0 0 0 6px #ff8a00, inset 0 -5px 0 rgba(0,0,0,.07), inset 0 5px 0 rgba(255,255,255,.55);
+    border:2px solid #cf5e00;
+  }
+  .sm-badge{width:24px;height:24px;margin-left:6px}
 
-    /* Hamburger */
-    .menu-btn{
-      width:52px;height:52px;border:none;border-radius:999px;
-      background:linear-gradient(90deg,#ff7a00,#ff415f);color:#fff;
-      display:grid;place-items:center;cursor:pointer;transition:.25s ease;
-      box-shadow:0 6px 16px rgba(255,65,95,.4);
-    }
-    .menu-btn:hover{transform:translateY(-2px) scale(1.05);box-shadow:0 8px 20px rgba(255,65,95,.5)}
-    .menu-btn svg{width:26px;height:26px;stroke:#fff}
+  /* Hamburger (right) */
+  .menu-btn{
+    width:46px;height:46px;border:none;border-radius:999px;
+    background:linear-gradient(90deg,#ff7a00,#ff415f);color:#fff;
+    display:grid;place-items:center;cursor:pointer;transition:.25s;
+    box-shadow:0 6px 16px rgba(255,65,95,.38);
+  }
+  .menu-btn:hover{transform:translateY(-2px) scale(1.04)}
+  .menu-btn svg{width:24px;height:24px;stroke:#fff}
 
-    /* Hanging lights */
-    .lights{display:flex;justify-content:center;gap:20px;background:#fff;padding:10px 0;border-bottom:2px solid #eee}
-    .lights span{width:30px;height:30px;border-radius:50%;box-shadow:0 0 12px rgba(0,0,0,.2);display:inline-block}
+  /* Hanging Lights bar */
+  .lights{display:flex;justify-content:center;gap:18px;padding:8px 0;background:#fff;border-bottom:2px solid #eee}
+  .lights span{width:26px;height:26px;border-radius:50%;box-shadow:0 0 10px rgba(0,0,0,.18);display:inline-block}
 
-    /* Drawer menu */
-    .drawer{
-      position:fixed;inset:0 0 0 auto;width:78%;max-width:320px;background:#0f1822;
-      transform:translateX(100%);transition:.25s ease;box-shadow:var(--shadow);z-index:120;padding:18px;
-    }
-    .nav-open .drawer{transform:none}
-    .drawer .close{position:absolute;top:10px;right:12px;background:transparent;border:0;color:#fff;cursor:pointer}
-    .drawer-links{display:grid;gap:12px;margin-top:28px}
-    .drawer-links a{
-      display:inline-flex;align-items:center;justify-content:center;
-      padding:14px 18px;border-radius:999px;font-weight:700;
-      background:#fff;color:#222;border:2px solid #eee;transition:.2s ease;
-    }
-    .drawer-links a:hover{background:#f7f7f7;transform:translateY(-2px)}
+  /* ===== Drawer Menu ===== */
+  .drawer{
+    position:fixed;inset:0 0 0 auto;width:82%;max-width:360px;background:#0f1822;
+    transform:translateX(100%);transition:.25s ease;box-shadow:var(--shadow);z-index:120;padding:20px 16px;color:#e9eef4;
+  }
+  .nav-open .drawer{transform:none}
+  .drawer .close{position:absolute;top:12px;right:12px;background:transparent;border:0;color:#fff;cursor:pointer}
+  .drawer .nav-group{margin-top:40px;display:grid;gap:12px}
+  .drawer a{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:999px;font-weight:700;
+    background:linear-gradient(90deg,#ff7a00,#ff415f);color:#fff;box-shadow:0 6px 16px rgba(255,65,95,.35)}
+  .drawer a.secondary{background:#152233;border:2px solid rgba(255,255,255,.1);box-shadow:none}
 
-    /* Hero video */
-    .hero-video{
-      position:relative;height:340px;overflow:hidden;border-bottom:3px solid rgba(0,0,0,.1);
-      background:#ff9500; /* fallback orange */
-    }
-    .hero-video video{width:100%;height:100%;object-fit:cover;display:block}
-    .hero-video .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.6))}
-    .hero-video .hero-content{
-      position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
-      text-align:center;color:#fff;z-index:2;padding:0 18px;
-    }
-    .hero-content h1{margin:6px 0 10px;font-size:28px;line-height:1.2}
-    .hero-content p{margin:0 0 18px;color:#f1f1f1;font-size:16px}
+  /* ===== Hero 16:9 video ===== */
+  .hero-video{
+    position:relative;aspect-ratio:16/9; /* keeps 16:9 on all screens */
+    width:100%;max-height:520px;overflow:hidden;background:#ff9500;border-bottom:3px solid rgba(0,0,0,.1);
+  }
+  .hero-video video{width:100%;height:100%;object-fit:cover;display:block}
+  .hero-video .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.22),rgba(0,0,0,.55))}
+  .hero-video .hero-content{
+    position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;z-index:2;padding:0 18px;
+  }
+  .hero-content h1{margin:6px 0 10px;font-size:28px;line-height:1.2}
+  .hero-content p{margin:0 0 18px;color:#f1f1f1;font-size:16px}
+  .cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:16px;padding:14px 28px;border-radius:999px;transition:.25s;box-shadow:0 6px 18px rgba(0,0,0,.22)}
+  .btn-primary{background:linear-gradient(90deg,#ff7a00,#ff415f);color:#fff}
+  .btn-primary:hover{transform:translateY(-2px)}
+  .btn-soft{background:#fff;color:#333;border:2px solid #eee}
+  .btn-soft:hover{background:#f7f7f7;transform:translateY(-2px)}
 
-    /* Buttons */
-    .cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:8px;
-      font-weight:700;font-size:16px;padding:14px 28px;border-radius:999px;
-      transition:.25s ease;box-shadow:0 6px 18px rgba(0,0,0,.25);
-    }
-    .btn-primary{background:linear-gradient(90deg,#ff7a00,#ff415f);color:#fff}
-    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(255,65,95,.4)}
-    .btn-soft{background:#fff;color:#333;border:2px solid #eee}
-    .btn-soft:hover{background:#f7f7f7;transform:translateY(-2px)}
+  /* ===== Sections with colorful headers ===== */
+  section{padding:28px 18px}
+  .card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);margin-bottom:16px}
+  .tag{display:inline-block;margin-bottom:8px;font-weight:800;letter-spacing:.3px;color:#0b1115;background:#fff;border-radius:999px;padding:6px 12px}
+  .tag.who{background:#ffcc00}
+  .tag.mission{background:#34c759}
+  .tag.offer{background:#0a84ff;color:#fff}
+  .tag.vision{background:#af52de;color:#fff}
+  .list{margin:10px 0 0;padding:0 0 0 18px;color:#c9d5e3}
+  .list li{margin:6px 0}
 
-    /* Sections */
-    section{padding:28px 18px}
-    .card{
-      background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);
-      padding:18px;box-shadow:var(--shadow);margin-bottom:16px
-    }
-    .card h3{margin:0 0 8px}
-    .list{margin:10px 0 0;padding:0 0 0 18px;color:#c9d5e3}
-    .list li{margin:6px 0}
-    .grid-2{display:grid;gap:16px}
+  /* ===== Social icons row (small) ===== */
+  .icons-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .icon-btn{
+    width:36px;height:36px;border-radius:10px;background:#121e30;border:1px solid rgba(255,255,255,.08);
+    display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow)
+  }
+  .icon-btn img{width:22px;height:22px;object-fit:contain}
 
-    /* Payment methods section */
-    .payments{
-      text-align:center;
-      padding:30px 18px;
-      background:#101a28;
-      border-top:1px solid rgba(255,255,255,.08);
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    .payments h2{
-      margin:0 0 12px;
-      font-size:18px;
-      font-weight:600;
-      color:#e9eef4;
-    }
-    .pay-img{
-      max-width:320px;
-      width:100%;
-      height:auto;
-      filter: drop-shadow(0 3px 6px rgba(0,0,0,.3));
-    }
+  /* ===== 16:9 logo boxes (payments) ===== */
+  .grid-logos{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .logo-rect{background:#121e30;border:1px solid rgba(255,255,255,.08);border-radius:12px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow)}
+  .logo-rect img{width:90%;height:90%;object-fit:contain}
 
-    /* Footer */
-    footer{padding:22px 18px;border-top:1px solid rgba(255,255,255,.08);background:#0e1722;color:#b7c5d6}
-    .social{display:flex;gap:14px;margin-top:8px}
-    .social a{display:inline-flex;padding:10px;border-radius:12px;background:#152233;color:#e9eef4}
+  /* ===== Footer ===== */
+  footer{padding:22px 18px;border-top:1px solid rgba(255,255,255,.08);background:#0e1722;color:#b7c5d6}
+  .social{display:flex;gap:12px;margin-top:8px}
+  .social a{display:inline-flex;padding:10px;border-radius:12px;background:#152233}
 
-    /* Responsive */
-    @media (min-width:768px){
-      .grid-2{grid-template-columns:1fr 1fr}
-      .hero-video{height:420px}
-      .hero-content h1{font-size:42px}
-    }
-  </style>
+  @media (min-width:768px){
+    .hero-content h1{font-size:42px}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  }
+</style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="sm-header">
-    <a class="sm-logo" href="/" aria-label="SM DIGITAL HUB • Home">
-      <img src="png.images/logo-mascot.png" alt="SM Digital Hub Mascot" class="sm-mascot">
-      <span class="sm-word">
-        <b>SM</b><b>DIGITAL</b><b>HUB</b>
-      </span>
-      <svg class="sm-badge" viewBox="0 0 64 64" aria-hidden="true">
-        <path d="M24 4l8 6 10-2 4 9 10 3-2 10 6 8-6 8 2 10-10 3-4 9-10-2-8 6-8-6-10 2-4-9-10-3 2-10-6-8 6-8-2-10 10-3 4-9 10 2z" fill="#39a8ff"/>
-        <path d="M22 34l6 6 14-14" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </a>
-    <button class="menu-btn sm-menu-toggle" aria-label="Open menu">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M3 6h18M3 12h18M3 18h18"/>
-      </svg>
-    </button>
-  </header>
+<!-- ===== Header ===== -->
+<header class="sm-header">
+  <a class="sm-logo" href="/" aria-label="SM DIGITAL SERVICE • Home">
+    <img src="png.images/logo-mascot.png" alt="SM Digital Service Mascot" class="sm-mascot">
+    <span class="sm-word"><b>SM</b><b>DIGITAL</b><b>SERVICE</b></span>
+    <!-- Blue Verified Badge -->
+    <svg class="sm-badge" viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M24 4l8 6 10-2 4 9 10 3-2 10 6 8-6 8 2 10-10 3-4 9-10-2-8 6-8-6-10 2-4-9-10-3 2-10-6-8 6-8-2-10 10-3 4-9 10 2z" fill="#39a8ff"/>
+      <path d="M22 34l6 6 14-14" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+  <button class="menu-btn sm-menu-toggle" aria-label="Open menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+</header>
 
-  <!-- Hanging lights -->
-  <div class="lights" aria-hidden="true">
-    <span style="background:#ff3b30"></span>
-    <span style="background:#ff9500"></span>
-    <span style="background:#ffcc00"></span>
-    <span style="background:#34c759"></span>
-    <span style="background:#0a84ff"></span>
-    <span style="background:#af52de"></span>
+<!-- Lights -->
+<div class="lights">
+  <span style="background:#ff3b30"></span>
+  <span style="background:#ff9500"></span>
+  <span style="background:#ffcc00"></span>
+  <span style="background:#34c759"></span>
+  <span style="background:#0a84ff"></span>
+  <span style="background:#af52de"></span>
+</div>
+
+<!-- Drawer Menu -->
+<nav class="drawer" aria-label="Site">
+  <button class="close sm-menu-toggle" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+  </button>
+  <div class="nav-group">
+    <a href="#home">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="#about" class="secondary">About</a>
+    <a href="#contact" class="secondary">Contact</a>
+  </div>
+</nav>
+
+<!-- ===== Hero (16:9 video with fallback) ===== -->
+<section class="hero-video" id="home">
+  <video autoplay muted loop playsinline preload="auto" poster="png.images/hero-poster.jpg">
+    <source src="png.images/lv_0_20250914142038.mp4?v=1" type="video/mp4">
+    <!-- Optional: add a WebM fallback if you export one -->
+    <!-- <source src="png.images/hero.webm?v=1" type="video/webm"> -->
+    Your browser does not support the video tag.
+  </video>
+  <div class="overlay"></div>
+  <div class="hero-content">
+    <h1>Welcome to SM Digital Service</h1>
+    <p>Affordable subscriptions, AI tools, and game top-ups in Nepal.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="shop.html">Shop Now</a>
+      <a class="btn btn-soft" href="#contact">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== About / Why / Vision (colorful tags) ===== -->
+<section id="about">
+  <div class="grid-2">
+    <div class="card">
+      <span class="tag who">WHO I AM</span>
+      <p>I’m <strong>Samir Mijar</strong>, creator of <strong>SM Digital Service</strong>. I help Nepali users buy global digital services easily with local payments and friendly support.</p>
+    </div>
+    <div class="card">
+      <span class="tag mission">MY MISSION</span>
+      <p>Make premium digital tools <em>affordable & accessible</em> in Nepal — transparent pricing, instant delivery, and reliable after-sales help.</p>
+    </div>
   </div>
 
-  <!-- Drawer (mobile) -->
-  <nav class="drawer" aria-label="Site">
-    <button class="close sm-menu-toggle" aria-label="Close menu">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6l-12 12"/></svg>
-    </button>
-    <div class="drawer-links">
-      <a href="#home">Home</a>
-      <a href="shop.html">Shop</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
-
-  <!-- Hero with video -->
-  <section class="hero-video" id="home">
-    <video autoplay muted loop playsinline>
-      <source src="png.images/welcomelight.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <div class="overlay"></div>
-    <div class="hero-content">
-      <h1>Welcome to SM Digital Hub</h1>
-      <p>Affordable subscriptions, AI tools, and game top-ups in Nepal.</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="shop.html">Shop Now</a>
-        <a class="btn btn-soft" href="#contact">Contact Us</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- About / Why / Vision -->
-  <section id="about">
-    <div class="grid-2">
-      <div class="card">
-        <h3>Who I Am</h3>
-        <p>I’m <strong>Samir Mijar</strong>, creator of <strong>SM Digital Hub</strong>. I help Nepali users buy global digital services easily with local payments and friendly support.</p>
-      </div>
-      <div class="card">
-        <h3>My Mission</h3>
-        <p>Make premium digital tools <em>affordable & accessible</em> in Nepal — transparent pricing, instant delivery, and reliable after-sales help.</p>
-      </div>
-    </div>
-
-    <div class="grid-2">
-      <div class="card">
-        <h3>What I Offer</h3>
-        <ul class="list">
-          <li>APEUni VIP for PTE learners</li>
-          <li>Spotify, ChatGPT Plus, Perplexity Pro</li>
-          <li>Game top-ups (PUBG UC, Free Fire, MLBB, Roblox, more)</li>
-          <li>Custom requests & voucher codes</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Why Choose SM Digital Hub?</h3>
-        <ul class="list">
-          <li>Local payments (eSewa / Khalti / Bank)</li>
-          <li>Fast delivery & replacement support</li>
-          <li>Genuine codes — clear, honest pricing</li>
-          <li>Direct chat support 7 days a week</li>
-        </ul>
-      </div>
-    </div>
-
+  <div class="grid-2">
     <div class="card">
-      <h3>My Vision</h3>
+      <span class="tag offer">WHAT I OFFER</span>
+      <ul class="list">
+        <li>APEUni VIP for PTE learners</li>
+        <li>Spotify, ChatGPT Plus, Perplexity Pro</li>
+        <li>Game top-ups (PUBG UC, Free Fire, MLBB, Roblox)</li>
+        <li>Custom requests & voucher codes</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag vision">MY VISION</span>
       <p>Build a trusted, Nepali-first digital marketplace where students, creators, and gamers get the tools they need — safely and instantly.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Payment Methods Accepted -->
-  <section class="payments">
-    <h2>Payment Methods Accepted</h2>
-    <img src="png.images/logo-pay.png" alt="Payment Methods: eSewa, Khalti, FonePay, MyPay, Bank" class="pay-img">
-  </section>
+<!-- ===== Social Handles (small icons) ===== -->
+<section>
+  <h3 style="margin:0 0 10px">Follow & Contact</h3>
+  <div class="icons-row">
+    <a class="icon-btn" href="https://facebook.com/yourpage" target="_blank"><img src="png.images/logo-facebook.png" alt="Facebook"></a>
+    <a class="icon-btn" href="https://instagram.com/yourhandle" target="_blank"><img src="png.images/logo-instagram.png" alt="Instagram"></a>
+    <a class="icon-btn" href="https://wa.me/9779828560029" target="_blank"><img src="png.images/logo-whatsapp.png" alt="WhatsApp"></a>
+    <a class="icon-btn" href="https://www.tiktok.com/@samirmijar.np" target="_blank"><img src="png.images/logo-tiktok.png" alt="TikTok"></a>
+    <a class="icon-btn" href="https://youtube.com/@yourchannel" target="_blank"><img src="png.images/logo-youtube.png" alt="YouTube"></a>
+  </div>
+</section>
 
-  <!-- Contact -->
-  <section id="contact">
-    <h2 style="margin:0 0 14px">Contact Us</h2>
-    <div class="contact-grid">
-      <a class="tile" href="https://wa.me/9779828560029" target="_blank" rel="noopener">WhatsApp</a>
-      <a class="tile" href="viber://chat?number=%2B9779828560029">Viber</a>
-      <a class="tile" href="https://www.tiktok.com/@samirmijar.np" target="_blank" rel="noopener">TikTok</a>
-      <a class="tile" href="mailto:hello@samirmijar.com.np?subject=Order%20Request%20-%20SM%20Digital%20Hub">Email</a>
-    </div>
-  </section>
+<!-- ===== Payments (16:9 logo boxes) ===== -->
+<section>
+  <h3 style="margin:0 0 10px">Payment Methods Accepted</h3>
+  <div class="grid-logos">
+    <div class="logo-rect"><img src="png.images/logo-esewa.png" alt="eSewa"></div>
+    <div class="logo-rect"><img src="png.images/logo-khalti.png" alt="Khalti"></div>
+    <div class="logo-rect"><img src="png.images/logo-bank.png" alt="Bank Transfer"></div>
+  </div>
+</section>
 
-  <!-- Footer -->
-  <footer>
-    <div><strong>SM Digital Hub</strong> — © <span id="y"></span></div>
-    <div class="social">
-      <a href="https://wa.me/9779828560029" aria-label="WhatsApp">WA</a>
-      <a href="viber://chat?number=%2B9779828560029" aria-label="Viber">VB</a>
-      <a href="https://www.tiktok.com/@samirmijar.np" target="_blank" rel="noopener" aria-label="TikTok">TT</a>
-      <a href="mailto:hello@samirmijar.com.np" aria-label="Email">✉</a>
-    </div>
-  </footer>
+<!-- ===== Contact (CTA tiles can stay or you can remove because we added icons above) ===== -->
+<section id="contact">
+  <h3 style="margin:0 0 10px">Quick Contact</h3>
+  <div class="icons-row">
+    <a class="icon-btn" href="https://wa.me/9779828560029" target="_blank"><img src="png.images/logo-whatsapp.png" alt="WhatsApp"></a>
+    <a class="icon-btn" href="viber://chat?number=%2B9779828560029"><img src="png.images/logo-viber.png" alt="Viber"></a>
+    <a class="icon-btn" href="mailto:hello@samirmijar.com.np"><img src="png.images/logo-mail.png" alt="Email"></a>
+  </div>
+</section>
 
-  <script>
-    // Mobile menu toggle
-    document.querySelectorAll('.sm-menu-toggle').forEach(btn=>{
-      btn.addEventListener('click',()=>document.body.classList.toggle('nav-open'));
-    });
-    // Current year
-    document.getElementById('y').textContent = new Date().g
+<!-- ===== Footer ===== -->
+<footer>
+  <div><strong>SM Digital Service</strong> — © <span id="y"></span></div>
+  <div class="social">
+    <a href="https://wa.me/9779828560029">WhatsApp</a>
+    <a href="viber://chat?number=%2B9779828560029">Viber</a>
+    <a href="https://www.tiktok.com/@samirmijar.np" target="_blank">TikTok</a>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  document.querySelectorAll('.sm-menu-toggle').forEach(btn =>
+    btn.addEventListener('click', () => document.body.classList.toggle('nav-open'))
+  );
+  // Year
+  document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
