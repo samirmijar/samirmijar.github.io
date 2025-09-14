@@ -1,329 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Shop • SM DIGITAL SERVICES</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-<meta name="theme-color" content="#0b1115">
-<style>
-  :root{
-    --bg:#0b1115; --card:#0f1822; --soft:#152233;
-    --text:#e9eef4; --muted:#b9c6d3; --brand:#4da3ff;
-    --accent:#ff7a00; --accent2:#ff415f; --radius:16px;
-    --shadow:0 10px 30px rgba(0,0,0,.35);
-  }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif}
-  a{text-decoration:none;color:inherit}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Shop • SM Digital Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body{margin:0;background:#0d0f12;color:#eaeaea;font-family:Inter,system-ui,sans-serif;line-height:1.55}
+    .wrap{max-width:1080px;margin:0 auto;padding:18px}
 
-  /* Header (simple) */
-  .topbar{
-    position:sticky; top:0; z-index:50;
-    display:flex; align-items:center; justify-content:space-between; gap:8px;
-    padding:10px 14px; background:#fff; border-bottom:2px solid #eee;
-  }
-  .brand{display:flex; align-items:center; gap:10px; color:#111}
-  .brand img{width:38px;height:38px;object-fit:contain}
-  .brand b{font-size:20px; letter-spacing:.4px}
-  .hamburger{
-    width:44px;height:44px;border:none;border-radius:999px;cursor:pointer;
-    display:grid;place-items:center;color:#fff;
-    background:linear-gradient(90deg,var(--accent),var(--accent2));
-    box-shadow:0 6px 16px rgba(255,65,95,.35)
-  }
-  .hamburger svg{width:22px;height:22px}
+    h1,h2{margin:16px 0;font-weight:800;color:#fff}
+    h2{font-size:20px}
 
-  /* Page intro */
-  .hero{padding:18px 16px;border-bottom:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,#0e1722,#0b1115)}
-  .hero h1{margin:6px 0 8px;font-size:26px}
-  .hero p{margin:0;color:#b9c6d3}
-
-  /* Section */
-  .section{padding:18px 16px}
-  .section h2{margin:0 0 12px;font-size:22px}
-  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-  @media (min-width:900px){.grid{grid-template-columns:repeat(4,1fr)}}
-
-  /* Card */
-  .card{
-    background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);
-    overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column
-  }
-  .thumb{aspect-ratio:16/9;background:#0e1722;display:flex;align-items:center;justify-content:center}
-  .thumb img{width:84%;height:84%;object-fit:contain}
-  .body{padding:12px}
-  .title{font-weight:800;margin:2px 0 4px}
-  .meta{font-size:13px;color:var(--muted);min-height:36px;margin-bottom:8px}
-  .row{display:flex;justify-content:space-between;align-items:center;gap:8px}
-  .price{font-weight:900}
-  .btn{
-    display:inline-flex;align-items:center;justify-content:center;gap:8px;
-    padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:#152233;color:#fff;
-    font-weight:700;cursor:pointer
-  }
-  .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent2));border:0}
-
-  /* Modal (Formcarry request) */
-  .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;place-items:center;z-index:70}
-  .modal.open{display:grid}
-  .box{width:min(560px,92vw);background:#0f1822;border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:16px}
-  .close{background:transparent;border:0;color:#b9c6d3;float:right;font-size:22px;cursor:pointer}
-  .form input,.form textarea,.form select{
-    width:100%;margin:8px 0;padding:12px;border-radius:12px;background:#121e30;border:1px solid rgba(255,255,255,.12);color:#e9eef4
-  }
-  footer{padding:20px 16px;border-top:1px solid rgba(255,255,255,.08);background:#0e1722;color:#b7c5d6;text-align:center}
-</style>
+    /* GRID SHARED STYLE */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+      gap:14px;
+    }
+    .card{
+      background:#111623;
+      border:1px solid #23283b;
+      border-radius:16px;
+      padding:12px;
+      display:flex;
+      flex-direction:column;
+      color:#eaeaea;
+    }
+    .card-link{color:inherit;text-decoration:none}
+    .thumb{
+      margin:0 0 10px;
+      border-radius:12px;
+      overflow:hidden;
+      background:#0e1722;
+      aspect-ratio:1/1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .thumb img{width:86%;height:86%;object-fit:contain}
+    .title{margin:4px 0 2px;font-size:15px;font-weight:700}
+    .meta{margin:0 0 8px;font-size:13px;color:#b9c6d3;min-height:32px}
+    .row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto}
+    .price{font-weight:900}
+    .btn{
+      padding:7px 12px;
+      background:linear-gradient(90deg,#ff7a00,#ff415f);
+      color:#fff;border-radius:10px;font-weight:800;
+      text-decoration:none;white-space:nowrap;border:0
+    }
+  </style>
 </head>
 <body>
+  <div class="wrap">
+    <h1>Shop</h1>
 
-<header class="topbar">
-  <a class="brand" href="index.html" aria-label="Home">
-    <img src="png.images/logo-mascot.png" alt="SMDS">
-    <b>SM DIGITAL SERVICES</b>
-  </a>
-  <button class="hamburger" aria-label="Menu">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-  </button>
-</header>
+    <!-- BEST SELLING -->
+    <section>
+      <h2>Best Selling</h2>
+      <div class="grid">
+        <!-- APEUni -->
+        <div class="card">
+          <a class="card-link" href="/apeuni.html">
+            <figure class="thumb"><img src="/png.images/logo-apeuni.png" alt="APEUni VIP" loading="lazy"></figure>
+            <div class="title">APEUni VIP</div>
+            <div class="meta">PTE learning & AI practice</div>
+          </a>
+          <div class="row">
+            <span class="price">From NPR 2200</span>
+            <a class="btn" href="https://wa.me/9779828560029?text=I'm%20interested%20in%20APEUni%20VIP">Order</a>
+          </div>
+        </div>
 
-<section class="hero">
-  <h1>Shop</h1>
-  <p>Best sellers, game top-ups, Supercell, gift cards, SMM services, and more.</p>
-</section>
-
-<!-- ================== BEST SELLING ================== -->
-<section class="section" id="best-selling">
-  <h2>Best Selling</h2>
-  <div class="grid">
-    <!-- ApeUni VIP -->
-<a class="best-item" href="/apeuni.html" aria-label="APEUni VIP">
-  <img class="best-thumb" src="/png.images/logo-apeuni.png" alt="APEUni VIP" loading="lazy">
-  <div class="best-name">APEUni VIP</div>
-</a>
-
+        <!-- ChatGPT Plus -->
+        <div class="card">
+          <a class="card-link" href="/chatgpt.html">
+            <figure class="thumb"><img src="/png.images/logo-chatgpt.png" alt="ChatGPT Plus" loading="lazy"></figure>
+            <div class="title">ChatGPT Plus (1 mo)</div>
+            <div class="meta">Fast GPT-4/4o access</div>
+          </a>
+          <div class="row">
+            <span class="price">From NPR 2750</span>
+            <a class="btn" href="https://wa.me/9779828560029?text=I'm%20interested%20in%20ChatGPT%20Plus%20(1mo)">Order</a>
           </div>
         </div>
       </div>
-    </article>
-    <!-- ChatGPT Plus -->
-    <article class="card">
-      <div class="thumb"><img src="png.images/logo-chatgpt.png" alt="ChatGPT Plus"></div>
-      <div class="body">
-        <div class="title">ChatGPT Plus (1 mo)</div>
-        <div class="meta">Fast access to GPT-4/4o, priority</div>
-        <div class="row">
-          <span class="price">$14.99</span>
-          <div style="display:flex;gap:8px">
-            <button class="btn primary" onclick="wa('ChatGPT Plus (1 mo)')">WhatsApp</button>
-            <button class="btn" onclick="openOrder('ChatGPT Plus (1 mo)')">Form</button>
-          </div>
+    </section>
+
+    <!-- GAMES -->
+    <section>
+      <h2>Games Top-up</h2>
+      <div class="grid">
+        <div class="card">
+          <figure class="thumb"><img src="/png.images/logo-freefire.png" alt="Free Fire"></figure>
+          <div class="title">Free Fire Diamonds</div>
+          <div class="meta">Instant top-up</div>
+          <div class="row"><span class="price">From $1.99</span><a class="btn" href="#">Order</a></div>
+        </div>
+        <div class="card">
+          <figure class="thumb"><img src="/png.images/logo-pubg.png" alt="PUBG"></figure>
+          <div class="title">PUBG UC</div>
+          <div class="meta">Instant top-up</div>
+          <div class="row"><span class="price">From $2.50</span><a class="btn" href="#">Order</a></div>
+        </div>
+        <div class="card">
+          <figure class="thumb"><img src="/png.images/logo-mlbb.png" alt="MLBB"></figure>
+          <div class="title">Mobile Legends</div>
+          <div class="meta">Diamonds top-up</div>
+          <div class="row"><span class="price">Ask</span><a class="btn" href="#">Order</a></div>
+        </div>
+        <div class="card">
+          <figure class="thumb"><img src="/png.images/logo-coc.png" alt="Clash of Clans"></figure>
+          <div class="title">Clash of Clans</div>
+          <div class="meta">Gems / Gold Pass</div>
+          <div class="row"><span class="price">Ask</span><a class="btn" href="#">Order</a></div>
+        </div>
+        <div class="card">
+          <figure class="thumb"><img src="/png.images/logo-efootball.png" alt="eFootball"></figure>
+          <div class="title">eFootball Coins</div>
+          <div class="meta">Instant delivery</div>
+          <div class="row"><span class="price">Ask</span><a class="btn" href="#">Order</a></div>
+        </div>
+        <div class="card">
+          <figure class="thumb"><img src="/png.images/logo-roblox.png" alt="Roblox"></figure>
+          <div class="title">Roblox Robux</div>
+          <div class="meta">Game credits</div>
+          <div class="row"><span class="price">Ask</span><a class="btn" href="#">Order</a></div>
         </div>
       </div>
-    </article>
+    </section>
+
+    <!-- SUPERCELL -->
+    <section>
+      <h2>Supercell Top-up</h2>
+      <div class="grid">
+        <div class="card">
+          <figure class="thumb"><img src="/png.images/logo-supercell.png" alt="Supercell"></figure>
+          <div class="title">Supercell Games</div>
+          <div class="meta">Clash Royale, Brawl Stars etc.</div>
+          <div class="row"><span class="price">Ask</span><a class="btn" href="#">Order</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GIFT CARDS -->
+    <section>
+      <h2>Gift Cards & Vouchers</h2>
+      <div class="grid">
+        <div class="card">
+          <figure class="thumb"><img src="/png.images/logo-playstore.png" alt="Google Play"></figure>
+          <div class="title">Google Play</div>
+          <div class="meta">Gift card codes</div>
+          <div class="row"><span class="price">Ask</span><a class="btn" href="#">Order</a></div>
+        </div>
+        <div class="card">
+          <figure class="thumb"><img src="/png.images/logo-apple.png" alt="Apple"></figure>
+          <div class="title">Apple Gift Card</div>
+          <div class="meta">App Store & iTunes</div>
+          <div class="row"><span class="price">Ask</span><a class="btn" href="#">Order</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SMM -->
+    <section>
+      <h2>SMM Services</h2>
+      <div class="grid">
+        <div class="card">
+          <figure class="thumb"><img src="/png.images/logo-instagram.png" alt="Instagram"></figure>
+          <div class="title">Instagram Growth</div>
+          <div class="meta">Followers & engagement</div>
+          <div class="row"><span class="price">Ask</span><a class="btn" href="#">Order</a></div>
+        </div>
+        <div class="card">
+          <figure class="thumb"><img src="/png.images/logo-facebook.png" alt="Facebook"></figure>
+          <div class="title">Facebook Ads</div>
+          <div class="meta">Boost & promotion</div>
+          <div class="row"><span class="price">Ask</span><a class="btn" href="#">Order</a></div>
+        </div>
+        <div class="card">
+          <figure class="thumb"><img src="/png.images/logo-tiktok.png" alt="TikTok"></figure>
+          <div class="title">TikTok Promotion</div>
+          <div class="meta">Views & followers</div>
+          <div class="row"><span class="price">Ask</span><a class="btn" href="#">Order</a></div>
+        </div>
+      </div>
+    </section>
+
   </div>
-</section>
-
-<!-- ================== GAMES TOP-UP ================== -->
-<section class="section" id="games-topup">
-  <h2>Games Top-up</h2>
-  <div class="grid">
-    <article class="card">
-      <div class="thumb"><img src="png.images/logo-freefire.png" alt="Free Fire"></div>
-      <div class="body"><div class="title">Free Fire Diamonds</div>
-        <div class="meta">Instant top-up</div>
-        <div class="row"><span class="price">From $1.99</span><button class="btn primary" onclick="wa('Free Fire Diamonds')">Order</button></div>
-      </div>
-    </article>
-    <article class="card">
-      <div class="thumb"><img src="png.images/logo-pubg.png" alt="PUBG Mobile"></div>
-      <div class="body"><div class="title">PUBG Mobile UC</div>
-        <div class="meta">Instant top-up</div>
-        <div class="row"><span class="price">From $2.50</span><button class="btn primary" onclick="wa('PUBG Mobile UC')">Order</button></div>
-      </div>
-    </article>
-    <article class="card">
-      <div class="thumb"><img src="png.images/logo-mlbb.png" alt="MLBB"></div>
-      <div class="body"><div class="title">Mobile Legends (MLBB)</div>
-        <div class="meta">Diamonds top-up</div>
-        <div class="row"><span class="price">From $1.99</span><button class="btn primary" onclick="wa('MLBB Diamonds')">Order</button></div>
-      </div>
-    </article>
-    <article class="card">
-      <div class="thumb"><img src="png.images/logo-coc.png" alt="Clash of Clans"></div>
-      <div class="body"><div class="title">Clash of Clans</div>
-        <div class="meta">Gems / Gold Pass</div>
-        <div class="row"><span class="price">Ask</span><button class="btn primary" onclick="wa('Clash of Clans Top-up')">Order</button></div>
-      </div>
-    </article>
-    <article class="card">
-      <div class="thumb"><img src="png.images/logo-efootball.png" alt="eFootball"></div>
-      <div class="body"><div class="title">eFootball</div>
-        <div class="meta">Coins top-up</div>
-        <div class="row"><span class="price">Ask</span><button class="btn primary" onclick="wa('eFootball Coins')">Order</button></div>
-      </div>
-    </article>
-    <article class="card">
-      <div class="thumb"><img src="png.images/logo-roblox.png" alt="Roblox"></div>
-      <div class="body"><div class="title">Roblox Robux</div>
-        <div class="meta">Instant top-up</div>
-        <div class="row"><span class="price">Ask</span><button class="btn primary" onclick="wa('Roblox Robux')">Order</button></div>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- ================== SUPERCELL TOP-UP ================== -->
-<section class="section" id="supercell">
-  <h2>Supercell Top-up</h2>
-  <div class="grid">
-    <article class="card">
-      <div class="thumb"><img src="png.images/logo-coc.png" alt="Clash of Clans"></div>
-      <div class="body"><div class="title">Clash of Clans</div>
-        <div class="meta">Gems / Gold Pass</div>
-        <div class="row"><span class="price">Ask</span><button class="btn primary" onclick="wa('Supercell • Clash of Clans')">Order</button></div>
-      </div>
-    </article>
-    <article class="card">
-      <div class="thumb"><img src="png.images/logo-cr.png" alt="Clash Royale"></div>
-      <div class="body"><div class="title">Clash Royale</div>
-        <div class="meta">Gems / Pass Royale</div>
-        <div class="row"><span class="price">Ask</span><button class="btn primary" onclick="wa('Supercell • Clash Royale')">Order</button></div>
-      </div>
-    </article>
-    <article class="card">
-      <div class="thumb"><img src="png.images/logo-brawlstars.png" alt="Brawl Stars"></div>
-      <div class="body"><div class="title">Brawl Stars</div>
-        <div class="meta">Gems / Brawl Pass</div>
-        <div class="row"><span class="price">Ask</span><button class="btn primary" onclick="wa('Supercell • Brawl Stars')">Order</button></div>
-      </div>
-    </article>
-    <article class="card">
-      <div class="thumb"><img src="png.images/logo-hayday.png" alt="Hay Day"></div>
-      <div class="body"><div class="title">Hay Day</div>
-        <div class="meta">Diamonds</div>
-        <div class="row"><span class="price">Ask</span><button class="btn primary" onclick="wa('Supercell • Hay Day')">Order</button></div>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- ================== GIFT CARDS / VOUCHERS ================== -->
-<section class="section" id="giftcards">
-  <h2>Gift Cards & Vouchers</h2>
-  <div class="grid">
-    <article class="card">
-      <div class="thumb"><img src="png.images/logo-googleplay.png" alt="Google Play"></div>
-      <div class="body"><div class="title">Google Play Gift Card</div>
-        <div class="meta">$10 / $25 / $50+</div>
-        <div class="row"><span class="price">From $10</span><button class="btn primary" onclick="wa('Google Play Gift Card')">Order</button></div>
-      </div>
-    </article>
-    <article class="card">
-      <div class="thumb"><img src="png.images/logo-apple.png" alt="Apple"></div>
-      <div class="body"><div class="title">Apple Gift Card</div>
-        <div class="meta">$10 / $25 / $50+</div>
-        <div class="row"><span class="price">From $10</span><button class="btn primary" onclick="wa('Apple Gift Card')">Order</button></div>
-      </div>
-    </article>
-    <article class="card">
-      <div class="thumb"><img src="png.images/logo-steam.png" alt="Steam"></div>
-      <div class="body"><div class="title">Steam Wallet Code</div>
-        <div class="meta">$5 / $10 / $50+</div>
-        <div class="row"><span class="price">From $5</span><button class="btn primary" onclick="wa('Steam Wallet Code')">Order</button></div>
-      </div>
-    </article>
-    <article class="card">
-      <div class="thumb"><img src="png.images/logo-amazon.png" alt="Amazon"></div>
-      <div class="body"><div class="title">Amazon Gift Card</div>
-        <div class="meta">$10 / $25 / $50+</div>
-        <div class="row"><span class="price">From $10</span><button class="btn primary" onclick="wa('Amazon Gift Card')">Order</button></div>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- ================== SMM SERVICES ================== -->
-<section class="section" id="smm">
-  <h2>SMM Services</h2>
-  <div class="grid">
-    <article class="card">
-      <div class="thumb"><img src="png.images/logo-instagram.png" alt="Instagram"></div>
-      <div class="body"><div class="title">Instagram Growth Package</div>
-        <div class="meta">Targeted reach, reels boost</div>
-        <div class="row"><span class="price">From $5</span><button class="btn primary" onclick="wa('Instagram Growth Package')">Order</button></div>
-      </div>
-    </article>
-    <article class="card">
-      <div class="thumb"><img src="png.images/logo-tiktok.png" alt="TikTok"></div>
-      <div class="body"><div class="title">TikTok Growth Package</div>
-        <div class="meta">Views / followers / live</div>
-        <div class="row"><span class="price">From $5</span><button class="btn primary" onclick="wa('TikTok Growth Package')">Order</button></div>
-      </div>
-    </article>
-    <article class="card">
-      <div class="thumb"><img src="png.images/logo-youtube.png" alt="YouTube"></div>
-      <div class="body"><div class="title">YouTube Promotion</div>
-        <div class="meta">Monetizable watch time</div>
-        <div class="row"><span class="price">Ask</span><button class="btn primary" onclick="wa('YouTube Promotion')">Order</button></div>
-      </div>
-    </article>
-    <article class="card">
-      <div class="thumb"><img src="png.images/logo-facebook.png" alt="Facebook"></div>
-      <div class="body"><div class="title">Facebook Page Boost</div>
-        <div class="meta">Targeted audience</div>
-        <div class="row"><span class="price">Ask</span><button class="btn primary" onclick="wa('Facebook Page Boost')">Order</button></div>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- Order Modal (optional Formcarry request) -->
-<div class="modal" id="orderModal" aria-hidden="true">
-  <div class="box">
-    <button class="close" id="closeModal" aria-label="Close">×</button>
-    <h3 style="margin:0 0 8px">Request Order</h3>
-    <p style="color:#b9c6d3" id="modalProduct">Product:</p>
-    <form class="form" action="https://formcarry.com/s/YOUR_FORM_ID" method="POST">
-      <!-- TODO: replace YOUR_FORM_ID -->
-      <input type="hidden" name="product" id="fcProduct">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <select name="payment" required>
-        <option value="">Payment Method</option>
-        <option>eSewa</option><option>Khalti</option><option>Bank Transfer</option>
-      </select>
-      <textarea name="message" rows="3" placeholder="Notes (username, package, region, etc.)"></textarea>
-      <button class="btn primary" type="submit">Submit Request</button>
-    </form>
-  </div>
-</div>
-
-<footer>
-  © <span id="y"></span> SM Digital Services • Need help? WhatsApp us.
-</footer>
-
-<script>
-  // Year
-  document.getElementById('y').textContent = new Date().getFullYear();
-
-  // WhatsApp order (prefilled)
-  function wa(name){
-    const num = '9779828560029'; // TODO: your WhatsApp number
-    const txt = encodeURIComponent(`Hello SM Digital Services,%0AI'm interested in: ${name}%0APayment: eSewa/Khalti/Bank%0AMy details:`);
-    window.location.href = `https://wa.me/${num}?text=${txt}`;
-  }
-
-  // Form modal
-  const modal = document.getElementById('orderModal');
-  const closeModal = document.getElementById('closeModal');
-  function openOrder(name){
-    document.getElementById('modalProduct').textContent = 'Product: ' + name;
-    document.getElementById('fcProduct').value = name;
-    modal.classList.add('open');
-  }
-  closeModal.onclick = () => modal.classList.remove('open');
-  modal.addEventListener('click',e=>{ if(e.target===modal) modal.classList.remove('open'); });
-</script>
 </body>
 </html>
