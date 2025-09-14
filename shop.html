@@ -1,67 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Shop • SM Digital Services</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body{margin:0;background:#0d0f12;color:#eaeaea;font-family:Inter,system-ui,sans-serif;line-height:1.55}
+    :root{
+      --bg:#0d0f12; --card:#111623; --line:#23283b; --soft:#0e1722;
+      --text:#eaeaea; --muted:#b9c6d3; --accent1:#ff7a00; --accent2:#ff415f;
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
     .wrap{max-width:1080px;margin:0 auto;padding:18px}
+    h1,h2{margin:16px 0;font-weight:800}
+    h1{font-size:26px} h2{font-size:20px}
 
-    h1,h2{margin:16px 0;font-weight:800;color:#fff}
-    h2{font-size:20px}
-
-    /* GRID SHARED STYLE */
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
-      gap:14px;
-    }
+    /* Grid + Card */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
     .card{
-      background:#111623;
-      border:1px solid #23283b;
-      border-radius:16px;
-      padding:12px;
-      display:flex;
-      flex-direction:column;
-      color:#eaeaea;
+      background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+      padding:12px;display:flex;flex-direction:column;color:var(--text)
     }
-    .card-link{color:inherit;text-decoration:none}
-    .thumb{
-      margin:0 0 10px;
-      border-radius:12px;
-      overflow:hidden;
-      background:#0e1722;
-      aspect-ratio:1/1;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
+    .thumb{margin:0 0 10px;border-radius:12px;overflow:hidden;background:var(--soft);
+      aspect-ratio:1/1;display:flex;align-items:center;justify-content:center}
     .thumb img{width:86%;height:86%;object-fit:contain}
-    .title{margin:4px 0 2px;font-size:15px;font-weight:700}
-    .meta{margin:0 0 8px;font-size:13px;color:#b9c6d3;min-height:32px}
+    .title{margin:4px 0 2px;font-size:15px;font-weight:800}
+    .meta{margin:0 0 8px;font-size:13px;color:var(--muted);min-height:34px}
     .row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto}
     .price{font-weight:900}
     .btn{
-      padding:7px 12px;
-      background:linear-gradient(90deg,#ff7a00,#ff415f);
-      color:#fff;border-radius:10px;font-weight:800;
-      text-decoration:none;white-space:nowrap;border:0
+      padding:7px 12px;background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:#fff;border-radius:10px;font-weight:800;text-decoration:none;white-space:nowrap;border:0
     }
+
+    /* Whole-card link (for WhatsApp-only items) */
+    .link-card{display:block;color:inherit;text-decoration:none}
+    .link-card .meta{min-height:0}
+    .tap{margin-top:auto;font-size:12px;color:var(--muted)}
+
+    /* Notice */
+    .notice{margin:8px 0 18px;padding:10px 12px;border-radius:12px;background:#0f1822;border:1px solid var(--line);color:#c7d3e1}
   </style>
 </head>
 <body>
   <div class="wrap">
     <h1>Shop</h1>
 
-    <!-- BEST SELLING -->
-    <section>
+    <!-- ================= BEST SELLING ================= -->
+    <section id="best-selling">
       <h2>Best Selling</h2>
       <div class="grid">
         <!-- APEUni -->
         <div class="card">
-          <a class="card-link" href="/apeuni.html">
+          <a class="link-card" href="/apeuni.html" aria-label="APEUni VIP">
             <figure class="thumb"><img src="/png.images/logo-apeuni.png" alt="APEUni VIP" loading="lazy"></figure>
             <div class="title">APEUni VIP</div>
             <div class="meta">PTE learning & AI practice</div>
@@ -72,121 +65,124 @@
           </div>
         </div>
 
-        <!-- ChatGPT Plus -->
+        <!-- ChatGPT 5 Plus -->
         <div class="card">
-          <a class="card-link" href="/chatgpt.html">
-            <figure class="thumb"><img src="/png.images/logo-chatgpt.png" alt="ChatGPT Plus" loading="lazy"></figure>
-            <div class="title">ChatGPT Plus (1 mo)</div>
-            <div class="meta">Fast GPT-4/4o access</div>
-          </a>
+          <figure class="thumb"><img src="/png.images/logo-chatgpt.png" alt="ChatGPT 5 Plus"></figure>
+          <div class="title">ChatGPT 5 Plus</div>
+          <div class="meta">On your email • Full private<br>1 mo — NPR 2750 • 3 mo — NPR 3750</div>
           <div class="row">
             <span class="price">From NPR 2750</span>
-            <a class="btn" href="https://wa.me/9779828560029?text=I'm%20interested%20in%20ChatGPT%20Plus%20(1mo)">Order</a>
+            <a class="btn" href="https://wa.me/9779828560029?text=I%20want%20ChatGPT%205%20Plus%20(please%20specify%201%20or%203%20months)%20on%20my%20email%2C%20full%20private.">Order</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- GAMES -->
-    <section>
-      <h2>Games Top-up</h2>
+    <!-- ============ SUBSCRIPTIONS & TOOLS ============ -->
+    <section id="subs-tools">
+      <h2>Subscriptions & Tools</h2>
       <div class="grid">
+        <!-- Perplexity Pro AI -->
         <div class="card">
+          <figure class="thumb"><img src="/png.images/logo-perplexity.png" alt="Perplexity Pro AI"></figure>
+          <div class="title">Perplexity Pro AI (12 months)</div>
+          <div class="meta">On your email • Full private (same price as ChatGPT)</div>
+          <div class="row">
+            <span class="price">NPR 2750</span>
+            <a class="btn" href="https://wa.me/9779828560029?text=I%20want%20Perplexity%20Pro%20AI%2012%20months%20(full%20private)%20delivered%20to%20my%20email.">Order</a>
+          </div>
+        </div>
+
+        <!-- Spotify 12 months -->
+        <div class="card">
+          <figure class="thumb"><img src="/png.images/logo-spotify.png" alt="Spotify"></figure>
+          <div class="title">Spotify (12 months)</div>
+          <div class="meta">Indian server • Individual plan • Code to your email</div>
+          <div class="row">
+            <span class="price">NPR 2750</span>
+            <a class="btn" href="https://wa.me/9779828560029?text=I%20want%20Spotify%2012%20months%20(Indian%20server%2C%20Individual)%2C%20code%20to%20my%20email.">Order</a>
+          </div>
+        </div>
+
+        <!-- CapCut Pro -->
+        <div class="card">
+          <figure class="thumb"><img src="/png.images/logo-capcut.png" alt="CapCut Pro"></figure>
+          <div class="title">CapCut Pro (1 / 12 months)</div>
+          <div class="meta">1 month — NPR 2150 • 12 months — NPR 11500</div>
+          <div class="row">
+            <span class="price">From NPR 2150</span>
+            <a class="btn" href="https://wa.me/9779828560029?text=I%20want%20CapCut%20Pro%20(please%20specify%201%20or%2012%20months).">Order</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= GAMES TOP-UP (tap card -> WhatsApp, NO PRICE) ======= -->
+    <section id="games-topup">
+      <h2>Games Top-up</h2>
+      <div class="notice">Any games/apps purchase available — just message us on WhatsApp.</div>
+      <div class="grid">
+        <a class="card link-card" href="https://wa.me/9779828560029?text=Free%20Fire%20Diamonds%20top-up%20request">
           <figure class="thumb"><img src="/png.images/logo-freefire.png" alt="Free Fire"></figure>
           <div class="title">Free Fire Diamonds</div>
-          <div class="meta">Instant top-up</div>
-          <div class="row"><span class="price">From $1.99</span><a class="btn" href="#">Order</a></div>
-        </div>
-        <div class="card">
-          <figure class="thumb"><img src="/png.images/logo-pubg.png" alt="PUBG"></figure>
-          <div class="title">PUBG UC</div>
-          <div class="meta">Instant top-up</div>
-          <div class="row"><span class="price">From $2.50</span><a class="btn" href="#">Order</a></div>
-        </div>
-        <div class="card">
-          <figure class="thumb"><img src="/png.images/logo-mlbb.png" alt="MLBB"></figure>
-          <div class="title">Mobile Legends</div>
-          <div class="meta">Diamonds top-up</div>
-          <div class="row"><span class="price">Ask</span><a class="btn" href="#">Order</a></div>
-        </div>
-        <div class="card">
+          <p class="tap">Tap to message on WhatsApp</p>
+        </a>
+
+        <a class="card link-card" href="https://wa.me/9779828560029?text=PUBG%20Mobile%20UC%20top-up%20request">
+          <figure class="thumb"><img src="/png.images/logo-pubg.png" alt="PUBG Mobile"></figure>
+          <div class="title">PUBG Mobile UC</div>
+          <p class="tap">Tap to message on WhatsApp</p>
+        </a>
+
+        <a class="card link-card" href="https://wa.me/9779828560029?text=MLBB%20Diamonds%20top-up%20request">
+          <figure class="thumb"><img src="/png.images/logo-mlbb.png" alt="Mobile Legends"></figure>
+          <div class="title">Mobile Legends (MLBB)</div>
+          <p class="tap">Tap to message on WhatsApp</p>
+        </a>
+
+        <a class="card link-card" href="https://wa.me/9779828560029?text=Clash%20of%20Clans%20(Gems%20or%20Gold%20Pass)%20top-up%20request">
           <figure class="thumb"><img src="/png.images/logo-coc.png" alt="Clash of Clans"></figure>
           <div class="title">Clash of Clans</div>
-          <div class="meta">Gems / Gold Pass</div>
-          <div class="row"><span class="price">Ask</span><a class="btn" href="#">Order</a></div>
-        </div>
-        <div class="card">
+          <p class="tap">Tap to message on WhatsApp</p>
+        </a>
+
+        <a class="card link-card" href="https://wa.me/9779828560029?text=eFootball%20Coins%20top-up%20request">
           <figure class="thumb"><img src="/png.images/logo-efootball.png" alt="eFootball"></figure>
-          <div class="title">eFootball Coins</div>
-          <div class="meta">Instant delivery</div>
-          <div class="row"><span class="price">Ask</span><a class="btn" href="#">Order</a></div>
-        </div>
-        <div class="card">
+          <div class="title">eFootball</div>
+          <p class="tap">Tap to message on WhatsApp</p>
+        </a>
+
+        <a class="card link-card" href="https://wa.me/9779828560029?text=Roblox%20Robux%20top-up%20request">
           <figure class="thumb"><img src="/png.images/logo-roblox.png" alt="Roblox"></figure>
           <div class="title">Roblox Robux</div>
-          <div class="meta">Game credits</div>
-          <div class="row"><span class="price">Ask</span><a class="btn" href="#">Order</a></div>
-        </div>
+          <p class="tap">Tap to message on WhatsApp</p>
+        </a>
       </div>
     </section>
 
-    <!-- SUPERCELL -->
-    <section>
-      <h2>Supercell Top-up</h2>
-      <div class="grid">
-        <div class="card">
-          <figure class="thumb"><img src="/png.images/logo-supercell.png" alt="Supercell"></figure>
-          <div class="title">Supercell Games</div>
-          <div class="meta">Clash Royale, Brawl Stars etc.</div>
-          <div class="row"><span class="price">Ask</span><a class="btn" href="#">Order</a></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- GIFT CARDS -->
-    <section>
+    <!-- ================= GIFT CARDS & VOUCHERS ================= -->
+    <section id="giftcards">
       <h2>Gift Cards & Vouchers</h2>
       <div class="grid">
-        <div class="card">
-          <figure class="thumb"><img src="/png.images/logo-playstore.png" alt="Google Play"></figure>
-          <div class="title">Google Play</div>
-          <div class="meta">Gift card codes</div>
-          <div class="row"><span class="price">Ask</span><a class="btn" href="#">Order</a></div>
-        </div>
-        <div class="card">
-          <figure class="thumb"><img src="/png.images/logo-apple.png" alt="Apple"></figure>
-          <div class="title">Apple Gift Card</div>
-          <div class="meta">App Store & iTunes</div>
-          <div class="row"><span class="price">Ask</span><a class="btn" href="#">Order</a></div>
-        </div>
+        <a class="card link-card" href="https://wa.me/9779828560029?text=UNIPIN%20BD%20gift%20card%20request">
+          <figure class="thumb"><img src="/png.images/logo-unipin-bd.png" alt="UNIPIN BD"></figure>
+          <div class="title">UNIPIN BD</div>
+          <p class="tap">Tap to message on WhatsApp</p>
+        </a>
+
+        <a class="card link-card" href="https://wa.me/9779828560029?text=iTunes%20USA%20gift%20card%20request">
+          <figure class="thumb"><img src="/png.images/logo-itunes-usa.png" alt="iTunes USA"></figure>
+          <div class="title">iTunes USA</div>
+          <p class="tap">Tap to message on WhatsApp</p>
+        </a>
+
+        <a class="card link-card" href="https://wa.me/9779828560029?text=Garena%20MY%20Shell%20voucher%20request">
+          <figure class="thumb"><img src="/png.images/logo-garena-my-shell.png" alt="Garena MY Shell"></figure>
+          <div class="title">Garena MY Shell</div>
+          <p class="tap">Tap to message on WhatsApp</p>
+        </a>
       </div>
     </section>
-
-    <!-- SMM -->
-    <section>
-      <h2>SMM Services</h2>
-      <div class="grid">
-        <div class="card">
-          <figure class="thumb"><img src="/png.images/logo-instagram.png" alt="Instagram"></figure>
-          <div class="title">Instagram Growth</div>
-          <div class="meta">Followers & engagement</div>
-          <div class="row"><span class="price">Ask</span><a class="btn" href="#">Order</a></div>
-        </div>
-        <div class="card">
-          <figure class="thumb"><img src="/png.images/logo-facebook.png" alt="Facebook"></figure>
-          <div class="title">Facebook Ads</div>
-          <div class="meta">Boost & promotion</div>
-          <div class="row"><span class="price">Ask</span><a class="btn" href="#">Order</a></div>
-        </div>
-        <div class="card">
-          <figure class="thumb"><img src="/png.images/logo-tiktok.png" alt="TikTok"></figure>
-          <div class="title">TikTok Promotion</div>
-          <div class="meta">Views & followers</div>
-          <div class="row"><span class="price">Ask</span><a class="btn" href="#">Order</a></div>
-        </div>
-      </div>
-    </section>
-
   </div>
 </body>
 </html>
