@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Order • SM Digital Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1115; --card:#0f1822; --text:#e9eef4; --muted:#b5c0cc;
+      --accent:#ff415f; --accent2:#7f5bff; --radius:18px; --shadow:0 8px 28px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:linear-gradient(120deg,#0b1115,#101a25);color:var(--text)}
+    .wrap{max-width:980px;margin:24px auto;padding:16px}
+    .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+    h1{margin:0 0 6px 0;font-weight:800;letter-spacing:.2px}
+    p{margin:0 0 14px 0;color:var(--muted)}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 14px}
+    .btn{appearance:none;border:0;border-radius:12px;padding:10px 14px;font-weight:600;cursor:pointer;text-decoration:none;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 6px 16px rgba(0,0,0,.35)}
+    .btn.secondary{background:#1b2836}
+    .frame-shell{border-radius:14px;overflow:hidden;background:#0a141d;border:1px solid rgba(255,255,255,.06)}
+    /* Responsive iframe heights (Google Forms cannot auto-grow cross-domain) */
+    .form-frame{width:100%;height:2100px;border:0}
+    @media (max-width:900px){ .form-frame{height:2400px} }
+    @media (max-width:600px){ .form-frame{height:2800px} }
+    footer{opacity:.7;font-size:.9rem;margin-top:14px;text-align:center}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>📦 Place Your Order</h1>
+      <p>APEUni, Spotify, ChatGPT Plus, Perplexity Pro — fill the form below. After submit, order instantly lands in your Google Sheet.</p>
+
+      <div class="actions">
+        <a class="btn" href="/" rel="nofollow">⬅ Home</a>
+        <!-- Fallback direct link to open in new tab -->
+        <a class="btn secondary" target="_blank" rel="noopener"
+           href="https://docs.google.com/forms/d/e/1FAIpQLSfjCpscdpsMrp4LZI0bRQSounadcFZ3TD2eBe12iO5XdfP-QA/viewform">
+          Open Form in New Tab
+        </a>
+      </div>
+
+      <div class="frame-shell">
+        <!-- Your exact embed (kept, but made responsive & borderless) -->
+        <iframe class="form-frame"
+          src="https://docs.google.com/forms/d/e/1FAIpQLSfjCpscdpsMrp4LZI0bRQSounadcFZ3TD2eBe12iO5XdfP-QA/viewform?embedded=true"
+          marginheight="0" marginwidth="0">Loading…</iframe>
+      </div>
+
+      <footer>Tip: In the linked Google Sheet → Tools → Notification rules → “When a user submits a form” → “Email right away”.</footer>
+    </div>
+  </div>
+</body>
+</html>
