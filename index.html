@@ -3,161 +3,220 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SM DIGITAL SERVICES • samirmijar.com.np</title>
+  <title>SM DIGITAL HUB • Trusted Digital Services</title>
   <meta name="theme-color" content="#0b1115" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
   <style>
-    :root{ --bg:#0b1115; --card:#0f1822; --text:#e9eef4; --muted:#b5c0cc; --accent:#ff415f; --accent2:#7f5bff; --shadow:0 8px 28px rgba(0,0,0,.35); --radius:18px; }
+    :root{
+      --bg:#0b1115; --card:#0f1822; --soft:#152233;
+      --text:#e9eef4; --muted:#b9c6d3;
+      --accent:#ff8a00; --accent-dark:#cf5e00;
+      --brand:#4da3ff; --brand2:#7f5bff;
+      --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
     *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text)}
-    img{max-width:100%;display:block}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif}
+    a{color:inherit}
 
-    /* TOP colorful bar */
-    .brandbar{position:sticky;top:0;z-index:50;background:linear-gradient(90deg,#7f5bff,#ff415f,#ffa62b);color:#fff;text-align:center;font-weight:800;letter-spacing:.6px;padding:12px 14px}
+    /* Header */
+    .sm-header{
+      position:sticky;top:0;z-index:50;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:12px 16px;background:linear-gradient(180deg,#0b1115,rgba(11,17,21,.88));
+      border-bottom:1px solid rgba(255,255,255,.06);
+      backdrop-filter:saturate(1.1) blur(8px);
+    }
+    .sm-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .sm-mascot{width:54px;height:54px;object-fit:contain;filter:drop-shadow(0 6px 12px rgba(0,0,0,.35))}
+    .sm-word{display:inline-flex;gap:6px;filter:drop-shadow(0 5px 0 rgba(0,0,0,.25)) drop-shadow(0 12px 24px rgba(0,0,0,.35))}
+    .sm-word b{
+      font-weight:900;font-size:22px;padding:.18em .38em;color:#fff;
+      background:linear-gradient(#ffffff,#f5f5f5);border-radius:10px;
+      box-shadow:0 0 0 8px var(--accent), inset 0 -6px 0 rgba(0,0,0,.07), inset 0 6px 0 rgba(255,255,255,.55);
+      border:2px solid var(--accent-dark);
+    }
+    .menu-btn{
+      width:44px;height:44px;border:0;border-radius:12px;background:var(--soft);color:var(--text);
+      display:grid;place-items:center;box-shadow:var(--shadow);cursor:pointer
+    }
+    .menu-btn svg{width:22px;height:22px}
 
-    header.hero{padding:16px}
-    header.hero h1{margin:8px 0 6px;font-size:26px}
-    .sub{color:var(--muted)}
+    /* Drawer */
+    .drawer{
+      position:fixed;inset:0 0 0 auto;width:78%;max-width:320px;background:#0f1822;
+      transform:translateX(100%);transition:.25s ease;box-shadow:var(--shadow);z-index:60;
+      padding:18px;
+    }
+    .nav-open .drawer{transform:none}
+    .drawer a{display:block;text-decoration:none;padding:14px 12px;border-radius:12px;
+      font-weight:600;color:#dbe7f3}
+    .drawer a:hover{background:#152233}
+    .drawer .close{position:absolute;top:10px;right:12px;background:transparent;border:0;color:#fff}
 
-    .section{padding:16px}
-    .section h2{text-align:center;margin:0;font-size:22px}
-    .underline{height:3px;width:70px;background:linear-gradient(90deg,#7f5bff,#ff415f);border-radius:2px;margin:10px auto 18px}
+    /* Hero with video */
+    .hero-video{position:relative;height:320px;overflow:hidden;border-bottom:3px solid rgba(255,255,255,.1)}
+    .hero-video video{width:100%;height:100%;object-fit:cover}
+    .hero-video .overlay{
+      position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.3),rgba(0,0,0,.7));
+    }
+    .hero-video .hero-content{
+      position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+      text-align:center;color:#fff;z-index:2;padding:0 18px;
+    }
+    .hero-content h1{margin:6px 0 10px;font-size:28px;line-height:1.2}
+    .hero-content p{margin:0 0 18px;color:#e0e0e0}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;
+      padding:12px 16px;border-radius:14px;box-shadow:var(--shadow)
+    }
+    .btn-primary{background:linear-gradient(90deg,var(--brand),var(--brand2));color:#fff}
+    .btn-soft{background:#152233;color:#e9eef4}
 
-    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-    @media(min-width:768px){.grid{grid-template-columns:repeat(4,1fr)}}
+    /* Sections */
+    section{padding:28px 18px}
+    .card{
+      background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);
+      padding:18px;box-shadow:var(--shadow);margin-bottom:16px
+    }
+    .card h3{margin:0 0 8px}
+    .list{margin:10px 0 0;padding:0 0 0 18px;color:#c9d5e3}
+    .list li{margin:6px 0}
 
-    .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;cursor:pointer;transition:transform .2s}
-    .card:hover{transform:translateY(-4px)}
-    .card .thumb{height:120px;display:flex;align-items:center;justify-content:center;background:#0d1520}
-    .card .thumb img{width:90px;height:90px;object-fit:contain}
-    .card .body{padding:12px}
-    .badge{display:inline-block;font-size:12px;background:#162433;border:1px solid #223449;color:#dfe6ee;padding:3px 10px;border-radius:999px;margin-bottom:6px}
-    .price{font-weight:700;font-size:14px;margin-bottom:6px}
-    .desc{font-size:13px;color:var(--muted)}
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .tile{
+      display:flex;align-items:center;gap:12px;background:#132033;border:1px solid rgba(255,255,255,.06);
+      border-radius:16px;padding:14px;text-decoration:none;color:#e9eef4;box-shadow:var(--shadow)
+    }
+    .tile svg{width:22px;height:22px}
+    .tile:hover{background:#18283f}
 
-    nav.nav{position:sticky;bottom:0;background:#0f1822;border-top:1px solid #1e2b39;display:flex;justify-content:space-around;padding:8px 0;z-index:60}
-    nav.nav a{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;color:#cbd6e2;text-decoration:none}
-    nav.nav a img{width:22px;height:22px}
-    nav.nav a .label{background:linear-gradient(90deg,#7f5bff,#ff415f);-webkit-background-clip:text;background-clip:text;color:transparent}
-    nav.nav a.active .label{filter:brightness(1.15)}
+    /* Footer */
+    footer{padding:22px 18px;border-top:1px solid rgba(255,255,255,.08);background:#0e1722;color:#b7c5d6}
+    .social{display:flex;gap:14px;margin-top:8px}
+    .social a{display:inline-flex;padding:10px;border-radius:12px;background:#152233}
+    .social svg{width:22px;height:22px}
 
-    /* Modal sheet */
-    .sheet{position:fixed;inset:0;display:none;z-index:100}
-    .sheet.active{display:block}
-    .sheet .backdrop{position:absolute;inset:0;background:rgba(0,0,0,.55)}
-    .sheet .panel{position:absolute;left:0;right:0;bottom:0;background:#0f1822;color:var(--text);border-top-left-radius:18px;border-top-right-radius:18px;box-shadow:var(--shadow);padding:16px}
-    .sheet header{display:flex;align-items:center;gap:12px;margin-bottom:8px}
-    .sheet header img{width:60px;height:60px;object-fit:contain;border-radius:12px;background:#0d1520;padding:6px}
-    .sheet h3{margin:0;font-size:18px}
-    .sheet small{color:var(--muted)}
-    .sheet p{margin:6px 0 10px;color:var(--muted)}
-    .sheet .sheet-options{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
-    .sheet .sheet-options button{background:#162433;border:1px solid #223449;color:#e6eef7;padding:8px 12px;border-radius:999px;cursor:pointer}
-    .sheet .cta{display:flex;gap:10px;margin-top:12px}
-    .btn{flex:1;border:none;border-radius:12px;padding:10px 14px;font-weight:700;cursor:pointer}
-    .btn.wa{background:#1f8f4d;color:white}
-    .btn.vb{background:#7d3bd6;color:white}
+    @media (min-width:768px){
+      .hero-video{height:420px}
+      .hero-content h1{font-size:42px}
+      .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+      .sm-word b{font-size:26px}
+    }
   </style>
 </head>
 <body>
-  <!-- colorful heading -->
-  <div class="brandbar">SM DIGITAL SERVICES</div>
 
-  <!-- hero -->
-  <header class="hero">
-    <h1>Welcome to SM Digital Services</h1>
-    <nav>
-  <a href="order.html" class="btn">🛒 Place Order</a>
-</nav>
-    <div class="sub">Best-selling subscriptions — instant delivery</div>
+  <!-- Header -->
+  <header class="sm-header">
+    <a class="sm-logo" href="/" aria-label="SM DIGITAL HUB • Home">
+      <img src="images/logo-mascot.png" alt="SM Digital Hub Mascot" class="sm-mascot">
+      <span class="sm-word">
+        <b>SM</b><b>DIGITAL</b><b>HUB</b>
+      </span>
+    </a>
+    <button class="menu-btn sm-menu-toggle" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 6h18M3 12h18M3 18h18"/>
+      </svg>
+    </button>
   </header>
 
-  <!-- BEST SELLING (4-grid) -->
-  <section class="section">
-    <h2>Best Selling</h2>
-    <div class="underline"></div>
+  <!-- Drawer Menu -->
+  <nav class="drawer" aria-label="Site">
+    <button class="close sm-menu-toggle" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+    </button>
+    <a href="#home">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-    <div class="grid">
-      <!-- APEUni VIP (links to its own page) -->
-      <a href="apeuni.html" class="card-link" style="text-decoration:none;color:inherit">
-        <div class="card" data-modal="false">
-          <div class="thumb"><img src="png.images/logo-apeuni.png" alt="APEUni VIP"></div>
-          <div class="body">
-            <span class="badge">APEUni VIP</span>
-            <div class="price">30daya • 90days • 180days</div>
-            <p class="desc">Click for full details & order.</p>
-          </div>
-        </div>
-      </a>
-
-      <!-- ChatGPT Plus -->
-      <div class="card"
-           data-title="ChatGPT Plus"
-           data-price="From NPR 2750"
-           data-desc="On your mail • Full private / genuine account."
-           data-options='[
-             {"label":"1 Month – NPR 2750"},
-             {"label":"3 Months – NPR 3750"}
-           ]'>
-        <div class="thumb"><img src="png.images/logo-chatgpt.png" alt="ChatGPT Plus"></div>
-        <div class="body">
-          <span class="badge">ChatGPT Plus</span>
-          <div class="price">1 Months • 3 Months</div>
-          <p class="desc">Private delivery to your email.</p>
-        </div>
-      </div>
-
-      <!-- Spotify 12 Months -->
-      <div class="card"
-           data-title="Spotify 12 Months"
-           data-price="Ask for today’s price"
-           data-desc="Individual plan on your mail."
-           data-options='[]'>
-        <div class="thumb"><img src="png.images/logo-spotify.png" alt="Spotify"></div>
-        <div class="body">
-          <span class="badge">Spotify 12 Months</span>
-          <div class="price">Ask for today’s price</div>
-          <p class="desc">Email delivery.</p>
-        </div>
-      </div>
-
-      <!-- Perplexity Pro AI -->
-      <div class="card"
-           data-title="Perplexity Pro AI"
-           data-price="1 Year – NPR 2750"
-           data-desc="Private code on your mail."
-           data-options='[{"label":"1 Year – NPR 2750"}]'>
-        <div class="thumb"><img src="png.images/logo-perplexity.png" alt="Perplexity Pro AI"></div>
-        <div class="body">
-          <span class="badge">Perplexity Pro AI</span>
-          <div class="price">1 Year – 2750</div>
-          <p class="desc">Private code on your mail.</p>
-        </div>
+  <!-- Hero with video -->
+  <section class="hero-video" id="home">
+    <video autoplay muted loop playsinline>
+      <source src="welcomelight.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>Welcome to SM Digital Hub</h1>
+      <p>Affordable subscriptions, AI tools, and game top-ups in Nepal.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="shop.html">Shop Now</a>
+        <a class="btn btn-soft" href="#contact">Contact Us</a>
       </div>
     </div>
   </section>
 
-  <!-- bottom colorful nav -->
-  <nav class="nav">
-    <a class="active" href="#"><img src="png.images/logo-home.png" alt="Home"><span class="label">Home</span></a>
-    <a href="viber://chat?number=%2B9779828560029"><img src="png.images/logo-viber.png" alt="Viber"><span class="label">Viber</span></a>
-    <a href="https://wa.me/9779828560029"><img src="png.images/logo-whatsapp.png" alt="WhatsApp"><span class="label">WhatsApp</span></a>
-    <a href="https://www.tiktok.com/@samirmijar.np"><img src="png.images/logo-tiktok.png" alt="TikTok"><span class="label">TikTok</span></a>
-    <a href="order.html" class="btn">🛒 Place Order</a>
-  </nav>
+  <!-- About Sections -->
+  <section id="about">
+    <div class="grid-2">
+      <div class="card">
+        <h3>Who I Am</h3>
+        <p>I’m <strong>Samir Mijar</strong>, creator of <strong>SM Digital Hub</strong>. I help Nepali users buy global digital services easily with local payments.</p>
+      </div>
+      <div class="card">
+        <h3>My Mission</h3>
+        <p>Make premium digital tools <em>affordable & accessible</em> in Nepal — transparent pricing, instant delivery, and friendly support.</p>
+      </div>
+    </div>
 
-  <!-- order modal (used for ChatGPT/Spotify/Perplexity) -->
-  <div class="sheet" id="sheet">
-    <div class="backdrop" data-close></div>
-    <div class="panel">
-      <header>
-        <img id="sheetImg" src="" alt="">
-        <div>
-          <h3 id="sheetTitle">Product</h3>
-          <small id="sheetPrice"></small>
-        </div>
-      </header>
-      <p id="sheetDesc"></p>
-      <div class="sheet-options" id="sheetOptions"></div>
-      <div class="cta">
-        <bu
+    <div class="grid-2">
+      <div class="card">
+        <h3>What I Offer</h3>
+        <ul class="list">
+          <li>APEUni VIP for PTE learners</li>
+          <li>Spotify, ChatGPT Plus, Perplexity Pro</li>
+          <li>Game top-ups (PUBG UC, Free Fire, MLBB, Roblox, more)</li>
+          <li>Custom digital services</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Why Choose SM Digital Hub?</h3>
+        <ul class="list">
+          <li>Local payments (eSewa / Khalti / Bank)</li>
+          <li>Fast delivery & replacement support</li>
+          <li>Genuine codes with clear pricing</li>
+          <li>Direct chat support 7 days a week</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>My Vision</h3>
+      <p>Build a trusted Nepali-first digital marketplace where students, creators, and gamers get the tools they need — safely and instantly.</p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <div class="contact-grid">
+      <a class="tile" href="https://wa.me/9779828560029" target="_blank">WhatsApp</a>
+      <a class="tile" href="viber://chat?number=%2B9779828560029">Viber</a>
+      <a class="tile" href="https://www.tiktok.com/@samirmijar.np" target="_blank">TikTok</a>
+      <a class="tile" href="mailto:hello@samirmijar.com.np">Email</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div><strong>SM Digital Hub</strong> — © <span id="y"></span></div>
+    <div class="social">
+      <a href="https://wa.me/9779828560029" aria-label="WhatsApp">WA</a>
+      <a href="viber://chat?number=%2B9779828560029" aria-label="Viber">VB</a>
+      <a href="https://www.tiktok.com/@samirmijar.np" target="_blank" aria-label="TikTok">TT</a>
+      <a href="mailto:hello@samirmijar.com.np" aria-label="Email">✉</a>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.sm-menu-toggle').forEach(btn => btn.addEventListener('click', () => {
+      document.body.classList.toggle('nav-open');
+    }));
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
