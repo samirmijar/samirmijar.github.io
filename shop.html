@@ -9,135 +9,359 @@
     :root{
       --bg:#0d0f12; --card:#111623; --line:#23283b; --soft:#0e1722;
       --text:#eaeaea; --muted:#b9c6d3; --accent1:#ff7a00; --accent2:#ff415f;
-      --radius:16px;
+      --radius:14px;
     }
     *{box-sizing:border-box}
     body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
-    .wrap{max-width:1080px;margin:0 auto;padding:18px}
-    h1,h2{margin:16px 0;font-weight:800}
-    h1{font-size:26px} h2{font-size:20px}
+    .wrap{max-width:1200px;margin:0 auto;padding:14px}
 
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
+    /* Hero video */
+    .hero{width:100%;aspect-ratio:16/9;background:#000;overflow:hidden}
+    .hero video{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* Header row */
+    .head-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0 6px}
+    .title{font-weight:800;font-size:22px;margin-right:auto}
+
+    /* Search */
+    .search-box{flex:1;min-width:220px}
+    .search-box input{
+      width:100%;padding:10px 14px;border-radius:10px;border:1px solid var(--line);
+      background:var(--soft);color:var(--text);font-size:15px
+    }
+
+    /* Tabs */
+    .tabs{display:flex;gap:8px;overflow-x:auto;margin:10px 0}
+    .tab{padding:7px 14px;border-radius:20px;white-space:nowrap;background:var(--soft);cursor:pointer;font-size:14px;border:1px solid var(--line)}
+    .tab.active{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff;font-weight:700;border-color:transparent}
+
+    /* Grid + cards */
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
     .card{
       background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
-      padding:12px;display:flex;flex-direction:column;color:var(--text)
+      padding:10px;display:flex;flex-direction:column;text-align:center
     }
-    .thumb{margin:0 0 10px;border-radius:12px;overflow:hidden;background:var(--soft);
-      aspect-ratio:1/1;display:flex;align-items:center;justify-content:center}
-    .thumb img{width:86%;height:86%;object-fit:contain}
-    .title{margin:4px 0 2px;font-size:15px;font-weight:800}
-    .meta{margin:0 0 8px;font-size:13px;color:var(--muted);min-height:34px}
-    .row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto}
-    .price{font-weight:900}
-    .btn{
-      padding:7px 12px;background:linear-gradient(90deg,var(--accent1),var(--accent2));
-      color:#fff;border-radius:10px;font-weight:800;text-decoration:none;white-space:nowrap;border:0
-    }
-    .link-card{display:block;color:inherit;text-decoration:none}
-    .link-card .meta{min-height:0}
-    .tap{margin-top:auto;font-size:12px;color:var(--muted)}
-    .notice{margin:8px 0 18px;padding:10px 12px;border-radius:12px;background:#0f1822;border:1px solid var(--line);color:#c7d3e1}
+    .thumb{aspect-ratio:1/1;background:var(--soft);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;overflow:hidden}
+    .thumb img{width:80%;height:80%;object-fit:contain}
+    .name{font-size:14px;font-weight:800;margin:2px 0}
+    .meta{font-size:12px;color:var(--muted);min-height:28px;margin-bottom:6px}
+    .price{font-weight:900;margin-bottom:6px}
+    .btn{padding:7px 10px;font-size:13px;border-radius:8px;text-decoration:none;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff;font-weight:700;display:inline-block;margin-top:auto}
+
+    /* Section heading */
+    h2{margin:16px 0 8px;font-size:18px;font-weight:800}
+
+    /* WhatsApp floating */
+    .wa-fab{position:fixed;right:16px;bottom:16px;width:56px;height:56px;border-radius:50%;
+      background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(0,0,0,.35);z-index:999}
+    .wa-fab img{width:28px;height:28px}
+
+    /* Small helper notice */
+    .note{margin:8px 0 14px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#0f1822;color:#cfe2ff}
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>Shop</h1>
 
-    <!-- ================= BEST SELLING ================= -->
-    <section id="best-selling">
-      <h2>Best Selling</h2>
-      <div class="grid">
-        <!-- APEUni -->
-        <div class="card">
-          <a class="link-card" href="/apeuni.html" aria-label="APEUni VIP">
-            <figure class="thumb"><img src="/png.images/logo-apeuni.png" alt="APEUni VIP"></figure>
-            <div class="title">APEUni VIP</div>
-            <div class="meta">PTE learning & AI practice</div>
-          </a>
-          <div class="row">
-            <span class="price">From NPR 2200</span>
-            <a class="btn" href="https://wa.me/9779828560029?text=I'm%20interested%20in%20APEUni%20VIP">Order</a>
-          </div>
-        </div>
-
-        <!-- ChatGPT 5 Plus -->
-        <div class="card">
-          <figure class="thumb"><img src="/png.images/logo-chatgpt.png" alt="ChatGPT 5 Plus"></figure>
-          <div class="title">ChatGPT 5 Plus</div>
-          <div class="meta">On your email • Full private<br>1 mo — NPR 2750 • 3 mo — NPR 3750</div>
-          <div class="row">
-            <span class="price">From NPR 2750</span>
-            <a class="btn" href="https://wa.me/9779828560029?text=I%20want%20ChatGPT%205%20Plus%20(please%20specify%201%20or%203%20months)">Order</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ SUBSCRIPTIONS & TOOLS ============ -->
-    <section id="subs-tools">
-      <h2>Subscriptions & Tools</h2>
-      <div class="grid">
-        <div class="card"><figure class="thumb"><img src="/png.images/logo-perplexity.png"></figure><div class="title">Perplexity Pro AI</div><div class="meta">12 mo • Full private</div><div class="row"><span class="price">NPR 2750</span><a class="btn" href="https://wa.me/9779828560029?text=Perplexity%20Pro%20AI%2012%20mo">Order</a></div></div>
-        <div class="card"><figure class="thumb"><img src="/png.images/logo-spotify.png"></figure><div class="title">Spotify</div><div class="meta">12 mo • Individual • Code to mail</div><div class="row"><span class="price">NPR 2750</span><a class="btn" href="https://wa.me/9779828560029?text=Spotify%2012%20mo">Order</a></div></div>
-        <div class="card"><figure class="thumb"><img src="/png.images/logo-capcut.png"></figure><div class="title">CapCut Pro</div><div class="meta">1 mo — 2150 • 12 mo — 11500</div><div class="row"><span class="price">From 2150</span><a class="btn" href="https://wa.me/9779828560029?text=CapCut%20Pro%20plan">Order</a></div></div>
-        
-        <!-- NEW: Streaming & Tools -->
-        <div class="card"><figure class="thumb"><img src="/png.images/logo-netflix.png"></figure><div class="title">Netflix</div><div class="meta">Private access • On your email</div><div class="row"><a class="btn" href="https://wa.me/9779828560029?text=Netflix%20subscription%20request">Order</a></div></div>
-        <div class="card"><figure class="thumb"><img src="/png.images/logo-prime.png"></figure><div class="title">Amazon Prime Video</div><div class="meta">Private account • On your mail</div><div class="row"><a class="btn" href="https://wa.me/9779828560029?text=Prime%20Video%20subscription">Order</a></div></div>
-        <div class="card"><figure class="thumb"><img src="/png.images/logo-youtube.png"></figure><div class="title">YouTube Premium</div><div class="meta">Ad-free & Music</div><div class="row"><a class="btn" href="https://wa.me/9779828560029?text=YouTube%20Premium">Order</a></div></div>
-        <div class="card"><figure class="thumb"><img src="/png.images/logo-picsart.png"></figure><div class="title">Picsart</div><div class="meta">Pro photo editing</div><div class="row"><a class="btn" href="https://wa.me/9779828560029?text=Picsart%20Pro">Order</a></div></div>
-        <div class="card"><figure class="thumb"><img src="/png.images/logo-surfshark.png"></figure><div class="title">Surfshark VPN</div><div class="meta">Unlimited devices</div><div class="row"><a class="btn" href="https://wa.me/9779828560029?text=Surfshark%20VPN">Order</a></div></div>
-        <div class="card"><figure class="thumb"><img src="/png.images/logo-canva.png"></figure><div class="title">Canva Pro</div><div class="meta">1 yr • Design tools</div><div class="row"><a class="btn" href="https://wa.me/9779828560029?text=Canva%20Pro">Order</a></div></div>
-        <div class="card"><figure class="thumb"><img src="/png.images/logo-duolingo.png"></figure><div class="title">Duolingo Super</div><div class="meta">Pro language learning</div><div class="row"><a class="btn" href="https://wa.me/9779828560029?text=Duolingo%20Super%20Pro">Order</a></div></div>
-        <div class="card"><figure class="thumb"><img src="/png.images/logo-googleone.png"></figure><div class="title">Google One + Gemini</div><div class="meta">Cloud + AI combo</div><div class="row"><a class="btn" href="https://wa.me/9779828560029?text=Google%20One%20+%20Gemini">Order</a></div></div>
-        <div class="card"><figure class="thumb"><img src="/png.images/logo-elevenlabs.png"></figure><div class="title">ElevenLabs</div><div class="meta">AI voice generation</div><div class="row"><a class="btn" href="https://wa.me/9779828560029?text=ElevenLabs">Order</a></div></div>
-      </div>
-    </section>
-
-    <!-- ======= GAMES TOP-UP ======= -->
-    <section id="games-topup">
-      <h2>Games Top-up</h2>
-      <div class="notice">Any games/apps purchase available — just message us on WhatsApp.</div>
-      <div class="grid">
-        <!-- Free Fire -->
-        <a class="card link-card" href="https://wa.me/9779828560029?text=Free%20Fire%20Diamonds%20top-up"><figure class="thumb"><img src="/png.images/logo-freefire.png"></figure><div class="title">Free Fire</div><p class="tap">Tap to message on WhatsApp</p></a>
-        <!-- PUBG -->
-        <a class="card link-card" href="https://wa.me/9779828560029?text=PUBG%20UC%20top-up"><figure class="thumb"><img src="/png.images/logo-pubg.png"></figure><div class="title">PUBG Mobile</div><p class="tap">Tap to message on WhatsApp</p></a>
-        <!-- MLBB -->
-        <a class="card link-card" href="https://wa.me/9779828560029?text=MLBB%20Diamonds%20top-up"><figure class="thumb"><img src="/png.images/logo-mlbb.png"></figure><div class="title">Mobile Legends</div><p class="tap">Tap to message on WhatsApp</p></a>
-        <!-- COC -->
-        <a class="card link-card" href="https://wa.me/9779828560029?text=Clash%20of%20Clans%20top-up"><figure class="thumb"><img src="/png.images/logo-coc.png"></figure><div class="title">Clash of Clans</div><p class="tap">Tap to message on WhatsApp</p></a>
-        <!-- eFootball -->
-        <a class="card link-card" href="https://wa.me/9779828560029?text=eFootball%20Coins%20top-up"><figure class="thumb"><img src="/png.images/logo-efootball.png"></figure><div class="title">eFootball</div><p class="tap">Tap to message on WhatsApp</p></a>
-        <!-- Roblox -->
-        <a class="card link-card" href="https://wa.me/9779828560029?text=Roblox%20Robux%20top-up"><figure class="thumb"><img src="/png.images/logo-roblox.png"></figure><div class="title">Roblox</div><p class="tap">Tap to message on WhatsApp</p></a>
-      </div>
-    </section>
-
-    <!-- ================= GIFT CARDS ================= -->
-    <section id="giftcards">
-      <h2>Gift Cards & Vouchers</h2>
-      <div class="grid">
-        <a class="card link-card" href="https://wa.me/9779828560029?text=UNIPIN%20BD%20gift%20card"><figure class="thumb"><img src="/png.images/logo-unipin.png"></figure><div class="title">UNIPIN BD</div><p class="tap">Tap to message on WhatsApp</p></a>
-        <a class="card link-card" href="https://wa.me/9779828560029?text=iTunes%20USA%20gift%20card"><figure class="thumb"><img src="/png.images/logo-itunes.png"></figure><div class="title">iTunes USA</div><p class="tap">Tap to message on WhatsApp</p></a>
-        <a class="card link-card" href="https://wa.me/9779828560029?text=Garena%20MY%20Shell%20voucher"><figure class="thumb"><img src="/png.images/logo-myshell.png"></figure><div class="title">Garena MY Shell</div><p class="tap">Tap to message on WhatsApp</p></a>
-        <a class="card link-card" href="https://wa.me/9779828560029?text=Xbox%20gift%20card"><figure class="thumb"><img src="/png.images/logo-xbox.png"></figure><div class="title">Xbox</div><p class="tap">Tap to message on WhatsApp</p></a>
-        <a class="card link-card" href="https://wa.me/9779828560029?text=Nintendo%20gift%20card"><figure class="thumb"><img src="/png.images/logo-nintendo.png"></figure><div class="title">Nintendo</div><p class="tap">Tap to message on WhatsApp</p></a>
-        <a class="card link-card" href="https://wa.me/9779828560029?text=PlayStation%20gift%20card"><figure class="thumb"><img src="/png.images/logo-playstation.png"></figure><div class="title">PlayStation</div><p class="tap">Tap to message on WhatsApp</p></a>
-      </div>
-    </section>
-
-    <!-- ================= SMM SERVICES ================= -->
-    <section id="smm-services">
-      <h2>SMM Services</h2>
-      <div class="notice">Facebook, Instagram, TikTok followers & services — tap to message on WhatsApp.</div>
-      <div class="grid">
-        <a class="card link-card" href="https://wa.me/9779828560029?text=Facebook%20followers%20services"><figure class="thumb"><img src="/png.images/logo-facebook.png"></figure><div class="title">Facebook Followers</div><p class="tap">Tap to message on WhatsApp</p></a>
-        <a class="card link-card" href="https://wa.me/9779828560029?text=Instagram%20followers%20services"><figure class="thumb"><img src="/png.images/logo-instagram.png"></figure><div class="title">Instagram Followers</div><p class="tap">Tap to message on WhatsApp</p></a>
-        <a class="card link-card" href="https://wa.me/9779828560029?text=TikTok%20followers%20services"><figure class="thumb"><img src="/png.images/logo-tiktok.png"></figure><div class="title">TikTok Followers</div><p class="tap">Tap to message on WhatsApp</p></a>
-      </div>
-    </section>
-
+  <!-- Hero video (16:9) -->
+  <div class="hero">
+    <video autoplay muted loop playsinline>
+      <source src="/welcome.mp4" type="video/mp4">
+    </video>
   </div>
+
+  <div class="wrap">
+    <div class="head-row">
+      <div class="title">Shop</div>
+      <div class="search-box">
+        <input id="search" type="search" placeholder="Search products (e.g., Netflix, PUBG, iTunes)…">
+      </div>
+    </div>
+
+    <!-- Category tabs -->
+    <div class="tabs" id="tabs">
+      <div class="tab active" data-cat="all">All</div>
+      <div class="tab" data-cat="topup">Top Up</div>
+      <div class="tab" data-cat="voucher">Voucher</div>
+      <div class="tab" data-cat="gift">Gift Card</div>
+      <div class="tab" data-cat="subs">Subscriptions</div>
+      <div class="tab" data-cat="smm">SMM</div>
+      <div class="tab" data-cat="best">Best Selling</div>
+    </div>
+
+    <!-- ===== Products grid ===== -->
+    <div id="grid" class="grid">
+
+      <!-- ========= BEST SELLING ========= -->
+      <div class="card subs best" data-name="APEUni VIP PTE">
+        <a href="/apeuni.html" aria-label="APEUni VIP" style="text-decoration:none;color:inherit">
+          <div class="thumb"><img src="/png.images/logo-apeuni.png" alt="APEUni VIP"></div>
+          <div class="name">APEUni VIP</div>
+          <div class="meta">PTE learning • AI practice</div>
+          <div class="price">From NPR 2200</div>
+        </a>
+        <a class="btn" href="https://wa.me/9779828560029?text=I'm%20interested%20in%20APEUni%20VIP">Order</a>
+      </div>
+
+      <div class="card subs best" data-name="ChatGPT 5 Plus gpt plus">
+        <div class="thumb"><img src="/png.images/logo-chatgpt.png" alt="ChatGPT Plus"></div>
+        <div class="name">ChatGPT 5 Plus</div>
+        <div class="meta">On your email • Full private • 1 mo/3 mo</div>
+        <div class="price">From NPR 2750</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=I%20want%20ChatGPT%205%20Plus%20(1%20month%20NPR%202750%20or%203%20months%20NPR%203750).%20Deliver%20to%20my%20email.">Order</a>
+      </div>
+
+      <!-- ========= SUBSCRIPTIONS ========= -->
+      <div class="card subs" data-name="Perplexity Pro AI">
+        <div class="thumb"><img src="/png.images/logo-perplexity.png" alt="Perplexity Pro"></div>
+        <div class="name">Perplexity Pro (12 mo)</div>
+        <div class="meta">On your email • Full private</div>
+        <div class="price">NPR 2750</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=Perplexity%20Pro%2012%20months%20(full%20private)%20to%20my%20email.">Order</a>
+      </div>
+
+      <div class="card subs" data-name="Spotify 12 months code individual indian server">
+        <div class="thumb"><img src="/png.images/logo-spotify.png" alt="Spotify"></div>
+        <div class="name">Spotify (12 mo)</div>
+        <div class="meta">Indian server • Individual • Code by email</div>
+        <div class="price">NPR 2750</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=Spotify%2012%20months%20(Indian%20server%2C%20Individual)%20—%20send%20code%20to%20my%20email.">Order</a>
+      </div>
+
+      <div class="card subs" data-name="CapCut Pro capcut 1 month 12 month">
+        <div class="thumb"><img src="/png.images/logo-capcut.png" alt="CapCut Pro"></div>
+        <div class="name">CapCut Pro (1 / 12 mo)</div>
+        <div class="meta">1 mo — NPR 2150 • 12 mo — NPR 11500</div>
+        <div class="price">From NPR 2150</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=CapCut%20Pro%20—%20please%20specify%201%20month%20or%2012%20months.">Order</a>
+      </div>
+
+      <div class="card subs" data-name="Netflix Premium">
+        <div class="thumb"><img src="/png.images/logo-netflix.png" alt="Netflix"></div>
+        <div class="name">Netflix Premium</div>
+        <div class="meta">Private plan • On your email</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=Netflix%20Premium%20subscription">Order</a>
+      </div>
+
+      <div class="card subs" data-name="Prime Video Amazon">
+        <div class="thumb"><img src="/png.images/logo-prime.png" alt="Prime Video"></div>
+        <div class="name">Prime Video</div>
+        <div class="meta">Private • Email delivery</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=Prime%20Video%20subscription">Order</a>
+      </div>
+
+      <div class="card subs" data-name="YouTube Premium">
+        <div class="thumb"><img src="/png.images/logo-youtube-premium.png" alt="YouTube Premium"></div>
+        <div class="name">YouTube Premium</div>
+        <div class="meta">Ad-free • Background play</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=YouTube%20Premium%20subscription">Order</a>
+      </div>
+
+      <div class="card subs" data-name="PicsArt Pro">
+        <div class="thumb"><img src="/png.images/logo-picsart.png" alt="PicsArt"></div>
+        <div class="name">PicsArt Pro</div>
+        <div class="meta">Editing suite • Pro tools</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=PicsArt%20Pro%20subscription">Order</a>
+      </div>
+
+      <div class="card subs" data-name="Surfshark VPN">
+        <div class="thumb"><img src="/png.images/logo-surfshark.png" alt="Surfshark VPN"></div>
+        <div class="name">Surfshark VPN</div>
+        <div class="meta">Unlimited devices</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=Surfshark%20VPN%20subscription">Order</a>
+      </div>
+
+      <div class="card subs" data-name="Canva Pro">
+        <div class="thumb"><img src="/png.images/logo-canva.png" alt="Canva Pro"></div>
+        <div class="name">Canva Pro</div>
+        <div class="meta">Design tools • Pro assets</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=Canva%20Pro%20subscription">Order</a>
+      </div>
+
+      <div class="card subs" data-name="Duolingo Super Pro">
+        <div class="thumb"><img src="/png.images/logo-duolingo.png" alt="Duolingo Super"></div>
+        <div class="name">Duolingo Super</div>
+        <div class="meta">Faster learning • Super plan</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=Duolingo%20Super%20Pro">Order</a>
+      </div>
+
+      <div class="card subs" data-name="Google One Gemini">
+        <div class="thumb"><img src="/png.images/logo-google-one.png" alt="Google One"></div>
+        <div class="name">Google One + Gemini</div>
+        <div class="meta">Cloud + AI perks</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=Google%20One%20+%20Gemini%20subscription">Order</a>
+      </div>
+
+      <div class="card subs" data-name="ElevenLabs 11labs">
+        <div class="thumb"><img src="/png.images/logo-elevenlabs.png" alt="ElevenLabs"></div>
+        <div class="name">ElevenLabs</div>
+        <div class="meta">AI Voice • Studio</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=ElevenLabs%20subscription">Order</a>
+      </div>
+
+      <!-- ========= GAMES TOP-UP (no price; tap -> WhatsApp) ========= -->
+      <div class="card topup" data-name="Free Fire diamonds">
+        <div class="thumb"><img src="/png.images/logo-freefire.png" alt="Free Fire"></div>
+        <div class="name">Free Fire Diamonds</div>
+        <div class="meta">Tap to message</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=Free%20Fire%20Diamonds%20top-up%20request">Order</a>
+      </div>
+
+      <div class="card topup" data-name="PUBG Mobile UC">
+        <div class="thumb"><img src="/png.images/logo-pubg.png" alt="PUBG"></div>
+        <div class="name">PUBG Mobile UC</div>
+        <div class="meta">Tap to message</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=PUBG%20Mobile%20UC%20top-up%20request">Order</a>
+      </div>
+
+      <div class="card topup" data-name="Mobile Legends MLBB diamonds">
+        <div class="thumb"><img src="/png.images/logo-mlbb.png" alt="MLBB"></div>
+        <div class="name">Mobile Legends (MLBB)</div>
+        <div class="meta">Tap to message</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=MLBB%20Diamonds%20top-up%20request">Order</a>
+      </div>
+
+      <div class="card topup" data-name="Clash of Clans gems gold pass">
+        <div class="thumb"><img src="/png.images/logo-coc.png" alt="Clash of Clans"></div>
+        <div class="name">Clash of Clans</div>
+        <div class="meta">Gems / Gold Pass</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=Clash%20of%20Clans%20Gems%20or%20Gold%20Pass%20top-up%20request">Order</a>
+      </div>
+
+      <div class="card topup" data-name="eFootball coins">
+        <div class="thumb"><img src="/png.images/logo-efootball.png" alt="eFootball"></div>
+        <div class="name">eFootball</div>
+        <div class="meta">Tap to message</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=eFootball%20Coins%20top-up%20request">Order</a>
+      </div>
+
+      <div class="card topup" data-name="Roblox Robux">
+        <div class="thumb"><img src="/png.images/logo-roblox.png" alt="Roblox"></div>
+        <div class="name">Roblox Robux</div>
+        <div class="meta">Tap to message</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=Roblox%20Robux%20top-up%20request">Order</a>
+      </div>
+
+      <!-- ========= VOUCHERS ========= -->
+      <div class="card voucher" data-name="Steam Wallet">
+        <div class="thumb"><img src="/png.images/logo-steam.png" alt="Steam"></div>
+        <div class="name">Steam Wallet</div>
+        <div class="meta">Global / Region cards</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=Steam%20Wallet%20voucher">Order</a>
+      </div>
+
+      <div class="card voucher" data-name="Valorant Points">
+        <div class="thumb"><img src="/png.images/logo-valorant.png" alt="Valorant"></div>
+        <div class="name">Valorant Points</div>
+        <div class="meta">Riot prepaid</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=Valorant%20Points%20voucher">Order</a>
+      </div>
+
+      <!-- ========= GIFT CARDS ========= -->
+      <div class="card gift" data-name="UNIPIN BD gift card">
+        <div class="thumb"><img src="/png.images/logo-unipin.png" alt="UNIPIN"></div>
+        <div class="name">UNIPIN BD</div>
+        <div class="meta">Gift card</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=UNIPIN%20BD%20gift%20card%20request">Order</a>
+      </div>
+
+      <div class="card gift" data-name="iTunes USA gift card">
+        <div class="thumb"><img src="/png.images/logo-itunes.png" alt="iTunes USA"></div>
+        <div class="name">iTunes USA</div>
+        <div class="meta">Gift card</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=iTunes%20USA%20gift%20card%20request">Order</a>
+      </div>
+
+      <div class="card gift" data-name="Garena MY Shell">
+        <div class="thumb"><img src="/png.images/logo-garena-shell.png" alt="Garena Shell"></div>
+        <div class="name">Garena MY Shell</div>
+        <div class="meta">Malaysia</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=Garena%20MY%20Shell%20voucher%20request">Order</a>
+      </div>
+
+      <div class="card gift" data-name="Xbox gift card">
+        <div class="thumb"><img src="/png.images/logo-xbox.png" alt="Xbox"></div>
+        <div class="name">Xbox</div>
+        <div class="meta">Gift card / Live</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=Xbox%20gift%20card%20request">Order</a>
+      </div>
+
+      <div class="card gift" data-name="Nintendo eShop card">
+        <div class="thumb"><img src="/png.images/logo-nintendo.png" alt="Nintendo eShop"></div>
+        <div class="name">Nintendo eShop</div>
+        <div class="meta">Gift card</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=Nintendo%20eShop%20card%20request">Order</a>
+      </div>
+
+      <div class="card gift" data-name="PlayStation PSN">
+        <div class="thumb"><img src="/png.images/logo-ps.png" alt="PlayStation"></div>
+        <div class="name">PlayStation (PSN)</div>
+        <div class="meta">Wallet / Plus</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=PlayStation%20(PSN)%20gift%20card%20request">Order</a>
+      </div>
+
+      <!-- ========= SMM SERVICES ========= -->
+      <div class="card smm" data-name="Instagram followers">
+        <div class="thumb"><img src="/png.images/logo-instagram.png" alt="Instagram"></div>
+        <div class="name">Instagram Followers</div>
+        <div class="meta">SMM service</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=Instagram%20followers%20service">Message</a>
+      </div>
+
+      <div class="card smm" data-name="Facebook page likes">
+        <div class="thumb"><img src="/png.images/logo-facebook.png" alt="Facebook"></div>
+        <div class="name">Facebook Page Likes</div>
+        <div class="meta">SMM service</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=Facebook%20page%20likes%20service">Message</a>
+      </div>
+
+      <div class="card smm" data-name="TikTok followers">
+        <div class="thumb"><img src="/png.images/logo-tiktok.png" alt="TikTok"></div>
+        <div class="name">TikTok Followers</div>
+        <div class="meta">SMM service</div>
+        <a class="btn" href="https://wa.me/9779828560029?text=TikTok%20followers%20service">Message</a>
+      </div>
+    </div>
+
+    <div class="note">Any game/app purchase available — if you don’t see it here, just tap the WhatsApp button and tell us what you need.</div>
+  </div>
+
+  <!-- Floating WhatsApp live chat -->
+  <a class="wa-fab" href="https://wa.me/9779828560029" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <img src="/png.images/logo-whatsapp.png" alt="">
+  </a>
+
+<script>
+  // Tab filter
+  const tabs = document.querySelectorAll('.tab');
+  const cards = document.querySelectorAll('.card');
+  tabs.forEach(t=>{
+    t.addEventListener('click', e=>{
+      tabs.forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      const cat = t.dataset.cat;
+      cards.forEach(c=>{
+        const isMatch = cat==='all' ? true : c.classList.contains(cat);
+        c.style.display = isMatch ? 'flex' : 'none';
+      });
+      // When switching to "best", show only .best
+      if(cat==='best'){
+        cards.forEach(c=>{ c.style.display = c.classList.contains('best') ? 'flex' : 'none'; });
+      }
+    });
+  });
+
+  // Live search
+  document.getElementById('search').addEventListener('input', function(){
+    const q = this.value.toLowerCase();
+    cards.forEach(c=>{
+      const text = (c.dataset.name || c.innerText).toLowerCase();
+      c.style.display = text.includes(q) ? 'flex' : 'none';
+    });
+    // turn "All" tab active when searching
+    tabs.forEach(x=>x.classList.remove('active'));
+    document.querySelector('.tab[data-cat="all"]').classList.add('active');
+  });
+</script>
 </body>
 </html>
