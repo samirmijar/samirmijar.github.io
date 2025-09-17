@@ -6,7 +6,6 @@
 <title>SM DIGITAL SERVICES • Trusted Digital Services</title>
 <meta name="theme-color" content="#ffffff" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-
 <style>
   :root{
     --bg:#0b1115; --card:#0f1822; --soft:#152233;
@@ -87,6 +86,7 @@
   .btn-soft:hover{background:#f7f7f7; transform:translateY(-2px)}
   .btn-whatsapp{background:#25D366; color:#fff; border:0; box-shadow:0 8px 18px rgba(37,211,102,.35)}
   .btn-whatsapp:hover{transform:translateY(-2px)}
+
   @media (min-width:768px){ .hero-center h1{font-size:42px} }
 
   /* sections */
@@ -118,61 +118,36 @@
   .social{display:flex; gap:12px; margin-top:8px}
   .social a{display:inline-flex; padding:10px; border-radius:12px; background:#152233}
 
-  /* contact form */
-  .contact-form{max-width:680px;margin:0 auto;padding:0 16px}
+  /* ==== contact form styling ==== */
+  .contact-form {max-width: 680px;margin: 0 auto;padding: 0 16px}
   .contact-form input,.contact-form textarea{
-    width:100%; margin:8px 0; padding:14px 12px; border-radius:12px;
-    border:1px solid rgba(255,255,255,.12); background:#0f1822; color:#e9eef4;
+    width:100%;margin:8px 0;padding:14px 12px;border-radius:12px;
+    border:1px solid rgba(255,255,255,.12);background:#0f1822;color:#e9eef4;
   }
   .contact-form input::placeholder,.contact-form textarea::placeholder{color:#94a3b8}
 
-  /* --- TABS + PANELS --- */
-  .tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-  .tab-btn{flex:1;min-width:120px;padding:10px;border-radius:10px;border:1px solid #2a3750;background:#0f1822;color:#cbd5e1;font-weight:700}
-  .tab-btn.active{background:#152233;color:#fff}
-  .panel{display:none}
-  .panel.show{display:block}
+  /* --- Help Card --- */
+  .section-pad{padding:28px 18px}
+  .card-white{
+    max-width:760px;margin:0 auto;background:#fff;color:#0b1115;
+    border:1px solid #e9eef4;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.08);
+    padding:18px;text-align:center
+  }
+  .card-white h2{margin:14px 0 6px}
+  .card-white p{margin:0 0 14px;color:#475569}
+  .card-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
 
-  /* --- Compact accordion for offers --- */
-  .offer-accordion{padding:6px}
-  .offer{border:1px solid #1e2a44;border-radius:12px;background:#00172a;margin:8px 6px;overflow:hidden}
-  .offer summary{
-    list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;
-    gap:10px;padding:12px 14px;background:#111b33;color:#e6edf7;font-weight:800;border-radius:12px
+  /* --- Services Grid --- */
+  .services-wrap{padding:20px;background:#0b1115;color:#fff;text-align:center}
+  .services-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:12px;max-width:680px;margin:0 auto
   }
-  .offer summary::-webkit-details-marker{display:none}
-  .offer .meta{font-weight:700;font-size:12px;opacity:.8;white-space:nowrap}
-  .offer[open] summary{background:#14223f;border-bottom:1px solid #223257;border-radius:12px 12px 0 0}
-  .offer .body{padding:12px 14px;background:#0f182e}
-  .ticks{margin:6px 0 10px 0;padding:0}
-  .ticks li{list-style:none;margin:6px 0;color:#cfe5ff;font-size:13px;display:flex;gap:8px;align-items:flex-start}
-  .ticks li::before{content:"✅";flex:0 0 auto;margin-top:1px}
-  .howto{margin-top:6px;font-weight:800;color:#ffd166}
-  .btn-wa-mini{
-    display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;
-    background:#25D366;color:#fff;font-weight:800;text-decoration:none;box-shadow:0 6px 16px rgba(37,211,102,.3)
+  .service-box{
+    background:#152233;padding:16px;border-radius:12px;border:1px solid #22324a;
+    box-shadow:0 4px 12px rgba(0,0,0,.3);font-weight:700;min-height:64px;
+    display:flex;align-items:center;justify-content:center
   }
-  .btn-wa-mini img{width:18px;height:18px;object-fit:contain}
-  .small-note{font-size:12px;opacity:.7;margin-top:6px}
-
-  /* --- Floating WhatsApp --- */
-  .wa-float{
-    position:fixed;right:16px;bottom:18px;width:56px;height:56px;border-radius:50%;
-    background:#25D366;display:flex;align-items:center;justify-content:center;
-    box-shadow:0 6px 18px rgba(0,0,0,.25),0 0 10px rgba(37,211,102,.7);
-    z-index:9999;text-decoration:none;animation:wa-bounce 2s infinite,wa-glow 1.5s infinite alternate;
-  }
-  .wa-icon{width:28px;height:28px;object-fit:contain}
-  .wa-bubble{
-    position:absolute;right:70px;bottom:12px;background:#fff;color:#111;font-size:13px;font-weight:600;
-    padding:8px 12px;border-radius:20px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.2);
-    opacity:0;pointer-events:none;animation:wa-bubble-in .45s ease forwards, wa-bubble-out .9s ease forwards 6s;
-  }
-  @keyframes wa-bounce{0%,20%,50%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}60%{transform:translateY(-3px)}}
-  @keyframes wa-glow{from{box-shadow:0 6px 18px rgba(0,0,0,.25),0 0 6px rgba(37,211,102,.55)}to{box-shadow:0 6px 18px rgba(0,0,0,.25),0 0 18px rgba(37,211,102,1)}}
-  @keyframes wa-bubble-in{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
-  @keyframes wa-bubble-out{to{opacity:0;transform:translateX(20px)}}
-  @media (max-width:380px){.wa-float{right:12px;bottom:14px;width:52px;height:52px}.wa-bubble{right:66px;font-size:12px}}
 </style>
 </head>
 <body>
@@ -182,45 +157,18 @@
   <a class="brand" href="/" aria-label="SM DIGITAL SERVICES • Home">
     <img class="brand-logo" src="png.images/logo-mascot.png" alt="SM Digital Services">
     <span class="brand-name">SM DIGITAL SERVICES</span>
-    <svg class="brand-badge" viewBox="0 0 64 64" aria-hidden="true">
-      <path d="M24 4l8 6 10-2 4 9 10 3-2 10 6 8-6 8 2 10-10 3-4 9-10-2-8 6-8-6-10 2-4-9-10-3 2-10-6-8 6-8-2-10 10-3 4-9 10 2z" fill="#39a8ff"/>
-      <path d="M22 34l6 6 14-14" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
   </a>
   <button class="hamburger sm-menu-toggle" aria-label="Open menu">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
   </button>
 </header>
 
-<!-- ===== LIGHTS ===== -->
-<div class="lightbar">
-  <span style="background:#ff3b30"></span>
-  <span style="background:#ff9500"></span>
-  <span style="background:#ffcc00"></span>
-  <span style="background:#34c759"></span>
-  <span style="background:#0a84ff"></span>
-  <span style="background:#af52de"></span>
-</div>
-
-<!-- ===== DRAWER MENU ===== -->
-<nav class="drawer" aria-label="Site">
-  <button class="close sm-menu-toggle" aria-label="Close menu">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6l-12 12"/></svg>
-  </button>
-  <div class="nav-group">
-    <a href="#home">Home</a>
-    <a href="shop.html">Shop</a>
-    <a href="#about" class="secondary">About</a>
-    <a href="#contact" class="secondary">Contact</a>
-  </div>
-</nav>
-
-<!-- ===== HERO (you can keep your video hero if you like) ===== -->
+<!-- ===== HERO ===== -->
 <section class="hero" style="text-align:center; padding:60px 20px; background:linear-gradient(180deg,#ff9800,#ff5722); color:#fff;">
   <h1>Welcome to SM Digital Service</h1>
   <p>Affordable subscriptions, AI tools, and game top-ups in Nepal.</p>
   <div style="margin:20px 0;">
-    <a href="#category" class="btn btn-primary">Shop Now</a>
+    <a href="#services" class="btn btn-primary">Shop Now</a>
     <a href="https://wa.me/9779828560029" class="btn btn-whatsapp" target="_blank" rel="noopener">
       <img src="png.images/logo-whatsapp.png" alt=""> WhatsApp
     </a>
@@ -230,111 +178,19 @@
   </div>
 </section>
 
-<!-- ===== CATEGORY: TABS + PANELS ===== -->
-<section id="category" style="padding:14px 16px;background:#0f1822;color:#fff;">
-  <!-- Tabs -->
-  <div class="tabs">
-    <button id="tab-offers" class="tab-btn active">Today's Offer</button>
-    <button id="tab-shop"   class="tab-btn">Shop Now</button>
-    <button id="tab-sm"     class="tab-btn">SM Service</button>
-  </div>
-
-  <!-- TODAY'S OFFER (accordion) -->
-  <div id="offers-list" class="panel show" style="margin-top:10px;border:1px solid #25324a;border-radius:12px;background:#121e30;">
-    <div class="offer-accordion">
-
-      <!-- APEUni -->
-      <details class="offer">
-        <summary>
-          <span>APEUni VIP</span>
-          <span class="meta">1 Month — Rs.2150</span>
-        </summary>
-        <div class="body">
-          <ul class="ticks">
-            <li>INDIVIDUAL PLAN</li>
-            <li>ON YOUR MAIL</li>
-            <li>Unlimited AI score</li>
-            <li>Best for PTE students</li>
-          </ul>
-          <div class="howto">📦 HOW TO ORDER</div>
-          <a class="btn-wa-mini" href="https://wa.me/9779828560029?text=I%20want%20APEUni%20VIP%201%20Month%20(Rs.2150)" target="_blank" rel="noopener">
-            <img src="png.images/logo-whatsapp.png" alt=""> Message us on WhatsApp
-          </a>
-          <div class="small-note">Delivery: on your mail • Full private</div>
-        </div>
-      </details>
-
-      <!-- Spotify -->
-      <details class="offer">
-        <summary>
-          <span>Spotify Premium</span>
-          <span class="meta">12 Months — Rs.2750</span>
-        </summary>
-        <div class="body">
-          <ul class="ticks">
-            <li>INDIVIDUAL PLAN</li>
-            <li>World-wide usable</li>
-            <li>On your mail (code)</li>
-            <li>Full private access</li>
-          </ul>
-          <div class="howto">📦 HOW TO ORDER</div>
-          <a class="btn-wa-mini" href="https://wa.me/9779828560029?text=I%20want%20Spotify%2012%20Months%20(Rs.2750)" target="_blank" rel="noopener">
-            <img src="png.images/logo-whatsapp.png" alt=""> Message us on WhatsApp
-          </a>
-        </div>
-      </details>
-
-      <!-- Perplexity -->
-      <details class="offer">
-        <summary>
-          <span>Perplexity AI</span>
-          <span class="meta">1 Year — Rs.2750</span>
-        </summary>
-        <div class="body">
-          <ul class="ticks">
-            <li>Full private</li>
-            <li>On your mail</li>
-            <li>Fast, accurate search + AI</li>
-            <li>Great for students & pros</li>
-          </ul>
-          <div class="howto">📦 HOW TO ORDER</div>
-          <a class="btn-wa-mini" href="https://wa.me/9779828560029?text=I%20want%20Perplexity%201%20Year%20(Rs.2750)" target="_blank" rel="noopener">
-            <img src="png.images/logo-whatsapp.png" alt=""> Message us on WhatsApp
-          </a>
-        </div>
-      </details>
-
-      <!-- ChatGPT Plus -->
-      <details class="offer">
-        <summary>
-          <span>ChatGPT Plus</span>
-          <span class="meta">3 Months — Rs.3750</span>
-        </summary>
-        <div class="body">
-          <ul class="ticks">
-            <li>Full private</li>
-            <li>On your mail</li>
-            <li>Priority access & faster replies</li>
-            <li>Best for creators & businesses</li>
-          </ul>
-          <div class="howto">📦 HOW TO ORDER</div>
-          <a class="btn-wa-mini" href="https://wa.me/9779828560029?text=I%20want%20ChatGPT%20Plus%203%20Months%20(Rs.3750)" target="_blank" rel="noopener">
-            <img src="png.images/logo-whatsapp.png" alt=""> Message us on WhatsApp
-          </a>
-        </div>
-      </details>
-
+<!-- ===== HELP CARD ===== -->
+<section class="section-pad" id="help">
+  <div class="card-white">
+    <img src="png.images/mascot-help.png" alt="Help mascot" style="width:100%;border-radius:18px;display:block;object-fit:cover;background:#f5f7fb">
+    <h2>Can’t find your answer?</h2>
+    <p>If you couldn’t find the information you need, feel free to contact our support team.</p>
+    <div class="card-actions">
+      <a href="#contact" class="btn btn-primary">Contact us</a>
+      <a href="https://wa.me/9779828560029" target="_blank" rel="noopener" class="btn btn-whatsapp">
+        <img src="png.images/logo-whatsapp.png" alt="" style="width:18px;height:18px"> WhatsApp
+      </a>
     </div>
   </div>
-
-  <!-- SHOP NOW -->
-  <div id="shop-panel" class="panel" style="margin-top:10px;border:1px solid #25324a;border-radius:12px;background:#121e30;padding:14px;">
-    <div style="font-size:14px;opacity:.9;margin-bottom:8px">Browse all products.</div>
-    <a href="shop.html" style="display:block;padding:10px 0;border-radius:10px;background:linear-gradient(90deg,#ff7a00,#ff415f);color:#fff;text-align:center;font-weight:800">Go to Shop</a>
-  </div>
-
-  <!-- SM SERVICE (auto-rendered by JS) -->
-  <div id="sm-panel" class="panel" style="margin-top:10px;max-height:310px;overflow-y:auto;border:1px solid #25324a;border-radius:12px;background:#121e30"></div>
 </section>
 
 <!-- ===== ORDER / CONTACT FORM ===== -->
@@ -348,15 +204,28 @@
   </form>
 </section>
 
+<!-- ===== SERVICES GRID ===== -->
+<section class="services-wrap" id="services">
+  <h2 style="margin:0 0 14px;font-size:18px;font-weight:800">Our Services</h2>
+  <div class="services-grid">
+    <a href="shop.html#subscriptions" class="service-box">🎵 Subscriptions</a>
+    <a href="shop.html#games"         class="service-box">🎮 Games Top-Up</a>
+    <a href="shop.html#ai"            class="service-box">🤖 AI Tools</a>
+    <a href="shop.html#software"      class="service-box">💻 Software</a>
+    <a href="shop.html#smm"           class="service-box">📢 SMM Services</a>
+    <a href="shop.html#all"           class="service-box">🌍 Everything</a>
+  </div>
+</section>
+
 <!-- ===== ABOUT / MISSION / OFFER / VISION ===== -->
 <section id="about">
   <div class="card">
     <span class="tag who">WHO I AM</span>
-    <p>I’m <strong>Samir Mijar</strong>, creator of <strong>SM Digital Service</strong>. I help Nepali users buy global digital services easily with local payments and friendly support.</p>
+    <p>I’m <strong>Samir Mijar</strong>, creator of <strong>SM Digital Service</strong>.</p>
   </div>
   <div class="card">
     <span class="tag mission">MY MISSION</span>
-    <p>Make premium digital tools <em>affordable & accessible</em> in Nepal — transparent pricing, instant delivery, and reliable after-sales help.</p>
+    <p>Make premium digital tools <em>affordable & accessible</em> in Nepal.</p>
   </div>
   <div class="card">
     <span class="tag offer">WHAT I OFFER</span>
@@ -364,130 +233,17 @@
       <li>APEUni VIP for PTE learners</li>
       <li>Spotify, ChatGPT Plus, Perplexity Pro</li>
       <li>Game top-ups (PUBG UC, Free Fire, MLBB, Roblox)</li>
-      <li>Custom requests & voucher codes</li>
     </ul>
-  </div>
-  <div class="card">
-    <span class="tag vision">MY VISION</span>
-    <p>Build a trusted, Nepali-first digital marketplace where students, creators, and gamers get the tools they need — safely and instantly.</p>
-  </div>
-</section>
-
-<!-- ===== SOCIAL HANDLES ===== -->
-<section>
-  <h3 style="margin:0 0 10px">Follow & Contact</h3>
-  <div class="icons-row">
-    <a class="icon-btn" href="https://facebook.com/yourpage" target="_blank" rel="noopener">
-      <img src="png.images/logo-facebook.png" alt="Facebook">
-    </a>
-    <a class="icon-btn" href="https://instagram.com/yourhandle" target="_blank" rel="noopener">
-      <img src="png.images/logo-instagram.png" alt="Instagram">
-    </a>
-    <a class="icon-btn" href="https://wa.me/9779828560029" target="_blank" rel="noopener">
-      <img src="png.images/logo-whatsapp.png" alt="WhatsApp">
-    </a>
-    <a class="icon-btn" href="https://www.tiktok.com/@samirmijar.np" target="_blank" rel="noopener">
-      <img src="png.images/logo-tiktok.png" alt="TikTok">
-    </a>
-    <a class="icon-btn" href="https://youtube.com/@yourchannel" target="_blank" rel="noopener">
-      <img src="png.images/logo-youtube.png" alt="YouTube">
-    </a>
-  </div>
-</section>
-
-<!-- ===== PAYMENT METHODS (16:9) ===== -->
-<section>
-  <h3 style="margin:0 0 10px">Payment Methods Accepted</h3>
-  <div class="logos">
-    <div class="logo-rect"><img src="png.images/logo-pay.png" alt="pay"></div>
-  </div>
-</section>
-
-<!-- ===== CONTACT QUICK ===== -->
-<section id="quick-contact">
-  <h3 style="margin:0 0 10px">Quick Contact</h3>
-  <div class="icons-row">
-    <a class="icon-btn" href="https://wa.me/9779828560029" target="_blank" rel="noopener">
-      <img src="png.images/logo-whatsapp.png" alt="WhatsApp">
-    </a>
-    <a class="icon-btn" href="viber://chat?number=%2B9779828560029">
-      <img src="png.images/logo-viber.png" alt="Viber">
-    </a>
-    <a class="icon-btn" href="mailto:hello@samirmijar.com.np">
-      <img src="png.images/logo-mail.png" alt="Email">
-    </a>
   </div>
 </section>
 
 <!-- ===== FOOTER ===== -->
 <footer>
   <div><strong>SM Digital Services</strong> — © <span id="y"></span></div>
-  <div class="social">
-    <a href="https://wa.me/9779828560029">WhatsApp</a>
-    <a href="viber://chat?number=%2B9779828560029">Viber</a>
-    <a href="https://www.tiktok.com/@samirmijar.np" target="_blank">TikTok</a>
-  </div>
 </footer>
 
-<!-- Floating WhatsApp -->
-<a href="https://wa.me/9779828560029" target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp">
-  <img src="png.images/logo-whatsapp.png" alt="WhatsApp" class="wa-icon">
-  <span class="wa-bubble">💬 Chat with us</span>
-</a>
-
 <script>
-  // menu toggle
-  document.querySelectorAll('.sm-menu-toggle').forEach(btn =>
-    btn.addEventListener('click', () => document.body.classList.toggle('nav-open'))
-  );
-  // year
   document.getElementById('y').textContent = new Date().getFullYear();
-
-  // tabs
-  const tOffer = document.getElementById('tab-offers');
-  const tShop  = document.getElementById('tab-shop');
-  const tSM    = document.getElementById('tab-sm');
-  const list   = document.getElementById('offers-list');
-  const shop   = document.getElementById('shop-panel');
-  const sm     = document.getElementById('sm-panel');
-  function setTab(which){
-    [list,shop,sm].forEach(p=>p.classList.remove('show'));
-    [tOffer,tShop,tSM].forEach(b=>b.classList.remove('active'));
-    if(which==='offers'){ list.classList.add('show'); tOffer.classList.add('active'); }
-    if(which==='shop'){   shop.classList.add('show');  tShop.classList.add('active');  }
-    if(which==='sm'){     sm.classList.add('show');    tSM.classList.add('active');    }
-  }
-  tOffer.addEventListener('click',()=>setTab('offers'));
-  tShop.addEventListener('click', ()=>setTab('shop'));
-  tSM.addEventListener('click',   ()=>setTab('sm'));
-  setTab('offers'); // default
-
-  // render SM services
-  const smServices = [
-    { name:'Netflix',     detail:'1 Month', price:'—', link:'' },
-    { name:'Prime Video', detail:'1 Month', price:'—', link:'' },
-  ];
-  function renderSM(){
-    sm.innerHTML = smServices.map((s,i)=>`
-      <div style="padding:10px 12px;${i<smServices.length-1?'border-bottom:1px solid #1e2a44':''}">
-        <div style="font-weight:800">${s.name}</div>
-        <div style="font-size:12px;opacity:.85">${s.detail}${s.price!=='—'?' — Rs.'+s.price:''}</div>
-        ${s.link
-          ? `<a href="${s.link}" style="display:block;margin-top:6px;padding:7px 0;border-radius:8px;background:linear-gradient(90deg,#ff7a00,#ff415f);color:#fff;text-align:center;font-size:13px;font-weight:800">View Offer</a>`
-          : `<div style="margin-top:6px;font-size:12px;opacity:.6;text-align:center;">Coming soon</div>`}
-      </div>`).join('');
-  }
-  renderSM();
-
-  // only one accordion open at once + scroll into view
-  document.querySelectorAll('.offer-accordion .offer').forEach(d=>{
-    d.addEventListener('toggle', ()=>{
-      if(d.open){
-        document.querySelectorAll('.offer-accordion .offer').forEach(o=>{ if(o!==d) o.open=false; });
-        setTimeout(()=> d.scrollIntoView({block:'start', behavior:'smooth'}), 80);
-      }
-    });
-  });
 </script>
 </body>
 </html>
