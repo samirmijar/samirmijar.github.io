@@ -34,9 +34,8 @@
     width:46px; height:46px; border:none; border-radius:999px;
     background:linear-gradient(90deg,#ff7a00,#ff415f); color:#fff;
     display:grid; place-items:center; cursor:pointer;
-    box-shadow:0 6px 16px rgba(255,65,95,.38); transition:.25s;
+    box-shadow:0 6px 16px rgba(255,65,95,.38);
   }
-  .hamburger:hover{transform:translateY(-2px) scale(1.04)}
   .hamburger svg{width:24px; height:24px; stroke:#fff}
 
   /* drawer menu */
@@ -63,20 +62,10 @@
   }
   .lightbar span{width:26px; height:26px; border-radius:50%; box-shadow:0 0 10px rgba(0,0,0,.18)}
 
-  /* hero 16:9 */
-  .hero16x9{
-    position:relative; width:100%; aspect-ratio:16 / 9;
-    max-height:520px; overflow:hidden; background:#ff9500; border-bottom:3px solid rgba(0,0,0,.1);
+  /* hero */
+  .hero{
+    text-align:center; padding:60px 20px; background:linear-gradient(180deg,#ff9800,#ff5722); color:#fff;
   }
-  .hero-video-el{width:100%; height:100%; object-fit:cover; display:block}
-  .hero-overlay{position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.22),rgba(0,0,0,.55))}
-  .hero-center{
-    position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
-    text-align:center; color:#fff; z-index:2; padding:0 18px;
-  }
-  .hero-center h1{margin:6px 0 10px; font-size:28px; line-height:1.2}
-  .hero-center p{margin:0 0 18px; color:#f1f1f1; font-size:16px}
-  .cta{display:flex; gap:12px; flex-wrap:wrap; justify-content:center}
   .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; font-weight:700; font-size:16px;
        padding:14px 28px; border-radius:999px; transition:.25s; box-shadow:0 6px 18px rgba(0,0,0,.22)}
   .btn img{width:20px; height:20px; object-fit:contain; margin-right:2px}
@@ -86,7 +75,6 @@
   .btn-soft:hover{background:#f7f7f7; transform:translateY(-2px)}
   .btn-whatsapp{background:#25D366; color:#fff; border:0; box-shadow:0 8px 18px rgba(37,211,102,.35)}
   .btn-whatsapp:hover{transform:translateY(-2px)}
-
   @media (min-width:768px){ .hero-center h1{font-size:42px} }
 
   /* sections */
@@ -113,31 +101,70 @@
   .logo-rect{background:#121e30; border:1px solid rgba(255,255,255,.08); border-radius:12px; aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow)}
   .logo-rect img{width:90%; height:90%; object-fit:contain}
 
-  /* footer */
-  footer{padding:22px 18px; border-top:1px solid rgba(255,255,255,.08); background:#0e1722; color:#b7c5d6}
-  .social{display:flex; gap:12px; margin-top:8px}
-  .social a{display:inline-flex; padding:10px; border-radius:12px; background:#152233}
+  /* TABS + PANELS */
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .tab-btn{flex:1;min-width:120px;padding:10px;border-radius:10px;border:1px solid #2a3750;background:#0f1822;color:#cbd5e1;font-weight:700}
+  .tab-btn.active{background:#152233;color:#fff}
+  .panel{display:none}
+  .panel.show{display:block}
 
-  /* ==== contact form styling ==== */
-  .contact-form {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 0 16px;
+  /* Accordion offers */
+  .offer-accordion{padding:6px}
+  .offer{
+    border:1px solid #1e2a44; border-radius:12px; background:#00172a;
+    margin:8px 6px; overflow:hidden
   }
-  .contact-form input,
-  .contact-form textarea {
-    width: 100%;
-    margin: 8px 0;
-    padding: 14px 12px;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,.12);
-    background: #0f1822;
-    color: #e9eef4;
+  .offer summary{
+    list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between;
+    gap:10px; padding:12px 14px; background:#111b33; color:#e6edf7; font-weight:800; border-radius:12px
   }
-  .contact-form input::placeholder,
-  .contact-form textarea::placeholder {
-    color: #94a3b8;
+  .offer summary::-webkit-details-marker{display:none}
+  .offer .meta{font-weight:700; font-size:12px; opacity:.8; white-space:nowrap}
+  .offer[open] summary{background:#14223f; border-bottom:1px solid #223257; border-radius:12px 12px 0 0}
+  .offer .body{padding:12px 14px; background:#0f182e}
+  .ticks{margin:6px 0 10px 0; padding:0}
+  .ticks li{
+    list-style:none; margin:6px 0; color:#cfe5ff; font-size:13px; display:flex; gap:8px; align-items:flex-start
   }
+  .ticks li::before{content:"✅"; flex:0 0 auto; margin-top:1px}
+  .howto{margin-top:6px; font-weight:800; color:#ffd166}
+  .btn-wa-mini{
+    display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:10px;
+    background:#25D366; color:#fff; font-weight:800; text-decoration:none; box-shadow:0 6px 16px rgba(37,211,102,.3)
+  }
+  .btn-wa-mini img{width:18px; height:18px; object-fit:contain}
+  .small-note{font-size:12px; opacity:.7; margin-top:6px}
+
+  /* Small Services Grid (colorful) */
+  .services-wrap{padding:24px 18px}
+  .services-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:920px;margin:0 auto
+  }
+  .service-box{
+    background:#152233;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px;
+    display:flex;align-items:center;justify-content:center;text-align:center;
+    font-weight:800;color:#e9eef4;box-shadow:0 10px 22px rgba(0,0,0,.18);transition:transform .2s
+  }
+  .service-box:hover{transform:translateY(-2px)}
+  .services-grid .service-box:nth-child(1){background:linear-gradient(135deg,#ff7a00,#ff415f)}
+  .services-grid .service-box:nth-child(2){background:linear-gradient(135deg,#10b981,#34d399)}
+  .services-grid .service-box:nth-child(3){background:linear-gradient(135deg,#0ea5e9,#6366f1)}
+  .services-grid .service-box:nth-child(4){background:linear-gradient(135deg,#f59e0b,#f97316)}
+  .services-grid .service-box:nth-child(5){background:linear-gradient(135deg,#8b5cf6,#a78bfa)}
+  .services-grid .service-box:nth-child(6){background:linear-gradient(135deg,#14b8a6,#22d3ee)}
+  .service-box span{filter:drop-shadow(0 2px 4px rgba(0,0,0,.25))}
+  @media (min-width:720px){.services-grid{grid-template-columns:repeat(3,1fr)}}
+
+  /* Help Card (GiftyBox style) */
+  .section-pad{padding:28px 18px}
+  .card-white{
+    background:#fff;color:#0b1115;border-radius:18px;box-shadow:0 12px 30px rgba(0,0,0,.12);
+    padding:24px;text-align:center;max-width:920px;margin:0 auto;border:1px solid rgba(0,0,0,.06)
+  }
+  .card-white .top-img{width:160px;max-width:60%;height:auto;display:block;margin:0 auto 10px}
+  .card-white h2{margin:6px 0 6px;font-size:22px;font-weight:900}
+  .card-white p{margin:0 0 14px;color:#334155}
+  .card-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 </style>
 </head>
 <body>
@@ -147,10 +174,6 @@
   <a class="brand" href="/" aria-label="SM DIGITAL SERVICES • Home">
     <img class="brand-logo" src="png.images/logo-mascot.png" alt="SM Digital Services">
     <span class="brand-name">SM DIGITAL SERVICES</span>
-    <svg class="brand-badge" viewBox="0 0 64 64" aria-hidden="true">
-      <path d="M24 4l8 6 10-2 4 9 10 3-2 10 6 8-6 8 2 10-10 3-4 9-10-2-8 6-8-6-10 2-4-9-10-3 2-10-6-8 6-8-2-10 10-3 4-9 10 2z" fill="#39a8ff"/>
-      <path d="M22 34l6 6 14-14" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
   </a>
   <button class="hamburger sm-menu-toggle" aria-label="Open menu">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
@@ -167,255 +190,142 @@
   <span style="background:#af52de"></span>
 </div>
 
-<!-- ===== DRAWER MENU ===== -->
-<nav class="drawer" aria-label="Site">
-  <button class="close sm-menu-toggle" aria-label="Close menu">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6l-12 12"/></svg>
-  </button>
-  <div class="nav-group">
-    <a href="#home">Home</a>
-    <a href="shop.html">Shop</a>
-    <a href="#about" class="secondary">About</a>
-    <a href="#contact" class="secondary">Contact</a>
-  </div>
-</nav>
-
-<style>
-/* --- Compact accordion for offers --- */
-.offer-accordion{padding:6px}
-.offer{border:1px solid #1e2a44;border-radius:12px;background:#00172a;margin:8px 6px;overflow:hidden}
-.offer summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;background:#111b33;color:#e6edf7;font-weight:800;border-radius:12px}
-.offer summary::-webkit-details-marker{display:none}
-.offer .meta{font-weight:700;font-size:12px;opacity:.8;white-space:nowrap}
-.offer[open] summary{background:#14223f;border-bottom:1px solid #223257;border-radius:12px 12px 0 0}
-.offer .body{padding:12px 14px;background:#0f182e}
-.ticks{margin:6px 0 10px 0;padding:0}
-.ticks li{list-style:none;margin:6px 0;color:#cfe5ff;font-size:13px;display:flex;gap:8px;align-items:flex-start}
-.ticks li::before{content:"✅";flex:0 0 auto;margin-top:1px}
-.howto{margin-top:6px;font-weight:800;color:#ffd166}
-.btn-wa-mini{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;background:#25D366;color:#fff;font-weight:800;text-decoration:none;box-shadow:0 6px 16px rgba(37,211,102,.3)}
-.btn-wa-mini img{width:18px;height:18px;object-fit:contain}
-.small-note{font-size:12px;opacity:.7;margin-top:6px}
-</style>
-
-<!-- ===== TODAY'S OFFERS (accordion) ===== -->
-<section id="offers" style="padding:14px 16px;">
-  <div class="offer-accordion">
-    <!-- APEUni -->
-    <details class="offer">
-      <summary>
-        <span>APEUni VIP</span>
-        <span class="meta">1 Month — Rs.2150</span>
-      </summary>
-      <div class="body">
-        <ul class="ticks">
-          <li>INDIVIDUAL PLAN</li>
-          <li>ON YOUR MAIL</li>
-          <li>Unlimited AI score</li>
-          <li>Best for PTE students</li>
-        </ul>
-        <div class="howto">📦 HOW TO ORDER</div>
-        <a class="btn-wa-mini" href="https://wa.me/9779828560029?text=I%20want%20APEUni%20VIP%201%20Month%20(Rs.2150)" target="_blank" rel="noopener">
-          <img src="png.images/logo-whatsapp.png" alt=""> Message us on WhatsApp
-        </a>
-        <div class="small-note">Delivery: on your mail • Full private</div>
-      </div>
-    </details>
-
-    <!-- Spotify -->
-    <details class="offer">
-      <summary>
-        <span>Spotify Premium</span>
-        <span class="meta">12 Months — Rs.2750</span>
-      </summary>
-      <div class="body">
-        <ul class="ticks">
-          <li>INDIVIDUAL PLAN</li>
-          <li>World-wide usable</li>
-          <li>On your mail (code)</li>
-          <li>Full private access</li>
-        </ul>
-        <div class="howto">📦 HOW TO ORDER</div>
-        <a class="btn-wa-mini" href="https://wa.me/9779828560029?text=I%20want%20Spotify%2012%20Months%20(Rs.2750)" target="_blank" rel="noopener">
-          <img src="png.images/logo-whatsapp.png" alt=""> Message us on WhatsApp
-        </a>
-      </div>
-    </details>
-
-    <!-- Perplexity -->
-    <details class="offer">
-      <summary>
-        <span>Perplexity AI</span>
-        <span class="meta">1 Year — Rs.2750</span>
-      </summary>
-      <div class="body">
-        <ul class="ticks">
-          <li>Full private</li><li>On your mail</li><li>Fast, accurate search + AI</li><li>Great for students & pros</li>
-        </ul>
-        <div class="howto">📦 HOW TO ORDER</div>
-        <a class="btn-wa-mini" href="https://wa.me/9779828560029?text=I%20want%20Perplexity%201%20Year%20(Rs.2750)" target="_blank" rel="noopener">
-          <img src="png.images/logo-whatsapp.png" alt=""> Message us on WhatsApp
-        </a>
-      </div>
-    </details>
-
-    <!-- ChatGPT Plus -->
-    <details class="offer">
-      <summary>
-        <span>ChatGPT Plus</span>
-        <span class="meta">3 Months — Rs.3750</span>
-      </summary>
-      <div class="body">
-        <ul class="ticks">
-          <li>Full private</li><li>On your mail</li><li>Priority access & faster replies</li><li>Best for creators & businesses</li>
-        </ul>
-        <div class="howto">📦 HOW TO ORDER</div>
-        <a class="btn-wa-mini" href="https://wa.me/9779828560029?text=I%20want%20ChatGPT%20Plus%203%20Months%20(Rs.3750)" target="_blank" rel="noopener">
-          <img src="png.images/logo-whatsapp.png" alt=""> Message us on WhatsApp
-        </a>
-      </div>
-    </details>
-  </div>
-</section>
-
-<script>
-  // Keep only accordion behavior
-  document.querySelectorAll('.offer-accordion .offer').forEach(d=>{
-    d.addEventListener('toggle', ()=>{
-      if(d.open){
-        document.querySelectorAll('.offer-accordion .offer').forEach(o=>{ if(o!==d) o.open=false; });
-        setTimeout(()=> d.scrollIntoView({block:'start', behavior:'smooth'}), 80);
-      }
-    });
-  });
-</script>
-
-  <!-- SHOP NOW -->
-  <div id="shop-panel" style="display:none;margin-top:10px;border:1px solid #25324a;border-radius:12px;background:#121e30;padding:14px;">
-    <div style="font-size:14px;opacity:.9;margin-bottom:8px">Browse all products.</div>
-    <a href="shop.html" style="display:block;padding:10px 0;border-radius:10px;background:linear-gradient(90deg,#ff7a00,#ff415f);color:#fff;text-align:center;font-weight:800">Go to Shop</a>
-  </div>
-
-  <!-- SM SERVICE (auto-rendered by JS) -->
-  <div id="sm-panel" style="display:none;margin-top:10px;max-height:310px;overflow-y:auto;border:1px solid #25324a;border-radius:12px;background:#121e30"></div>
-</section>
-
-<!-- Floating WhatsApp (animated + text bubble) -->
-<a href="https://wa.me/9779828560029" target="_blank" rel="noopener"
-   class="wa-float" aria-label="Chat on WhatsApp">
-  <img src="png.images/logo-whatsapp.png" alt="WhatsApp" class="wa-icon">
-  <span class="wa-bubble">💬 Chat with us</span>
-</a>
-
-<style>
-/* --- Floating button --- */
-.wa-float{
-  position:fixed; right:16px; bottom:18px;
-  width:56px; height:56px; border-radius:50%;
-  background:#25D366; display:flex; align-items:center; justify-content:center;
-  box-shadow:0 6px 18px rgba(0,0,0,.25), 0 0 10px rgba(37,211,102,.7);
-  z-index:9999; text-decoration:none;
-  animation:wa-bounce 2s infinite, wa-glow 1.5s infinite alternate;
-}
-.wa-icon{ width:28px; height:28px; object-fit:contain }
-
-/* --- Text bubble --- */
-.wa-bubble{
-  position:absolute; right:70px; bottom:12px;
-  background:#fff; color:#111; font-size:13px; font-weight:600;
-  padding:8px 12px; border-radius:20px; white-space:nowrap;
-  box-shadow:0 4px 12px rgba(0,0,0,.2);
-  opacity:0; pointer-events:none;
-  animation:wa-bubble-in .45s ease forwards, wa-bubble-out .9s ease forwards 6s;
-}
-
-/* --- Animations --- */
-@keyframes wa-bounce{
-  0%,20%,50%,80%,100%{transform:translateY(0)}
-  40%{transform:translateY(-6px)} 60%{transform:translateY(-3px)}
-}
-@keyframes wa-glow{
-  from{box-shadow:0 6px 18px rgba(0,0,0,.25),0 0 6px rgba(37,211,102,.55)}
-  to  {box-shadow:0 6px 18px rgba(0,0,0,.25),0 0 18px rgba(37,211,102,1)}
-}
-@keyframes wa-bubble-in{ from{opacity:0; transform:translateX(20px)} to{opacity:1; transform:translateX(0)} }
-@keyframes wa-bubble-out{ to{opacity:0; transform:translateX(20px)} }
-
-/* --- Tiny screens: nudge away from edges --- */
-@media (max-width:380px){
-  .wa-float{ right:12px; bottom:14px; width:52px; height:52px }
-  .wa-bubble{ right:66px; font-size:12px }
-}
-</style>
-
-
-<script>
-  // ----- Tabs toggle -----
-  const tOffer = document.getElementById('tab-offers');
-  const tShop  = document.getElementById('tab-shop');
-  const tSM    = document.getElementById('tab-sm');
-  const list   = document.getElementById('offers-list');
-  const shop   = document.getElementById('shop-panel');
-  const sm     = document.getElementById('sm-panel');
-
-  function setTab(which){
-    list.style.display='none'; shop.style.display='none'; sm.style.display='none';
-    [tOffer,tShop,tSM].forEach(b=>{ b.style.background='#0f1822'; b.style.color='#cbd5e1'; });
-    if(which==='offers'){ list.style.display='block'; tOffer.style.background='#152233'; tOffer.style.color='#fff'; }
-    if(which==='shop'){   shop.style.display='block';  tShop.style.background='#152233';  tShop.style.color='#fff'; }
-    if(which==='sm'){     sm.style.display='block';    tSM.style.background='#152233';    tSM.style.color='#fff'; }
-  }
-  tOffer.addEventListener('click',()=>setTab('offers'));
-  tShop.addEventListener('click', ()=>setTab('shop'));
-  tSM.addEventListener('click',   ()=>setTab('sm'));
-
-  // ----- Dynamic SM Service list -----
-  // Add/modify items here (name, detail, price, link). Leave link "" for "Coming soon".
-  const smServices = [
-    { name:'Netflix',     detail:'1 Month', price:'—',      link:'' },
-    { name:'Prime Video', detail:'1 Month', price:'—',      link:'' },
-    // Example of ready item:
-    // { name:'YouTube Premium', detail:'Family 1 Month', price:'Rs.XXXX', link:'order-youtube.html' },
-  ];
-
-  function renderSM(){
-    sm.innerHTML = smServices.map((s,i)=>`
-      <div style="padding:10px 12px;${i<smServices.length-1?'border-bottom:1px solid #1e2a44':''}">
-        <div style="font-weight:800">${s.name}</div>
-        <div style="font-size:12px;opacity:.85">${s.detail} ${s.price!=='—'?'— Rs.'+s.price:''}</div>
-        ${s.link
-          ? `<a href="${s.link}" style="display:block;margin-top:6px;padding:7px 0;border-radius:8px;background:linear-gradient(90deg,#ff7a00,#ff415f);color:#fff;text-align:center;font-size:13px;font-weight:800">View Offer</a>`
-          : `<div style="margin-top:6px;font-size:12px;opacity:.6;text-align:center;">Coming soon</div>`}
-      </div>
-    `).join('');
-  }
-
-  renderSM();
-  setTab('offers'); // default tab
-</script>
-
-
-<!-- ===== SECOND HERO STRIP (kept, with same buttons) ===== -->
-<section class="hero" style="text-align:center; padding:60px 20px; background:linear-gradient(180deg,#ff9800,#ff5722); color:#fff;">
+<!-- ===== HERO ===== -->
+<section class="hero">
   <h1>Welcome to SM Digital Service</h1>
   <p>Affordable subscriptions, AI tools, and game top-ups in Nepal.</p>
-
   <div style="margin:20px 0;">
-    <a href="#shop" class="btn btn-primary">Shop Now</a>
+    <!-- Make sure this goes to shop.html -->
+    <a href="shop.html" class="btn btn-primary">Shop Now</a>
     <a href="https://wa.me/9779828560029" class="btn btn-whatsapp" target="_blank" rel="noopener">
       <img src="png.images/logo-whatsapp.png" alt=""> WhatsApp
     </a>
   </div>
-
-  <!-- Mascot Image Below Buttons (like TrustyHub) -->
   <div style="margin-top:25px;">
-    <img src="png.images/logo-mascots.png" 
-         alt="SM Digital Services Mascot" 
-         style="max-width:250px; width:100%; height:auto;">
+    <img src="png.images/logo-mascots.png" alt="SM Digital Services Mascot" style="max-width:250px; width:100%; height:auto;">
   </div>
 </section>
 
-<!-- ===== ORDER / CONTACT FORM ===== -->
+<!-- ===== (2) SMALL SERVICES GRID (colorful) ===== -->
+<section class="services-wrap" id="services">
+  <h2 style="margin:0 0 14px; font-size:18px; font-weight:800; text-align:center">
+    Explore Our Services
+  </h2>
+  <div class="services-grid">
+    <a href="shop.html#subscriptions" class="service-box"><span>🎵 Subscriptions</span></a>
+    <a href="shop.html#games"         class="service-box"><span>🎮 Games Top-Up</span></a>
+    <a href="shop.html#ai"            class="service-box"><span>🤖 AI Tools</span></a>
+    <a href="shop.html#smm"           class="service-box"><span>📢 SMM Services</span></a>
+    <a href="shop.html#streaming"     class="service-box"><span>📺 Streaming</span></a>
+    <a href="shop.html#education"     class="service-box"><span>🎓 Education Tools</span></a>
+  </div>
+</section>
+
+<!-- ===== (3) CATEGORY / OFFER TABS ===== -->
+<section id="category" style="padding:14px 16px;background:#0f1822;color:#fff;">
+  <div class="tabs">
+    <button id="tab-offers" class="tab-btn active">Today's Offer</button>
+    <button id="tab-shop"   class="tab-btn">Shop Now</button>
+    <button id="tab-sm"     class="tab-btn">SM Service</button>
+  </div>
+
+  <!-- TODAY'S OFFER (accordion) -->
+  <div id="offers-list" class="panel show" style="margin-top:10px;border:1px solid #25324a;border-radius:12px;background:#121e30;">
+    <div class="offer-accordion">
+      <!-- APEUni -->
+      <details class="offer">
+        <summary>
+          <span>APEUni VIP</span>
+          <span class="meta">1 Month — Rs.2150</span>
+        </summary>
+        <div class="body">
+          <ul class="ticks">
+            <li>INDIVIDUAL PLAN</li>
+            <li>ON YOUR MAIL</li>
+            <li>Unlimited AI score</li>
+            <li>Best for PTE students</li>
+          </ul>
+          <div class="howto">📦 HOW TO ORDER</div>
+          <a class="btn-wa-mini" href="https://wa.me/9779828560029?text=I%20want%20APEUni%20VIP%201%20Month%20(Rs.2150)" target="_blank" rel="noopener">
+            <img src="png.images/logo-whatsapp.png" alt=""> Message us on WhatsApp
+          </a>
+          <div class="small-note">Delivery: on your mail • Full private</div>
+        </div>
+      </details>
+
+      <!-- Spotify -->
+      <details class="offer">
+        <summary>
+          <span>Spotify Premium</span>
+          <span class="meta">12 Months — Rs.2750</span>
+        </summary>
+        <div class="body">
+          <ul class="ticks">
+            <li>INDIVIDUAL PLAN</li>
+            <li>World-wide usable</li>
+            <li>On your mail (code)</li>
+            <li>Full private access</li>
+          </ul>
+          <div class="howto">📦 HOW TO ORDER</div>
+          <a class="btn-wa-mini" href="https://wa.me/9779828560029?text=I%20want%20Spotify%2012%20Months%20(Rs.2750)" target="_blank" rel="noopener">
+            <img src="png.images/logo-whatsapp.png" alt=""> Message us on WhatsApp
+          </a>
+        </div>
+      </details>
+
+      <!-- Perplexity -->
+      <details class="offer">
+        <summary>
+          <span>Perplexity AI</span>
+          <span class="meta">1 Year — Rs.2750</span>
+        </summary>
+        <div class="body">
+          <ul class="ticks">
+            <li>Full private</li>
+            <li>On your mail</li>
+            <li>Fast, accurate search + AI</li>
+            <li>Great for students & pros</li>
+          </ul>
+          <div class="howto">📦 HOW TO ORDER</div>
+          <a class="btn-wa-mini" href="https://wa.me/9779828560029?text=I%20want%20Perplexity%201%20Year%20(Rs.2750)" target="_blank" rel="noopener">
+            <img src="png.images/logo-whatsapp.png" alt=""> Message us on WhatsApp
+          </a>
+        </div>
+      </details>
+
+      <!-- ChatGPT Plus -->
+      <details class="offer">
+        <summary>
+          <span>ChatGPT Plus</span>
+          <span class="meta">3 Months — Rs.3750</span>
+        </summary>
+        <div class="body">
+          <ul class="ticks">
+            <li>Full private</li>
+            <li>On your mail</li>
+            <li>Priority access & faster replies</li>
+            <li>Best for creators & businesses</li>
+          </ul>
+          <div class="howto">📦 HOW TO ORDER</div>
+          <a class="btn-wa-mini" href="https://wa.me/9779828560029?text=I%20want%20ChatGPT%20Plus%203%20Months%20(Rs.3750)" target="_blank" rel="noopener">
+            <img src="png.images/logo-whatsapp.png" alt=""> Message us on WhatsApp
+          </a>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <!-- SHOP NOW PANEL (links to shop.html) -->
+  <div id="shop-panel" class="panel" style="margin-top:10px;border:1px solid #25324a;border-radius:12px;background:#121e30;padding:14px;">
+    <div style="font-size:14px;opacity:.9;margin-bottom:8px">Browse all products.</div>
+    <a href="shop.html" style="display:block;padding:10px 0;border-radius:10px;background:linear-gradient(90deg,#ff7a00,#ff415f);color:#fff;text-align:center;font-weight:800">Go to Shop</a>
+  </div>
+
+  <!-- SM SERVICE (3 items for now) -->
+  <div id="sm-panel" class="panel" style="margin-top:10px;max-height:310px;overflow-y:auto;border:1px solid #25324a;border-radius:12px;background:#121e30"></div>
+</section>
+
+<!-- ===== (4) ORDER / CONTACT FORM (Formcarry) ===== -->
 <section id="contact">
   <h3 style="text-align:center;margin:18px 0">Contact Us 24/7!</h3>
   <form action="https://formcarry.com/s/sgQ-vOYUakF" method="POST" accept-charset="UTF-8" class="contact-form">
@@ -426,7 +336,7 @@
   </form>
 </section>
 
-<!-- ===== ABOUT / MISSION / OFFER / VISION ===== -->
+<!-- ===== (5) ABOUT / MISSION / OFFER / VISION ===== -->
 <section id="about">
   <div class="card">
     <span class="tag who">WHO I AM</span>
@@ -481,7 +391,7 @@
   </div>
 </section>
 
-<!-- ===== CONTACT QUICK ===== -->
+<!-- ===== QUICK CONTACT ===== -->
 <section id="quick-contact">
   <h3 style="margin:0 0 10px">Quick Contact</h3>
   <div class="icons-row">
@@ -497,23 +407,80 @@
   </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
-<footer>
-  <div><strong>SM Digital Services</strong> — © <span id="y"></span></div>
-  <div class="social">
-    <a href="https://wa.me/9779828560029">WhatsApp</a>
-    <a href="viber://chat?number=%2B9779828560029">Viber</a>
-    <a href="https://www.tiktok.com/@samirmijar.np" target="_blank">TikTok</a>
+<!-- ===== (6) SUPPORT / CONTACT CARD (GiftyBox style) ===== -->
+<section class="section-pad" id="help">
+  <div class="card-white">
+    <img class="top-img" src="png.images/mascot-help.png" alt="Help mascot">
+    <h2>Can’t find your answer?</h2>
+    <p>If you couldn’t find the information you need, please feel free to contact our support team.</p>
+    <div class="card-actions">
+      <a href="#contact" class="btn btn-primary">Contact us</a>
+      <a href="https://wa.me/9779828560029" target="_blank" rel="noopener" class="btn btn-whatsapp">
+        <img src="png.images/logo-whatsapp.png" alt=""> WhatsApp
+      </a>
+    </div>
   </div>
-</footer>
+</section>
+
+<!-- ===== NO FOOTER (removed as requested) ===== -->
 
 <script>
   // menu toggle
   document.querySelectorAll('.sm-menu-toggle').forEach(btn =>
     btn.addEventListener('click', () => document.body.classList.toggle('nav-open'))
   );
-  // year
-  document.getElementById('y').textContent = new Date().getFullYear();
+
+  // ----- Tabs toggle -----
+  const tOffer = document.getElementById('tab-offers');
+  const tShop  = document.getElementById('tab-shop');
+  const tSM    = document.getElementById('tab-sm');
+  const list   = document.getElementById('offers-list');
+  const shop   = document.getElementById('shop-panel');
+  const sm     = document.getElementById('sm-panel');
+
+  function setTab(which){
+    list.classList.remove('show'); shop.classList.remove('show'); sm.classList.remove('show');
+    tOffer.classList.remove('active'); tShop.classList.remove('active'); tSM.classList.remove('active');
+    if(which==='offers'){ list.classList.add('show'); tOffer.classList.add('active'); }
+    if(which==='shop'){   shop.classList.add('show');  tShop.classList.add('active');  }
+    if(which==='sm'){     sm.classList.add('show');    tSM.classList.add('active');    }
+  }
+  tOffer.addEventListener('click',()=>setTab('offers'));
+  tShop.addEventListener('click', ()=>setTab('shop'));
+  tSM.addEventListener('click',   ()=>setTab('sm'));
+  setTab('offers'); // default tab
+
+  // ----- One-open accordion + smooth scroll -----
+  document.querySelectorAll('.offer-accordion .offer').forEach(d=>{
+    d.addEventListener('toggle', ()=>{
+      if(d.open){
+        document.querySelectorAll('.offer-accordion .offer').forEach(o=>{ if(o!==d) o.open=false; });
+        setTimeout(()=> d.scrollIntoView({block:'start', behavior:'smooth'}), 80);
+      }
+    });
+  });
+
+  // ----- Dynamic SM Service list (3 items for now) -----
+  const smServices = [
+    { name:'Discord Nitro',     detail:'1 Month', price:'Rs. 750', link:'' },
+    { name:'Telegram Premium',  detail:'1 Month', price:'Rs. 550', link:'' },
+    { name:'YouTube Premium',   detail:'1 Month', price:'Rs. 1050', link:'' },
+    // Later add Netflix, Prime Video etc:
+    // { name:'Netflix', detail:'1 Month', price:'—', link:'' },
+    // { name:'Prime Video', detail:'1 Month', price:'—', link:'' },
+  ];
+  function renderSM(){
+    sm.innerHTML = smServices.map((s,i)=>`
+      <div style="padding:10px 12px;${i<smServices.length-1?'border-bottom:1px solid #1e2a44':''}">
+        <div style="font-weight:800">${s.name}</div>
+        <div style="font-size:12px;opacity:.85">${s.detail} — ${s.price}</div>
+        ${s.link
+          ? `<a href="${s.link}" style="display:block;margin-top:6px;padding:7px 0;border-radius:8px;background:linear-gradient(90deg,#ff7a00,#ff415f);color:#fff;text-align:center;font-size:13px;font-weight:800">View Offer</a>`
+          : `<div style="margin-top:6px;font-size:12px;opacity:.6;text-align:center;">Coming soon</div>`}
+      </div>
+    `).join('');
+  }
+  renderSM();
 </script>
 </body>
 </html>
