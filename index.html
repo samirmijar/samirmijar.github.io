@@ -180,38 +180,118 @@
   </div>
 </nav>
 
-<!-- ===== COMPACT CATEGORY / OFFERS WITH 3 TABS (dynamic SM Service) ===== -->
-<section id="category" style="padding:14px 16px;background:#0f1822;color:#fff;">
-  <!-- Tabs -->
-  <div style="display:flex;gap:8px;flex-wrap:wrap;">
-    <button id="tab-offers" style="flex:1;padding:10px;border-radius:10px;border:1px solid #2a3750;background:#152233;color:#fff;font-weight:700">Today's Offer</button>
-    <button id="tab-shop"   style="flex:1;padding:10px;border-radius:10px;border:1px solid #2a3750;background:#0f1822;color:#cbd5e1;font-weight:700">Shop Now</button>
-    <button id="tab-sm"     style="flex:1;padding:10px;border-radius:10px;border:1px solid #2a3750;background:#0f1822;color:#cbd5e1;font-weight:700">SM Service</button>
-  </div>
+/* --- Compact accordion for offers --- */
+.offer-accordion{padding:6px}
+.offer{border:1px solid #1e2a44;border-radius:12px;background:#0f172a;margin:8px 6px;overflow:hidden}
+.offer summary{
+  list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between;
+  gap:10px; padding:12px 14px; background:#111b33; color:#e6edf7; font-weight:800; border-radius:12px;
+}
+.offer summary::-webkit-details-marker{display:none}
+.offer .meta{font-weight:700; font-size:12px; opacity:.8; white-space:nowrap}
+.offer[open] summary{background:#14223f; border-bottom:1px solid #223257; border-radius:12px 12px 0 0}
 
-  <!-- TODAY'S OFFER (compact, scrollable) -->
-  <div id="offers-list" style="margin-top:10px;max-height:310px;overflow-y:auto;border:1px solid #25324a;border-radius:12px;background:#121e30">
-    <div style="padding:10px 12px;border-bottom:1px solid #1e2a44">
-      <div style="font-weight:800">APEUni VIP</div>
-      <div style="font-size:12px;opacity:.85">30 Days — Rs.2150</div>
-      <a href="order-apeuni.html" style="display:block;margin-top:6px;padding:7px 0;border-radius:8px;background:linear-gradient(90deg,#ff7a00,#ff415f);color:#fff;text-align:center;font-size:13px;font-weight:800">View Offer</a>
+.offer .body{padding:12px 14px; background:#0f182e}
+.ticks{margin:6px 0 10px 0; padding:0}
+.ticks li{
+  list-style:none; margin:6px 0; color:#cfe5ff; font-size:13px; display:flex; gap:8px; align-items:flex-start
+}
+.ticks li::before{content:"✅"; flex:0 0 auto; margin-top:1px}
+.howto{margin-top:6px; font-weight:800; color:#ffd166}
+.btn-wa-mini{
+  display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:10px;
+  background:#25D366; color:#fff; font-weight:800; text-decoration:none; box-shadow:0 6px 16px rgba(37,211,102,.3)
+}
+.btn-wa-mini img{width:18px;height:18px;object-fit:contain}
+.small-note{font-size:12px; opacity:.7; margin-top:6px}
+
+
+ <div class="offer-accordion">
+
+  <!-- APEUni -->
+  <details class="offer">
+    <summary>
+      <span>APEUni VIP</span>
+      <span class="meta">1 Month — Rs.2150</span>
+    </summary>
+    <div class="body">
+      <ul class="ticks">
+        <li>INDIVIDUAL PLAN</li>
+        <li>ON YOUR MAIL</li>
+        <li>Unlimited AI score</li>
+        <li>Best for PTE students</li>
+      </ul>
+      <div class="howto">📦 HOW TO ORDER</div>
+      <a class="btn-wa-mini" href="https://wa.me/9779828560029?text=I%20want%20to%20order%20APEUni%20VIP%201%20Month%20(Rs.2150)" target="_blank" rel="noopener">
+        <img src="png.images/logo-whatsapp.png" alt=""> Message us on WhatsApp
+      </a>
+      <div class="small-note">Delivery: on your mail • Full private</div>
     </div>
-    <div style="padding:10px 12px;border-bottom:1px solid #1e2a44">
-      <div style="font-weight:800">Spotify Premium</div>
-      <div style="font-size:12px;opacity:.85">12 Months — Rs.2750</div>
-      <a href="order-spotify.html" style="display:block;margin-top:6px;padding:7px 0;border-radius:8px;background:linear-gradient(90deg,#ff7a00,#ff415f);color:#fff;text-align:center;font-size:13px;font-weight:800">View Offer</a>
+  </details>
+
+  <!-- Spotify -->
+  <details class="offer">
+    <summary>
+      <span>Spotify Premium</span>
+      <span class="meta">12 Months — Rs.2750</span>
+    </summary>
+    <div class="body">
+      <ul class="ticks">
+        <li>INDIVIDUAL PLAN</li>
+        <li>World-wide usable</li>
+        <li>On your mail (code)</li>
+        <li>Full private access</li>
+      </ul>
+      <div class="howto">📦 HOW TO ORDER</div>
+      <a class="btn-wa-mini" href="https://wa.me/9779828560029?text=I%20want%20Spotify%2012%20Months%20(Rs.2750)" target="_blank" rel="noopener">
+        <img src="png.images/logo-whatsapp.png" alt=""> Message us on WhatsApp
+      </a>
+      <div class="small-note">Instant delivery to your email</div>
     </div>
-    <div style="padding:10px 12px;border-bottom:1px solid #1e2a44">
-      <div style="font-weight:800">Perplexity AI</div>
-      <div style="font-size:12px;opacity:.85">1 Year — Rs.2750</div>
-      <a href="order-perplexity.html" style="display:block;margin-top:6px;padding:7px 0;border-radius:8px;background:linear-gradient(90deg,#ff7a00,#ff415f);color:#fff;text-align:center;font-size:13px;font-weight:800">View Offer</a>
+  </details>
+
+  <!-- Perplexity -->
+  <details class="offer">
+    <summary>
+      <span>Perplexity AI</span>
+      <span class="meta">1 Year — Rs.2750</span>
+    </summary>
+    <div class="body">
+      <ul class="ticks">
+        <li>Full private</li>
+        <li>On your mail</li>
+        <li>Fast, accurate search + AI</li>
+        <li>Great for students & pros</li>
+      </ul>
+      <div class="howto">📦 HOW TO ORDER</div>
+      <a class="btn-wa-mini" href="https://wa.me/9779828560029?text=I%20want%20Perplexity%20AI%201%20Year%20(Rs.2750)" target="_blank" rel="noopener">
+        <img src="png.images/logo-whatsapp.png" alt=""> Message us on WhatsApp
+      </a>
     </div>
-    <div style="padding:10px 12px">
-      <div style="font-weight:800">ChatGPT Plus</div>
-      <div style="font-size:12px;opacity:.85">3 Months — Rs.3750</div>
-      <a href="order-chatgpt.html" style="display:block;margin-top:6px;padding:7px 0;border-radius:8px;background:linear-gradient(90deg,#ff7a00,#ff415f);color:#fff;text-align:center;font-size:13px;font-weight:800">View Offer</a>
+  </details>
+
+  <!-- ChatGPT Plus -->
+  <details class="offer">
+    <summary>
+      <span>ChatGPT Plus</span>
+      <span class="meta">3 Months — Rs.3750</span>
+    </summary>
+    <div class="body">
+      <ul class="ticks">
+        <li>Full private</li>
+        <li>On your mail</li>
+        <li>Priority access & faster replies</li>
+        <li>Best for creators & businesses</li>
+      </ul>
+      <div class="howto">📦 HOW TO ORDER</div>
+      <a class="btn-wa-mini" href="https://wa.me/9779828560029?text=I%20want%20ChatGPT%20Plus%203%20Months%20(Rs.3750)" target="_blank" rel="noopener">
+        <img src="png.images/logo-whatsapp.png" alt=""> Message us on WhatsApp
+      </a>
     </div>
-  </div>
+  </details>
+
+</div>
+
 
   <!-- SHOP NOW -->
   <div id="shop-panel" style="display:none;margin-top:10px;border:1px solid #25324a;border-radius:12px;background:#121e30;padding:14px;">
