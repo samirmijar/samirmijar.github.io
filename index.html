@@ -179,13 +179,16 @@
     <a href="#contact" class="secondary">Contact</a>
   </div>
 </nav>
-
+  
 /* --- Compact accordion for offers --- */
 .offer-accordion{padding:6px}
-.offer{border:1px solid #1e2a44;border-radius:12px;background:#0f172a;margin:8px 6px;overflow:hidden}
+.offer{
+  border:1px solid #1e2a44; border-radius:12px; background:#00172a;
+  margin:8px 6px; overflow:hidden
+}
 .offer summary{
   list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between;
-  gap:10px; padding:12px 14px; background:#111b33; color:#e6edf7; font-weight:800; border-radius:12px;
+  gap:10px; padding:12px 14px; background:#111b33; color:#e6edf7; font-weight:800; border-radius:12px
 }
 .offer summary::-webkit-details-marker{display:none}
 .offer .meta{font-weight:700; font-size:12px; opacity:.8; white-space:nowrap}
@@ -202,13 +205,10 @@
   display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:10px;
   background:#25D366; color:#fff; font-weight:800; text-decoration:none; box-shadow:0 6px 16px rgba(37,211,102,.3)
 }
-.btn-wa-mini img{width:18px;height:18px;object-fit:contain}
+.btn-wa-mini img{width:18px; height:18px; object-fit:contain}
 .small-note{font-size:12px; opacity:.7; margin-top:6px}
 
-
  <div class="offer-accordion">
-
-  <!-- APEUni -->
   <details class="offer">
     <summary>
       <span>APEUni VIP</span>
@@ -222,14 +222,13 @@
         <li>Best for PTE students</li>
       </ul>
       <div class="howto">📦 HOW TO ORDER</div>
-      <a class="btn-wa-mini" href="https://wa.me/9779828560029?text=I%20want%20to%20order%20APEUni%20VIP%201%20Month%20(Rs.2150)" target="_blank" rel="noopener">
+      <a class="btn-wa-mini" href="https://wa.me/9779828560029?text=I%20want%20APEUni%20VIP%201%20Month%20(Rs.2150)" target="_blank" rel="noopener">
         <img src="png.images/logo-whatsapp.png" alt=""> Message us on WhatsApp
       </a>
       <div class="small-note">Delivery: on your mail • Full private</div>
     </div>
   </details>
 
-  <!-- Spotify -->
   <details class="offer">
     <summary>
       <span>Spotify Premium</span>
@@ -246,11 +245,9 @@
       <a class="btn-wa-mini" href="https://wa.me/9779828560029?text=I%20want%20Spotify%2012%20Months%20(Rs.2750)" target="_blank" rel="noopener">
         <img src="png.images/logo-whatsapp.png" alt=""> Message us on WhatsApp
       </a>
-      <div class="small-note">Instant delivery to your email</div>
     </div>
   </details>
 
-  <!-- Perplexity -->
   <details class="offer">
     <summary>
       <span>Perplexity AI</span>
@@ -258,19 +255,15 @@
     </summary>
     <div class="body">
       <ul class="ticks">
-        <li>Full private</li>
-        <li>On your mail</li>
-        <li>Fast, accurate search + AI</li>
-        <li>Great for students & pros</li>
+        <li>Full private</li><li>On your mail</li><li>Fast, accurate search + AI</li><li>Great for students & pros</li>
       </ul>
       <div class="howto">📦 HOW TO ORDER</div>
-      <a class="btn-wa-mini" href="https://wa.me/9779828560029?text=I%20want%20Perplexity%20AI%201%20Year%20(Rs.2750)" target="_blank" rel="noopener">
+      <a class="btn-wa-mini" href="https://wa.me/9779828560029?text=I%20want%20Perplexity%201%20Year%20(Rs.2750)" target="_blank" rel="noopener">
         <img src="png.images/logo-whatsapp.png" alt=""> Message us on WhatsApp
       </a>
     </div>
   </details>
 
-  <!-- ChatGPT Plus -->
   <details class="offer">
     <summary>
       <span>ChatGPT Plus</span>
@@ -278,10 +271,7 @@
     </summary>
     <div class="body">
       <ul class="ticks">
-        <li>Full private</li>
-        <li>On your mail</li>
-        <li>Priority access & faster replies</li>
-        <li>Best for creators & businesses</li>
+        <li>Full private</li><li>On your mail</li><li>Priority access & faster replies</li><li>Best for creators & businesses</li>
       </ul>
       <div class="howto">📦 HOW TO ORDER</div>
       <a class="btn-wa-mini" href="https://wa.me/9779828560029?text=I%20want%20ChatGPT%20Plus%203%20Months%20(Rs.3750)" target="_blank" rel="noopener">
@@ -289,9 +279,17 @@
       </a>
     </div>
   </details>
-
 </div>
-
+  <script>
+document.querySelectorAll('.offer-accordion .offer').forEach(d=>{
+  d.addEventListener('toggle', ()=>{
+    if(d.open){
+      document.querySelectorAll('.offer-accordion .offer').forEach(o=>{ if(o!==d) o.open=false; });
+      setTimeout(()=> d.scrollIntoView({block:'start', behavior:'smooth'}), 80);
+    }
+  });
+});
+</script>
 
   <!-- SHOP NOW -->
   <div id="shop-panel" style="display:none;margin-top:10px;border:1px solid #25324a;border-radius:12px;background:#121e30;padding:14px;">
