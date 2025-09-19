@@ -26,6 +26,10 @@
   .submit{background:#25D366;border:none;padding:14px 16px;border-radius:12px;color:#fff;font-weight:700;cursor:pointer;width:100%;margin-top:12px}
   .footer-links{display:flex;gap:10px;justify-content:center;margin:18px 0 10px 0}
   .footer-links a{color:#b7b7ff;text-decoration:none}
+
+  /* tiny toast */
+  #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f1822;border:1px solid rgba(255,255,255,.12);color:#e9eef4;padding:10px 14px;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.28);opacity:0;transition:.25s;z-index:9999}
+  #toast.show{opacity:1}
 </style>
 </head>
 <body>
@@ -100,7 +104,7 @@
         <p class="red">Scan the QR and do the payment</p>
         <p class="red">Write your <strong>Name</strong> in remarks please</p>
         <input id="txn" type="text" placeholder="Enter Transaction ID or Remarks">
-        <button class="submit" onclick="submitNow()">Submit Now</button>
+        <button id="submitBtn" class="submit" onclick="submitNow()">Submit Now</button>
       </div>
     </div>
 
@@ -111,12 +115,15 @@
     </div>
   </div>
 
+  <!-- toast -->
+  <div id="toast"></div>
+
 <script>
   let chosen = { method:"", qr:"" };
 
   // payment buttons
   document.querySelectorAll('.pay-btn').forEach(btn=>{
-    btn.addEventListener('click', (e)=>{
+    btn.addEventListener('click', ()=>{
       document.querySelectorAll('.pay-btn').forEach(b=>b.classList.remove('active'));
       btn.classList.add('active');
 
@@ -133,7 +140,30 @@
     });
   });
 
-  function submitNow(){
+  // tiny toast
+  function toast(msg){
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(()=>t.classList.remove('show'), 3000);
+  }
+
+  // send to Formcarry
+  async function sendOrderToFormcarry(payload){
+    const endpoint = 'https://formcarry.com/s/sgQ-vOYUakF'; // your Formcarry form ID
+    const fd = new FormData();
+    // Map fields to Formcarry
+    fd.append('name',  payload.name || '—');
+    fd.append('email', payload.email);
+    fd.append('order', payload.order);
+
+    const res = await fetch(endpoint, { method:'POST', body:fd, headers:{Accept:'application/json'} });
+    if(!res.ok) throw new Error('Formcarry error');
+    return res.json();
+  }
+
+  async function submitNow(){
     const email = document.getElementById('email').value.trim();
     const pass  = document.getElementById('pass').value.trim();
     const plan  = document.getElementById('plan').value;
@@ -143,19 +173,33 @@
     if(!chosen.method){ alert('Please select a payment method.'); return; }
     if(!txn){ alert('Please enter transaction ID or remarks.'); return; }
 
-    const text = `APEUni Order
+    const orderText = `APEUni Order
 Plan: ${plan}
 Email: ${email}
 Password: ${pass}
 Payment Method: ${chosen.method}
 Transaction/Remarks: ${txn}`;
 
-    // send to WhatsApp (new tab)
-    window.open(`https://wa.me/9779828560029?text=${encodeURIComponent(text)}`, '_blank');
-    // send to Viber (opens app if installed)
-    window.open(`viber://chat?number=+9779828560029&text=${encodeURIComponent(text)}`);
+    // disable button while sending
+    const btn = document.getElementById('submitBtn');
+    const old = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Sending...';
 
-    alert('Order sent! Please attach your payment screenshot in chat if not auto-attached.');
+    try{
+      await sendOrderToFormcarry({
+        name: 'APEUni Customer',
+        email,
+        order: orderText
+      });
+      toast('✅ Order sent! We’ll contact you soon.');
+      // optionally clear tx id
+      // document.getElementById('txn').value = '';
+    }catch(e){
+      console.error(e);
+      toast('⚠️ Could not send order. Please try again.');
+    }finally{
+      btn.disabled = false; btn.textContent = old;
+    }
   }
 </script>
 </body>
