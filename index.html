@@ -77,6 +77,11 @@
   .btn-whatsapp:hover{transform:translateY(-2px)}
   @media (min-width:768px){ .hero-center h1{font-size:42px} }
 
+  /* hero buttons grid (4 buttons) */
+  .cta-grid{display:grid;grid-template-columns:1fr;gap:12px;justify-items:center}
+  .cta-grid .btn{width:min(520px,100%)}
+  @media (min-width:520px){ .cta-grid{grid-template-columns:repeat(2,1fr)} }
+
   /* sections */
   section{padding:28px 18px}
 
@@ -226,13 +231,17 @@
 <section class="hero">
   <h1>Welcome to SM Digital Service</h1>
   <p>Affordable subscriptions, AI tools, and game top-ups in Nepal.</p>
-  <div style="margin:20px 0;">
+
+  <!-- 4 buttons: Today's Offer, Shop Now, Contact Us, WhatsApp -->
+  <div class="cta-grid" style="margin:20px 0;">
+    <a href="#category" class="btn btn-soft">Today’s Offer</a>
     <a href="shop.html" class="btn btn-primary">Shop Now</a>
     <button id="open-contact" class="btn btn-soft" type="button">Contact Us</button>
     <a href="https://wa.me/9779828560029" class="btn btn-whatsapp" target="_blank" rel="noopener">
       <img src="png.images/logo-whatsapp.png" alt=""> WhatsApp
     </a>
   </div>
+
   <div style="margin-top:25px;">
     <img src="png.images/logo-mascots.png" alt="SM Digital Services Mascot" style="max-width:250px; width:100%; height:auto;">
   </div>
