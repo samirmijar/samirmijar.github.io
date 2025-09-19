@@ -79,27 +79,6 @@
 
   /* sections */
   section{padding:28px 18px}
-  .card{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); margin-bottom:16px}
-  .tag{display:inline-block; margin-bottom:8px; font-weight:800; letter-spacing:.3px; color:#0b1115; background:#fff; border-radius:999px; padding:6px 12px}
-  .tag.who{background:#ffcc00}
-  .tag.mission{background:#34c759}
-  .tag.offer{background:#0a84ff; color:#fff}
-  .tag.vision{background:#af52de; color:#fff}
-  .list{margin:10px 0 0; padding:0 0 0 18px; color:#c9d5e3}
-  .list li{margin:6px 0}
-
-  /* small social icons */
-  .icons-row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
-  .icon-btn{
-    width:36px; height:36px; border-radius:10px; background:#121e30; border:1px solid rgba(255,255,255,.08);
-    display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow)
-  }
-  .icon-btn img{width:22px; height:22px; object-fit:contain}
-
-  /* 16:9 payment logos */
-  .grid-logos{display:grid; grid-template-columns:repeat(3,1fr); gap:10px}
-  .logo-rect{background:#121e30; border:1px solid rgba(255,255,255,.08); border-radius:12px; aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow)}
-  .logo-rect img{width:90%; height:90%; object-fit:contain}
 
   /* TABS + PANELS */
   .tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
@@ -195,6 +174,29 @@
     padding:10px 14px;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.28);
     opacity:0;pointer-events:none;transition:.25s;z-index:9999
   }
+
+  /* ---- Accordion (About) ---- */
+  .accordion details{
+    background:var(--card);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:var(--radius);
+    margin:12px 0; overflow:hidden; box-shadow:var(--shadow);
+  }
+  .accordion summary{
+    list-style:none; display:flex; align-items:center; justify-content:space-between;
+    gap:10px; padding:14px 16px; background:#131f2e; color:var(--text); font-weight:800; cursor:pointer;
+  }
+  .accordion summary::-webkit-details-marker{display:none}
+  .accordion .badge{
+    display:inline-block; font-weight:800; letter-spacing:.3px; border-radius:999px; padding:6px 12px; color:#0b1115; background:#fff;
+  }
+  .accordion .badge.who{background:#ffcc00}
+  .accordion .badge.mission{background:#34c759}
+  .accordion .badge.offer{background:#0a84ff; color:#fff}
+  .accordion .badge.vision{background:#af52de; color:#fff}
+  .accordion .body{padding:14px 16px; color:#c9d5e3; background:#0f1822}
+  .accordion .list{margin:8px 0 0; padding-left:18px}
+  .accordion .list li{margin:6px 0}
 </style>
 </head>
 <body>
@@ -225,8 +227,8 @@
   <h1>Welcome to SM Digital Service</h1>
   <p>Affordable subscriptions, AI tools, and game top-ups in Nepal.</p>
   <div style="margin:20px 0;">
-    <!-- Make sure this goes to shop.html -->
     <a href="shop.html" class="btn btn-primary">Shop Now</a>
+    <button id="open-contact" class="btn btn-soft" type="button">Contact Us</button>
     <a href="https://wa.me/9779828560029" class="btn btn-whatsapp" target="_blank" rel="noopener">
       <img src="png.images/logo-whatsapp.png" alt=""> WhatsApp
     </a>
@@ -262,7 +264,6 @@
   <!-- TODAY'S OFFER (accordion) -->
   <div id="offers-list" class="panel show" style="margin-top:10px;border:1px solid #25324a;border-radius:12px;background:#121e30;">
     <div class="offer-accordion">
-      <!-- APEUni -->
       <details class="offer">
         <summary>
           <span>APEUni VIP</span>
@@ -283,7 +284,6 @@
         </div>
       </details>
 
-      <!-- Spotify -->
       <details class="offer">
         <summary>
           <span>Spotify Premium</span>
@@ -303,7 +303,6 @@
         </div>
       </details>
 
-      <!-- Perplexity -->
       <details class="offer">
         <summary>
           <span>Perplexity AI</span>
@@ -323,7 +322,6 @@
         </div>
       </details>
 
-      <!-- ChatGPT Plus -->
       <details class="offer">
         <summary>
           <span>ChatGPT Plus</span>
@@ -355,8 +353,8 @@
   <div id="sm-panel" class="panel" style="margin-top:10px;max-height:310px;overflow-y:auto;border:1px solid #25324a;border-radius:12px;background:#121e30"></div>
 </section>
 
-<!-- ===== (4) ORDER / CONTACT FORM (Formcarry) ===== -->
-<section id="contact">
+<!-- ===== (4) ORDER / CONTACT FORM (Formcarry) — hidden until button click ===== -->
+<section id="contact" style="display:none">
   <h3 style="text-align:center;margin:18px 0">Contact Us 24/7!</h3>
   <form id="orderForm" action="https://formcarry.com/s/sgQ-vOYUakF" method="POST" accept-charset="UTF-8" class="contact-form">
     <input type="text" name="name" placeholder="Your Name" required>
@@ -367,75 +365,40 @@
 </section>
 <div id="toast"></div>
 
-<!-- ===== (5) ABOUT / MISSION / OFFER / VISION ===== -->
-<section id="about">
-  <div class="card">
-    <span class="tag who">WHO I AM</span>
-    <p>I’m <strong>Samir Mijar</strong>, creator of <strong>SM Digital Service</strong>. I help Nepali users buy global digital services easily with local payments and friendly support.</p>
-  </div>
-  <div class="card">
-    <span class="tag mission">MY MISSION</span>
-    <p>Make premium digital tools <em>affordable & accessible</em> in Nepal — transparent pricing, instant delivery, and reliable after-sales help.</p>
-  </div>
-  <div class="card">
-    <span class="tag offer">WHAT I OFFER</span>
-    <ul class="list">
-      <li>APEUni VIP for PTE learners</li>
-      <li>Spotify, ChatGPT Plus, Perplexity Pro</li>
-      <li>Game top-ups (PUBG UC, Free Fire, MLBB, Roblox)</li>
-      <li>Custom requests & voucher codes</li>
-    </ul>
-  </div>
-  <div class="card">
-    <span class="tag vision">MY VISION</span>
-    <p>Build a trusted, Nepali-first digital marketplace where students, creators, and gamers get the tools they need — safely and instantly.</p>
-  </div>
-</section>
+<!-- ===== (5) ABOUT (Accordion) ===== -->
+<section id="about" class="accordion">
+  <details>
+    <summary><span class="badge who">WHO I AM</span></summary>
+    <div class="body">
+      I’m <strong>Samir Mijar</strong>, creator of <strong>SM Digital Service</strong>. I help Nepali users buy global digital services easily with local payments and friendly support.
+    </div>
+  </details>
 
-<!-- ===== SOCIAL HANDLES ===== -->
-<section>
-  <h3 style="margin:0 0 10px">Follow & Contact</h3>
-  <div class="icons-row">
-    <a class="icon-btn" href="https://facebook.com/yourpage" target="_blank" rel="noopener">
-      <img src="png.images/logo-facebook.png" alt="Facebook">
-    </a>
-    <a class="icon-btn" href="https://instagram.com/yourhandle" target="_blank" rel="noopener">
-      <img src="png.images/logo-instagram.png" alt="Instagram">
-    </a>
-    <a class="icon-btn" href="https://wa.me/9779828560029" target="_blank" rel="noopener">
-      <img src="png.images/logo-whatsapp.png" alt="WhatsApp">
-    </a>
-    <a class="icon-btn" href="https://www.tiktok.com/@samirmijar.np" target="_blank" rel="noopener">
-      <img src="png.images/logo-tiktok.png" alt="TikTok">
-    </a>
-    <a class="icon-btn" href="https://youtube.com/@yourchannel" target="_blank" rel="noopener">
-      <img src="png.images/logo-youtube.png" alt="YouTube">
-    </a>
-  </div>
-</section>
+  <details>
+    <summary><span class="badge mission">MY MISSION</span></summary>
+    <div class="body">
+      Make premium digital tools <em>affordable & accessible</em> in Nepal — transparent pricing, instant delivery, and reliable after-sales help.
+    </div>
+  </details>
 
-<!-- ===== PAYMENT METHODS (16:9) ===== -->
-<section>
-  <h3 style="margin:0 0 10px">Payment Methods Accepted</h3>
-  <div class="logos">
-    <div class="logo-rect"><img src="png.images/logo-pay.png" alt="pay"></div>
-  </div>
-</section>
+  <details>
+    <summary><span class="badge offer">WHAT I OFFER</span></summary>
+    <div class="body">
+      <ul class="list">
+        <li>APEUni VIP for PTE learners</li>
+        <li>Spotify, ChatGPT Plus, Perplexity Pro</li>
+        <li>Game top-ups (PUBG UC, Free Fire, MLBB, Roblox)</li>
+        <li>Custom requests & voucher codes</li>
+      </ul>
+    </div>
+  </details>
 
-<!-- ===== QUICK CONTACT ===== -->
-<section id="quick-contact">
-  <h3 style="margin:0 0 10px">Quick Contact</h3>
-  <div class="icons-row">
-    <a class="icon-btn" href="https://wa.me/9779828560029" target="_blank" rel="noopener">
-      <img src="png.images/logo-whatsapp.png" alt="WhatsApp">
-    </a>
-    <a class="icon-btn" href="viber://chat?number=%2B9779828560029">
-      <img src="png.images/logo-viber.png" alt="Viber">
-    </a>
-    <a class="icon-btn" href="mailto:hello@samirmijar.com.np">
-      <img src="png.images/logo-mail.png" alt="Email">
-    </a>
-  </div>
+  <details>
+    <summary><span class="badge vision">MY VISION</span></summary>
+    <div class="body">
+      Build a trusted, Nepali-first digital marketplace where students, creators, and gamers get the tools they need — safely and instantly.
+    </div>
+  </details>
 </section>
 
 <!-- ===== (6) SUPPORT / CONTACT CARD (GiftyBox style) ===== -->
@@ -472,8 +435,6 @@
     </a>
   </nav>
 </div>
-
-<!-- ===== NO FOOTER (removed) ===== -->
 
 <script>
   // menu toggle
@@ -576,6 +537,18 @@
         btn.disabled = false; btn.textContent = old;
       }
     });
+  }());
+
+  // ----- Show contact form when hero button clicked -----
+  (function(){
+    const btn = document.getElementById('open-contact');
+    const contact = document.getElementById('contact');
+    if(btn && contact){
+      btn.addEventListener('click', ()=>{
+        contact.style.display = 'block';
+        contact.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    }
   }());
 </script>
 </body>
