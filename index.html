@@ -165,6 +165,36 @@
   .card-white h2{margin:6px 0 6px;font-size:22px;font-weight:900}
   .card-white p{margin:0 0 14px;color:#334155}
   .card-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+
+  /* Floating Chat speed-dial */
+  .fab{position:fixed; right:16px; bottom:18px; z-index:9999}
+  .fab-main{
+    width:58px;height:58px;border:0;border-radius:50%;
+    background:linear-gradient(90deg,#ff7a00,#ff415f); color:#fff;
+    display:grid;place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.28);
+    cursor:pointer; transition:transform .15s ease;
+  }
+  .fab-main:active{transform:scale(.96)}
+  .fab-menu{position:absolute; right:0; bottom:70px; display:flex; flex-direction:column; gap:10px;
+    opacity:0; pointer-events:none; transform:translateY(8px) scale(.98); transform-origin:bottom right;
+    transition:opacity .18s ease, transform .18s ease;
+  }
+  .fab.open .fab-menu{opacity:1; pointer-events:auto; transform:translateY(0) scale(1)}
+  .fab-item{
+    width:48px;height:48px;border-radius:50%; display:grid;place-items:center;
+    background:#0f1822; border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 8px 18px rgba(0,0,0,.25)
+  }
+  .fab-item img{width:24px;height:24px;object-fit:contain}
+  @media (max-width:380px){ .fab{right:12px;bottom:14px} .fab-main{width:54px;height:54px} .fab-item{width:46px;height:46px} }
+
+  /* Toast (for form submit) */
+  #toast{
+    position:fixed;left:50%;bottom:24px;transform:translateX(-50%);
+    background:#0f1822;border:1px solid rgba(255,255,255,.12);color:#e9eef4;
+    padding:10px 14px;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.28);
+    opacity:0;pointer-events:none;transition:.25s;z-index:9999
+  }
 </style>
 </head>
 <body>
@@ -328,13 +358,14 @@
 <!-- ===== (4) ORDER / CONTACT FORM (Formcarry) ===== -->
 <section id="contact">
   <h3 style="text-align:center;margin:18px 0">Contact Us 24/7!</h3>
-  <form action="https://formcarry.com/s/sgQ-vOYUakF" method="POST" accept-charset="UTF-8" class="contact-form">
+  <form id="orderForm" action="https://formcarry.com/s/sgQ-vOYUakF" method="POST" accept-charset="UTF-8" class="contact-form">
     <input type="text" name="name" placeholder="Your Name" required>
     <input type="email" name="email" placeholder="Your Email" required>
     <textarea name="order" placeholder="Write your order details here" required></textarea>
     <button type="submit" class="btn btn-primary" style="width:100%;">Send message</button>
   </form>
 </section>
+<div id="toast"></div>
 
 <!-- ===== (5) ABOUT / MISSION / OFFER / VISION ===== -->
 <section id="about">
@@ -422,7 +453,27 @@
   </div>
 </section>
 
-<!-- ===== NO FOOTER (removed as requested) ===== -->
+<!-- Floating Chat Us speed-dial -->
+<div class="fab" id="chatFab" aria-label="Open chat menu">
+  <button class="fab-main" type="button" aria-haspopup="true" aria-expanded="false">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+      <path d="M21 12c0 4.418-4.03 8-9 8-1.32 0-2.57-.223-3.7-.627L3 20l.76-3.04C3.27 15.76 3 14.9 3 14c0-4.418 4.03-8 9-8s9 3.582 9 8z" fill="#fff"/>
+    </svg>
+  </button>
+  <nav class="fab-menu" aria-label="Chat channels">
+    <a class="fab-item" href="https://facebook.com/yourpage" target="_blank" rel="noopener" aria-label="Facebook">
+      <img src="png.images/logo-facebook.png" alt="">
+    </a>
+    <a class="fab-item" href="https://instagram.com/yourhandle" target="_blank" rel="noopener" aria-label="Instagram">
+      <img src="png.images/logo-instagram.png" alt="">
+    </a>
+    <a class="fab-item" href="https://wa.me/9779828560029" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <img src="png.images/logo-whatsapp.png" alt="">
+    </a>
+  </nav>
+</div>
+
+<!-- ===== NO FOOTER (removed) ===== -->
 
 <script>
   // menu toggle
@@ -465,9 +516,6 @@
     { name:'Discord Nitro',     detail:'1 Month', price:'Rs. 750', link:'' },
     { name:'Telegram Premium',  detail:'1 Month', price:'Rs. 550', link:'' },
     { name:'YouTube Premium',   detail:'1 Month', price:'Rs. 1050', link:'' },
-    // Later add Netflix, Prime Video etc:
-    // { name:'Netflix', detail:'1 Month', price:'—', link:'' },
-    // { name:'Prime Video', detail:'1 Month', price:'—', link:'' },
   ];
   function renderSM(){
     sm.innerHTML = smServices.map((s,i)=>`
@@ -481,6 +529,54 @@
     `).join('');
   }
   renderSM();
+
+  // ----- Floating Chat speed-dial -----
+  (function(){
+    const fab = document.getElementById('chatFab');
+    if(!fab) return;
+    const main = fab.querySelector('.fab-main');
+    main.addEventListener('click', ()=>{
+      fab.classList.toggle('open');
+      main.setAttribute('aria-expanded', fab.classList.contains('open'));
+    });
+    document.addEventListener('click', (e)=>{
+      if(!fab.contains(e.target)) { fab.classList.remove('open'); main.setAttribute('aria-expanded','false'); }
+    });
+    document.addEventListener('keydown', (e)=>{
+      if(e.key==='Escape'){ fab.classList.remove('open'); main.setAttribute('aria-expanded','false'); }
+    });
+  }());
+
+  // ----- Formcarry AJAX submit + toast -----
+  (function(){
+    const endpoint = 'https://formcarry.com/s/sgQ-vOYUakF';
+    const form = document.getElementById('orderForm');
+    const toast = document.getElementById('toast');
+    if(!form || !toast) return;
+
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.style.opacity = '1';
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(()=> toast.style.opacity = '0', 3500);
+    }
+
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      const old = btn.textContent;
+      btn.disabled = true; btn.textContent = 'Sending...';
+      try{
+        const res = await fetch(endpoint, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
+        if(res.ok){ form.reset(); showToast('✅ Thanks! We received your order.'); }
+        else{ showToast('⚠️ Sorry, something went wrong. Try again.'); }
+      }catch(err){
+        showToast('⚠️ Network error. Please try again.');
+      }finally{
+        btn.disabled = false; btn.textContent = old;
+      }
+    });
+  }());
 </script>
 </body>
 </html>
