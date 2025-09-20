@@ -16,75 +16,52 @@
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif}
-  a{color:inherit;text-decoration:none}
   h1,h2,h3{margin:0 0 10px}
   p{margin:0 0 12px;color:#cbd5e1}
   .wrap{max-width:980px;margin:0 auto;padding:18px}
 
-  /* -------- Hero slider -------- */
-  .slider{
-    position:relative;overflow:hidden;background:#081019
-  }
+  /* ===== Slider ===== */
+  .slider{position:relative;overflow:hidden;background:#081019}
   .slides{display:flex;transition:transform .6s ease-in-out}
-  .slide{
-    min-width:100%;aspect-ratio:2056/1079; /* fits your image size nicely */
-    display:flex;align-items:center;justify-content:center;background:#0a1421
-  }
+  .slide{min-width:100%;aspect-ratio:2056/1079;background:#0a1421}
   .slide img{width:100%;height:100%;object-fit:cover}
   .dots{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);display:flex;gap:8px}
-  .dot{
-    width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.45);border:0
-  }
+  .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.45);border:0}
   .dot.active{background:#fff}
 
-  /* -------- Card -------- */
+  /* ===== Cards / Buttons ===== */
   .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;margin:14px 0}
-
-  /* -------- Inputs -------- */
-  .row{display:grid;gap:10px}
-  .input, select{
+  .input{
     width:100%;padding:14px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);
     background:#101a29;color:var(--text);font-size:16px
   }
-  .btn{
-    display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border-radius:999px;
-    font-weight:800;border:0;cursor:pointer
-  }
+  .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border-radius:999px;
+    font-weight:800;border:0;cursor:pointer}
   .btn-primary{background:var(--btnGrad);color:#fff;box-shadow:0 8px 18px rgba(255,65,95,.32)}
   .btn-soft{background:#152233;color:#fff;border:1px solid rgba(255,255,255,.12)}
 
-  /* -------- Package grid – BIG / CLEAR -------- */
-  .pkg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-  @media (min-width:680px){ .pkg-grid{grid-template-columns:repeat(3,1fr)} }
-
+  /* ===== Package grid (3×3 look) ===== */
+  .section-title{font-weight:900;font-size:20px;margin:6px 2px 10px}
+  .pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
   .pkg{
-    background:#1b2a3d;
-    border:1px solid rgba(255,255,255,.20);
-    border-radius:16px;
-    padding:18px;
-    text-align:center;
-    display:flex;flex-direction:column;gap:8px;
-    cursor:pointer;transition:all .2s ease;
-    color:#f1f5f9;
-    box-shadow:0 6px 16px rgba(0,0,0,.35);
+    background:#1b2a3d;border:1px solid rgba(255,255,255,.20);border-radius:16px;
+    padding:16px;text-align:center;display:flex;flex-direction:column;gap:6px;
+    cursor:pointer;transition:all .2s;color:#f1f5f9;box-shadow:0 6px 16px rgba(0,0,0,.35)
   }
   .pkg:hover{transform:translateY(-4px) scale(1.02);background:#24354d;border-color:var(--cyan)}
   .pkg.active{outline:3px solid var(--cyan);background:#0f2239}
+  .pkg .name{font-size:18px;font-weight:900;color:var(--cyan);line-height:1.15}
+  .pkg .price{font-size:16px;font-weight:900;color:var(--gold)}
 
-  .pkg .name{
-    font-size:20px;line-height:1.15;
-    font-weight:900;color:var(--cyan)
+  /* ===== Pills ===== */
+  .pill{display:flex;gap:8px;flex-wrap:wrap}
+  .pill button{
+    flex:1;min-width:160px;padding:12px;border-radius:12px;border:1px solid #2a3750;
+    background:#0f1822;color:#cbd5e1;font-weight:800;cursor:pointer
   }
-  .pkg .price{
-    font-size:18px;font-weight:800;color:var(--gold)
-  }
+  .pill button.active{background:#152233;color:#fff}
 
-  /* -------- Payment methods -------- */
-  .pay-tabs{display:flex;gap:8px;flex-wrap:wrap}
-  .pay-btn{flex:1;min-width:140px;padding:12px;border-radius:12px;border:1px solid #2a3750;background:#0f1822;color:#cbd5e1;font-weight:800;cursor:pointer}
-  .pay-btn.active{background:#152233;color:#fff}
-
-  /* -------- Modal -------- */
+  /* ===== Modal base ===== */
   .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.6);z-index:9999;padding:18px}
   .modal.show{display:grid}
   .sheet{background:#0f1822;border:1px solid rgba(255,255,255,.12);border-radius:18px;max-width:560px;width:100%;box-shadow:var(--shadow)}
@@ -92,8 +69,14 @@
   .sheet .body{padding:16px}
   .x{background:transparent;border:0;color:#fff;font-size:22px;cursor:pointer}
   .qr{display:block;width:220px;max-width:60%;height:auto;margin:8px auto 6px;background:#fff;padding:8px;border-radius:12px}
+  .muted{color:#94a3b8}
+  .warning{background:#2a1220;border:1px solid #5b1935;color:#ffcbd7;padding:10px;border-radius:12px}
 
-  /* -------- Toast -------- */
+  /* Payment selector list */
+  .radio-list{display:grid;gap:10px;margin-top:10px}
+  .radio-item{display:flex;align-items:center;gap:10px;background:#0f1826;border:1px solid rgba(255,255,255,.12);padding:12px;border-radius:12px}
+  .radio-item input{width:18px;height:18px}
+
   #toast{
     position:fixed;left:50%;bottom:24px;transform:translateX(-50%);
     background:#0f1822;border:1px solid rgba(255,255,255,.12);color:#e9eef4;
@@ -101,17 +84,18 @@
     opacity:0;pointer-events:none;transition:.25s;z-index:99999
   }
 
-  /* -------- Misc -------- */
-  .muted{color:#94a3b8}
-  .warning{background:#2a1220;border:1px solid #5b1935;color:#ffcbd7;padding:10px;border-radius:12px}
+  @media (max-width:420px){
+    .pkg .name{font-size:16px}
+    .pkg .price{font-size:15px}
+  }
 </style>
 </head>
 <body>
 
-<!-- HERO SLIDER -->
+<!-- ===== HERO SLIDER ===== -->
 <section class="slider" aria-label="Promotions">
   <div class="slides" id="slides">
-    <div class="slide"><img src="png.images/logo-ffslide.png" alt="Instant top-up center — SM Digital Store"></div>
+    <div class="slide"><img src="png.images/logo-ffslide.png" alt="SM Digital Store — Instant Top-Up Center"></div>
     <div class="slide"><img src="png.images/logo-ffslide1.png" alt="Diamonds at a discount"></div>
   </div>
   <div class="dots" id="dots" aria-hidden="true">
@@ -122,54 +106,73 @@
 
 <div class="wrap">
 
-  <!-- ALERT -->
+  <!-- Alert -->
   <div class="card warning" role="alert">
-    <strong>All purchases are NON-REFUNDABLE / NON-RETURNABLE.</strong><br>
-    Please double-check your <b>UID</b> before payment. Wrong UID = no refund.
+    <strong>All purchases are NON-REFUNDABLE / NON-RETURNABLE.</strong>
+    Please double-check your <b>UID</b> before payment.
   </div>
 
-  <!-- ORDER CARD -->
+  <!-- Order -->
   <div class="card" id="order">
     <h2 style="margin-bottom:8px">Top-Up Order</h2>
 
-    <!-- UID -->
-    <div class="row" style="margin:10px 0 14px">
-      <input id="uid" class="input" type="text" inputmode="numeric" placeholder="Free Fire UID (e.g., 123456789)" />
-    </div>
+    <input id="uid" class="input" type="text" inputmode="numeric" placeholder="Free Fire UID (e.g., 123456789)" />
 
-    <!-- PACKAGES -->
-    <h3 style="margin:8px 0">2) Choose Package</h3>
-    <div class="pkg-grid" id="pkgGrid" aria-live="polite"></div>
+    <!-- Topup -->
+    <h3 class="section-title">Topup</h3>
+    <div class="pkg-grid" id="gridTopup"></div>
 
-    <!-- Payment -->
+    <!-- Membership -->
+    <h3 class="section-title">Membership</h3>
+    <div class="pkg-grid" id="gridMembership"></div>
+
+    <!-- Others -->
+    <h3 class="section-title">Others</h3>
+    <div class="pkg-grid" id="gridOthers"></div>
+
+    <!-- Payment & Buy -->
     <div class="card" style="margin-top:14px;background:#0e1828">
-      <h3>Select Payment Method</h3>
-      <div class="pay-tabs" style="margin:10px 0">
-        <button class="pay-btn active" data-pay="eSewa">eSewa</button>
-        <button class="pay-btn" data-pay="Khalti">Khalti</button>
-        <button class="pay-btn" data-pay="Bank">Bank Transfer</button>
+      <h3 style="margin-bottom:8px">Select Payment Method</h3>
+      <div class="pill">
+        <button type="button" class="pay-pill" data-pay="eSewa">eSewa</button>
+        <button type="button" class="pay-pill" data-pay="Khalti">Khalti</button>
+        <button type="button" class="pay-pill" data-pay="Bank">Bank Transfer</button>
       </div>
-      <div class="muted" id="payHint">After you click <b>Buy Now</b>, a QR will open for the selected method.</div>
+      <p class="muted" style="margin-top:8px">Tap a method, then press <b>Buy Now</b>.</p>
     </div>
 
-    <!-- Buy -->
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
-      <button id="buyBtn" class="btn btn-primary">Buy Now</button>
-      <a href="#about" class="btn btn-soft">About</a>
+      <button id="buyBtn" class="btn btn-primary" style="flex:1">Buy Now</button>
     </div>
   </div>
 
-  <!-- ABOUT -->
   <div class="card" id="about">
     <h2>About Free Fire</h2>
-    <p><b>Free Fire</b> is a fast, tactical battle-royale. Customize your character, unlock skins, and climb the ranks with friends.</p>
-    <p>Diamonds are required for skins, weapons, passes, and more. With our local payments, topping up is quick & secure for Nepali players.</p>
+    <p>Diamonds are required for skins, passes, and more. With eSewa / Khalti / Bank, topping up is quick & secure in Nepal.</p>
   </div>
 
   <p class="muted" style="text-align:center;margin:18px 0">© SM Digital Services</p>
 </div>
 
-<!-- BUY MODAL -->
+<!-- ===== Payment select modal ===== -->
+<div class="modal" id="payModal">
+  <div class="sheet">
+    <div class="head">
+      <div style="font-weight:900">Select a payment method</div>
+      <button class="x" type="button" data-close>×</button>
+    </div>
+    <div class="body">
+      <div class="radio-list">
+        <label class="radio-item"><input type="radio" name="payopt" value="Bank" checked>Bank</label>
+        <label class="radio-item"><input type="radio" name="payopt" value="Khalti">Khalti</label>
+        <label class="radio-item"><input type="radio" name="payopt" value="eSewa">eSewa</label>
+      </div>
+      <button id="confirmPay" class="btn btn-primary" style="width:100%;margin-top:12px">Choose</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== QR / submit modal ===== -->
 <div class="modal" id="buyModal" aria-hidden="true">
   <div class="sheet">
     <div class="head">
@@ -178,8 +181,11 @@
     </div>
     <div class="body">
       <div id="summary" class="muted" style="margin-bottom:12px"></div>
-      <img class="qr" id="qrImg" src="png.images/qr-esewa.png" alt="Payment QR">
-      <input id="txn" class="input" placeholder="Enter Transaction ID or Your Number" />
+      <img class="qr" id="qrImg" src="png.images/qr-bank.png" alt="Payment QR">
+      <p class="muted" style="text-align:center;margin:8px 0 12px">
+        <b>Write your name in remarks</b> — otherwise <b>no top-up and refund</b>.
+      </p>
+      <input id="txn" class="input" placeholder="Enter Transaction ID or Remarks" />
       <button class="btn btn-primary" id="submitOrder" style="width:100%;margin-top:12px">Submit Order</button>
 
       <!-- Hidden form to Formcarry -->
@@ -198,115 +204,96 @@
 <div id="toast"></div>
 
 <script>
-/* --------- Slider (auto + dots + swipe) --------- */
+/* ===== Slider ===== */
 (function(){
   const slides = document.getElementById('slides');
-  const dotsWrap = document.getElementById('dots');
-  const dots = Array.from(dotsWrap.children);
+  const dots = Array.from(document.getElementById('dots').children);
   let i = 0, n = slides.children.length, t;
-
-  function go(k){
-    i = (k+n)%n;
-    slides.style.transform = `translateX(-${i*100}%)`;
-    dots.forEach((d,idx)=> d.classList.toggle('active', idx===i));
-  }
-  function auto(){ clearInterval(t); t = setInterval(()=>go(i+1), 4000); }
+  const go = k => { i=(k+n)%n; slides.style.transform=`translateX(-${i*100}%)`; dots.forEach((d,idx)=>d.classList.toggle('active',idx===i)); }
+  const auto = ()=>{ clearInterval(t); t=setInterval(()=>go(i+1),4000); }
   dots.forEach((d,idx)=> d.addEventListener('click', ()=>{ go(idx); auto(); }));
-  // swipe
-  let startX = null;
-  slides.addEventListener('touchstart', e=>{ startX = e.touches[0].clientX; }, {passive:true});
-  slides.addEventListener('touchmove', e=>{
-    if(startX===null) return;
-    const dx = e.touches[0].clientX - startX;
-    if(Math.abs(dx)>50){ go(i + (dx<0?1:-1)); startX=null; auto(); }
-  }, {passive:true});
+  let startX=null; slides.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;},{passive:true});
+  slides.addEventListener('touchmove',e=>{ if(startX===null) return; const dx=e.touches[0].clientX-startX; if(Math.abs(dx)>50){ go(i+(dx<0?1:-1)); startX=null; auto(); } },{passive:true});
   auto();
 })();
 
-/* --------- Data: packages (BIG & CLEAR) --------- */
-const packages = [
-  {name:"25 💎",   price:"Rs. 30"},
-  {name:"50 💎",   price:"Rs. 55"},
-  {name:"115 💎",  price:"Rs. 95"},
-  {name:"240 💎",  price:"Rs. 190"},
-  {name:"355 💎",  price:"Rs. 285"},
-  {name:"480 💎",  price:"Rs. 375"},
-  {name:"610 💎",  price:"Rs. 475"},
-  {name:"850 💎",  price:"Rs. 665"},
-  {name:"1090 💎", price:"Rs. 855"},
-  {name:"1240 💎", price:"Rs. 950"},
-  {name:"1480 💎", price:"Rs. 1140"},
-  {name:"1595 💎", price:"Rs. 1235"},
-  {name:"1720 💎", price:"Rs. 1330"},
-  {name:"1960 💎", price:"Rs. 1520"},
-  {name:"2530 💎", price:"Rs. 1900"},
-  {name:"5060 💎", price:"Rs. 3800"},
-  // Specials
-  {name:"Membership — Weekly Lite", price:"Rs. 65"},
-  {name:"Membership — Weekly",      price:"Rs. 190"},
-  {name:"Membership — Monthly",     price:"Rs. 950"},
-  {name:"Level Up Pass",            price:"Rs. 540"},
-  {name:"Special Airdrop",          price:"Rs. 170"},
-  {name:"Evo Access — 3 Days",      price:"Rs. 130"},
-  {name:"Evo Access — 7 Days",      price:"Rs. 190"},
-  {name:"Evo Access — 30 Days",     price:"Rs. 400"},
-];
+/* ===== Package data by section ===== */
+const data = {
+  topup: [
+    {name:"25 💎",   price:"Rs. 30"}, {name:"50 💎",   price:"Rs. 55"}, {name:"115 💎",  price:"Rs. 95"},
+    {name:"240 💎",  price:"Rs. 190"}, {name:"355 💎",  price:"Rs. 285"}, {name:"480 💎",  price:"Rs. 375"},
+    {name:"610 💎",  price:"Rs. 475"}, {name:"850 💎",  price:"Rs. 665"}, {name:"1090 💎", price:"Rs. 855"},
+    {name:"1240 💎", price:"Rs. 950"}, {name:"1480 💎", price:"Rs. 1140"}, {name:"1595 💎", price:"Rs. 1235"},
+    {name:"1720 💎", price:"Rs. 1330"}, {name:"1960 💎", price:"Rs. 1520"}, {name:"2530 💎", price:"Rs. 1900"},
+    {name:"5060 💎", price:"Rs. 3800"}
+  ],
+  membership: [
+    {name:"Membership — Weekly Lite", price:"Rs. 65"},
+    {name:"Membership — Weekly",      price:"Rs. 190"},
+    {name:"Membership — Monthly",     price:"Rs. 950"}
+  ],
+  others: [
+    {name:"Level Up Pass",            price:"Rs. 540"},
+    {name:"Special Airdrop",          price:"Rs. 170"},
+    {name:"Evo Access — 3 Days",      price:"Rs. 130"},
+    {name:"Evo Access — 7 Days",      price:"Rs. 190"},
+    {name:"Evo Access — 30 Days",     price:"Rs. 400"}
+  ]
+};
 
-const pkgGrid = document.getElementById('pkgGrid');
+function renderGrid(el, items){
+  items.forEach(p=>{
+    const b=document.createElement('button');
+    b.type='button'; b.className='pkg';
+    b.innerHTML=`<span class="name">${p.name}</span><span class="price">${p.price}</span>`;
+    b.addEventListener('click', ()=>{
+      document.querySelectorAll('.pkg').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active'); selectedPkg=p;
+    });
+    el.appendChild(b);
+  });
+}
 let selectedPkg = null;
-packages.forEach((p)=>{
-  const el = document.createElement('button');
-  el.type = 'button';
-  el.className = 'pkg';
-  el.innerHTML = `<span class="name">${p.name}</span><span class="price">${p.price}</span>`;
-  el.addEventListener('click', ()=>{
-    document.querySelectorAll('.pkg').forEach(x=>x.classList.remove('active'));
-    el.classList.add('active');
-    selectedPkg = p;
-  });
-  pkgGrid.appendChild(el);
-});
+renderGrid(document.getElementById('gridTopup'), data.topup);
+renderGrid(document.getElementById('gridMembership'), data.membership);
+renderGrid(document.getElementById('gridOthers'), data.others);
 
-/* --------- Payment selector --------- */
-let paymentMethod = 'eSewa';
-document.querySelectorAll('.pay-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('.pay-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    paymentMethod = btn.dataset.pay;
-  });
-});
+/* ===== Payment selection ===== */
+let paymentMethod = null;
+const payModal = document.getElementById('payModal');
+const buyModal = document.getElementById('buyModal');
+const summary  = document.getElementById('summary');
+const qrImg    = document.getElementById('qrImg');
 
-/* --------- Modal helpers --------- */
-const modal = document.getElementById('buyModal');
-const qrImg = document.getElementById('qrImg');
-const summary = document.getElementById('summary');
+document.querySelectorAll('.pay-pill').forEach(p=>{
+  p.addEventListener('click', ()=>{ paymentMethod=p.dataset.pay; document.querySelectorAll('.pay-pill').forEach(x=>x.classList.remove('active')); p.classList.add('active'); });
+});
 
 function setQR(method){
-  if(method==='eSewa') qrImg.src = 'png.images/logo-esewaqr.png';
-  else if(method==='Khalti') qrImg.src = 'png.images/logo-khaltiqr.png';
-  else qrImg.src = 'png.images/logo-bankqr.png';
+  if(method==='eSewa') qrImg.src = 'png.images/qr-esewa.png';
+  else if(method==='Khalti') qrImg.src = 'png.images/qr-khalti.png';
+  else qrImg.src = 'png.images/qr-bank.png';
 }
-function openModal(){ modal.classList.add('show'); modal.setAttribute('aria-hidden','false'); }
-function closeModal(){ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); }
-modal.querySelectorAll('[data-close]').forEach(b=> b.addEventListener('click', closeModal));
-modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
 
-/* --------- Toast --------- */
+function open(el){ el.classList.add('show'); el.setAttribute('aria-hidden','false'); }
+function close(el){ el.classList.remove('show'); el.setAttribute('aria-hidden','true'); }
+document.querySelectorAll('[data-close]').forEach(b=> b.addEventListener('click', e=> close(b.closest('.modal'))));
+document.querySelectorAll('.modal').forEach(m=> m.addEventListener('click', e=>{ if(e.target===m) close(m); }));
+
+/* ===== Toast ===== */
 const toast = document.getElementById('toast');
-function showToast(msg){
-  toast.textContent = msg;
-  toast.style.opacity = '1';
-  clearTimeout(showToast._t);
-  showToast._t = setTimeout(()=> toast.style.opacity = '0', 3500);
-}
+function showToast(msg){ toast.textContent = msg; toast.style.opacity='1'; clearTimeout(showToast._t); showToast._t=setTimeout(()=>toast.style.opacity='0',3200); }
 
-/* --------- Buy flow --------- */
+/* ===== Buy flow ===== */
 document.getElementById('buyBtn').addEventListener('click', ()=>{
   const uid = document.getElementById('uid').value.trim();
-  if(!uid){ showToast('Please enter your Free Fire UID.'); return; }
-  if(!selectedPkg){ showToast('Please select a package.'); return; }
-
+  if(!uid) return showToast('Please enter your Free Fire UID.');
+  if(!selectedPkg) return showToast('Please select a package.');
+  if(!paymentMethod){  // show choose modal first
+    open(payModal);
+    return;
+  }
+  // proceed
   setQR(paymentMethod);
   summary.innerHTML = `
     <div><b>Selected Package:</b> ${selectedPkg.name}</div>
@@ -314,14 +301,23 @@ document.getElementById('buyBtn').addEventListener('click', ()=>{
     <div><b>Free Fire UID:</b> ${uid}</div>
     <div><b>Payment Method:</b> ${paymentMethod}</div>
   `;
-  openModal();
+  open(buyModal);
 });
 
-/* --------- Submit order to Formcarry --------- */
+// confirm from pay modal then open QR
+document.getElementById('confirmPay').addEventListener('click', ()=>{
+  const sel = document.querySelector('input[name="payopt"]:checked')?.value || 'Bank';
+  paymentMethod = sel;
+  document.querySelectorAll('.pay-pill').forEach(x=> x.classList.toggle('active', x.dataset.pay===sel));
+  close(payModal);
+  document.getElementById('buyBtn').click(); // continue flow
+});
+
+/* ===== Submit to Formcarry ===== */
 document.getElementById('submitOrder').addEventListener('click', async ()=>{
   const uid = document.getElementById('uid').value.trim();
   const txn = document.getElementById('txn').value.trim();
-  if(!txn){ showToast('Enter your Transaction ID or phone number.'); return; }
+  if(!txn) return showToast('Enter Transaction ID or Remarks.');
 
   const form = document.getElementById('orderForm');
   form.elements['uid'].value = uid;
@@ -331,18 +327,10 @@ document.getElementById('submitOrder').addEventListener('click', async ()=>{
   form.elements['transaction'].value = txn;
 
   try{
-    const fd = new FormData(form);
-    const res = await fetch(form.action, { method:'POST', body:fd, headers:{'Accept':'application/json'} });
-    if(res.ok){
-      showToast('✅ Order submitted! We will verify and top-up shortly.');
-      closeModal();
-      document.getElementById('txn').value = '';
-    }else{
-      showToast('⚠️ Submission failed. Please try again.');
-    }
-  }catch(e){
-    showToast('⚠️ Network error. Try again.');
-  }
+    const res = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
+    if(res.ok){ showToast('✅ Order submitted!'); close(buyModal); document.getElementById('txn').value=''; }
+    else{ showToast('⚠️ Submission failed. Try again.'); }
+  }catch{ showToast('⚠️ Network error.'); }
 });
 </script>
 </body>
