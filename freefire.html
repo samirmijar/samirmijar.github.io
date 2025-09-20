@@ -12,6 +12,7 @@
     --text:#e9eef4; --muted:#b9c6d3; --accent1:#ff7a00; --accent2:#ff415f;
     --radius:16px; --shadow:0 10px 28px rgba(0,0,0,.35);
     --btnGrad:linear-gradient(90deg,var(--accent1),var(--accent2));
+    --cyan:#4fc3ff; --gold:#ffd369;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif}
@@ -20,35 +21,30 @@
   p{margin:0 0 12px;color:#cbd5e1}
   .wrap{max-width:980px;margin:0 auto;padding:18px}
 
-  /* ================= Slider ================= */
+  /* -------- Hero slider -------- */
   .slider{
-    width:100%;max-height:320px;overflow:hidden;border-radius:14px;
-    box-shadow:0 8px 24px rgba(0,0,0,.4);margin:12px auto 6px;position:relative
+    position:relative;overflow:hidden;background:#081019
   }
-  .slides{display:flex;width:200%;transition:transform .8s ease}
-  .slides img{width:100%;height:100%;object-fit:cover;display:block}
-  .dots{position:absolute;bottom:10px;left:0;right:0;text-align:center}
-  .dot{display:inline-block;width:10px;height:10px;margin:0 4px;border-radius:50%;
-       background:rgba(255,255,255,.6);transition:.25s}
-  .dot.active{background:#ff415f}
-
-  /* Hero (kept short) */
-  .hero{
-    background:linear-gradient(180deg,#ff9800,#ff5722);
-    color:#fff;text-align:center;padding:22px 18px 16px;border-radius:14px;
-    box-shadow:var(--shadow);margin:10px 0
+  .slides{display:flex;transition:transform .6s ease-in-out}
+  .slide{
+    min-width:100%;aspect-ratio:2056/1079; /* fits your image size nicely */
+    display:flex;align-items:center;justify-content:center;background:#0a1421
   }
-  .hero h1{font-size:24px}
-  @media (min-width:720px){ .hero h1{font-size:32px} }
+  .slide img{width:100%;height:100%;object-fit:cover}
+  .dots{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);display:flex;gap:8px}
+  .dot{
+    width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.45);border:0
+  }
+  .dot.active{background:#fff}
 
-  /* Card */
+  /* -------- Card -------- */
   .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;margin:14px 0}
 
-  /* Inputs */
+  /* -------- Inputs -------- */
   .row{display:grid;gap:10px}
   .input, select{
     width:100%;padding:14px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);
-    background:#101a29;color:var(--text);font-size:15px
+    background:#101a29;color:var(--text);font-size:16px
   }
   .btn{
     display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border-radius:999px;
@@ -57,27 +53,38 @@
   .btn-primary{background:var(--btnGrad);color:#fff;box-shadow:0 8px 18px rgba(255,65,95,.32)}
   .btn-soft{background:#152233;color:#fff;border:1px solid rgba(255,255,255,.12)}
 
-  /* ============== Package grid (3 columns always) ============== */
-  .pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-  .pkg{
-    background:#111c2c;border:1px solid rgba(255,255,255,.1);border-radius:12px;
-    padding:10px 8px;text-align:center;cursor:pointer;transition:.15s
-  }
-  .pkg:hover{transform:translateY(-2px)}
-  .pkg .name{font-weight:800;font-size:13px}
-  .pkg .price{font-size:12px;color:#a7d0ff}
-  .pkg.active{outline:2px solid #3aa0ff;background:#0f1b2b}
-  /* make the list visually clearer / colorful */
-  .pkg:nth-child(3n+1){background:#0f1b2b}
-  .pkg:nth-child(3n+2){background:#101a2f}
-  .pkg:nth-child(3n+3){background:#0f2032}
+  /* -------- Package grid – BIG / CLEAR -------- */
+  .pkg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  @media (min-width:680px){ .pkg-grid{grid-template-columns:repeat(3,1fr)} }
 
-  /* Payment methods */
+  .pkg{
+    background:#1b2a3d;
+    border:1px solid rgba(255,255,255,.20);
+    border-radius:16px;
+    padding:18px;
+    text-align:center;
+    display:flex;flex-direction:column;gap:8px;
+    cursor:pointer;transition:all .2s ease;
+    color:#f1f5f9;
+    box-shadow:0 6px 16px rgba(0,0,0,.35);
+  }
+  .pkg:hover{transform:translateY(-4px) scale(1.02);background:#24354d;border-color:var(--cyan)}
+  .pkg.active{outline:3px solid var(--cyan);background:#0f2239}
+
+  .pkg .name{
+    font-size:20px;line-height:1.15;
+    font-weight:900;color:var(--cyan)
+  }
+  .pkg .price{
+    font-size:18px;font-weight:800;color:var(--gold)
+  }
+
+  /* -------- Payment methods -------- */
   .pay-tabs{display:flex;gap:8px;flex-wrap:wrap}
-  .pay-btn{flex:1;min-width:140px;padding:10px;border-radius:12px;border:1px solid #2a3750;background:#0f1822;color:#cbd5e1;font-weight:800;cursor:pointer}
+  .pay-btn{flex:1;min-width:140px;padding:12px;border-radius:12px;border:1px solid #2a3750;background:#0f1822;color:#cbd5e1;font-weight:800;cursor:pointer}
   .pay-btn.active{background:#152233;color:#fff}
 
-  /* Modal */
+  /* -------- Modal -------- */
   .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.6);z-index:9999;padding:18px}
   .modal.show{display:grid}
   .sheet{background:#0f1822;border:1px solid rgba(255,255,255,.12);border-radius:18px;max-width:560px;width:100%;box-shadow:var(--shadow)}
@@ -86,7 +93,7 @@
   .x{background:transparent;border:0;color:#fff;font-size:22px;cursor:pointer}
   .qr{display:block;width:220px;max-width:60%;height:auto;margin:8px auto 6px;background:#fff;padding:8px;border-radius:12px}
 
-  /* Toast */
+  /* -------- Toast -------- */
   #toast{
     position:fixed;left:50%;bottom:24px;transform:translateX(-50%);
     background:#0f1822;border:1px solid rgba(255,255,255,.12);color:#e9eef4;
@@ -94,29 +101,22 @@
     opacity:0;pointer-events:none;transition:.25s;z-index:99999
   }
 
+  /* -------- Misc -------- */
   .muted{color:#94a3b8}
   .warning{background:#2a1220;border:1px solid #5b1935;color:#ffcbd7;padding:10px;border-radius:12px}
 </style>
 </head>
 <body>
 
-<!-- ================== TOP SLIDER ================== -->
-<div class="slider">
-  <div class="slides">
-    <img src="png.images/logo-ffslide.png" alt="Free Fire Banner 1">
-    <img src="png.images/logo-ffslide1.png" alt="Free Fire Banner 2">
+<!-- HERO SLIDER -->
+<section class="slider" aria-label="Promotions">
+  <div class="slides" id="slides">
+    <div class="slide"><img src="png.images/logo-ffslide.png" alt="Instant top-up center — SM Digital Store"></div>
+    <div class="slide"><img src="png.images/logo-ffslide1.png" alt="Diamonds at a discount"></div>
   </div>
-  <div class="dots">
-    <span class="dot active"></span>
-    <span class="dot"></span>
-  </div>
-</div>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="wrap">
-    <h1>Free Fire (Nepal) — ⚡ Instant Top-Up</h1>
-    <p>Secure diamonds & memberships via eSewa, Khalti, or Bank — delivered in minutes.</p>
+  <div class="dots" id="dots" aria-hidden="true">
+    <button class="dot active"></button>
+    <button class="dot"></button>
   </div>
 </section>
 
@@ -155,7 +155,7 @@
     <!-- Buy -->
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
       <button id="buyBtn" class="btn btn-primary">Buy Now</button>
-      <a href="#about" class="btn btn-soft">How it works</a>
+      <a href="#about" class="btn btn-soft">About</a>
     </div>
   </div>
 
@@ -181,6 +181,16 @@
       <img class="qr" id="qrImg" src="png.images/qr-esewa.png" alt="Payment QR">
       <input id="txn" class="input" placeholder="Enter Transaction ID or Your Number" />
       <button class="btn btn-primary" id="submitOrder" style="width:100%;margin-top:12px">Submit Order</button>
+
+      <!-- Hidden form to Formcarry -->
+      <form id="orderForm" action="https://formcarry.com/s/sgQ-vOYUakF" method="POST" style="display:none">
+        <input name="game" value="Free Fire">
+        <input name="uid">
+        <input name="package">
+        <input name="price">
+        <input name="payment_method">
+        <input name="transaction">
+      </form>
     </div>
   </div>
 </div>
@@ -188,18 +198,32 @@
 <div id="toast"></div>
 
 <script>
-/* ---------- Slider ---------- */
-let slideIndex = 0;
-const slideWrap = document.querySelector('.slides');
-const dots = document.querySelectorAll('.dot');
-function showSlide(i){
-  slideIndex = i;
-  slideWrap.style.transform = `translateX(-${i*100}%)`;
-  dots.forEach((d,idx)=> d.classList.toggle('active', idx===i));
-}
-setInterval(()=>{ slideIndex = (slideIndex+1)%dots.length; showSlide(slideIndex); }, 5000);
+/* --------- Slider (auto + dots + swipe) --------- */
+(function(){
+  const slides = document.getElementById('slides');
+  const dotsWrap = document.getElementById('dots');
+  const dots = Array.from(dotsWrap.children);
+  let i = 0, n = slides.children.length, t;
 
-/* ---------- Data: packages ---------- */
+  function go(k){
+    i = (k+n)%n;
+    slides.style.transform = `translateX(-${i*100}%)`;
+    dots.forEach((d,idx)=> d.classList.toggle('active', idx===i));
+  }
+  function auto(){ clearInterval(t); t = setInterval(()=>go(i+1), 4000); }
+  dots.forEach((d,idx)=> d.addEventListener('click', ()=>{ go(idx); auto(); }));
+  // swipe
+  let startX = null;
+  slides.addEventListener('touchstart', e=>{ startX = e.touches[0].clientX; }, {passive:true});
+  slides.addEventListener('touchmove', e=>{
+    if(startX===null) return;
+    const dx = e.touches[0].clientX - startX;
+    if(Math.abs(dx)>50){ go(i + (dx<0?1:-1)); startX=null; auto(); }
+  }, {passive:true});
+  auto();
+})();
+
+/* --------- Data: packages (BIG & CLEAR) --------- */
 const packages = [
   {name:"25 💎",   price:"Rs. 30"},
   {name:"50 💎",   price:"Rs. 55"},
@@ -234,7 +258,7 @@ packages.forEach((p)=>{
   const el = document.createElement('button');
   el.type = 'button';
   el.className = 'pkg';
-  el.innerHTML = `<div class="name">${p.name}</div><div class="price">${p.price}</div>`;
+  el.innerHTML = `<span class="name">${p.name}</span><span class="price">${p.price}</span>`;
   el.addEventListener('click', ()=>{
     document.querySelectorAll('.pkg').forEach(x=>x.classList.remove('active'));
     el.classList.add('active');
@@ -243,7 +267,7 @@ packages.forEach((p)=>{
   pkgGrid.appendChild(el);
 });
 
-/* ---------- Payment selector ---------- */
+/* --------- Payment selector --------- */
 let paymentMethod = 'eSewa';
 document.querySelectorAll('.pay-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
@@ -253,7 +277,7 @@ document.querySelectorAll('.pay-btn').forEach(btn=>{
   });
 });
 
-/* ---------- Modal helpers ---------- */
+/* --------- Modal helpers --------- */
 const modal = document.getElementById('buyModal');
 const qrImg = document.getElementById('qrImg');
 const summary = document.getElementById('summary');
@@ -263,12 +287,12 @@ function setQR(method){
   else if(method==='Khalti') qrImg.src = 'png.images/qr-khalti.png';
   else qrImg.src = 'png.images/qr-bank.png';
 }
-function openModal(){ modal.classList.add('show'); }
-function closeModal(){ modal.classList.remove('show'); }
+function openModal(){ modal.classList.add('show'); modal.setAttribute('aria-hidden','false'); }
+function closeModal(){ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); }
 modal.querySelectorAll('[data-close]').forEach(b=> b.addEventListener('click', closeModal));
 modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
 
-/* ---------- Toast ---------- */
+/* --------- Toast --------- */
 const toast = document.getElementById('toast');
 function showToast(msg){
   toast.textContent = msg;
@@ -277,7 +301,7 @@ function showToast(msg){
   showToast._t = setTimeout(()=> toast.style.opacity = '0', 3500);
 }
 
-/* ---------- Buy flow ---------- */
+/* --------- Buy flow --------- */
 document.getElementById('buyBtn').addEventListener('click', ()=>{
   const uid = document.getElementById('uid').value.trim();
   if(!uid){ showToast('Please enter your Free Fire UID.'); return; }
@@ -293,26 +317,26 @@ document.getElementById('buyBtn').addEventListener('click', ()=>{
   openModal();
 });
 
-/* ---------- Submit order to Formcarry ---------- */
+/* --------- Submit order to Formcarry --------- */
 document.getElementById('submitOrder').addEventListener('click', async ()=>{
   const uid = document.getElementById('uid').value.trim();
   const txn = document.getElementById('txn').value.trim();
   if(!txn){ showToast('Enter your Transaction ID or phone number.'); return; }
 
-  // hidden form (on the fly)
-  const form = new FormData();
-  form.append('game','Free Fire');
-  form.append('uid', uid);
-  form.append('package', selectedPkg.name);
-  form.append('price', selectedPkg.price);
-  form.append('payment_method', paymentMethod);
-  form.append('transaction', txn);
+  const form = document.getElementById('orderForm');
+  form.elements['uid'].value = uid;
+  form.elements['package'].value = selectedPkg.name;
+  form.elements['price'].value = selectedPkg.price;
+  form.elements['payment_method'].value = paymentMethod;
+  form.elements['transaction'].value = txn;
 
   try{
-    const res = await fetch('https://formcarry.com/s/sgQ-vOYUakF', { method:'POST', body:form, headers:{'Accept':'application/json'} });
+    const fd = new FormData(form);
+    const res = await fetch(form.action, { method:'POST', body:fd, headers:{'Accept':'application/json'} });
     if(res.ok){
       showToast('✅ Order submitted! We will verify and top-up shortly.');
-      closeModal(); document.getElementById('txn').value = '';
+      closeModal();
+      document.getElementById('txn').value = '';
     }else{
       showToast('⚠️ Submission failed. Please try again.');
     }
