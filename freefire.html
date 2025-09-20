@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Free Fire (Nepal) • Instant Diamond Top-Up</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#0b1115" />
+<style>
+  :root{
+    --bg:#0b1115; --card:#0f1822; --soft:#152233;
+    --text:#e9eef4; --muted:#b9c6d3; --accent1:#ff7a00; --accent2:#ff415f;
+    --radius:16px; --shadow:0 10px 28px rgba(0,0,0,.35);
+    --btnGrad:linear-gradient(90deg,var(--accent1),var(--accent2));
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{margin:0 0 10px}
+  p{margin:0 0 12px;color:#cbd5e1}
+  .wrap{max-width:980px;margin:0 auto;padding:18px}
+
+  /* Top hero */
+  .hero{
+    background:linear-gradient(180deg,#ff9800,#ff5722);
+    color:#fff; text-align:center; padding:38px 18px 26px;
+  }
+  .hero h1{font-size:28px}
+  .hero p{color:#fff; opacity:.95}
+  @media (min-width:720px){ .hero h1{font-size:36px} }
+
+  /* Card */
+  .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;margin:14px 0}
+
+  /* Inputs */
+  .row{display:grid;gap:10px}
+  .input, select{
+    width:100%;padding:14px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);
+    background:#101a29;color:var(--text);font-size:15px
+  }
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border-radius:999px;
+    font-weight:800;border:0;cursor:pointer
+  }
+  .btn-primary{background:var(--btnGrad);color:#fff;box-shadow:0 8px 18px rgba(255,65,95,.32)}
+  .btn-soft{background:#152233;color:#fff;border:1px solid rgba(255,255,255,.12)}
+
+  /* Package grid */
+  .pkg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  @media (min-width:680px){ .pkg-grid{grid-template-columns:repeat(3,1fr)} }
+  .pkg{
+    background:#111c2c;border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:12px;
+    display:flex;flex-direction:column;gap:4px;cursor:pointer;transition:.15s
+  }
+  .pkg:hover{transform:translateY(-2px)}
+  .pkg .name{font-weight:800}
+  .pkg .price{color:#a7d0ff}
+  .pkg.active{outline:2px solid #3aa0ff;background:#0f1b2b}
+
+  /* Payment methods */
+  .pay-tabs{display:flex;gap:8px;flex-wrap:wrap}
+  .pay-btn{flex:1;min-width:140px;padding:10px;border-radius:12px;border:1px solid #2a3750;background:#0f1822;color:#cbd5e1;font-weight:800;cursor:pointer}
+  .pay-btn.active{background:#152233;color:#fff}
+
+  /* Modal */
+  .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.6);z-index:9999;padding:18px}
+  .modal.show{display:grid}
+  .sheet{background:#0f1822;border:1px solid rgba(255,255,255,.12);border-radius:18px;max-width:560px;width:100%;box-shadow:var(--shadow)}
+  .sheet .head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .sheet .body{padding:16px}
+  .x{background:transparent;border:0;color:#fff;font-size:22px;cursor:pointer}
+  .qr{display:block;width:220px;max-width:60%;height:auto;margin:8px auto 6px; background:#fff; padding:8px; border-radius:12px}
+
+  /* Toast */
+  #toast{
+    position:fixed;left:50%;bottom:24px;transform:translateX(-50%);
+    background:#0f1822;border:1px solid rgba(255,255,255,.12);color:#e9eef4;
+    padding:10px 14px;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.28);
+    opacity:0;pointer-events:none;transition:.25s;z-index:99999
+  }
+
+  /* Footer-ish info area */
+  .muted{color:#94a3b8}
+  .warning{background:#2a1220;border:1px solid #5b1935;color:#ffcbd7;padding:10px;border-radius:12px}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <h1>Free Fire (Nepal) — ⚡ Instant Top-Up</h1>
+    <p>Secure diamonds & memberships via eSewa, Khalti, or Bank — delivered in minutes.</p>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- ALERT -->
+  <div class="card warning" role="alert">
+    <strong>All purchases are NON-REFUNDABLE / NON-RETURNABLE.</strong><br>
+    Please double-check your <b>UID</b> before payment. Wrong UID = no refund.
+  </div>
+
+  <!-- ORDER CARD -->
+  <div class="card" id="order">
+    <h2 style="margin-bottom:8px">Top-Up Order</h2>
+
+    <!-- UID -->
+    <div class="row" style="margin:10px 0 14px">
+      <input id="uid" class="input" type="text" inputmode="numeric" placeholder="Free Fire UID (e.g., 123456789)" />
+    </div>
+
+    <!-- PACKAGES -->
+    <h3 style="margin:8px 0">2) Choose Package</h3>
+    <div class="pkg-grid" id="pkgGrid" aria-live="polite"></div>
+
+    <!-- Payment -->
+    <div class="card" style="margin-top:14px;background:#0e1828">
+      <h3>Select Payment Method</h3>
+      <div class="pay-tabs" style="margin:10px 0">
+        <button class="pay-btn active" data-pay="eSewa">eSewa</button>
+        <button class="pay-btn" data-pay="Khalti">Khalti</button>
+        <button class="pay-btn" data-pay="Bank">Bank Transfer</button>
+      </div>
+      <div class="muted" id="payHint">After you click <b>Buy Now</b>, a QR will open for the selected method.</div>
+    </div>
+
+    <!-- Buy -->
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
+      <button id="buyBtn" class="btn btn-primary">Buy Now</button>
+      <a href="#needhelp" class="btn btn-soft">Need help?</a>
+    </div>
+  </div>
+
+  <!-- ABOUT & INFO -->
+  <div class="card" id="about">
+    <h2>About Free Fire</h2>
+    <p><b>Free Fire</b> is a fast, tactical battle-royale. Customize your character, unlock skins, and climb the ranks with friends.</p>
+    <p>Diamonds are required for skins, weapons, passes, and more. With our local payments, topping up is quick & secure for Nepali players.</p>
+    <h3 style="margin-top:12px">Why choose us?</h3>
+    <ul class="muted">
+      <li>⚡ <b>Instant delivery</b> after payment</li>
+      <li>💸 <b>Affordable pricing</b></li>
+      <li>🔒 <b>Secure payments</b> via eSewa, Khalti, Bank</li>
+      <li>🎟️ Supports Weekly/Monthly memberships</li>
+    </ul>
+    <h3>How to top up</h3>
+    <ol class="muted" style="padding-left:18px">
+      <li>Enter your <b>Free Fire UID</b>.</li>
+      <li>Select a diamond package or membership.</li>
+      <li>Choose a payment method (eSewa / Khalti / Bank).</li>
+      <li>Pay via QR & submit your transaction details.</li>
+      <li>Diamonds/membership are delivered instantly.</li>
+    </ol>
+    <h3>Find your UID</h3>
+    <p>Open Free Fire → tap your profile icon → your UID is shown under your in-game name.</p>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="card" id="needhelp">
+    <h2>Need Help? Contact Us 24/7!</h2>
+    <form id="helpForm" action="https://formcarry.com/s/sgQ-vOYUakF" method="POST">
+      <div class="row" style="margin-top:10px">
+        <input class="input" type="text" name="name" placeholder="Your Name" required>
+        <input class="input" type="email" name="email" placeholder="Your Email" required>
+        <textarea class="input" name="message" placeholder="Your Message" rows="4" required></textarea>
+      </div>
+      <button class="btn btn-primary" type="submit" style="margin-top:8px">Send Message</button>
+    </form>
+  </div>
+
+  <p class="muted" style="text-align:center;margin:18px 0">© SM Digital Services</p>
+</div>
+
+<!-- BUY MODAL -->
+<div class="modal" id="buyModal" aria-hidden="true">
+  <div class="sheet">
+    <div class="head">
+      <div style="font-weight:900">Complete Your Purchase</div>
+      <button class="x" type="button" aria-label="Close" data-close>×</button>
+    </div>
+    <div class="body">
+      <div id="summary" class="muted" style="margin-bottom:12px"></div>
+
+      <img class="qr" id="qrImg" src="png.images/qr-esewa.png" alt="Payment QR">
+
+      <p class="muted" style="text-align:center;margin:6px 0 12px">
+        Scan the QR & do payment. Write your <b>name</b> in remarks (if possible).
+      </p>
+
+      <input id="txn" class="input" placeholder="Enter Transaction ID or Your Number" />
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+        <button class="btn btn-primary" id="submitOrder">Submit Order</button>
+        <button class="btn btn-soft" type="button" data-close>Close</button>
+      </div>
+
+      <!-- Hidden form to Formcarry -->
+      <form id="orderForm" action="https://formcarry.com/s/sgQ-vOYUakF" method="POST" style="display:none">
+        <input name="game" value="Free Fire">
+        <input name="uid">
+        <input name="package">
+        <input name="price">
+        <input name="payment_method">
+        <input name="transaction">
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+/* --------- Data: packages --------- */
+const packages = [
+  {name:"115 💎",   price:"Rs. 95"},
+  {name:"240 💎",   price:"Rs. 190"},
+  {name:"355 💎",   price:"Rs. 285"},
+  {name:"480 💎",   price:"Rs. 375"},
+  {name:"610 💎",   price:"Rs. 475"},
+  {name:"850 💎",   price:"Rs. 665"},
+  {name:"1090 💎",  price:"Rs. 855"},
+  {name:"1240 💎",  price:"Rs. 950"},
+  {name:"1480 💎",  price:"Rs. 1140"},
+  {name:"1595 💎",  price:"Rs. 1235"},
+  {name:"1720 💎",  price:"Rs. 1330"},
+  {name:"1960 💎",  price:"Rs. 1520"},
+  {name:"2530 💎",  price:"Rs. 1900"},
+  {name:"5060 💎",  price:"Rs. 3800"},
+  // Specials
+  {name:"Membership — Monthly", price:"Rs. 950"},
+  {name:"Membership — Weekly",  price:"Rs. 190"},
+  {name:"Membership — Weekly Lite", price:"Rs. 65"},
+  {name:"Level Up Pass", price:"Rs. 540"},
+  {name:"Special Airdrop", price:"Rs. 170"},
+  {name:"Evo Access — 3 Days", price:"Rs. 130"},
+  {name:"Evo Access — 7 Days", price:"Rs. 190"},
+  {name:"Evo Access — 30 Days", price:"Rs. 400"},
+];
+
+const pkgGrid = document.getElementById('pkgGrid');
+let selectedPkg = null;
+packages.forEach((p, i)=>{
+  const el = document.createElement('button');
+  el.type = 'button';
+  el.className = 'pkg';
+  el.innerHTML = `<span class="name">${p.name}</span><span class="price">${p.price}</span>`;
+  el.addEventListener('click', ()=>{
+    document.querySelectorAll('.pkg').forEach(x=>x.classList.remove('active'));
+    el.classList.add('active');
+    selectedPkg = p;
+  });
+  pkgGrid.appendChild(el);
+});
+
+/* --------- Payment selector --------- */
+let paymentMethod = 'eSewa';
+document.querySelectorAll('.pay-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.pay-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    paymentMethod = btn.dataset.pay;
+  });
+});
+
+/* --------- Modal helpers --------- */
+const modal = document.getElementById('buyModal');
+const qrImg = document.getElementById('qrImg');
+const summary = document.getElementById('summary');
+
+function setQR(method){
+  if(method==='eSewa') qrImg.src = 'png.images/qr-esewa.png';
+  else if(method==='Khalti') qrImg.src = 'png.images/qr-khalti.png';
+  else qrImg.src = 'png.images/qr-bank.png';
+}
+
+function openModal(){
+  modal.classList.add('show');
+  modal.setAttribute('aria-hidden','false');
+}
+function closeModal(){
+  modal.classList.remove('show');
+  modal.setAttribute('aria-hidden','true');
+}
+modal.querySelectorAll('[data-close]').forEach(b=> b.addEventListener('click', closeModal));
+modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+
+/* --------- Toast --------- */
+const toast = document.getElementById('toast');
+function showToast(msg){
+  toast.textContent = msg;
+  toast.style.opacity = '1';
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(()=> toast.style.opacity = '0', 3500);
+}
+
+/* --------- Buy flow --------- */
+document.getElementById('buyBtn').addEventListener('click', ()=>{
+  const uid = document.getElementById('uid').value.trim();
+  if(!uid){ showToast('Please enter your Free Fire UID.'); return; }
+  if(!selectedPkg){ showToast('Please select a package.'); return; }
+
+  setQR(paymentMethod);
+  summary.innerHTML = `
+    <div><b>Selected Package:</b> ${selectedPkg.name}</div>
+    <div><b>Price:</b> ${selectedPkg.price}</div>
+    <div><b>Free Fire UID:</b> ${uid}</div>
+    <div><b>Payment Method:</b> ${paymentMethod}</div>
+  `;
+  openModal();
+});
+
+/* --------- Submit order to Formcarry --------- */
+document.getElementById('submitOrder').addEventListener('click', async ()=>{
+  const uid = document.getElementById('uid').value.trim();
+  const txn = document.getElementById('txn').value.trim();
+  if(!txn){ showToast('Enter your Transaction ID or phone number.'); return; }
+
+  const form = document.getElementById('orderForm');
+  form.elements['uid'].value = uid;
+  form.elements['package'].value = selectedPkg.name;
+  form.elements['price'].value = selectedPkg.price;
+  form.elements['payment_method'].value = paymentMethod;
+  form.elements['transaction'].value = txn;
+
+  try{
+    const fd = new FormData(form);
+    const res = await fetch(form.action, { method:'POST', body:fd, headers:{'Accept':'application/json'} });
+    if(res.ok){
+      showToast('✅ Order submitted! We will verify and top-up shortly.');
+      closeModal();
+      document.getElementById('txn').value = '';
+    }else{
+      showToast('⚠️ Submission failed. Please try again.');
+    }
+  }catch(e){
+    showToast('⚠️ Network error. Try again.');
+  }
+});
+
+/* --------- Help form (Formcarry) --------- */
+document.getElementById('helpForm').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button[type="submit"]');
+  const old = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Sending...';
+  try{
+    const res = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
+    if(res.ok){ form.reset(); showToast('✅ Message sent!'); }
+    else{ showToast('⚠️ Could not send.'); }
+  }catch(err){ showToast('⚠️ Network error.'); }
+  finally{ btn.disabled = false; btn.textContent = old; }
+});
+</script>
+</body>
+</html>
