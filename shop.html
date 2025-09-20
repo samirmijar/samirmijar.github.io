@@ -45,9 +45,11 @@
     .thumb img{width:80%;height:80%;object-fit:contain}
     .name{font-size:14px;font-weight:800;margin:2px 0}
     .meta{font-size:12px;color:var(--muted);min-height:28px;margin-bottom:6px}
-    .price{font-weight:900;margin-bottom:6px}
-    .btn{padding:7px 10px;font-size:13px;border-radius:8px;text-decoration:none;
-      background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff;font-weight:700;display:inline-block;margin-top:auto}
+    .price{font-weight:900;margin-bottom:8px}
+    .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
+    .btn{flex:1;padding:7px 10px;font-size:13px;border-radius:8px;text-decoration:none;border:0;cursor:pointer}
+    .btn-primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff;font-weight:800}
+    .btn-soft{background:#182233;color:#fff;border:1px solid var(--line);font-weight:700}
 
     h2{margin:16px 0 8px;font-size:18px;font-weight:800}
 
@@ -57,6 +59,25 @@
     .wa-fab img{width:28px;height:28px}
 
     .note{margin:8px 0 14px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#0f1822;color:#cfe2ff}
+
+    /* Quick Order modal */
+    .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.6);z-index:9999;padding:18px}
+    .modal.show{display:grid}
+    .sheet{background:#0f1822;border:1px solid rgba(255,255,255,.12);border-radius:18px;max-width:560px;width:100%}
+    .sheet .head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.08)}
+    .sheet .body{padding:16px}
+    .x{background:transparent;border:0;color:#fff;font-size:22px;cursor:pointer}
+    .input, select, textarea{
+      width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.12);
+      background:#101a29;color:#e9eef4;margin:6px 0
+    }
+    .note-sm{font-size:13px;color:#9fb0c6}
+    #toast{
+      position:fixed;left:50%;bottom:24px;transform:translateX(-50%);
+      background:#0f1822;border:1px solid rgba(255,255,255,.12);color:#e9eef4;
+      padding:10px 14px;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.28);
+      opacity:0;pointer-events:none;transition:.25s;z-index:99999
+    }
   </style>
 </head>
 <body>
@@ -84,267 +105,394 @@
       <div class="tab" data-cat="smm">SMM Services</div>
     </div>
 
-    <!-- PRODUCTS (all kept + new ones added) -->
+    <!-- PRODUCTS -->
     <div id="grid" class="grid">
 
-      <!-- ========= TOP UP (ALL kept + TikTok/Chamet/Poppo added) ========= -->
-      <div class="card topup" data-name="Free Fire diamonds">
+      <!-- ========= TOP UP ========= -->
+      <div class="card topup" data-name="Free Fire diamonds" data-price="From Rs. 65">
         <div class="thumb"><img src="/png.images/logo-freefire.png" alt="Free Fire"></div>
         <div class="name">Free Fire Diamonds</div>
-        <div class="meta">Tap to message</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=Free%20Fire%20Diamonds%20top-up%20request">Order</a>
+        <div class="meta">UID top-up • Instant</div>
+        <div class="price">From Rs. 65</div>
+        <div class="row">
+          <a class="btn btn-soft" href="freefire.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="Free Fire Diamonds" data-category="Top Up" data-price="From Rs. 65">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card topup" data-name="PUBG Mobile UC">
+      <div class="card topup" data-name="PUBG Mobile UC" data-price="From Rs. 120">
         <div class="thumb"><img src="/png.images/logo-pubg.png" alt="PUBG"></div>
         <div class="name">PUBG Mobile UC</div>
-        <div class="meta">Tap to message</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=PUBG%20Mobile%20UC%20top-up%20request">Order</a>
+        <div class="meta">UID top-up • Instant</div>
+        <div class="price">From Rs. 120</div>
+        <div class="row">
+          <a class="btn btn-soft" href="pubg.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="PUBG Mobile UC" data-category="Top Up" data-price="From Rs. 120">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card topup" data-name="Mobile Legends MLBB diamonds">
+      <div class="card topup" data-name="Mobile Legends MLBB diamonds" data-price="From Rs. 80">
         <div class="thumb"><img src="/png.images/logo-mlbb.png" alt="MLBB"></div>
         <div class="name">Mobile Legends (MLBB)</div>
-        <div class="meta">Tap to message</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=MLBB%20Diamonds%20top-up%20request">Order</a>
+        <div class="meta">UID top-up • Instant</div>
+        <div class="price">From Rs. 80</div>
+        <div class="row">
+          <a class="btn btn-soft" href="mlbb.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="MLBB Diamonds" data-category="Top Up" data-price="From Rs. 80">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card topup" data-name="Clash of Clans gems gold pass">
+      <div class="card topup" data-name="Clash of Clans gems gold pass" data-price="—">
         <div class="thumb"><img src="/png.images/logo-coc.png" alt="Clash of Clans"></div>
         <div class="name">Clash of Clans</div>
         <div class="meta">Gems / Gold Pass</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=Clash%20of%20Clans%20Gems%20or%20Gold%20Pass%20top-up%20request">Order</a>
+        <div class="row">
+          <a class="btn btn-soft" href="clashofclans.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="Clash of Clans" data-category="Top Up" data-price="">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card topup" data-name="eFootball coins">
+      <div class="card topup" data-name="eFootball coins" data-price="—">
         <div class="thumb"><img src="/png.images/logo-efootball.png" alt="eFootball"></div>
         <div class="name">eFootball</div>
-        <div class="meta">Tap to message</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=eFootball%20Coins%20top-up%20request">Order</a>
+        <div class="meta">Coins • Instant</div>
+        <div class="row">
+          <a class="btn btn-soft" href="efootball.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="eFootball Coins" data-category="Top Up" data-price="">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card topup" data-name="Roblox Robux">
+      <div class="card topup" data-name="Roblox Robux" data-price="—">
         <div class="thumb"><img src="/png.images/logo-roblox.png" alt="Roblox"></div>
         <div class="name">Roblox Robux</div>
-        <div class="meta">Tap to message</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=Roblox%20Robux%20top-up%20request">Order</a>
+        <div class="meta">Top-up / Code</div>
+        <div class="row">
+          <a class="btn btn-soft" href="roblox.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="Roblox Robux" data-category="Top Up" data-price="">Quick Order</button>
+        </div>
       </div>
 
-      <!-- NEW ones you asked to add -->
-      <div class="card topup" data-name="TikTok Coins">
+      <div class="card topup" data-name="TikTok Coins" data-price="—">
         <div class="thumb"><img src="/png.images/logo-tiktok.png" alt="TikTok"></div>
         <div class="name">TikTok Coins</div>
-        <div class="meta">Tap to message</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=TikTok%20Coins%20top-up%20request">Order</a>
+        <div class="meta">Live gifts • Instant</div>
+        <div class="row">
+          <a class="btn btn-soft" href="tiktok.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="TikTok Coins" data-category="Top Up" data-price="">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card topup" data-name="Chamet Coins">
+      <div class="card topup" data-name="Chamet Coins" data-price="—">
         <div class="thumb"><img src="/png.images/logo-chamet.png" alt="Chamet"></div>
         <div class="name">Chamet Coins</div>
-        <div class="meta">Tap to message</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=Chamet%20Coins%20top-up%20request">Order</a>
+        <div class="meta">Instant</div>
+        <div class="row">
+          <a class="btn btn-soft" href="chamet.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="Chamet Coins" data-category="Top Up" data-price="">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card topup" data-name="Poppo Coins">
+      <div class="card topup" data-name="Poppo Coins" data-price="—">
         <div class="thumb"><img src="/png.images/logo-poppo.png" alt="Poppo"></div>
         <div class="name">Poppo Coins</div>
-        <div class="meta">Tap to message</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=Poppo%20Coins%20top-up%20request">Order</a>
+        <div class="meta">Instant</div>
+        <div class="row">
+          <a class="btn btn-soft" href="poppo.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="Poppo Coins" data-category="Top Up" data-price="">Quick Order</button>
+        </div>
       </div>
 
-      <!-- ========= SUBSCRIPTION (all kept) ========= -->
-      <div class="card subs" data-name="APEUni VIP PTE">
-        <a href="/apeuni.html" aria-label="APEUni VIP" style="text-decoration:none;color:inherit">
-          <div class="thumb"><img src="/png.images/logo-apeuni.png" alt="APEUni VIP"></div>
-          <div class="name">APEUni VIP</div>
-          <div class="meta">PTE learning • AI practice</div>
-          <div class="price">From NPR 2200</div>
-        </a>
-        <a class="btn" href="https://wa.me/9779828560029?text=I'm%20interested%20in%20APEUni%20VIP">Order</a>
+      <!-- ========= SUBSCRIPTION ========= -->
+      <div class="card subs" data-name="APEUni VIP PTE" data-price="From NPR 2200">
+        <div class="thumb"><img src="/png.images/logo-apeuni.png" alt="APEUni VIP"></div>
+        <div class="name">APEUni VIP</div>
+        <div class="meta">PTE learning • AI practice</div>
+        <div class="price">From NPR 2200</div>
+        <div class="row">
+          <a class="btn btn-soft" href="apeuni.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="APEUni VIP" data-category="Subscription" data-price="From NPR 2200">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card subs" data-name="ChatGPT 5 Plus gpt plus">
+      <div class="card subs" data-name="ChatGPT Plus" data-price="Rs. 3750 (3M)">
         <div class="thumb"><img src="/png.images/logo-chatgpt.png" alt="ChatGPT Plus"></div>
-        <div class="name">ChatGPT 5 Plus</div>
-        <div class="meta">On your email • Full private • 1 mo / 3 mo</div>
-        <div class="price">From NPR 2750</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=I%20want%20ChatGPT%205%20Plus%20(1%20month%20NPR%202750%20or%203%20months%20NPR%203750).%20Deliver%20to%20my%20email.">Order</a>
-      </div>
-
-      <div class="card subs" data-name="Perplexity Pro AI">
-        <div class="thumb"><img src="/png.images/logo-perplexity.png" alt="Perplexity Pro"></div>
-        <div class="name">Perplexity Pro (12 mo)</div>
+        <div class="name">ChatGPT Plus</div>
         <div class="meta">On your email • Full private</div>
-        <div class="price">NPR 2750</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=Perplexity%20Pro%2012%20months%20(full%20private)%20to%20my%20email.">Order</a>
+        <div class="price">3M — Rs. 3750</div>
+        <div class="row">
+          <a class="btn btn-soft" href="chatgpt.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="ChatGPT Plus" data-category="Subscription" data-price="3M — Rs. 3750">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card subs" data-name="Spotify 12 months code individual indian server">
+      <div class="card subs" data-name="Perplexity Pro AI" data-price="Rs. 2750 (1Y)">
+        <div class="thumb"><img src="/png.images/logo-perplexity.png" alt="Perplexity Pro"></div>
+        <div class="name">Perplexity Pro (1Y)</div>
+        <div class="meta">On your email • Full private</div>
+        <div class="price">Rs. 2750</div>
+        <div class="row">
+          <a class="btn btn-soft" href="perplexity.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="Perplexity Pro (1Y)" data-category="Subscription" data-price="Rs. 2750">Quick Order</button>
+        </div>
+      </div>
+
+      <div class="card subs" data-name="Spotify 12 months code" data-price="Rs. 2750">
         <div class="thumb"><img src="/png.images/logo-spotify.png" alt="Spotify"></div>
-        <div class="name">Spotify (12 mo)</div>
-        <div class="meta">Indian server • Individual • Code by email</div>
-        <div class="price">NPR 2750</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=Spotify%2012%20months%20(Indian%20server%2C%20Individual)%20—%20send%20code%20to%20my%20email.">Order</a>
+        <div class="name">Spotify (12M Code)</div>
+        <div class="meta">Indian server • Individual</div>
+        <div class="price">Rs. 2750</div>
+        <div class="row">
+          <a class="btn btn-soft" href="spotify.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="Spotify 12M (Code)" data-category="Subscription" data-price="Rs. 2750">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card subs" data-name="CapCut Pro capcut 1 month 12 month">
+      <div class="card subs" data-name="CapCut Pro" data-price="From Rs. 2150">
         <div class="thumb"><img src="/png.images/logo-capcut.png" alt="CapCut Pro"></div>
-        <div class="name">CapCut Pro (1 / 12 mo)</div>
-        <div class="meta">1 mo — NPR 2150 • 12 mo — NPR 11500</div>
-        <div class="price">From NPR 2150</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=CapCut%20Pro%20—%20please%20specify%201%20month%20or%2012%20months.">Order</a>
+        <div class="name">CapCut Pro</div>
+        <div class="meta">1M / 12M</div>
+        <div class="price">From Rs. 2150</div>
+        <div class="row">
+          <a class="btn btn-soft" href="capcut.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="CapCut Pro" data-category="Subscription" data-price="From Rs. 2150">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card subs" data-name="Netflix Premium">
+      <div class="card subs" data-name="Netflix Premium" data-price="">
         <div class="thumb"><img src="/png.images/logo-netflix.png" alt="Netflix"></div>
         <div class="name">Netflix Premium</div>
-        <div class="meta">Private plan • On your email</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=Netflix%20Premium%20subscription">Order</a>
+        <div class="meta">Private plan • Email delivery</div>
+        <div class="row">
+          <a class="btn btn-soft" href="netflix.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="Netflix Premium" data-category="Subscription" data-price="">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card subs" data-name="Prime Video Amazon">
+      <div class="card subs" data-name="Prime Video Amazon" data-price="">
         <div class="thumb"><img src="/png.images/logo-prime.png" alt="Prime Video"></div>
         <div class="name">Prime Video</div>
         <div class="meta">Private • Email delivery</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=Prime%20Video%20subscription">Order</a>
+        <div class="row">
+          <a class="btn btn-soft" href="primevideo.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="Prime Video" data-category="Subscription" data-price="">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card subs" data-name="YouTube Premium">
+      <div class="card subs" data-name="YouTube Premium" data-price="">
         <div class="thumb"><img src="/png.images/logo-youtube-premium.png" alt="YouTube Premium"></div>
         <div class="name">YouTube Premium</div>
         <div class="meta">Ad-free • Background play</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=YouTube%20Premium%20subscription">Order</a>
+        <div class="row">
+          <a class="btn btn-soft" href="youtube.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="YouTube Premium" data-category="Subscription" data-price="">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card subs" data-name="PicsArt Pro">
+      <div class="card subs" data-name="PicsArt Pro" data-price="">
         <div class="thumb"><img src="/png.images/logo-picsart.png" alt="PicsArt"></div>
         <div class="name">PicsArt Pro</div>
         <div class="meta">Editing suite • Pro tools</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=PicsArt%20Pro%20subscription">Order</a>
+        <div class="row">
+          <a class="btn btn-soft" href="picsart.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="PicsArt Pro" data-category="Subscription" data-price="">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card subs" data-name="Surfshark VPN">
+      <div class="card subs" data-name="Surfshark VPN" data-price="">
         <div class="thumb"><img src="/png.images/logo-surfshark.png" alt="Surfshark VPN"></div>
         <div class="name">Surfshark VPN</div>
         <div class="meta">Unlimited devices</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=Surfshark%20VPN%20subscription">Order</a>
+        <div class="row">
+          <a class="btn btn-soft" href="surfshark.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="Surfshark VPN" data-category="Subscription" data-price="">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card subs" data-name="Canva Pro">
+      <div class="card subs" data-name="Canva Pro" data-price="">
         <div class="thumb"><img src="/png.images/logo-canva.png" alt="Canva Pro"></div>
         <div class="name">Canva Pro</div>
         <div class="meta">Design tools • Pro assets</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=Canva%20Pro%20subscription">Order</a>
+        <div class="row">
+          <a class="btn btn-soft" href="canva.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="Canva Pro" data-category="Subscription" data-price="">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card subs" data-name="Duolingo Super Pro">
+      <div class="card subs" data-name="Duolingo Super Pro" data-price="">
         <div class="thumb"><img src="/png.images/logo-duolingo.png" alt="Duolingo Super"></div>
         <div class="name">Duolingo Super</div>
         <div class="meta">Faster learning • Super plan</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=Duolingo%20Super%20Pro">Order</a>
+        <div class="row">
+          <a class="btn btn-soft" href="duolingo.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="Duolingo Super" data-category="Subscription" data-price="">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card subs" data-name="Google One Gemini">
+      <div class="card subs" data-name="Google One + Gemini" data-price="">
         <div class="thumb"><img src="/png.images/logo-google-one.png" alt="Google One"></div>
         <div class="name">Google One + Gemini</div>
         <div class="meta">Cloud + AI perks</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=Google%20One%20+%20Gemini%20subscription">Order</a>
+        <div class="row">
+          <a class="btn btn-soft" href="googleone.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="Google One + Gemini" data-category="Subscription" data-price="">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card subs" data-name="ElevenLabs 11labs">
+      <div class="card subs" data-name="ElevenLabs" data-price="">
         <div class="thumb"><img src="/png.images/logo-elevenlabs.png" alt="ElevenLabs"></div>
         <div class="name">ElevenLabs</div>
         <div class="meta">AI Voice • Studio</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=ElevenLabs%20subscription">Order</a>
+        <div class="row">
+          <a class="btn btn-soft" href="elevenlabs.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="ElevenLabs" data-category="Subscription" data-price="">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card subs" data-name="Discord Nitro">
+      <div class="card subs" data-name="Discord Nitro" data-price="">
         <div class="thumb"><img src="/png.images/logo-discord.png" alt="Discord Nitro"></div>
         <div class="name">Discord Nitro</div>
         <div class="meta">On your email • Full private</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=Discord%20Nitro%20subscription%20request">Order</a>
+        <div class="row">
+          <a class="btn btn-soft" href="discord.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="Discord Nitro" data-category="Subscription" data-price="">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card subs" data-name="Telegram Premium">
+      <div class="card subs" data-name="Telegram Premium" data-price="">
         <div class="thumb"><img src="/png.images/logo-telegram.png" alt="Telegram Premium"></div>
         <div class="name">Telegram Premium</div>
-        <div class="meta">On your account • Fast activation</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=Telegram%20Premium%20subscription%20request">Order</a>
+        <div class="meta">Fast activation</div>
+        <div class="row">
+          <a class="btn btn-soft" href="telegram.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="Telegram Premium" data-category="Subscription" data-price="">Quick Order</button>
+        </div>
       </div>
 
-      <!-- ========= GIFT CARD & VOUCHERS (all kept) ========= -->
-      <div class="card gift" data-name="UNIPIN BD gift card">
+      <!-- ========= GIFT CARD & VOUCHERS ========= -->
+      <div class="card gift" data-name="UNIPIN BD gift card" data-price="">
         <div class="thumb"><img src="/png.images/logo-unipin.png" alt="UNIPIN"></div>
         <div class="name">UNIPIN BD</div>
         <div class="meta">Gift card</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=UNIPIN%20BD%20gift%20card%20request">Order</a>
+        <div class="row">
+          <a class="btn btn-soft" href="unipin.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="UNIPIN BD Gift Card" data-category="Gift Card" data-price="">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card gift" data-name="iTunes USA gift card">
+      <div class="card gift" data-name="iTunes USA gift card" data-price="">
         <div class="thumb"><img src="/png.images/logo-itunes.png" alt="iTunes USA"></div>
         <div class="name">iTunes USA</div>
         <div class="meta">Gift card</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=iTunes%20USA%20gift%20card%20request">Order</a>
+        <div class="row">
+          <a class="btn btn-soft" href="itunes.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="iTunes USA Gift Card" data-category="Gift Card" data-price="">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card gift" data-name="Garena MY Shell">
+      <div class="card gift" data-name="Garena MY Shell" data-price="">
         <div class="thumb"><img src="/png.images/logo-garena-shell.png" alt="Garena Shell"></div>
         <div class="name">Garena MY Shell</div>
         <div class="meta">Malaysia</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=Garena%20MY%20Shell%20voucher%20request">Order</a>
+        <div class="row">
+          <a class="btn btn-soft" href="garena-shell.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="Garena MY Shell" data-category="Gift Card" data-price="">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card gift" data-name="Xbox gift card">
+      <div class="card gift" data-name="Xbox gift card" data-price="">
         <div class="thumb"><img src="/png.images/logo-xbox.png" alt="Xbox"></div>
         <div class="name">Xbox</div>
         <div class="meta">Gift card / Live</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=Xbox%20gift%20card%20request">Order</a>
+        <div class="row">
+          <a class="btn btn-soft" href="xbox.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="Xbox Gift Card" data-category="Gift Card" data-price="">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card gift" data-name="Nintendo eShop card">
+      <div class="card gift" data-name="Nintendo eShop card" data-price="">
         <div class="thumb"><img src="/png.images/logo-nintendo.png" alt="Nintendo eShop"></div>
         <div class="name">Nintendo eShop</div>
         <div class="meta">Gift card</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=Nintendo%20eShop%20card%20request">Order</a>
+        <div class="row">
+          <a class="btn btn-soft" href="nintendo.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="Nintendo eShop Card" data-category="Gift Card" data-price="">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card gift" data-name="PlayStation PSN">
+      <div class="card gift" data-name="PlayStation PSN" data-price="">
         <div class="thumb"><img src="/png.images/logo-ps.png" alt="PlayStation"></div>
         <div class="name">PlayStation (PSN)</div>
         <div class="meta">Wallet / Plus</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=PlayStation%20(PSN)%20gift%20card%20request">Order</a>
+        <div class="row">
+          <a class="btn btn-soft" href="psn.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="PlayStation (PSN)" data-category="Gift Card" data-price="">Quick Order</button>
+        </div>
       </div>
 
-      <!-- ========= SMM SERVICES (kept) ========= -->
-      <div class="card smm" data-name="Instagram followers">
+      <!-- ========= SMM SERVICES ========= -->
+      <div class="card smm" data-name="Instagram followers" data-price="">
         <div class="thumb"><img src="/png.images/logo-instagram.png" alt="Instagram"></div>
         <div class="name">Instagram Followers</div>
         <div class="meta">SMM service</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=Instagram%20followers%20service">Message</a>
+        <div class="row">
+          <a class="btn btn-soft" href="smm-instagram.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="Instagram Followers" data-category="SMM Services" data-price="">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card smm" data-name="Facebook page likes">
+      <div class="card smm" data-name="Facebook page likes" data-price="">
         <div class="thumb"><img src="/png.images/logo-facebook.png" alt="Facebook"></div>
         <div class="name">Facebook Page Likes</div>
         <div class="meta">SMM service</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=Facebook%20page%20likes%20service">Message</a>
+        <div class="row">
+          <a class="btn btn-soft" href="smm-facebook.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="Facebook Page Likes" data-category="SMM Services" data-price="">Quick Order</button>
+        </div>
       </div>
 
-      <div class="card smm" data-name="TikTok followers">
+      <div class="card smm" data-name="TikTok followers" data-price="">
         <div class="thumb"><img src="/png.images/logo-tiktok.png" alt="TikTok"></div>
         <div class="name">TikTok Followers</div>
         <div class="meta">SMM service</div>
-        <a class="btn" href="https://wa.me/9779828560029?text=TikTok%20followers%20service">Message</a>
+        <div class="row">
+          <a class="btn btn-soft" href="smm-tiktok.html">Details</a>
+          <button class="btn btn-primary" data-order data-product="TikTok Followers" data-category="SMM Services" data-price="">Quick Order</button>
+        </div>
       </div>
     </div>
 
     <div class="note">Any game/app purchase available — if you don’t see it here, just tap the WhatsApp button and tell us what you need.</div>
   </div>
 
-  <!-- Floating WhatsApp live chat -->
+  <!-- Floating WhatsApp chat -->
   <a class="wa-fab" href="https://wa.me/9779828560029" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
     <img src="/png.images/logo-whatsapp.png" alt="">
   </a>
+
+  <!-- Quick Order Modal (Formcarry) -->
+  <div class="modal" id="orderModal" aria-hidden="true">
+    <div class="sheet">
+      <div class="head">
+        <div style="font-weight:900">Quick Order</div>
+        <button class="x" type="button" data-close>×</button>
+      </div>
+      <div class="body">
+        <div id="qoSummary" class="note-sm"></div>
+        <form id="qoForm" action="https://formcarry.com/s/sgQ-vOYUakF" method="POST">
+          <input type="hidden" name="product">
+          <input type="hidden" name="category">
+          <input type="hidden" name="price">
+          <input class="input" type="text" name="name" placeholder="Your Name" required>
+          <input class="input" type="email" name="email" placeholder="Your Email" required>
+          <textarea class="input" name="order" rows="3" placeholder="Extra details (UID / plan / notes)"></textarea>
+          <button class="btn btn-primary" type="submit" style="width:100%">Send Order</button>
+        </form>
+        <p class="note-sm" style="margin-top:8px">Want a guided form? Tap the <b>Details</b> button on the product.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
 
 <script>
   // Tabs: show only selected category (default: topup)
@@ -379,6 +527,52 @@
       c.style.display = (matchCat && matchText) ? 'flex' : 'none';
     });
     if(!q) show(active);
+  });
+
+  // ---------- Quick Order modal ----------
+  const modal = document.getElementById('orderModal');
+  const qoForm = document.getElementById('qoForm');
+  const qoSummary = document.getElementById('qoSummary');
+  const toast = document.getElementById('toast');
+
+  function openModal(){ modal.classList.add('show'); modal.setAttribute('aria-hidden','false'); }
+  function closeModal(){ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); }
+  modal.querySelector('[data-close]').addEventListener('click', closeModal);
+  modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.style.opacity = '1';
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(()=> toast.style.opacity = '0', 3200);
+  }
+
+  // attach to all "Quick Order" buttons
+  document.querySelectorAll('[data-order]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const product  = btn.dataset.product || btn.closest('.card')?.querySelector('.name')?.textContent?.trim() || 'Product';
+      const category = btn.dataset.category || 'Shop';
+      const price    = btn.dataset.price || btn.closest('.card')?.dataset?.price || '';
+      qoSummary.innerHTML = `<b>Product:</b> ${product} • <b>Category:</b> ${category}${price?` • <b>Price:</b> ${price}`:''}`;
+      qoForm.product.value  = product;
+      qoForm.category.value = category;
+      qoForm.price.value    = price;
+      openModal();
+    });
+  });
+
+  // Formcarry AJAX submit
+  qoForm.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const btn = qoForm.querySelector('button[type="submit"]');
+    const old = btn.textContent; btn.disabled = true; btn.textContent = 'Sending...';
+    try{
+      const res = await fetch(qoForm.action, { method:'POST', body:new FormData(qoForm), headers:{'Accept':'application/json'} });
+      if(res.ok){ qoForm.reset(); showToast('✅ Order sent! We will reply soon.'); closeModal(); }
+      else{ showToast('⚠️ Could not send. Try again.'); }
+    }catch(err){ showToast('⚠️ Network error.'); }
+    finally{ btn.disabled = false; btn.textContent = old; }
   });
 </script>
 </body>
