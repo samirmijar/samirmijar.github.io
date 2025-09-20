@@ -20,14 +20,26 @@
   p{margin:0 0 12px;color:#cbd5e1}
   .wrap{max-width:980px;margin:0 auto;padding:18px}
 
-  /* Top hero */
+  /* ================= Slider ================= */
+  .slider{
+    width:100%;max-height:320px;overflow:hidden;border-radius:14px;
+    box-shadow:0 8px 24px rgba(0,0,0,.4);margin:12px auto 6px;position:relative
+  }
+  .slides{display:flex;width:200%;transition:transform .8s ease}
+  .slides img{width:100%;height:100%;object-fit:cover;display:block}
+  .dots{position:absolute;bottom:10px;left:0;right:0;text-align:center}
+  .dot{display:inline-block;width:10px;height:10px;margin:0 4px;border-radius:50%;
+       background:rgba(255,255,255,.6);transition:.25s}
+  .dot.active{background:#ff415f}
+
+  /* Hero (kept short) */
   .hero{
     background:linear-gradient(180deg,#ff9800,#ff5722);
-    color:#fff; text-align:center; padding:38px 18px 26px;
+    color:#fff;text-align:center;padding:22px 18px 16px;border-radius:14px;
+    box-shadow:var(--shadow);margin:10px 0
   }
-  .hero h1{font-size:28px}
-  .hero p{color:#fff; opacity:.95}
-  @media (min-width:720px){ .hero h1{font-size:36px} }
+  .hero h1{font-size:24px}
+  @media (min-width:720px){ .hero h1{font-size:32px} }
 
   /* Card */
   .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;margin:14px 0}
@@ -45,17 +57,20 @@
   .btn-primary{background:var(--btnGrad);color:#fff;box-shadow:0 8px 18px rgba(255,65,95,.32)}
   .btn-soft{background:#152233;color:#fff;border:1px solid rgba(255,255,255,.12)}
 
-  /* Package grid */
-  .pkg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-  @media (min-width:680px){ .pkg-grid{grid-template-columns:repeat(3,1fr)} }
+  /* ============== Package grid (3 columns always) ============== */
+  .pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
   .pkg{
-    background:#111c2c;border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:12px;
-    display:flex;flex-direction:column;gap:4px;cursor:pointer;transition:.15s
+    background:#111c2c;border:1px solid rgba(255,255,255,.1);border-radius:12px;
+    padding:10px 8px;text-align:center;cursor:pointer;transition:.15s
   }
   .pkg:hover{transform:translateY(-2px)}
-  .pkg .name{font-weight:800}
-  .pkg .price{color:#a7d0ff}
+  .pkg .name{font-weight:800;font-size:13px}
+  .pkg .price{font-size:12px;color:#a7d0ff}
   .pkg.active{outline:2px solid #3aa0ff;background:#0f1b2b}
+  /* make the list visually clearer / colorful */
+  .pkg:nth-child(3n+1){background:#0f1b2b}
+  .pkg:nth-child(3n+2){background:#101a2f}
+  .pkg:nth-child(3n+3){background:#0f2032}
 
   /* Payment methods */
   .pay-tabs{display:flex;gap:8px;flex-wrap:wrap}
@@ -69,7 +84,7 @@
   .sheet .head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.08)}
   .sheet .body{padding:16px}
   .x{background:transparent;border:0;color:#fff;font-size:22px;cursor:pointer}
-  .qr{display:block;width:220px;max-width:60%;height:auto;margin:8px auto 6px; background:#fff; padding:8px; border-radius:12px}
+  .qr{display:block;width:220px;max-width:60%;height:auto;margin:8px auto 6px;background:#fff;padding:8px;border-radius:12px}
 
   /* Toast */
   #toast{
@@ -79,12 +94,23 @@
     opacity:0;pointer-events:none;transition:.25s;z-index:99999
   }
 
-  /* Footer-ish info area */
   .muted{color:#94a3b8}
   .warning{background:#2a1220;border:1px solid #5b1935;color:#ffcbd7;padding:10px;border-radius:12px}
 </style>
 </head>
 <body>
+
+<!-- ================== TOP SLIDER ================== -->
+<div class="slider">
+  <div class="slides">
+    <img src="png.images/logo-ffslide.png" alt="Free Fire Banner 1">
+    <img src="png.images/logo-ffslide1.png" alt="Free Fire Banner 2">
+  </div>
+  <div class="dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+  </div>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -129,7 +155,7 @@
     <!-- Buy -->
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
       <button id="buyBtn" class="btn btn-primary">Buy Now</button>
-      <a href="#needhelp" class="btn btn-soft">Need help?</a>
+      <a href="#about" class="btn btn-soft">How it works</a>
     </div>
   </div>
 
@@ -162,7 +188,18 @@
 <div id="toast"></div>
 
 <script>
-/* --------- Data: packages --------- */
+/* ---------- Slider ---------- */
+let slideIndex = 0;
+const slideWrap = document.querySelector('.slides');
+const dots = document.querySelectorAll('.dot');
+function showSlide(i){
+  slideIndex = i;
+  slideWrap.style.transform = `translateX(-${i*100}%)`;
+  dots.forEach((d,idx)=> d.classList.toggle('active', idx===i));
+}
+setInterval(()=>{ slideIndex = (slideIndex+1)%dots.length; showSlide(slideIndex); }, 5000);
+
+/* ---------- Data: packages ---------- */
 const packages = [
   {name:"25 💎",   price:"Rs. 30"},
   {name:"50 💎",   price:"Rs. 55"},
@@ -197,7 +234,7 @@ packages.forEach((p)=>{
   const el = document.createElement('button');
   el.type = 'button';
   el.className = 'pkg';
-  el.innerHTML = `<span class="name">${p.name}</span><span class="price">${p.price}</span>`;
+  el.innerHTML = `<div class="name">${p.name}</div><div class="price">${p.price}</div>`;
   el.addEventListener('click', ()=>{
     document.querySelectorAll('.pkg').forEach(x=>x.classList.remove('active'));
     el.classList.add('active');
@@ -206,7 +243,7 @@ packages.forEach((p)=>{
   pkgGrid.appendChild(el);
 });
 
-/* --------- Payment selector --------- */
+/* ---------- Payment selector ---------- */
 let paymentMethod = 'eSewa';
 document.querySelectorAll('.pay-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
@@ -216,10 +253,11 @@ document.querySelectorAll('.pay-btn').forEach(btn=>{
   });
 });
 
-/* --------- Modal helpers --------- */
+/* ---------- Modal helpers ---------- */
 const modal = document.getElementById('buyModal');
 const qrImg = document.getElementById('qrImg');
 const summary = document.getElementById('summary');
+
 function setQR(method){
   if(method==='eSewa') qrImg.src = 'png.images/qr-esewa.png';
   else if(method==='Khalti') qrImg.src = 'png.images/qr-khalti.png';
@@ -230,7 +268,7 @@ function closeModal(){ modal.classList.remove('show'); }
 modal.querySelectorAll('[data-close]').forEach(b=> b.addEventListener('click', closeModal));
 modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
 
-/* --------- Toast --------- */
+/* ---------- Toast ---------- */
 const toast = document.getElementById('toast');
 function showToast(msg){
   toast.textContent = msg;
@@ -238,6 +276,50 @@ function showToast(msg){
   clearTimeout(showToast._t);
   showToast._t = setTimeout(()=> toast.style.opacity = '0', 3500);
 }
+
+/* ---------- Buy flow ---------- */
+document.getElementById('buyBtn').addEventListener('click', ()=>{
+  const uid = document.getElementById('uid').value.trim();
+  if(!uid){ showToast('Please enter your Free Fire UID.'); return; }
+  if(!selectedPkg){ showToast('Please select a package.'); return; }
+
+  setQR(paymentMethod);
+  summary.innerHTML = `
+    <div><b>Selected Package:</b> ${selectedPkg.name}</div>
+    <div><b>Price:</b> ${selectedPkg.price}</div>
+    <div><b>Free Fire UID:</b> ${uid}</div>
+    <div><b>Payment Method:</b> ${paymentMethod}</div>
+  `;
+  openModal();
+});
+
+/* ---------- Submit order to Formcarry ---------- */
+document.getElementById('submitOrder').addEventListener('click', async ()=>{
+  const uid = document.getElementById('uid').value.trim();
+  const txn = document.getElementById('txn').value.trim();
+  if(!txn){ showToast('Enter your Transaction ID or phone number.'); return; }
+
+  // hidden form (on the fly)
+  const form = new FormData();
+  form.append('game','Free Fire');
+  form.append('uid', uid);
+  form.append('package', selectedPkg.name);
+  form.append('price', selectedPkg.price);
+  form.append('payment_method', paymentMethod);
+  form.append('transaction', txn);
+
+  try{
+    const res = await fetch('https://formcarry.com/s/sgQ-vOYUakF', { method:'POST', body:form, headers:{'Accept':'application/json'} });
+    if(res.ok){
+      showToast('✅ Order submitted! We will verify and top-up shortly.');
+      closeModal(); document.getElementById('txn').value = '';
+    }else{
+      showToast('⚠️ Submission failed. Please try again.');
+    }
+  }catch(e){
+    showToast('⚠️ Network error. Try again.');
+  }
+});
 </script>
 </body>
 </html>
