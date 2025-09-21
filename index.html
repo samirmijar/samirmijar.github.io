@@ -25,7 +25,6 @@
   .brand{display:flex; align-items:center; gap:10px; color:#111}
   .brand-logo{width:38px; height:38px; object-fit:contain}
   .brand-name{font-weight:900; letter-spacing:.5px; color:#111; line-height:1; font-size:20px; white-space:nowrap}
-  .brand-badge{width:22px; height:22px; margin-left:4px}
   @media (min-width:420px){ .brand-name{font-size:22px} }
   @media (min-width:768px){ .brand-logo{width:44px;height:44px} .brand-name{font-size:26px} }
 
@@ -38,14 +37,19 @@
   }
   .hamburger svg{width:24px; height:24px; stroke:#fff}
 
-  /* drawer menu */
+  /* overlay + drawer */
+  .drawer-overlay{
+    position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:119; display:none;
+  }
+  .nav-open .drawer-overlay{display:block}
+
   .drawer{
     position:fixed; inset:0 0 0 auto; width:82%; max-width:360px; background:#0f1822;
     transform:translateX(100%); transition:.25s ease; box-shadow:var(--shadow); z-index:120;
     padding:20px 16px; color:#e9eef4;
   }
   .nav-open .drawer{transform:none}
-  .drawer .close{position:absolute; top:12px; right:12px; background:transparent; border:0; color:#fff; cursor:pointer}
+  .drawer .close{position:absolute; top:12px; right:12px; background:transparent; border:0; color:#fff; cursor:pointer; font-size:22px}
   .drawer .nav-group{margin-top:40px; display:grid; gap:12px}
   .drawer a{
     display:inline-flex; align-items:center; justify-content:center;
@@ -77,12 +81,10 @@
   .btn-whatsapp:hover{transform:translateY(-2px)}
   @media (min-width:768px){ .hero-center h1{font-size:42px} }
 
-  /* hero buttons grid (4 buttons) */
   .cta-grid{display:grid;grid-template-columns:1fr;gap:12px;justify-items:center}
   .cta-grid .btn{width:min(520px,100%)}
   @media (min-width:520px){ .cta-grid{grid-template-columns:repeat(2,1fr)} }
 
-  /* sections */
   section{padding:28px 18px}
 
   /* TABS + PANELS */
@@ -119,7 +121,7 @@
   .btn-wa-mini img{width:18px; height:18px; object-fit:contain}
   .small-note{font-size:12px; opacity:.7; margin-top:6px}
 
-  /* Small Services Grid (colorful) */
+  /* Small Services Grid */
   .services-wrap{padding:24px 18px}
   .services-grid{
     display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:920px;margin:0 auto
@@ -139,7 +141,7 @@
   .service-box span{filter:drop-shadow(0 2px 4px rgba(0,0,0,.25))}
   @media (min-width:720px){.services-grid{grid-template-columns:repeat(3,1fr)}}
 
-  /* Help Card (GiftyBox style) */
+  /* Help Card */
   .section-pad{padding:28px 18px}
   .card-white{
     background:#fff;color:#0b1115;border-radius:18px;box-shadow:0 12px 30px rgba(0,0,0,.12);
@@ -170,9 +172,8 @@
     box-shadow:0 8px 18px rgba(0,0,0,.25)
   }
   .fab-item img{width:24px;height:24px;object-fit:contain}
-  @media (max-width:380px){ .fab{right:12px;bottom:14px} .fab-main{width:54px;height:54px} .fab-item{width:46px;height:46px} }
 
-  /* Toast (for form submit) */
+  /* Toast */
   #toast{
     position:fixed;left:50%;bottom:24px;transform:translateX(-50%);
     background:#0f1822;border:1px solid rgba(255,255,255,.12);color:#e9eef4;
@@ -180,7 +181,7 @@
     opacity:0;pointer-events:none;transition:.25s;z-index:9999
   }
 
-  /* ---- Accordion (About) ---- */
+  /* About accordion */
   .accordion details{
     background:var(--card);
     border:1px solid rgba(255,255,255,.08);
@@ -217,6 +218,19 @@
   </button>
 </header>
 
+<!-- Drawer overlay + panel -->
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="drawer" id="drawer" aria-label="Main menu">
+  <button class="close" id="drawerClose" aria-label="Close menu">×</button>
+  <nav class="nav-group">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="blog.html" class="secondary">Blog</a>
+    <a href="about.html" class="secondary">About Us</a>
+    <a href="contact.html" class="secondary">Contact Us</a>
+  </nav>
+</aside>
+
 <!-- ===== LIGHTS ===== -->
 <div class="lightbar">
   <span style="background:#ff3b30"></span>
@@ -232,11 +246,10 @@
   <h1>Welcome to SM Digital Service</h1>
   <p>Affordable subscriptions, AI tools, and game top-ups in Nepal.</p>
 
-  <!-- 4 buttons: Today's Offer, Shop Now, Contact Us, WhatsApp -->
   <div class="cta-grid" style="margin:20px 0;">
-    <a href="#category" class="btn btn-soft">Today’s Offer</a>
+    <a href="todaysoffer.html" class="btn btn-soft">Today’s Offer</a>
     <a href="shop.html" class="btn btn-primary">Shop Now</a>
-    <button id="open-contact" class="btn btn-soft" type="button">Contact Us</button>
+    <a href="contact.html" class="btn btn-soft">Contact Us</a>
     <a href="https://wa.me/9779828560029" class="btn btn-whatsapp" target="_blank" rel="noopener">
       <img src="png.images/logo-whatsapp.png" alt=""> WhatsApp
     </a>
@@ -247,7 +260,7 @@
   </div>
 </section>
 
-<!-- ===== (2) SMALL SERVICES GRID (colorful) ===== -->
+<!-- ===== (2) SMALL SERVICES GRID ===== -->
 <section class="services-wrap" id="services">
   <h2 style="margin:0 0 14px; font-size:18px; font-weight:800; text-align:center">
     Explore Our Services
@@ -270,22 +283,17 @@
     <button id="tab-sm"     class="tab-btn">SM Service</button>
   </div>
 
- <!-- TODAY'S OFFER LINK -->
-<div id="offers-link" class="panel show" 
-     style="margin-top:15px;border:1px solid #25324a;
-            border-radius:12px;background:#121e30;
-            padding:20px;text-align:center">
-  <h3 style="margin-bottom:12px;color:#fff">🔥 Today’s Special Offers</h3>
-  <a href="todaysoffer.html" class="btn btn-primary" 
-     style="display:inline-block;padding:12px 22px;
-            background:linear-gradient(90deg,#ff7a00,#ff415f);
-            color:#fff;border-radius:30px;font-weight:700;
-            text-decoration:none;box-shadow:0 6px 15px rgba(0,0,0,.3)">
-    View All Offers
-  </a>
-</div>
+  <!-- TODAY'S OFFER LINK -->
+  <div id="offers-link" class="panel show"
+       style="margin-top:15px;border:1px solid #25324a;border-radius:12px;background:#121e30;padding:20px;text-align:center">
+    <h3 style="margin-bottom:12px;color:#fff">🔥 Today’s Special Offers</h3>
+    <a href="todaysoffer.html" class="btn btn-primary"
+       style="display:inline-block;padding:12px 22px;border-radius:30px;font-weight:700;text-decoration:none;">
+      View All Offers
+    </a>
+  </div>
 
-  <!-- SHOP NOW PANEL (links to shop.html) -->
+  <!-- SHOP NOW PANEL -->
   <div id="shop-panel" class="panel" style="margin-top:10px;border:1px solid #25324a;border-radius:12px;background:#121e30;padding:14px;">
     <div style="font-size:14px;opacity:.9;margin-bottom:8px">Browse all products.</div>
     <a href="shop.html" style="display:block;padding:10px 0;border-radius:10px;background:linear-gradient(90deg,#ff7a00,#ff415f);color:#fff;text-align:center;font-weight:800">Go to Shop</a>
@@ -295,7 +303,7 @@
   <div id="sm-panel" class="panel" style="margin-top:10px;max-height:310px;overflow-y:auto;border:1px solid #25324a;border-radius:12px;background:#121e30"></div>
 </section>
 
-<!-- ===== (4) ORDER / CONTACT FORM (Formcarry) — hidden until button click ===== -->
+<!-- ===== (4) ORDER / CONTACT FORM (Formcarry) ===== -->
 <section id="contact" style="display:none">
   <h3 style="text-align:center;margin:18px 0">Contact Us 24/7!</h3>
   <form id="orderForm" action="https://formcarry.com/s/sgQ-vOYUakF" method="POST" accept-charset="UTF-8" class="contact-form">
@@ -343,7 +351,7 @@
   </details>
 </section>
 
-<!-- ===== (6) SUPPORT / CONTACT CARD (GiftyBox style) ===== -->
+<!-- ===== (6) SUPPORT / CONTACT CARD ===== -->
 <section class="section-pad" id="help">
   <div class="card-white">
     <img class="top-img" src="png.images/logo-mascots.png" alt="Help mascot">
@@ -379,22 +387,27 @@
 </div>
 
 <script>
-  // menu toggle
-  document.querySelectorAll('.sm-menu-toggle').forEach(btn =>
-    btn.addEventListener('click', () => document.body.classList.toggle('nav-open'))
-  );
+  // ===== Drawer open/close =====
+  const bodyEl = document.body;
+  const openBtns = document.querySelectorAll('.sm-menu-toggle');
+  const overlay = document.getElementById('drawerOverlay');
+  const closeBtn = document.getElementById('drawerClose');
 
-  // ----- Tabs toggle -----
+  openBtns.forEach(b=> b.addEventListener('click', ()=> bodyEl.classList.add('nav-open')));
+  [overlay, closeBtn].forEach(el => el.addEventListener('click', ()=> bodyEl.classList.remove('nav-open')));
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') bodyEl.classList.remove('nav-open'); });
+
+  // ===== Tabs toggle =====
   const tOffer = document.getElementById('tab-offers');
   const tShop  = document.getElementById('tab-shop');
   const tSM    = document.getElementById('tab-sm');
-  const list   = document.getElementById('offers-list');
+  const list   = document.getElementById('offers-link'); // fixed id
   const shop   = document.getElementById('shop-panel');
   const sm     = document.getElementById('sm-panel');
 
   function setTab(which){
-    list.classList.remove('show'); shop.classList.remove('show'); sm.classList.remove('show');
-    tOffer.classList.remove('active'); tShop.classList.remove('active'); tSM.classList.remove('active');
+    [list,shop,sm].forEach(p=>p.classList.remove('show'));
+    [tOffer,tShop,tSM].forEach(b=>b.classList.remove('active'));
     if(which==='offers'){ list.classList.add('show'); tOffer.classList.add('active'); }
     if(which==='shop'){   shop.classList.add('show');  tShop.classList.add('active');  }
     if(which==='sm'){     sm.classList.add('show');    tSM.classList.add('active');    }
@@ -402,9 +415,9 @@
   tOffer.addEventListener('click',()=>setTab('offers'));
   tShop.addEventListener('click', ()=>setTab('shop'));
   tSM.addEventListener('click',   ()=>setTab('sm'));
-  setTab('offers'); // default tab
+  setTab('offers');
 
-  // ----- One-open accordion + smooth scroll -----
+  // ===== One-open accordion + smooth scroll (if you add offer details later) =====
   document.querySelectorAll('.offer-accordion .offer').forEach(d=>{
     d.addEventListener('toggle', ()=>{
       if(d.open){
@@ -414,7 +427,7 @@
     });
   });
 
-  // ----- Dynamic SM Service list (3 items for now) -----
+  // ===== Dynamic SM Service list =====
   const smServices = [
     { name:'Discord Nitro',     detail:'1 Month', price:'Rs. 750', link:'' },
     { name:'Telegram Premium',  detail:'1 Month', price:'Rs. 550', link:'' },
@@ -433,7 +446,7 @@
   }
   renderSM();
 
-  // ----- Floating Chat speed-dial -----
+  // ===== Floating Chat speed-dial =====
   (function(){
     const fab = document.getElementById('chatFab');
     if(!fab) return;
@@ -450,7 +463,7 @@
     });
   }());
 
-  // ----- Formcarry AJAX submit + toast -----
+  // ===== Formcarry AJAX submit + toast =====
   (function(){
     const endpoint = 'https://formcarry.com/s/sgQ-vOYUakF';
     const form = document.getElementById('orderForm');
@@ -481,9 +494,9 @@
     });
   }());
 
-  // ----- Show contact form when hero button clicked -----
+  // Show contact form when hero button clicked (kept for deep link)
   (function(){
-    const btn = document.getElementById('open-contact');
+    const btn = document.getElementById('open-contact'); // (no longer used in hero, but safe)
     const contact = document.getElementById('contact');
     if(btn && contact){
       btn.addEventListener('click', ()=>{
