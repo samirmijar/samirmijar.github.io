@@ -6,6 +6,7 @@
 <title>SM DIGITAL SERVICES • Trusted Digital Services</title>
 <meta name="theme-color" content="#ffffff" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+
 <style>
   :root{
     --bg:#0b1115; --card:#0f1822; --soft:#152233;
@@ -59,9 +60,26 @@
   .nav-open .drawer{transform:none}
   .nav-open .drawer-overlay{opacity:1; pointer-events:auto}
 
-  /* lights (top strip) */
-  .lightbar{display:flex; justify-content:center; gap:18px; padding:8px 0; background:#fff; border-bottom:2px solid #eee}
-  .lightbar span{width:26px; height:26px; border-radius:50%; box-shadow:0 0 10px rgba(0,0,0,.18)}
+  /* ===== top lightbar (animated) ===== */
+  .lightbar{
+    display:flex; justify-content:center; gap:18px;
+    padding:8px 0; background:#fff; border-bottom:2px solid #eee;
+  }
+  .lightbar span{
+    width:26px; height:26px; border-radius:50%;
+    animation:pulse 1.5s infinite alternate;
+    box-shadow:0 0 10px rgba(0,0,0,.18);
+  }
+  .lightbar span:nth-child(2){animation-delay:.2s}
+  .lightbar span:nth-child(3){animation-delay:.4s}
+  .lightbar span:nth-child(4){animation-delay:.6s}
+  .lightbar span:nth-child(5){animation-delay:.8s}
+  .lightbar span:nth-child(6){animation-delay:1s}
+  @keyframes pulse{
+    0%{transform:scale(1);opacity:1}
+    50%{transform:scale(1.3);opacity:.7}
+    100%{transform:scale(1);opacity:1}
+  }
 
   /* hero */
   .hero{text-align:center; padding:60px 20px; background:linear-gradient(180deg,#ff9800,#ff5722); color:#fff}
@@ -72,77 +90,35 @@
   .btn-primary:hover{transform:translateY(-2px)}
   .btn-soft{background:#fff; color:#333; border:2px solid #eee}
   .btn-soft:hover{background:#f7f7f7; transform:translateY(-2px)}
-  .btn-whatsapp{background:#25D366; color:#fff; border:0; box-shadow:0 8px 18px rgba(37,211,102,.35)}
-  .btn-whatsapp:hover{transform:translateY(-2px)}
   .cta-grid{display:grid;grid-template-columns:1fr;gap:12px;justify-items:center}
   .cta-grid .btn{width:min(520px,100%)}
   @media (min-width:520px){ .cta-grid{grid-template-columns:repeat(2,1fr)} }
 
-  section{padding:28px 18px}
-
-  /* Footer */
-  .footer{
-    text-align:center; color:#9fb0c6; font-size:13px; padding:18px 12px; border-top:1px solid rgba(255,255,255,.08);
-    background:#0a131d;
-  }
-
   /* Floating Chat speed-dial */
   .fab{position:fixed; right:16px; bottom:18px; z-index:9999}
   .fab-main{
-    width:64px;height:64px;border:0;border-radius:50%;
+    width:58px;height:58px;border:0;border-radius:50%;
     background:var(--grad); color:#fff;
     display:grid;place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.28);
     cursor:pointer; transition:transform .15s ease;
   }
   .fab-main:active{transform:scale(.96)}
-  .fab-chip{
-    position:absolute; right:70px; bottom:20px; background:#0f1822; border:1px solid rgba(255,255,255,.12);
-    color:#e9eef4; padding:8px 12px; border-radius:999px; font-weight:800; opacity:0; transform:translateX(6px);
-    pointer-events:none; transition:opacity .18s ease, transform .18s ease;
-  }
-  .fab.open .fab-chip{opacity:1; transform:translateX(0)}
-  .fab-menu{position:absolute; right:0; bottom:78px; display:flex; flex-direction:column; gap:12px;
+  .fab-menu{position:absolute; right:0; bottom:70px; display:flex; flex-direction:column; gap:12px;
     opacity:0; pointer-events:none; transform:translateY(8px) scale(.98); transform-origin:bottom right;
     transition:opacity .18s ease, transform .18s ease;
   }
   .fab.open .fab-menu{opacity:1; pointer-events:auto; transform:translateY(0) scale(1)}
   .fab-item{
     width:56px;height:56px;border-radius:50%; display:grid;place-items:center;
-    background:#0f1822; border:1px solid rgba(255,255,255,.12);
-    box-shadow:0 8px 18px rgba(0,0,0,.25)
+    background:#0f1822; border:1px solid rgba(255,255,255,.16);
+    box-shadow:0 10px 22px rgba(0,0,0,.30);
   }
-  .fab-item img{
-    width:72%; height:72%; object-fit:contain; /* bigger icons inside circle */
-  }
+  .fab-item img{width:30px;height:30px;object-fit:contain}
 
-  /* Floating Glowing Lightbar */
-  .lightbar-floating {
-    position: fixed;
-    right: 16px;
-    bottom: 100px;
-    display: flex;
-    gap: 12px;
-    background: rgba(15,24,34,.9);
-    padding: 10px 14px;
-    border-radius: 12px;
-    box-shadow: 0 6px 16px rgba(0,0,0,.35);
-    z-index: 9998;
-  }
-  .lightbar-floating span {
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    animation: pulse 1.5s infinite alternate;
-  }
-  .lightbar-floating span:nth-child(2){ animation-delay: .2s }
-  .lightbar-floating span:nth-child(3){ animation-delay: .4s }
-  .lightbar-floating span:nth-child(4){ animation-delay: .6s }
-  .lightbar-floating span:nth-child(5){ animation-delay: .8s }
-  .lightbar-floating span:nth-child(6){ animation-delay: 1s }
-  @keyframes pulse {
-    0%   { transform: scale(1);   opacity: 1; }
-    50%  { transform: scale(1.3); opacity: 0.6; }
-    100% { transform: scale(1);   opacity: 1; }
+  /* footer */
+  footer{
+    padding:16px; text-align:center; color:#b9c6d3; background:#0f1822;
+    border-top:1px solid rgba(255,255,255,.06);
   }
 </style>
 </head>
@@ -163,6 +139,7 @@
 <div class="drawer-overlay" id="drawerOverlay"></div>
 <aside class="drawer" id="drawer" aria-label="Main menu">
   <button class="close" id="drawerClose" aria-label="Close menu">×</button>
+
   <nav class="nav-group">
     <a href="index.html">Home</a>
     <a href="shop.html">Shop</a>
@@ -173,7 +150,7 @@
   </nav>
 </aside>
 
-<!-- ===== LIGHTS (top strip) ===== -->
+<!-- ===== LIGHTS (animated strip right under header) ===== -->
 <div class="lightbar">
   <span style="background:#ff3b30"></span>
   <span style="background:#ff9500"></span>
@@ -188,13 +165,11 @@
   <h1>Welcome to SM Digital Service</h1>
   <p>Affordable subscriptions, AI tools, and game top-ups in Nepal.</p>
 
+  <!-- Only 3 buttons as requested -->
   <div class="cta-grid" style="margin:20px 0;">
     <a href="todaysoffer.html" class="btn btn-soft">Today’s Offer</a>
     <a href="shop.html" class="btn btn-primary">Shop Now</a>
     <a href="contact.html" class="btn btn-soft">Contact Us</a>
-    <a href="https://wa.me/9779828560029" class="btn btn-whatsapp" target="_blank" rel="noopener">
-      <img src="png.images/logo-whatsapp.png" alt=""> WhatsApp
-    </a>
   </div>
 
   <div style="margin-top:25px;">
@@ -202,19 +177,10 @@
   </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
-<footer class="footer">
-  Copyright ©2025 sm digital service - owned by Samir mijar
-</footer>
-
-<!-- Toast placeholder (kept if you add forms later) -->
-<div id="toast" style="display:none"></div>
-
 <!-- Floating Chat Us speed-dial -->
 <div class="fab" id="chatFab" aria-label="Open chat menu">
-  <div class="fab-chip">Chat us</div>
   <button class="fab-main" type="button" aria-haspopup="true" aria-expanded="false" title="Chat us">
-    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
       <path d="M21 12c0 4.418-4.03 8-9 8-1.32 0-2.57-.223-3.7-.627L3 20l.76-3.04C3.27 15.76 3 14.9 3 14c0-4.418 4.03-8 9-8s9 3.582 9 8z" fill="#fff"/>
     </svg>
   </button>
@@ -231,15 +197,10 @@
   </nav>
 </div>
 
-<!-- FLOATING GLOWING LIGHTBAR -->
-<div class="lightbar-floating">
-  <span style="background:#ff3b30"></span>
-  <span style="background:#ff9500"></span>
-  <span style="background:#ffcc00"></span>
-  <span style="background:#34c759"></span>
-  <span style="background:#0a84ff"></span>
-  <span style="background:#af52de"></span>
-</div>
+<!-- ===== FOOTER ===== -->
+<footer>
+  Copyright © 2025 SM Digital Service — owned by Samir Mijar
+</footer>
 
 <script>
   // Drawer open/close
@@ -248,6 +209,7 @@
   const overlay = document.getElementById('drawerOverlay');
   const drawer  = document.getElementById('drawer');
   const closeBtn= document.getElementById('drawerClose');
+
   function openDrawer(){ body.classList.add('nav-open'); }
   function closeDrawer(){ body.classList.remove('nav-open'); }
   openBtns.forEach(b=> b.addEventListener('click', openDrawer));
