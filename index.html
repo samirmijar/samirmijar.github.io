@@ -72,8 +72,6 @@
   .btn-primary:hover{transform:translateY(-2px)}
   .btn-soft{background:#fff; color:#333; border:2px solid #eee}
   .btn-soft:hover{background:#f7f7f7; transform:translateY(-2px)}
-  .btn-whatsapp{background:#25D366; color:#fff; border:0; box-shadow:0 8px 18px rgba(37,211,102,.35)}
-  .btn-whatsapp:hover{transform:translateY(-2px)}
   .cta-grid{display:grid;grid-template-columns:1fr;gap:12px;justify-items:center}
   .cta-grid .btn{width:min(520px,100%)}
   @media (min-width:520px){ .cta-grid{grid-template-columns:repeat(2,1fr)} }
@@ -139,6 +137,13 @@
     box-shadow:0 8px 18px rgba(0,0,0,.25)
   }
   .fab-item img{width:24px;height:24px;object-fit:contain}
+  .fab-label{
+    position:absolute; right:72px; bottom:24px;
+    background:#ffffff; color:#111; font-weight:700; font-size:13px;
+    padding:8px 12px; border-radius:10px; box-shadow:0 8px 20px rgba(0,0,0,.25);
+    transition:opacity .18s ease, transform .18s ease;
+  }
+  .fab.open .fab-label{opacity:0; transform:translateY(6px); pointer-events:none}
 </style>
 </head>
 <body>
@@ -166,7 +171,6 @@
     <a href="about.html" class="secondary">About Us</a>
     <a href="contact.html" class="secondary">Contact Us</a>
   </nav>
-  <!-- (Social buttons removed as requested) -->
 </aside>
 
 <!-- ===== LIGHTS ===== -->
@@ -188,9 +192,7 @@
     <a href="todaysoffer.html" class="btn btn-soft">Today’s Offer</a>
     <a href="shop.html" class="btn btn-primary">Shop Now</a>
     <a href="contact.html" class="btn btn-soft">Contact Us</a>
-    <a href="https://wa.me/9779828560029" class="btn btn-whatsapp" target="_blank" rel="noopener">
-      <img src="png.images/logo-whatsapp.png" alt=""> WhatsApp
-    </a>
+    <!-- WhatsApp button removed from hero as requested -->
   </div>
 
   <div style="margin-top:25px;">
@@ -242,7 +244,7 @@
     <p>If you couldn’t find the information you need, please feel free to contact our support team.</p>
     <div class="card-actions">
       <a href="contact.html" class="btn btn-primary">Contact us</a>
-      <a href="https://wa.me/9779828560029" target="_blank" rel="noopener" class="btn btn-whatsapp">
+      <a href="https://wa.me/9779828560029" target="_blank" rel="noopener" class="btn" style="background:#25D366;color:#fff">
         <img src="png.images/logo-whatsapp.png" alt=""> WhatsApp
       </a>
     </div>
@@ -259,6 +261,7 @@
       <path d="M21 12c0 4.418-4.03 8-9 8-1.32 0-2.57-.223-3.7-.627L3 20l.76-3.04C3.27 15.76 3 14.9 3 14c0-4.418 4.03-8 9-8s9 3.582 9 8z" fill="#fff"/>
     </svg>
   </button>
+  <div class="fab-label">Chat with us</div>
   <nav class="fab-menu" aria-label="Chat channels">
     <a class="fab-item" href="https://wa.me/9779828560029" target="_blank" rel="noopener" aria-label="WhatsApp">
       <img src="png.images/logo-whatsapp.png" alt="WhatsApp">
