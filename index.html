@@ -78,69 +78,36 @@
 
   section{padding:28px 18px}
 
-  /* Accordion (About) */
-  .accordion details{
-    background:var(--card); border:1px solid rgba(255,255,255,.08);
-    border-radius:var(--radius); margin:12px 0; overflow:hidden; box-shadow:var(--shadow);
-  }
-  .accordion summary{
-    list-style:none; display:flex; align-items:center; justify-content:space-between;
-    gap:10px; padding:14px 16px; background:#131f2e; color:var(--text); font-weight:800; cursor:pointer;
-  }
-  .accordion summary::-webkit-details-marker{display:none}
-  .accordion .badge{
-    display:inline-block; font-weight:800; letter-spacing:.3px; border-radius:999px; padding:6px 12px; color:#0b1115; background:#fff;
-  }
-  .accordion .badge.who{background:#ffcc00}
-  .accordion .badge.mission{background:#34c759}
-  .accordion .badge.offer{background:#0a84ff; color:#fff}
-  .accordion .badge.vision{background:#af52de; color:#fff}
-  .accordion .body{padding:14px 16px; color:#c9d5e3; background:#0f1822}
-  .accordion .list{margin:8px 0 0; padding-left:18px}
-  .accordion .list li{margin:6px 0}
-
-  /* Help Card */
-  .card-white{
-    background:#fff;color:#0b1115;border-radius:18px;box-shadow:0 12px 30px rgba(0,0,0,.12);
-    padding:24px;text-align:center;max-width:920px;margin:0 auto;border:1px solid rgba(0,0,0,.06)
-  }
-  .card-white .top-img{width:160px;max-width:60%;height:auto;display:block;margin:0 auto 10px}
-  .card-white h2{margin:6px 0 6px;font-size:22px;font-weight:900}
-  .card-white p{margin:0 0 14px;color:#334155}
-  .card-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-
-  /* Toast */
-  #toast{
-    position:fixed;left:50%;bottom:24px;transform:translateX(-50%);
-    background:#0f1822;border:1px solid rgba(255,255,255,.12);color:#e9eef4;
-    padding:10px 14px;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.28);
-    opacity:0;pointer-events:none;transition:.25s;z-index:9999
-  }
-
-  /* Floating Chat speed-dial */
+  /* Floating Chat speed-dial (bigger) */
   .fab{position:fixed; right:16px; bottom:18px; z-index:9999}
   .fab-main{
-    width:58px;height:58px;border:0;border-radius:50%;
+    width:68px;height:68px;border:0;border-radius:50%;
     background:var(--grad); color:#fff;
-    display:grid;place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.28);
+    display:grid;place-items:center; box-shadow:0 14px 28px rgba(0,0,0,.32);
     cursor:pointer; transition:transform .15s ease;
   }
+  .fab-main svg{width:28px;height:28px}
   .fab-main:active{transform:scale(.96)}
-  .fab-menu{position:absolute; right:0; bottom:70px; display:flex; flex-direction:column; gap:10px;
+
+  .fab-menu{
+    position:absolute; right:6px; bottom:82px; display:flex; flex-direction:column; gap:12px;
     opacity:0; pointer-events:none; transform:translateY(8px) scale(.98); transform-origin:bottom right;
     transition:opacity .18s ease, transform .18s ease;
   }
   .fab.open .fab-menu{opacity:1; pointer-events:auto; transform:translateY(0) scale(1)}
+
   .fab-item{
-    width:48px;height:48px;border-radius:50%; display:grid;place-items:center;
+    width:58px;height:58px;border-radius:50%; display:grid;place-items:center;
     background:#0f1822; border:1px solid rgba(255,255,255,.12);
-    box-shadow:0 8px 18px rgba(0,0,0,.25)
+    box-shadow:0 10px 22px rgba(0,0,0,.3)
   }
-  .fab-item img{width:24px;height:24px;object-fit:contain}
+  .fab-item img{width:30px;height:30px;object-fit:contain}
+
+  /* label shows when closed, hides when open */
   .fab-label{
-    position:absolute; right:72px; bottom:24px;
-    background:#ffffff; color:#111; font-weight:700; font-size:13px;
-    padding:8px 12px; border-radius:10px; box-shadow:0 8px 20px rgba(0,0,0,.25);
+    position:absolute; right:86px; bottom:28px;
+    background:#ffffff; color:#111; font-weight:800; font-size:13px;
+    padding:10px 12px; border-radius:12px; box-shadow:0 10px 24px rgba(0,0,0,.25);
     transition:opacity .18s ease, transform .18s ease;
   }
   .fab.open .fab-label{opacity:0; transform:translateY(6px); pointer-events:none}
@@ -192,7 +159,6 @@
     <a href="todaysoffer.html" class="btn btn-soft">Today’s Offer</a>
     <a href="shop.html" class="btn btn-primary">Shop Now</a>
     <a href="contact.html" class="btn btn-soft">Contact Us</a>
-    <!-- WhatsApp button removed from hero as requested -->
   </div>
 
   <div style="margin-top:25px;">
@@ -200,64 +166,12 @@
   </div>
 </section>
 
-<!-- ===== ABOUT (Accordion) ===== -->
-<section id="about" class="accordion">
-  <details>
-    <summary><span class="badge who">WHO I AM</span></summary>
-    <div class="body">
-      I’m <strong>Samir Mijar</strong>, creator of <strong>SM Digital Service</strong>. I help Nepali users buy global digital services easily with local payments and friendly support.
-    </div>
-  </details>
-
-  <details>
-    <summary><span class="badge mission">MY MISSION</span></summary>
-    <div class="body">
-      Make premium digital tools <em>affordable & accessible</em> in Nepal — transparent pricing, instant delivery, and reliable after-sales help.
-    </div>
-  </details>
-
-  <details>
-    <summary><span class="badge offer">WHAT I OFFER</span></summary>
-    <div class="body">
-      <ul class="list">
-        <li>APEUni VIP for PTE learners</li>
-        <li>Spotify, ChatGPT Plus, Perplexity Pro</li>
-        <li>Game top-ups (PUBG UC, Free Fire, MLBB, Roblox)</li>
-        <li>Custom requests & voucher codes</li>
-      </ul>
-    </div>
-  </details>
-
-  <details>
-    <summary><span class="badge vision">MY VISION</span></summary>
-    <div class="body">
-      Build a trusted, Nepali-first digital marketplace where students, creators, and gamers get the tools they need — safely and instantly.
-    </div>
-  </details>
-</section>
-
-<!-- ===== SUPPORT CARD ===== -->
-<section class="section-pad" id="help">
-  <div class="card-white">
-    <img class="top-img" src="png.images/logo-mascots.png" alt="Help mascot">
-    <h2>Can’t find your answer?</h2>
-    <p>If you couldn’t find the information you need, please feel free to contact our support team.</p>
-    <div class="card-actions">
-      <a href="contact.html" class="btn btn-primary">Contact us</a>
-      <a href="https://wa.me/9779828560029" target="_blank" rel="noopener" class="btn" style="background:#25D366;color:#fff">
-        <img src="png.images/logo-whatsapp.png" alt=""> WhatsApp
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Toast (kept for future forms if needed) -->
-<div id="toast"></div>
+<!-- (About accordion & Support card removed as requested) -->
 
 <!-- Floating Chat Us speed-dial -->
 <div class="fab" id="chatFab" aria-label="Open chat menu">
   <button class="fab-main" type="button" aria-haspopup="true" aria-expanded="false" title="Chat us">
-    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M21 12c0 4.418-4.03 8-9 8-1.32 0-2.57-.223-3.7-.627L3 20l.76-3.04C3.27 15.76 3 14.9 3 14c0-4.418 4.03-8 9-8s9 3.582 9 8z" fill="#fff"/>
     </svg>
   </button>
