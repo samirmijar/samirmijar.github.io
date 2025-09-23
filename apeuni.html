@@ -6,24 +6,50 @@
 <title>APEUni VIP • SM Digital Services</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  body{margin:0;background:#0d0f12;color:#eaeaea;font-family:Inter,system-ui,sans-serif;line-height:1.55}
+  :root{
+    --bg:#0d0f12; --card:#111623; --line:#23283b; --soft:#151b2e;
+    --text:#eaeaea; --muted:#b9c6d3; --accent:#6a00ff; --ok:#25D366;
+    --grad:linear-gradient(90deg,#ff7a00,#ff415f);
+    --radius:16px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
   .wrap{max-width:860px;margin:0 auto;padding:18px}
   .topbar{display:flex;align-items:center;gap:10px;padding:12px 0}
   .topbar a{color:#9ecbff;text-decoration:none}
-  .card{background:#111623;border:1px solid #23283b;border-radius:16px;padding:18px;margin:14px 0}
-  h1{margin:6px 0 0 0}
+  .brand-logo{width:38px;height:38px;object-fit:contain;margin-left:auto}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:14px 0}
+  h1{margin:6px 0 0 0;font-size:22px}
   h2,h3{margin:0 0 10px 0;color:#fff}
+  p{margin:0 0 10px}
   ul{padding-left:18px;margin:0}
+  .muted{color:var(--muted)}
   .warn{color:#ffb3b3;font-weight:700}
-  input,select,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #2b3148;background:#151b2e;color:#fff;margin:8px 0}
-  input:focus,select:focus,textarea:focus{outline:2px solid #6a00ff}
+
+  input,select,textarea{
+    width:100%;padding:12px;border-radius:10px;border:1px solid #2b3148;background:var(--soft);color:#fff;margin:8px 0
+  }
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--accent)}
+
   .pay-row{display:flex;gap:10px;flex-wrap:wrap}
-  .pay-btn{flex:1;min-width:110px;background:#151b2e;border:1px solid #2b3148;border-radius:10px;padding:12px;text-align:center;cursor:pointer}
-  .pay-btn.active{background:#6a00ff;border-color:#6a00ff;color:#fff}
-  .qr-box{display:none;text-align:center;margin-top:8px}
-  .qr-box img{max-width:210px;background:#fff;border-radius:12px;padding:8px}
-  .red{color:#ff4d4d;font-weight:800}
-  .submit{background:#25D366;border:none;padding:14px 16px;border-radius:12px;color:#fff;font-weight:700;cursor:pointer;width:100%;margin-top:12px}
+  .pay-btn{
+    flex:1;min-width:110px;background:var(--soft);border:1px solid #2b3148;border-radius:10px;padding:12px;text-align:center;cursor:pointer;font-weight:700
+  }
+  .pay-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+
+  .qr-box{display:none;margin-top:8px;border-top:1px dashed #2b3148;padding-top:12px}
+  .qr-wrap{text-align:center}
+  .qr-wrap img{max-width:210px;background:#fff;border-radius:12px;padding:8px;display:block;margin:8px auto}
+  @media (max-width:420px){ .qr-wrap img{max-width:160px} }
+
+  .summary{
+    background:#0f1421;border:1px solid #20263a;border-radius:12px;padding:12px;margin:10px 0;font-size:14px
+  }
+  .summary b{color:#cfe2ff}
+  .note{font-size:13px;color:#ffcdcd;margin:8px 0 0}
+
+  .submit{background:var(--ok);border:none;padding:14px 16px;border-radius:12px;color:#fff;font-weight:700;cursor:pointer;width:100%;margin-top:12px}
   .footer-links{display:flex;gap:10px;justify-content:center;margin:18px 0 10px 0}
   .footer-links a{color:#b7b7ff;text-decoration:none}
 
@@ -39,33 +65,25 @@
       <a href="index.html">← Back Home</a>
       <span style="opacity:.6">/</span>
       <span>APEUni VIP</span>
+      <img class="brand-logo" src="png.images/logo-apeuni.png" alt="APEUni">
     </div>
 
     <h1>APEUni VIP Subscription</h1>
 
-    <!-- Description -->
+    <!-- Description (short & clear) -->
     <div class="card">
       <h2>Description</h2>
       <ul>
-        <li>Activate on <strong>your own APEUni account</strong>. Provide a valid <strong>email</strong> and <strong>password</strong> for setup.</li>
-        <li>Includes: <strong>Listening, Reading, Speaking, Writing</strong> practice.</li>
-        <li><strong>Instant AI scores</strong> after each test.</li>
-        <li>100% online — practice from <strong>home/room</strong>, no institute required.</li>
-        <li><strong>No warranty/returns.</strong></li>
-        <li class="warn">After activation, <strong>change your password immediately.</strong></li>
-      </ul>
-    </div>
-
-    <!-- Benefits -->
-    <div class="card">
-      <h2>Benefits</h2>
-      <ul>
-        <li>📚 Improve English skills in <strong>Writing, Listening, and Speaking</strong></li>
-        <li>📝 Based on the <strong>Pearson PTE model</strong></li>
-        <li>⚡ <strong>Unlimited AI scores</strong> & mock tests</li>
+        <li><b>ApeUNI - PTE Practice Subscription</b></li>
+        <li>Delivery Time: ⚡ 0–30 minutes</li>
+        <li>Requirements: 📧 Email & Password of registered APEUni account</li>
+        <li>100% online — practice from home/room, no institute required.</li>
+        <li>📝 Based on the Pearson PTE model</li>
+        <li>⚡ Unlimited AI scores & mock tests</li>
         <li>💰 Affordable for students in Nepal</li>
-        <li>💳 Pay via <strong>eSewa, Khalti, or Bank transfer</strong></li>
+        <li>💳 Pay via eSewa, Khalti, or Bank transfer</li>
       </ul>
+      <p class="warn" style="margin-top:8px">After activation, change your APEUni password immediately.</p>
     </div>
 
     <!-- Account -->
@@ -85,7 +103,7 @@
       </select>
     </div>
 
-    <!-- Payment -->
+    <!-- Payment + QR -->
     <div class="card">
       <h2>Payment Method</h2>
       <div class="pay-row">
@@ -94,17 +112,21 @@
         <div class="pay-btn" data-method="Bank"   data-qr="png.images/logo-bankqr.png">Bank</div>
       </div>
 
-      <!-- QR + summary -->
+      <!-- Live summary + QR -->
       <div id="qrBox" class="qr-box">
-        <h3>Complete Your Purchase</h3>
-        <p id="summary"></p>
-        <p>Email: <span id="sEmail"></span></p>
-        <p>Password: <span id="sPass"></span></p>
-        <img id="qrImg" alt="Payment QR">
-        <p class="red">Scan the QR and do the payment</p>
-        <p class="red">Write your <strong>Name</strong> in remarks please</p>
+        <div class="summary">
+          <div id="summary"><b>Selected APEUni Plan:</b> — • <b>Method:</b> —</div>
+          <div><b>Email:</b> <span id="sEmail">—</span></div>
+          <div><b>Password:</b> <span id="sPass">—</span></div>
+        </div>
+
+        <div class="qr-wrap">
+          <img id="qrImg" alt="Payment QR">
+        </div>
+
+        <p class="note">Write your <b>Name</b> in remarks. No top-up if wrong details • No refund.</p>
         <input id="txn" type="text" placeholder="Enter Transaction ID or Remarks">
-        <button id="submitBtn" class="submit" onclick="submitNow()">Submit Now</button>
+        <button id="submitBtn" class="submit" onclick="submitNow()">Submit Order</button>
       </div>
     </div>
 
@@ -121,7 +143,18 @@
 <script>
   let chosen = { method:"", qr:"" };
 
-  // payment buttons
+  // ===== Update summary live =====
+  function updateSummary(){
+    if(!chosen.method) return; // only update if payment chosen
+    document.getElementById('summary').innerHTML =
+      `<b>Selected APEUni Plan:</b> ${document.getElementById('plan').value} • <b>Method:</b> ${chosen.method}`;
+    document.getElementById('sEmail').textContent = document.getElementById('email').value || '—';
+    document.getElementById('sPass').textContent  = document.getElementById('pass').value  || '—';
+    document.getElementById('qrImg').src = chosen.qr;
+    document.getElementById('qrBox').style.display = 'block';
+  }
+
+  // ===== Payment buttons =====
   document.querySelectorAll('.pay-btn').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       document.querySelectorAll('.pay-btn').forEach(b=>b.classList.remove('active'));
@@ -129,18 +162,17 @@
 
       chosen.method = btn.dataset.method;
       chosen.qr     = btn.dataset.qr;
-
-      // fill summary + show QR box
-      document.getElementById('summary').textContent =
-        `Selected APEUni Plan: ${document.getElementById('plan').value} • Method: ${chosen.method}`;
-      document.getElementById('sEmail').textContent = document.getElementById('email').value || '—';
-      document.getElementById('sPass').textContent  = document.getElementById('pass').value  || '—';
-      document.getElementById('qrImg').src = chosen.qr;
-      document.getElementById('qrBox').style.display = 'block';
+      updateSummary();
     });
   });
 
-  // tiny toast
+  // ===== Watch inputs live =====
+  ['email','pass','plan'].forEach(id=>{
+    document.getElementById(id).addEventListener('input', updateSummary);
+    document.getElementById(id).addEventListener('change', updateSummary);
+  });
+
+  // ===== Tiny toast =====
   function toast(msg){
     const t = document.getElementById('toast');
     t.textContent = msg;
@@ -149,11 +181,10 @@
     toast._t = setTimeout(()=>t.classList.remove('show'), 3000);
   }
 
-  // send to Formcarry
+  // ===== Send to Formcarry =====
   async function sendOrderToFormcarry(payload){
     const endpoint = 'https://formcarry.com/s/sgQ-vOYUakF'; // your Formcarry form ID
     const fd = new FormData();
-    // Map fields to Formcarry
     fd.append('name',  payload.name || '—');
     fd.append('email', payload.email);
     fd.append('order', payload.order);
@@ -163,6 +194,7 @@
     return res.json();
   }
 
+  // ===== Final submit =====
   async function submitNow(){
     const email = document.getElementById('email').value.trim();
     const pass  = document.getElementById('pass').value.trim();
@@ -180,19 +212,14 @@ Password: ${pass}
 Payment Method: ${chosen.method}
 Transaction/Remarks: ${txn}`;
 
-    // disable button while sending
     const btn = document.getElementById('submitBtn');
     const old = btn.textContent;
     btn.disabled = true; btn.textContent = 'Sending...';
 
     try{
-      await sendOrderToFormcarry({
-        name: 'APEUni Customer',
-        email,
-        order: orderText
-      });
+      await sendOrderToFormcarry({ name: 'APEUni Customer', email, order: orderText });
       toast('✅ Order sent! We’ll contact you soon.');
-      // optionally clear tx id
+      // optionally clear tx id:
       // document.getElementById('txn').value = '';
     }catch(e){
       console.error(e);
