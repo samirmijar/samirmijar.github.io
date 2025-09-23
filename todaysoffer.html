@@ -4,299 +4,172 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Today’s Offers • SM Digital Services</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
 <meta name="theme-color" content="#0b1115" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0b1115; --card:#0f1822; --soft:#152233;
-    --text:#e9eef4; --muted:#b9c6d3;
-    --accent1:#ff7a00; --accent2:#ff415f;
-    --btnGrad:linear-gradient(90deg,var(--accent1),var(--accent2));
-    --radius:16px; --shadow:0 10px 28px rgba(0,0,0,.35);
+    --bg:#0b1115; --card:#0f1822; --ink:#e9eef4; --muted:#b9c6d3;
+    --accent:linear-gradient(90deg,#ff7a00,#ff415f);
+    --soft:#152233; --green:#25D366; --radius:16px; --shadow:0 10px 28px rgba(0,0,0,.32);
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.55}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,Arial,sans-serif}
+  a{color:inherit;text-decoration:none}
 
-  .wrap{max-width:1100px;margin:0 auto;padding:18px}
-  .hero{padding:28px 18px 14px}
-  .hero h1{margin:0;font-size:30px;font-weight:900}
-  .hero p{margin:6px 0 0;color:#cfe2ff}
+  /* header */
+  .topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:10px;
+          padding:12px 16px;background:#fff;border-bottom:2px solid #eee}
+  .brand{display:flex;align-items:center;gap:10px;color:#111;font-weight:900;font-size:20px}
+  .brand img{width:36px;height:36px;object-fit:contain}
+  .back{margin-left:auto;padding:10px 14px;border-radius:999px;background:#111;color:#fff;font-weight:800}
 
-  .section-title{font-size:22px;font-weight:900;margin:8px 0 12px}
-
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  @media (max-width:900px){ .grid{grid-template-columns:repeat(3,1fr)} }
-  @media (max-width:520px){ .grid{grid-template-columns:repeat(3,1fr)} }
-
+  main{padding:18px}
+  h1{margin:10px 0 14px;font-size:24px}
+  .grid{display:grid;gap:14px;max-width:860px;margin:0 auto}
   .card{
-    background:var(--card);border:1px solid rgba(255,255,255,.08);
-    border-radius:var(--radius);box-shadow:var(--shadow);padding:14px;
-    display:flex;flex-direction:column;gap:10px
+    background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);
+    box-shadow:var(--shadow);overflow:hidden
   }
-  .logo{aspect-ratio:1/1;background:#101a29;border:1px solid rgba(255,255,255,.1);
-    border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-  .logo img{width:74%;height:74%;object-fit:contain}
-  .name{font-weight:900}
-  .meta{color:var(--muted);font-size:13px}
-  .price{font-weight:900}
+  .card .hd{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:#121a28}
+  .title{font-weight:900}
+  .price{font-weight:800;opacity:.9}
+  .body{padding:16px}
+  .list{margin:0 0 12px;padding-left:18px;color:#cfe1ff}
+  .cta{display:inline-block;padding:12px 18px;border-radius:999px;background:var(--accent);font-weight:900}
+  .note{margin-top:8px;font-size:12px;color:var(--muted)}
 
-  .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 14px;border-radius:12px;border:0;cursor:pointer;font-weight:800}
-  .btn-primary{background:var(--btnGrad);color:#fff;box-shadow:0 8px 18px rgba(255,65,95,.28)}
-  .btn-soft{background:#152233;color:#fff;border:1px solid rgba(255,255,255,.12)}
-
-  /* Long info card (Spotify) */
-  .info{background:#0f1822;border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:16px}
-  .info h3{margin:0 0 8px}
-  .info p,.info li{color:#cbd5e1}
-  .info ul{margin:8px 0 0 18px}
-
-  /* Modal */
-  .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.6);z-index:9999;padding:18px}
-  .modal.show{display:grid}
-  .sheet{background:#0f1822;border:1px solid rgba(255,255,255,.12);border-radius:18px;max-width:560px;width:100%;box-shadow:var(--shadow)}
-  .sheet .head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.08)}
-  .sheet .body{padding:16px}
-  .x{background:transparent;border:0;color:#fff;font-size:22px;cursor:pointer}
-
-  .row{display:grid;gap:10px}
-  .input, select, textarea{
-    width:100%;padding:14px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);
-    background:#101a29;color:#e9eef4;font-size:15px
+  /* form */
+  form{display:grid;gap:10px;margin-top:6px}
+  input, select, button{
+    width:100%;padding:12px 14px;border-radius:12px;border:1px solid #25324a;background:#0e1928;color:#e9eef4;
+    font:inherit
   }
-
-  .pay-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 6px}
-  .pay-btn{flex:1;min-width:120px;padding:10px;border-radius:12px;border:1px solid #2a3750;background:#0f1822;color:#cbd5e1;font-weight:800;cursor:pointer}
-  .pay-btn.active{background:#152233;color:#fff}
-
-  .qr{display:block;width:220px;max-width:70%;height:auto;margin:10px auto 8px;background:#fff;padding:8px;border-radius:12px}
-  .note{font-size:13px;color:#9fb0c6;text-align:center}
-
-  #toast{
-    position:fixed;left:50%;bottom:24px;transform:translateX(-50%);
-    background:#0f1822;border:1px solid rgba(255,255,255,.12);color:#e9eef4;
-    padding:10px 14px;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.28);
-    opacity:0;pointer-events:none;transition:.25s;z-index:99999
+  input::placeholder{color:#93a3b8}
+  button[type=submit]{
+    border:0;background:var(--accent);font-weight:900;cursor:pointer
   }
+  button[type=submit]:disabled{opacity:.7;cursor:not-allowed}
+
+  /* toast */
+  #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);
+    padding:10px 14px;border-radius:12px;background:#0f1822;border:1px solid rgba(255,255,255,.12);
+    box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.25s}
+
+  /* footer */
+  footer{margin:28px 0 12px;text-align:center;color:#9fb0c6;font-size:12px}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <header class="hero">
-      <h1>🔥 Today’s Offers</h1>
-      <p>Special deals delivered fast to your email — pay via eSewa, Khalti, or Bank.</p>
-    </header>
 
-    <h2 class="section-title">Top-ups & Subscriptions</h2>
-
-    <div class="grid">
-
-      <!-- APEUNI -->
-      <div class="card">
-        <div class="logo"><img src="/png.images/logo-apeuni.png" alt="APEUni"></div>
-        <div class="name">APEUni VIP — 30 Days</div>
-        <div class="meta">Delivery: on your email</div>
-        <div class="price">Rs. 2150</div>
-        <button class="btn btn-primary order-btn"
-                data-product="APEUni VIP"
-                data-plan="30 Days"
-                data-price="Rs. 2150"
-                data-fields="email">
-          Order
-        </button>
-      </div>
-
-      <!-- ChatGPT Plus -->
-      <div class="card">
-        <div class="logo"><img src="/png.images/logo-chatgpt.png" alt="ChatGPT Plus"></div>
-        <div class="name">ChatGPT Plus</div>
-        <div class="meta">Private on your email</div>
-        <button class="btn btn-primary order-btn"
-                data-product="ChatGPT Plus"
-                data-plan=""
-                data-price=""
-                data-fields="email,password">
-          Order
-        </button>
-      </div>
-
-      <!-- Perplexity Pro -->
-      <div class="card">
-        <div class="logo"><img src="/png.images/logo-perplexity.png" alt="Perplexity Pro"></div>
-        <div class="name">Perplexity Pro AI — 12 Months</div>
-        <div class="meta">Delivery: on your email</div>
-        <button class="btn btn-primary order-btn"
-                data-product="Perplexity Pro"
-                data-plan="12 Months"
-                data-price="Rs. 2750"
-                data-fields="email,whatsapp">
-          Order
-        </button>
-      </div>
-
-      <!-- Spotify -->
-      <div class="card">
-        <div class="logo"><img src="/png.images/logo-spotify.png" alt="Spotify"></div>
-        <div class="name">Spotify Premium — 1 Year</div>
-        <div class="meta">Private account • Indian server</div>
-        <button class="btn btn-primary order-btn"
-                data-product="Spotify Premium"
-                data-plan="1 Year"
-                data-price="Rs. 2750"
-                data-fields="email,whatsapp">
-          Order
-        </button>
-      </div>
-
-    </div>
-
-    <!-- Spotify info box -->
-    <div class="info" style="margin-top:14px">
-      <h3>Spotify 1 Year Subscription – Private Account</h3>
-      <p><b>FAQ</b></p>
-      <ul>
-        <li><b>Can we use Spotify App in Nepal without VPN?</b> Yes, you can.</li>
-        <li><b>What if I didn’t get delivery on time?</b> Please message us on WhatsApp: <b>9828560029</b>.</li>
-      </ul>
-      <p style="margin-top:8px"><b>Other Details:</b> Individual Plan • Server: India.</p>
-      <p><b>Note:</b> This is an Indian server account. If Spotify changes their policy in the future and your account is affected, we will not be responsible.</p>
-    </div>
-
-    <p class="note" style="margin-top:14px">© SM Digital Services</p>
+<header class="topbar">
+  <div class="brand">
+    <img src="png.images/logo-mascot.png" alt="SMDS">
+    <span>SM DIGITAL SERVICES</span>
   </div>
+  <a class="back" href="index.html">← Home</a>
+</header>
 
-  <!-- ORDER MODAL -->
-  <div class="modal" id="orderModal" aria-hidden="true">
-    <div class="sheet">
-      <div class="head">
-        <div style="font-weight:900">Complete Your Purchase</div>
-        <button class="x" type="button" data-close>×</button>
+<main>
+  <h1>🔥 Today’s Offers</h1>
+  <div class="grid">
+
+    <!-- APEUni VIP -->
+    <article class="card">
+      <div class="hd">
+        <div class="title">APEUni VIP</div>
+        <div class="price">30 Days — Rs. 2150</div>
       </div>
       <div class="body">
-        <div id="summary" class="meta" style="margin-bottom:10px"></div>
-
-        <!-- Payment methods -->
-        <div class="pay-tabs">
-          <button class="pay-btn active" data-pay="eSewa">eSewa</button>
-          <button class="pay-btn" data-pay="Khalti">Khalti</button>
-          <button class="pay-btn" data-pay="Bank">Bank Transfer</button>
-        </div>
-
-        <!-- QR -->
-        <img class="qr" id="qrImg" src="/png.images/qr-esewa.png" alt="Payment QR">
-        <div class="note">Scan the QR to pay. <b>Write your name in remarks or no top-up and refund.</b></div>
-
-        <!-- Dynamic order form -->
-        <form id="orderForm" action="https://formcarry.com/s/sgQ-vOYUakF" method="POST" class="row" style="margin-top:12px">
-          <!-- Hidden payload -->
-          <input type="hidden" name="source" value="todaysoffer.html">
-          <input type="hidden" name="product">
-          <input type="hidden" name="plan">
-          <input type="hidden" name="price">
-          <input type="hidden" name="payment_method">
-
-          <!-- Core contact -->
-          <input class="input" name="name" placeholder="Your Name" required>
-          <input class="input" type="email" name="email" placeholder="Your Email" required>
-
-          <!-- Conditional fields -->
-          <input class="input hide-if-none" name="password" id="f_password" placeholder="Password (for ChatGPT Plus)">
-          <input class="input hide-if-none" name="whatsapp" id="f_whatsapp" placeholder="WhatsApp Number">
-
-          <!-- Transaction / remarks -->
-          <input class="input" name="transaction" placeholder="Enter Transaction ID or Remarks" required>
-
-          <button class="btn btn-primary" type="submit">Submit Order</button>
-        </form>
+        <ul class="list">
+          <li>Delivery on your email</li>
+          <li>Private access</li>
+          <li>Best for PTE learners</li>
+        </ul>
+        <a class="cta" href="apeuni.html">Order APEUni</a>
+        <div class="note">You’ll be redirected to the APEUni order page.</div>
       </div>
-    </div>
-  </div>
+    </article>
 
-  <div id="toast"></div>
+    <!-- ChatGPT Plus -->
+    <article class="card">
+      <div class="hd">
+        <div class="title">ChatGPT Plus</div>
+        <div class="price">1 Month — Rs. 2750</div>
+      </div>
+      <div class="body">
+        <ul class="list">
+          <li>Account delivered on your email</li>
+          <li>Priority access & faster replies</li>
+        </ul>
+
+        <!-- Order form -->
+        <form id="gptForm" action="https://formcarry.com/s/sgQ-vOYUakF" method="POST" accept-charset="UTF-8">
+          <!-- helpful hidden fields -->
+          <input type="hidden" name="product" value="ChatGPT Plus">
+          <input type="hidden" name="plan" value="1 Month (Rs. 2750)">
+
+          <input type="email" name="email" placeholder="Your Email" required>
+          <input type="text"  name="password" placeholder="Password (for the account)" required>
+
+          <select name="payment_method" required>
+            <option value="" disabled selected>Select Payment Method</option>
+            <option>Bank Transfer</option>
+            <option>Khalti</option>
+            <option>eSewa</option>
+            <option>QR Payment</option>
+            <option>Cash Deposit</option>
+          </select>
+
+          <button type="submit">Submit Order</button>
+        </form>
+        <div class="note">After submit, we’ll contact you on email/WhatsApp with the next steps.</div>
+      </div>
+    </article>
+
+  </div>
+</main>
+
+<div id="toast"></div>
+
+<footer>
+  Copyright © 2025 SM Digital Service — owned by Samir Mijar
+</footer>
 
 <script>
-/* ===== Utilities ===== */
-const toast = document.getElementById('toast');
-function showToast(msg){
-  toast.textContent = msg;
-  toast.style.opacity = '1';
-  clearTimeout(showToast._t);
-  showToast._t = setTimeout(()=> toast.style.opacity = '0', 3200);
-}
+  // Simple AJAX submit for the ChatGPT Plus form
+  (function(){
+    const form  = document.getElementById('gptForm');
+    const toast = document.getElementById('toast');
+    if(!form || !toast) return;
 
-const modal = document.getElementById('orderModal');
-const closeBtn = modal.querySelector('[data-close]');
-function openModal(){ modal.classList.add('show'); modal.setAttribute('aria-hidden','false'); }
-function closeModal(){ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); }
-closeBtn.addEventListener('click', closeModal);
-modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
-document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.style.opacity = '1';
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(()=> toast.style.opacity = '0', 3200);
+    }
 
-/* ===== Payment QR ===== */
-let paymentMethod = 'eSewa';
-const qrImg = document.getElementById('qrImg');
-function setQR(method){
-  if(method==='eSewa') qrImg.src = '/png.images/qr-esewa.png';
-  else if(method==='Khalti') qrImg.src = '/png.images/qr-khalti.png';
-  else qrImg.src = '/png.images/qr-bank.png';
-}
-document.querySelectorAll('.pay-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('.pay-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    paymentMethod = btn.dataset.pay;
-    setQR(paymentMethod);
-  });
-});
-
-/* ===== Launch modal per product ===== */
-const orderForm = document.getElementById('orderForm');
-const summary = document.getElementById('summary');
-const fPassword  = document.getElementById('f_password');
-const fWhatsapp  = document.getElementById('f_whatsapp');
-
-function toggleFields(fieldsCsv){
-  const fields = (fieldsCsv||'').split(',').map(s=>s.trim()).filter(Boolean);
-  // default hidden
-  fPassword.style.display = 'none'; fPassword.required = false;
-  fWhatsapp.style.display = 'none'; fWhatsapp.required = false;
-
-  if(fields.includes('password')){ fPassword.style.display = ''; fPassword.required = true; }
-  if(fields.includes('whatsapp')){ fWhatsapp.style.display = ''; /* optional */ }
-}
-
-document.querySelectorAll('.order-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    const product = btn.dataset.product;
-    const plan    = btn.dataset.plan || '';
-    const price   = btn.dataset.price || '';
-    const fields  = btn.dataset.fields || '';
-
-    orderForm.product.value = product;
-    orderForm.plan.value    = plan;
-    orderForm.price.value   = price;
-    orderForm.payment_method.value = paymentMethod;
-
-    toggleFields(fields);
-
-    summary.innerHTML = `<b>Product:</b> ${product}${plan?` • <b>Plan:</b> ${plan}`:''}${price?` • <b>Price:</b> ${price}`:''}`;
-    setQR(paymentMethod);
-    openModal();
-  });
-});
-
-/* ===== Submit to Formcarry (AJAX) ===== */
-orderForm.addEventListener('submit', async (e)=>{
-  e.preventDefault();
-  orderForm.payment_method.value = paymentMethod;
-  const btn = orderForm.querySelector('button[type="submit"]');
-  const old = btn.textContent; btn.disabled = true; btn.textContent = 'Sending…';
-  try{
-    const res = await fetch(orderForm.action, { method:'POST', body:new FormData(orderForm), headers:{'Accept':'application/json'} });
-    if(res.ok){ orderForm.reset(); showToast('✅ Order submitted!'); closeModal(); }
-    else{ showToast('⚠️ Could not send. Try again.'); }
-  }catch(err){ showToast('⚠️ Network error.'); }
-  finally{ btn.disabled = false; btn.textContent = old; }
-});
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      const prev = btn.textContent;
+      btn.disabled = true; btn.textContent = 'Submitting...';
+      try{
+        const res = await fetch(form.action, {
+          method:'POST',
+          body:new FormData(form),
+          headers:{'Accept':'application/json'}
+        });
+        if(res.ok){ form.reset(); showToast('✅ Order sent. We’ll reach you shortly.'); }
+        else{ showToast('⚠️ Something went wrong. Please try again.'); }
+      }catch(err){
+        showToast('⚠️ Network error. Please try again.');
+      }finally{
+        btn.disabled = false; btn.textContent = prev;
+      }
+    });
+  }());
 </script>
+
 </body>
 </html>
