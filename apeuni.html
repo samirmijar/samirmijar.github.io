@@ -9,7 +9,6 @@
   :root{
     --bg:#0d0f12; --card:#111623; --line:#23283b; --soft:#151b2e;
     --text:#eaeaea; --muted:#b9c6d3; --accent:#6a00ff; --ok:#25D366;
-    --grad:linear-gradient(90deg,#ff7a00,#ff415f);
     --radius:16px;
   }
   *{box-sizing:border-box}
@@ -38,24 +37,33 @@
   }
   .pay-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
 
-  .qr-box{display:none;margin-top:8px;border-top:1px dashed #2b3148;padding-top:12px}
-  .qr-wrap{text-align:center}
-  .qr-wrap img{max-width:210px;background:#fff;border-radius:12px;padding:8px;display:block;margin:8px auto}
-  @media (max-width:420px){ .qr-wrap img{max-width:160px} }
+  .cta{background:#ff3b6b;border:none;padding:14px 16px;border-radius:12px;color:#fff;font-weight:800;cursor:pointer;width:100%;margin-top:6px}
+  .cta[disabled]{opacity:.5;cursor:not-allowed}
 
-  .summary{
-    background:#0f1421;border:1px solid #20263a;border-radius:12px;padding:12px;margin:10px 0;font-size:14px
-  }
-  .summary b{color:#cfe2ff}
-  .note{font-size:13px;color:#ffcdcd;margin:8px 0 0}
-
-  .submit{background:var(--ok);border:none;padding:14px 16px;border-radius:12px;color:#fff;font-weight:700;cursor:pointer;width:100%;margin-top:12px}
   .footer-links{display:flex;gap:10px;justify-content:center;margin:18px 0 10px 0}
   .footer-links a{color:#b7b7ff;text-decoration:none}
 
-  /* tiny toast */
+  /* toast */
   #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f1822;border:1px solid rgba(255,255,255,.12);color:#e9eef4;padding:10px 14px;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.28);opacity:0;transition:.25s;z-index:9999}
   #toast.show{opacity:1}
+
+  /* modal */
+  .modal-backdrop{
+    position:fixed;inset:0;background:rgba(0,0,0,.65);
+    display:none;align-items:center;justify-content:center;padding:18px;z-index:9990
+  }
+  .modal{width:100%;max-width:520px;background:#0f1421;border:1px solid #20263a;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+  .modal-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #1e2639}
+  .modal-head h3{margin:0;font-size:18px;color:#ff4175}
+  .modal-close{background:transparent;border:none;color:#cfd6ff;font-size:22px;cursor:pointer}
+  .modal-body{padding:14px 16px}
+  .summary{background:#0b1220;border:1px solid #20263a;border-radius:12px;padding:12px;margin:10px 0;font-size:14px}
+  .summary b{color:#cfe2ff}
+  .qr-wrap{text-align:center}
+  .qr-wrap img{max-width:220px;background:#fff;border-radius:12px;padding:8px;display:block;margin:8px auto}
+  @media (max-width:420px){ .qr-wrap img{max-width:160px} }
+  .note{font-size:13px;color:#ffcdcd;margin:8px 0 0}
+  .submit{background:var(--ok);border:none;padding:14px 16px;border-radius:12px;color:#fff;font-weight:800;cursor:pointer;width:100%;margin-top:12px}
 </style>
 </head>
 <body>
@@ -70,17 +78,16 @@
 
     <h1>APEUni VIP Subscription</h1>
 
-    <!-- Description (short & clear) -->
+    <!-- Description -->
     <div class="card">
       <h2>Description</h2>
       <ul>
         <li><b>ApeUNI - PTE Practice Subscription</b></li>
         <li>Delivery Time: ⚡ 0–30 minutes</li>
         <li>Requirements: 📧 Email & Password of registered APEUni account</li>
-        <li>100% online — practice from home/room, no institute required.</li>
+        <li>100% online — practice from home/room</li>
         <li>📝 Based on the Pearson PTE model</li>
         <li>⚡ Unlimited AI scores & mock tests</li>
-        <li>💰 Affordable for students in Nepal</li>
         <li>💳 Pay via eSewa, Khalti, or Bank transfer</li>
       </ul>
       <p class="warn" style="margin-top:8px">After activation, change your APEUni password immediately.</p>
@@ -95,39 +102,23 @@
 
     <!-- Plan -->
     <div class="card">
-      <h2>Select Plan</h2>
+      <h2>Select Package</h2>
       <select id="plan">
-        <option value="30 Days — NPR 2200">30 Days — NPR 2200</option>
-        <option value="90 Days — NPR 4450">90 Days — NPR 4450</option>
-        <option value="180 Days — NPR 10500">180 Days — NPR 10500</option>
+        <option value="30 Days — NPR 2200" data-price="NPR 2200">30 Days — NPR 2200</option>
+        <option value="90 Days — NPR 4450" data-price="NPR 4450">90 Days — NPR 4450</option>
+        <option value="180 Days — NPR 10500" data-price="NPR 10500">180 Days — NPR 10500</option>
       </select>
     </div>
 
-    <!-- Payment + QR -->
+    <!-- Payment -->
     <div class="card">
-      <h2>Payment Method</h2>
+      <h2>Select the Payment You Want to Use</h2>
       <div class="pay-row">
         <div class="pay-btn" data-method="eSewa"  data-qr="png.images/logo-esewaqr.png">eSewa</div>
         <div class="pay-btn" data-method="Khalti" data-qr="png.images/logo-khaltiqr.png">Khalti</div>
         <div class="pay-btn" data-method="Bank"   data-qr="png.images/logo-bankqr.png">Bank</div>
       </div>
-
-      <!-- Live summary + QR -->
-      <div id="qrBox" class="qr-box">
-        <div class="summary">
-          <div id="summary"><b>Selected APEUni Plan:</b> — • <b>Method:</b> —</div>
-          <div><b>Email:</b> <span id="sEmail">—</span></div>
-          <div><b>Password:</b> <span id="sPass">—</span></div>
-        </div>
-
-        <div class="qr-wrap">
-          <img id="qrImg" alt="Payment QR">
-        </div>
-
-        <p class="note">Write your <b>Name</b> in remarks. No top-up if wrong details • No refund.</p>
-        <input id="txn" type="text" placeholder="Enter Transaction ID or Remarks">
-        <button id="submitBtn" class="submit" onclick="submitNow()">Submit Order</button>
-      </div>
+      <button id="buyBtn" class="cta" disabled>Buy Now!</button>
     </div>
 
     <div class="footer-links">
@@ -140,66 +131,115 @@
   <!-- toast -->
   <div id="toast"></div>
 
-<script>
-  let chosen = { method:"", qr:"" };
+  <!-- MODAL: Complete Your Purchase -->
+  <div id="modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <div class="modal-head">
+        <h3 id="modalTitle">Complete Your Purchase</h3>
+        <button class="modal-close" aria-label="Close" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="summary">
+          <div><b>Selected Package:</b> <span id="mPlan">—</span></div>
+          <div><b>Price:</b> <span id="mPrice">—</span></div>
+          <div><b>APEUni Email:</b> <span id="mEmail">—</span></div>
+          <div><b>Password:</b> <span id="mPass">—</span></div>
+          <div><b>Payment Method:</b> <span id="mMethod">—</span></div>
+        </div>
 
-  // ===== Update summary live =====
-  function updateSummary(){
-    if(!chosen.method) return; // only update if payment chosen
-    document.getElementById('summary').innerHTML =
-      `<b>Selected APEUni Plan:</b> ${document.getElementById('plan').value} • <b>Method:</b> ${chosen.method}`;
-    document.getElementById('sEmail').textContent = document.getElementById('email').value || '—';
-    document.getElementById('sPass').textContent  = document.getElementById('pass').value  || '—';
-    document.getElementById('qrImg').src = chosen.qr;
-    document.getElementById('qrBox').style.display = 'block';
+        <div class="qr-wrap">
+          <h3>Scan and Pay</h3>
+          <img id="mQR" alt="Payment QR">
+        </div>
+
+        <p class="note">⚠️ Only write your <b>real name</b> in Payment Remarks, please.</p>
+        <input id="txn" type="text" placeholder="Enter Transaction ID or Remarks">
+        <button id="submitBtn" class="submit" onclick="submitNow()">Submit Order</button>
+
+        <!-- Fallback POST to Formcarry if JS/AJAX fails -->
+        <form id="fallbackForm" action="https://formcarry.com/s/l4cLdlMhyf-" method="POST" accept-charset="UTF-8" style="display:none" target="_self">
+          <input type="hidden" name="name"  value="APEUni Customer">
+          <input type="hidden" name="email" value="">
+          <input type="hidden" name="order" value="">
+          <input type="text" name="_gotcha" style="display:none">
+        </form>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const FORMCARRY_ENDPOINT = 'https://formcarry.com/s/l4cLdlMhyf-';
+
+  let chosen = { method:'', qr:'' };
+
+  // helpers
+  const $ = id => document.getElementById(id);
+  function toast(msg){
+    const t = $('toast'); t.textContent = msg; t.classList.add('show');
+    clearTimeout(toast._t); toast._t = setTimeout(()=>t.classList.remove('show'), 3000);
   }
 
-  // ===== Payment buttons =====
+  // enable/disable Buy button based on minimal inputs
+  function toggleBuyBtn(){
+    const ok = $('email').value.trim() && $('pass').value.trim() && chosen.method;
+    $('buyBtn').disabled = !ok;
+  }
+
+  // payment buttons
   document.querySelectorAll('.pay-btn').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       document.querySelectorAll('.pay-btn').forEach(b=>b.classList.remove('active'));
       btn.classList.add('active');
-
       chosen.method = btn.dataset.method;
-      chosen.qr     = btn.dataset.qr;
-      updateSummary();
+      chosen.qr = btn.dataset.qr;
+      toggleBuyBtn();
     });
   });
 
-  // ===== Watch inputs live =====
+  // watch inputs
   ['email','pass','plan'].forEach(id=>{
-    document.getElementById(id).addEventListener('input', updateSummary);
-    document.getElementById(id).addEventListener('change', updateSummary);
+    $(id).addEventListener('input', toggleBuyBtn);
+    $(id).addEventListener('change', toggleBuyBtn);
   });
 
-  // ===== Tiny toast =====
-  function toast(msg){
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    clearTimeout(toast._t);
-    toast._t = setTimeout(()=>t.classList.remove('show'), 3000);
-  }
+  // open modal with filled data
+  $('buyBtn').addEventListener('click', ()=>{
+    const planOption = $('plan').selectedOptions[0];
+    const planText = planOption.value;
+    const price = planOption.dataset.price || (planText.match(/NPR\s*\d+/)?.[0] || '—');
 
-  // ===== Send to Formcarry =====
+    $('mPlan').textContent   = planText.split('—')[0].trim();
+    $('mPrice').textContent  = price;
+    $('mEmail').textContent  = $('email').value.trim() || '—';
+    $('mPass').textContent   = $('pass').value.trim() || '—';
+    $('mMethod').textContent = chosen.method || '—';
+    $('mQR').src             = chosen.qr || '';
+
+    $('modal').style.display = 'flex';
+  });
+
+  function closeModal(){ $('modal').style.display = 'none'; }
+
+  // send to Formcarry (AJAX)
   async function sendOrderToFormcarry(payload){
-    const endpoint = 'https://formcarry.com/s/l4cLdlMhyf-'; // your Formcarry form ID
     const fd = new FormData();
-    fd.append('name',  payload.name || '—');
+    fd.append('name',  payload.name || 'APEUni Customer');
     fd.append('email', payload.email);
     fd.append('order', payload.order);
-
-    const res = await fetch(endpoint, { method:'POST', body:fd, headers:{Accept:'application/json'} });
-    if(!res.ok) throw new Error('Formcarry error');
-    return res.json();
+    fd.append('_gotcha','');
+    const res = await fetch(FORMCARRY_ENDPOINT, { method:'POST', body:fd, headers:{Accept:'application/json'} });
+    let data = {};
+    try{ data = await res.json(); }catch(e){}
+    if(!res.ok || (data && data.status === 'error')) throw new Error('Formcarry submit failed');
+    return data;
   }
 
-  // ===== Final submit =====
+  // final submit
   async function submitNow(){
-    const email = document.getElementById('email').value.trim();
-    const pass  = document.getElementById('pass').value.trim();
-    const plan  = document.getElementById('plan').value;
-    const txn   = document.getElementById('txn').value.trim();
+    const email = $('email').value.trim();
+    const pass  = $('pass').value.trim();
+    const plan  = $('plan').value;
+    const txn   = $('txn').value.trim();
 
     if(!email || !pass){ alert('Please enter your APEUni email and password.'); return; }
     if(!chosen.method){ alert('Please select a payment method.'); return; }
@@ -212,22 +252,28 @@ Password: ${pass}
 Payment Method: ${chosen.method}
 Transaction/Remarks: ${txn}`;
 
-    const btn = document.getElementById('submitBtn');
-    const old = btn.textContent;
+    const btn = $('submitBtn'); const old = btn.textContent;
     btn.disabled = true; btn.textContent = 'Sending...';
 
     try{
-      await sendOrderToFormcarry({ name: 'APEUni Customer', email, order: orderText });
+      await sendOrderToFormcarry({ name:'APEUni Customer', email, order: orderText });
       toast('✅ Order sent! We’ll contact you soon.');
-      // optionally clear tx id:
-      // document.getElementById('txn').value = '';
+      closeModal();
     }catch(e){
-      console.error(e);
-      toast('⚠️ Could not send order. Please try again.');
+      console.warn('AJAX failed, submitting fallback form.', e);
+      const fallback = $('fallbackForm');
+      fallback.elements['email'].value = email;
+      fallback.elements['order'].value = orderText;
+      fallback.submit();
     }finally{
       btn.disabled = false; btn.textContent = old;
     }
   }
+
+  // ESC to close modal
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
+  // click outside to close
+  $('modal').addEventListener('click', (e)=>{ if(e.target === $('modal')) closeModal(); });
 </script>
 </body>
 </html>
