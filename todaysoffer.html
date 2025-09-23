@@ -4,216 +4,77 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Today’s Offers • SM Digital Services</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#0b1115; --card:#0f1822; --soft:#152233; --text:#e9eef4; --muted:#b9c6d3;
-    --grad:linear-gradient(90deg,#ff7a00,#ff415f);
-    --radius:16px; --shadow:0 10px 28px rgba(0,0,0,.35);
+  body {
+    margin:0; background:#0b1115; color:#fff;
+    font-family: Inter, system-ui, sans-serif;
   }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif}
-  a{color:inherit;text-decoration:none}
-  img{max-width:100%;height:auto;display:block}
-
-  /* Header */
-  .topbar{
+  .topbar {
     position:sticky; top:0; z-index:50;
     display:flex; align-items:center; justify-content:space-between;
-    padding:12px 14px; background:#fff; border-bottom:2px solid #eee;
+    padding:12px 16px; background:#fff; color:#111;
   }
-  .brand{display:flex; align-items:center; gap:10px; color:#111; font-weight:900; font-size:20px}
-  .brand img{width:38px; height:38px; object-fit:contain}
-  .home-btn{
-    background:#111; color:#fff; border-radius:999px; padding:8px 14px; font-weight:800
-  }
+  .topbar img { height:36px; }
+  .topbar span { font-weight:800; font-size:18px; margin-left:8px; }
+  .topbar a { text-decoration:none; color:#111; font-weight:700; background:#000; color:#fff; padding:6px 12px; border-radius:20px; }
 
-  main{padding:20px 14px; max-width:960px; margin:0 auto}
-  h1{font-size:26px; margin:0 0 18px; font-weight:900}
-  .grid{display:grid; gap:14px}
-  @media (min-width:720px){ .grid{grid-template-columns:1fr 1fr} }
+  main { padding:16px; max-width:960px; margin:auto; }
+  h1 { font-size:22px; margin:0 0 16px; font-weight:800; }
 
-  /* Offer card */
-  .card{
-    background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius);
-    box-shadow:var(--shadow); overflow:hidden
+  .grid {
+    display:grid; grid-template-columns:1fr 1fr;
+    gap:16px;
   }
-  .card-head{
-    display:flex; gap:12px; align-items:center; justify-content:space-between;
-    padding:14px 16px; background:#101a28; border-bottom:1px solid rgba(255,255,255,.06)
+  .card {
+    background:#152233; border-radius:14px;
+    padding:16px; text-align:center;
+    transition:.2s; cursor:pointer;
   }
-  .card-title{display:flex; align-items:center; gap:12px; font-weight:900; font-size:18px}
-  .card-title img{width:34px; height:34px; object-fit:contain}
-  .tag{font-weight:900; font-size:14px; opacity:.9; white-space:nowrap}
-  .body{padding:14px 16px}
-  .body ul{margin:0 0 14px 18px; color:#cfe1ff}
-  .btn{
-    display:inline-flex; align-items:center; justify-content:center; gap:8px;
-    padding:12px 18px; border-radius:999px; font-weight:800; cursor:pointer;
-    background:var(--grad); color:#fff; box-shadow:0 8px 20px rgba(255,65,95,.35)
-  }
-  .btn-soft{background:#152233; color:#e9eef4; border:1px solid rgba(255,255,255,.12); box-shadow:none}
-  .btn-block{width:100%}
+  .card:hover { transform:translateY(-4px); background:#1b2d44; }
+  .card img { width:64px; height:64px; object-fit:contain; margin-bottom:8px; }
+  .card span { display:block; font-weight:700; font-size:15px; }
 
-  /* Inputs */
-  .field{display:block; width:100%; margin:10px 0 0}
-  .input,.select{
-    width:100%; padding:14px 14px; border-radius:12px; border:1px solid #28364d;
-    background:#0f1826; color:#e9eef4; font-size:15px; outline:none
-  }
-  .input::placeholder{color:#8aa0bf}
-  .hint{font-size:12px; color:#9fb3cc; margin-top:6px}
-
-  /* Sections */
-  .section-title{margin:18px 0 10px; font-size:18px; font-weight:900}
-
-  /* Social + Payments */
-  .chip-row{display:flex; gap:10px; flex-wrap:wrap}
-  .chip{
-    display:inline-flex; align-items:center; gap:8px;
-    padding:10px 14px; border-radius:12px; font-weight:800; background:#152233; border:1px solid rgba(255,255,255,.08)
-  }
-  .chip img{width:18px; height:18px}
-
-  /* Footer + toast */
-  footer{margin-top:24px; text-align:center; color:#b9c6d3; font-size:13px; padding:16px 0; border-top:1px solid rgba(255,255,255,.08)}
-  #toast{
-    position:fixed; left:50%; bottom:20px; transform:translateX(-50%);
-    padding:10px 14px; background:#0f1822; border:1px solid rgba(255,255,255,.12); border-radius:10px;
-    box-shadow:0 10px 24px rgba(0,0,0,.28); color:#e9eef4; opacity:0; pointer-events:none; transition:.25s; z-index:999
+  footer {
+    text-align:center; font-size:13px; padding:20px;
+    color:#b9c6d3; margin-top:30px; border-top:1px solid rgba(255,255,255,.15);
   }
 </style>
 </head>
 <body>
 
-<!-- ===== HEADER ===== -->
 <header class="topbar">
-  <a href="index.html" class="brand" aria-label="Home">
-    <img src="png.images/logo-mascot.png" alt="SMDS">
+  <div style="display:flex; align-items:center;">
+    <img src="png.images/logo-mascot.png" alt="Logo">
     <span>SM DIGITAL SERVICES</span>
-  </a>
-  <a class="home-btn" href="index.html">Home</a>
+  </div>
+  <a href="index.html">Home</a>
 </header>
 
 <main>
-  <h1>🔥 Today’s Offers</h1>
+  <h1>🔥 Subscriptions</h1>
 
   <div class="grid">
-
-    <!-- APEUni VIP -->
-    <article class="card">
-      <div class="card-head">
-        <div class="card-title">
-          <img src="png.images/apeuni.png" alt="APEUni">
-          <span>APEUni VIP</span>
-        </div>
-        <span class="tag">30 Days — <strong>Rs. 2200</strong></span>
-      </div>
-      <div class="body">
-        <ul>
-          <li>Delivery on your email</li>
-          <li>Private access</li>
-          <li>Best for PTE learners</li>
-        </ul>
-        <a class="btn btn-block" href="apeuni.html">Order APEUni</a>
-        <p class="hint">You’ll be redirected to the APEUni order page.</p>
-      </div>
-    </article>
-
-    <!-- ChatGPT Plus -->
-    <article class="card">
-      <div class="card-head">
-        <div class="card-title">
-          <img src="png.images/chatgpt.png" alt="ChatGPT">
-          <span>ChatGPT Plus</span>
-        </div>
-        <span class="tag">1 Month — <strong>Rs. 2750</strong></span>
-      </div>
-      <div class="body">
-        <ul>
-          <li>Account delivered on your email</li>
-          <li>Priority access & faster replies</li>
-        </ul>
-
-        <form id="gptForm" action="https://formcarry.com/s/sgQ-vOYUakF" method="POST" accept-charset="UTF-8">
-          <input type="hidden" name="product" value="ChatGPT Plus (1 Month)" />
-          <label class="field">
-            <input class="input" type="email" name="email" placeholder="Your Email" required>
-          </label>
-          <label class="field">
-            <input class="input" type="text" name="password" placeholder="Password (for the account)" required>
-          </label>
-          <label class="field">
-            <select class="select" name="payment_method" required>
-              <option value="" disabled selected>Select Payment Method</option>
-              <option>eSewa</option>
-              <option>Khalti</option>
-              <option>Bank Transfer</option>
-            </select>
-          </label>
-          <button type="submit" class="btn btn-block" style="margin-top:12px;">Submit Order</button>
-        </form>
-        <p class="hint">After submit, we’ll contact you via email/WhatsApp with the next steps.</p>
-      </div>
-    </article>
-
-    <!-- Spotify (optional) -->
-    <article class="card">
-      <div class="card-head">
-        <div class="card-title">
-          <img src="png.images/spotify.png" alt="Spotify">
-          <span>Spotify Premium</span>
-        </div>
-        <span class="tag">Ask price</span>
-      </div>
-      <div class="body">
-        <ul>
-          <li>Premium access on your account</li>
-          <li>Instant delivery (working hours)</li>
-        </ul>
-        <a class="btn-soft btn-block" href="https://wa.me/9779828560029" target="_blank" rel="noopener">Chat to Order</a>
-      </div>
-    </article>
-
-    <!-- Perplexity (optional) -->
-    <article class="card">
-      <div class="card-head">
-        <div class="card-title">
-          <img src="png.images/perplexity.png" alt="Perplexity AI">
-          <span>Perplexity Pro</span>
-        </div>
-        <span class="tag">Ask price</span>
-      </div>
-      <div class="body">
-        <ul>
-          <li>Pro features enabled</li>
-          <li>Great for research & students</li>
-        </ul>
-        <a class="btn-soft btn-block" href="https://wa.me/9779828560029" target="_blank" rel="noopener">Chat to Order</a>
-      </div>
-    </article>
-
-  </div>
-
-  <!-- Social & Payments -->
-  <h2 class="section-title">Our Social Media</h2>
-  <div class="chip-row" style="margin-bottom:8px">
-    <a class="chip" href="https://wa.me/9779828560029" target="_blank" rel="noopener">
-      <img src="png.images/logo-whatsapp.png" alt=""> WhatsApp
+    <a href="apeuni.html" class="card">
+      <img src="png.images/apeuni.png" alt="APEUni">
+      <span>APEUni</span>
     </a>
-    <a class="chip" href="https://instagram.com/yourhandle" target="_blank" rel="noopener">
-      <img src="png.images/logo-instagram.png" alt=""> Instagram
+    <a href="chatgpt.html" class="card">
+      <img src="png.images/chatgpt.png" alt="ChatGPT Plus">
+      <span>ChatGPT Plus</span>
     </a>
-    <a class="chip" href="https://facebook.com/yourpage" target="_blank" rel="noopener">
-      <img src="png.images/logo-facebook.png" alt=""> Facebook
+    <a href="spotify.html" class="card">
+      <img src="png.images/spotify.png" alt="Spotify">
+      <span>Spotify</span>
     </a>
-  </div>
-
-  <h2 class="section-title">We Accept</h2>
-  <div class="chip-row">
-    <span class="chip"><img src="png.images/esewa.png" alt=""> eSewa</span>
-    <span class="chip"><img src="png.images/khalti.png" alt=""> Khalti</span>
-    <span class="chip"><img src="png.images/bank.png" alt=""> Bank Transfer</span>
+    <a href="perplexity.html" class="card">
+      <img src="png.images/perplexity.png" alt="Perplexity AI">
+      <span>Perplexity AI</span>
+    </a>
+    <a href="capcut.html" class="card">
+      <img src="png.images/capcut.png" alt="CapCut Pro">
+      <span>CapCut Pro</span>
+    </a>
   </div>
 </main>
 
@@ -221,35 +82,5 @@
   Copyright ©2025 SM Digital Service — owned by Samir Mijar
 </footer>
 
-<div id="toast"></div>
-
-<script>
-  // AJAX submit for ChatGPT Plus (Formcarry)
-  (function(){
-    const form = document.getElementById('gptForm');
-    const toast = document.getElementById('toast');
-    if(!form || !toast) return;
-
-    function showToast(msg){
-      toast.textContent = msg;
-      toast.style.opacity = '1';
-      clearTimeout(showToast._t);
-      showToast._t = setTimeout(()=> toast.style.opacity = '0', 3200);
-    }
-
-    form.addEventListener('submit', async (e)=>{
-      e.preventDefault();
-      const btn = form.querySelector('button[type="submit"]');
-      const old = btn.textContent;
-      btn.disabled = true; btn.textContent = 'Submitting...';
-      try{
-        const res = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
-        if(res.ok){ form.reset(); showToast('✅ Order received! We will contact you shortly.'); }
-        else{ showToast('⚠️ Something went wrong. Please try again.'); }
-      }catch(err){ showToast('⚠️ Network error. Please try again.'); }
-      finally{ btn.disabled = false; btn.textContent = old; }
-    });
-  }());
-</script>
 </body>
 </html>
