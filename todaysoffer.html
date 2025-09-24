@@ -39,13 +39,17 @@
       color: #fff;
     }
 
-    /* Grid */
+    /* Fixed 4-column grid */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 16px;
       padding: 0 16px 28px;
     }
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
     .card {
       background: #152233;
       border-radius: 14px;
