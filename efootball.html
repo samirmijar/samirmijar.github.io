@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>E-Football Coins (iOS) • SM Digital Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b1115; --card:#0f1822; --line:#1d2a3b; --soft:#142135;
+    --text:#e9eef6; --muted:#b6c4d6;
+    --accent:#2be675;  /* neon green */
+    --accent2:#00a7ff; /* blue secondary */
+    --gold:#ffd166;
+    --ok:#25D366;
+    --radius:16px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
+  .wrap{max-width:920px;margin:0 auto;padding:18px}
+  .topbar{display:flex;align-items:center;gap:10px;padding:12px 0}
+  .topbar a{color:#9ecbff;text-decoration:none}
+  .brand-logo{width:40px;height:40px;object-fit:contain;margin-left:auto}
+
+  h1{margin:8px 0 0;font-size:24px;color:var(--accent)}
+  h2{margin:0 0 10px;color:var(--gold)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:14px 0}
+
+  input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #2b3b56;background:var(--soft);color:#fff;margin:8px 0}
+  input:focus,select:focus{outline:2px solid var(--accent)}
+
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  @media (max-width:720px){ .grid{grid-template-columns:1fr} }
+
+  .pay-row{display:flex;gap:10px;flex-wrap:wrap}
+  .pay-btn{flex:1;min-width:110px;background:var(--soft);border:1px solid #2b3b56;border-radius:10px;padding:12px;text-align:center;cursor:pointer;font-weight:700}
+  .pay-btn.active{background:var(--accent);border-color:var(--accent);color:#052010}
+
+  .cta{background:var(--accent2);border:none;padding:14px 16px;border-radius:12px;color:#001018;font-weight:800;cursor:pointer;width:100%;margin-top:10px}
+  .cta[disabled]{opacity:.5;cursor:not-allowed}
+
+  .footer-links{display:flex;gap:10px;justify-content:center;margin:18px 0 10px}
+  .footer-links a{color:#9ecbff;text-decoration:none}
+
+  #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f1822;border:1px solid rgba(255,255,255,.12);color:#e9eef4;padding:10px 14px;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.28);opacity:0;transition:.25s;z-index:9999}
+  #toast.show{opacity:1}
+
+  .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.68);display:none;align-items:center;justify-content:center;padding:18px;z-index:9990}
+  .modal{width:100%;max-width:560px;background:#0f1626;border:1px solid #1f2c44;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+  .modal-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #1e2639}
+  .modal-head h3{margin:0;font-size:18px;color:var(--gold)}
+  .modal-close{background:transparent;border:none;color:#cfd6ff;font-size:22px;cursor:pointer}
+  .modal-body{padding:14px 16px}
+  .summary{background:#0b1220;border:1px solid #20263a;border-radius:12px;padding:12px;margin:10px 0;font-size:14px}
+  .summary b{color:var(--gold)}
+  .qr-wrap{text-align:center}
+  .qr-wrap img{max-width:220px;background:#fff;border-radius:12px;padding:8px;display:block;margin:8px auto}
+  @media (max-width:420px){ .qr-wrap img{max-width:160px} }
+  .note{font-size:13px;color:#ffcdcd;margin:8px 0 0}
+  .submit{background:var(--ok);border:none;padding:14px 16px;border-radius:12px;color:#fff;font-weight:800;cursor:pointer;width:100%;margin-top:12px}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <a href="index.html">← Back Home</a>
+      <span style="opacity:.6">/</span>
+      <span>E-Football Coins (iOS)</span>
+      <img class="brand-logo" src="png.images/logo-efootball.png" alt="eFootball">
+    </div>
+
+    <h1>🍀 E-Football Coin — iOS Top-Up</h1>
+    <p class="muted">iOS only. Delivery within <b>1–20 minutes</b> after payment.</p>
+
+    <!-- Choose Option -->
+    <div class="card">
+      <h2>Choose Option</h2>
+      <div class="grid">
+        <div>
+          <label for="pack">Available Packs</label>
+          <select id="pack">
+            <option value="Mourinho Set" data-price="750">Mourinho Set — Rs 750</option>
+            <option value="Starter Set 1" data-price="180">Starter Set 1 — Rs 180</option>
+            <option value="Starter Set Pack 2" data-price="460">Starter Set Pack 2 — Rs 460</option>
+          </select>
+        </div>
+        <div>
+          <label for="coins">Coin Prices</label>
+          <select id="coins">
+            <option value="130 Coins"  data-price="180">130 Coins — Rs 180</option>
+            <option value="550 Coins"  data-price="700">550 Coins — Rs 700</option>
+            <option value="1040 Coins" data-price="1325">1040 Coins — Rs 1325</option>
+            <option value="2130 Coins" data-price="2650">2130 Coins — Rs 2650</option>
+            <option value="3250 Coins" data-price="3880">3250 Coins — Rs 3880</option>
+            <option value="5700 Coins" data-price="6550">5700 Coins — Rs 6550</option>
+            <option value="12800 Coins" data-price="13500">12800 Coins — Rs 13500</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Konami Login -->
+    <div class="card">
+      <h2>Konami Login (Required)</h2>
+      <input id="email" type="email" placeholder="Konami ID (Email)" required>
+      <input id="pass"  type="password" placeholder="Password" required>
+      <input id="contact" type="text" placeholder="Your contact for login code (FB/IG/WhatsApp/Phone)" required>
+      <p class="note">🔴 Konami login ID & password required.  
+      If Konami asks for a 2FA code, we’ll contact you via the method you provide above.</p>
+    </div>
+
+    <!-- iOS Info -->
+    <div class="card">
+      <h2>iOS Top-Up जानकारी</h2>
+      <ul style="margin:0 0 8px 18px">
+        <li>अहिले **iOS Top-Up मात्र** उपलब्ध छ।</li>
+        <li>iOS बाट coin हाल्दा Android मा तुरुन्त देखिन्न, तर **coin accountमै हुन्छ**।</li>
+        <li>Android प्लेयरले पनि यी coin **spin/किन्न प्रयोग** गर्न सक्छन्।</li>
+        <li>iOS नभए **साथीको iOS device** प्रयोग गर्न सक्नुहुन्छ, वा हामी सहयोग गर्छौं (समय भएमा)।</li>
+      </ul>
+    </div>
+
+    <!-- Payment -->
+    <div class="card">
+      <h2>Payment Method</h2>
+      <div class="pay-row">
+        <div class="pay-btn" data-method="eSewa"  data-qr="png.images/logo-esewaqr.png">eSewa</div>
+        <div class="pay-btn" data-method="Khalti" data-qr="png.images/logo-khaltiqr.png">Khalti</div>
+        <div class="pay-btn" data-method="Bank"   data-qr="png.images/logo-bankqr.png">Bank</div>
+      </div>
+      <button id="buyBtn" class="cta" disabled>Buy Now!</button>
+    </div>
+
+    <div class="footer-links">
+      <a href="viber://chat?number=+9779828560029">Viber</a>
+      <a href="https://wa.me/9779828560029" target="_blank">WhatsApp</a>
+      <a href="https://tiktok.com/@samirmijar.np" target="_blank">TikTok</a>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal-backdrop">
+    <div class="modal">
+      <div class="modal-head">
+        <h3>Complete Your Purchase</h3>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="summary">
+          <div><b>Selected:</b> <span id="mItem">—</span></div>
+          <div><b>Price:</b> <span id="mPrice">—</span></div>
+          <div><b>Konami ID:</b> <span id="mEmail">—</span></div>
+          <div><b>Password:</b> <span id="mPass">—</span></div>
+          <div><b>Contact:</b> <span id="mContact">—</span></div>
+          <div><b>Payment:</b> <span id="mMethod">—</span></div>
+        </div>
+
+        <div class="qr-wrap">
+          <h3 style="color:var(--gold)">Scan & Pay</h3>
+          <img id="mQR" alt="Payment QR">
+        </div>
+
+        <p class="note">⚠️ Do NOT write any <b>gaming words</b> in remarks. Only write your <b>real name</b>.</p>
+        <input id="txn" type="text" placeholder="Enter Transaction ID or Remarks">
+        <button id="submitBtn" class="submit" onclick="submitNow()">Submit Order</button>
+
+        <form id="fallbackForm" action="https://formcarry.com/s/l4cLdlMhyf-" method="POST" style="display:none">
+          <input type="hidden" name="name" value="E-Football iOS Customer">
+          <input type="hidden" name="email" value="no-email@order.local">
+          <input type="hidden" name="order" value="">
+        </form>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const FORMCARRY_ENDPOINT = 'https://formcarry.com/s/l4cLdlMhyf-';
+  let chosen = { method:'', qr:'' }, current={item:'',price:'—'};
+  const $=id=>document.getElementById(id);
+
+  function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('show'),3000)}
+
+  function pick(item,price){current.item=item;current.price=price?`Rs ${price}`:'—';}
+  $('pack').addEventListener('change',e=>{const o=e.target.selectedOptions[0];pick(o.value,o.dataset.price);toggleBuyBtn();});
+  $('coins').addEventListener('change',e=>{const o=e.target.selectedOptions[0];pick(o.value,o.dataset.price);toggleBuyBtn();});
+
+  document.querySelectorAll('.pay-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.pay-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');chosen.method=btn.dataset.method;chosen.qr=btn.dataset.qr;toggleBuyBtn();
+    });
+  });
+
+  function toggleBuyBtn(){
+    const ok=$('email').value.trim()&&$('pass').value.trim()&&$('contact').value.trim()&&chosen.method&&current.item;
+    $('buyBtn').disabled=!ok;
+  }
+  ['email','pass','contact'].forEach(id=>{ $(id).addEventListener('input',toggleBuyBtn);$(id).addEventListener('change',toggleBuyBtn); });
+
+  $('buyBtn').addEventListener('click',()=>{
+    $('mItem').textContent=current.item||'—';
+    $('mPrice').textContent=current.price||'—';
+    $('mEmail').textContent=$('email').value.trim()||'—';
+    $('mPass').textContent=$('pass').value.trim()||'—';
+    $('mContact').textContent=$('contact').value.trim()||'—';
+    $('mMethod').textContent=chosen.method||'—';
+    $('mQR').src=chosen.qr||'';
+    $('modal').style.display='flex';
+  });
+  function closeModal(){ $('modal').style.display='none'; }
+
+  async function sendToFormcarry(order){
+    const fd=new FormData();
+    fd.append('name','E-Football iOS Customer');
+    fd.append('email','no-email@order.local');
+    fd.append('order',order);
+    const res=await fetch(FORMCARRY_ENDPOINT,{method:'POST',body:fd,headers:{Accept:'application/json'}});
+    if(!res.ok) throw new Error('Formcarry failed');return res.json();
+  }
+
+  async function submitNow(){
+    const email=$('email').value.trim(), pass=$('pass').value.trim(), contact=$('contact').value.trim(), txn=$('txn').value.trim();
+    if(!email||!pass||!contact||!txn){alert('Please fill all required fields.');return;}
+    const order=`E-Football (iOS) Order
+Selected: ${current.item}
+Price: ${current.price}
+Konami ID: ${email}
+Password: ${pass}
+Contact for Login Code: ${contact}
+Payment: ${chosen.method}
+Transaction/Remarks: ${txn}`;
+    const btn=$('submitBtn');const old=btn.textContent;btn.disabled=true;btn.textContent='Sending...';
+    try{await sendToFormcarry(order);toast('✅ Order sent! We’ll process shortly.');closeModal();}
+    catch(e){const f=$('fallbackForm');f.elements['order'].value=order;f.submit();}
+    finally{btn.disabled=false;btn.textContent=old;}
+  }
+
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+  $('modal').addEventListener('click',e=>{if(e.target===$('modal'))closeModal();});
+</script>
+</body>
+</html>
