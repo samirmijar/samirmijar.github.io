@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mobile Legends Diamonds • SM Digital Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a1220; --card:#111c33; --line:#1f2a44; --soft:#182444;
+    --text:#e9eef9; --muted:#a9b8d3;
+    --accent:#1e90ff;  /* ML Blue */
+    --gold:#ffcc33;    /* ML Gold */
+    --ok:#25D366;
+    --radius:16px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
+  .wrap{max-width:900px;margin:0 auto;padding:18px}
+  .topbar{display:flex;align-items:center;gap:10px;padding:12px 0}
+  .topbar a{color:#9ecbff;text-decoration:none}
+  .brand-logo{width:40px;height:40px;object-fit:contain;margin-left:auto}
+
+  h1{margin:8px 0 0;font-size:24px;color:var(--gold)}
+  h2{color:var(--gold);margin-bottom:10px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:14px 0}
+
+  input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #2b3148;background:var(--soft);color:#fff;margin:8px 0}
+  input:focus,select:focus{outline:2px solid var(--accent)}
+
+  .pay-row{display:flex;gap:10px;flex-wrap:wrap}
+  .pay-btn{flex:1;min-width:110px;background:var(--soft);border:1px solid #2b3148;border-radius:10px;padding:12px;text-align:center;cursor:pointer;font-weight:700;color:#fff}
+  .pay-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+
+  .cta{background:var(--gold);border:none;padding:14px 16px;border-radius:12px;color:#111;font-weight:800;cursor:pointer;width:100%;margin-top:10px}
+  .cta[disabled]{opacity:.5;cursor:not-allowed}
+
+  .footer-links{display:flex;gap:10px;justify-content:center;margin:18px 0 10px}
+  .footer-links a{color:#9ecbff;text-decoration:none}
+
+  #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f1822;border:1px solid rgba(255,255,255,.12);color:#e9eef4;padding:10px 14px;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.28);opacity:0;transition:.25s;z-index:9999}
+  #toast.show{opacity:1}
+
+  .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;padding:18px;z-index:9990}
+  .modal{width:100%;max-width:540px;background:#101a33;border:1px solid #223259;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+  .modal-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #1e2639}
+  .modal-head h3{margin:0;font-size:18px;color:var(--gold)}
+  .modal-close{background:transparent;border:none;color:#cfd6ff;font-size:22px;cursor:pointer}
+  .modal-body{padding:14px 16px}
+  .summary{background:#0b1220;border:1px solid #20263a;border-radius:12px;padding:12px;margin:10px 0;font-size:14px}
+  .summary b{color:var(--gold)}
+  .qr-wrap{text-align:center}
+  .qr-wrap img{max-width:220px;background:#fff;border-radius:12px;padding:8px;display:block;margin:8px auto}
+  @media (max-width:420px){ .qr-wrap img{max-width:160px} }
+  .note{font-size:13px;color:#ffcdcd;margin:8px 0 0}
+  .submit{background:var(--ok);border:none;padding:14px 16px;border-radius:12px;color:#fff;font-weight:800;cursor:pointer;width:100%;margin-top:12px}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <a href="index.html">← Back Home</a>
+      <span style="opacity:.6">/</span>
+      <span>MLBB Diamonds</span>
+      <img class="brand-logo" src="png.images/logo-ml.png" alt="MLBB">
+    </div>
+
+    <h1>Mobile Legends Diamonds (Global)</h1>
+    <p class="muted">Delivery within <b>2 – 20 minutes</b> after payment.</p>
+
+    <!-- Package -->
+    <div class="card">
+      <h2>Select Package</h2>
+      <select id="package">
+        <optgroup label="Starter Pack">
+          <option value="10+1 Diamonds" data-price="49">10 + 1 — Rs 49</option>
+          <option value="20+2 Diamonds" data-price="79">20 + 2 — Rs 79</option>
+          <option value="51+5 Diamonds" data-price="149">51 + 5 — Rs 149</option>
+          <option value="78+8 Diamonds" data-price="195">78 + 8 — Rs 195</option>
+        </optgroup>
+        <optgroup label="Event Bundles">
+          <option value="102+12 Diamonds" data-price="285">102 + 12 — Rs 285</option>
+          <option value="156+16 Diamonds" data-price="390">156 + 16 — Rs 390</option>
+          <option value="234+23 Diamonds" data-price="595">234 + 23 — Rs 595</option>
+          <option value="310+34 Diamonds" data-price="795">310 + 34 — Rs 795</option>
+        </optgroup>
+        <optgroup label="Pro Pack">
+          <option value="1007+156 Diamonds" data-price="2630">1007 + 156 — Rs 2630</option>
+          <option value="1160+186 Diamonds" data-price="2899">1160 + 186 — Rs 2899</option>
+          <option value="1547+278 Diamonds" data-price="3780">1547 + 278 — Rs 3780</option>
+          <option value="1860+335 Diamonds" data-price="4395">1860 + 335 — Rs 4395</option>
+          <option value="2015+383 Diamonds" data-price="5255">2015 + 383 — Rs 5255</option>
+          <option value="3099+589 Diamonds" data-price="7499">3099 + 589 — Rs 7499</option>
+        </optgroup>
+        <optgroup label="Pro Mastery">
+          <option value="5035+1007 Diamonds" data-price="13525">5035 + 1007 — Rs 13525</option>
+          <option value="7740+1548 Diamonds" data-price="18200">7740 + 1548 — Rs 18200</option>
+        </optgroup>
+        <optgroup label="Mini Mastery">
+          <option value="Twilight Pass" data-price="1250">Twilight Pass — Rs 1250</option>
+          <option value="Weekly Diamond Pass" data-price="250">Weekly Diamond Pass — Rs 250</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <!-- Player Info -->
+    <div class="card">
+      <h2>Order Info</h2>
+      <input id="mlId" type="text" placeholder="User ID" required>
+      <input id="zoneId" type="text" placeholder="Zone ID" required>
+      <p class="note">⚠️ Enter correct ID & Zone. Wrong info = no diamonds, no refund.</p>
+    </div>
+
+    <!-- Payment -->
+    <div class="card">
+      <h2>Payment Method</h2>
+      <div class="pay-row">
+        <div class="pay-btn" data-method="eSewa"  data-qr="png.images/logo-esewaqr.png">eSewa</div>
+        <div class="pay-btn" data-method="Khalti" data-qr="png.images/logo-khaltiqr.png">Khalti</div>
+        <div class="pay-btn" data-method="Bank"   data-qr="png.images/logo-bankqr.png">Bank</div>
+      </div>
+      <button id="buyBtn" class="cta" disabled>Buy Now!</button>
+    </div>
+
+    <div class="footer-links">
+      <a href="viber://chat?number=+9779828560029">Viber</a>
+      <a href="https://wa.me/9779828560029" target="_blank">WhatsApp</a>
+      <a href="https://tiktok.com/@samirmijar.np" target="_blank">TikTok</a>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal-backdrop">
+    <div class="modal">
+      <div class="modal-head">
+        <h3>Complete Your Purchase</h3>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="summary">
+          <div><b>Package:</b> <span id="mPlan">—</span></div>
+          <div><b>Price:</b> <span id="mPrice">—</span></div>
+          <div><b>User ID:</b> <span id="mId">—</span></div>
+          <div><b>Zone ID:</b> <span id="mZone">—</span></div>
+          <div><b>Payment:</b> <span id="mMethod">—</span></div>
+        </div>
+
+        <div class="qr-wrap">
+          <h3 style="color:var(--gold)">Scan & Pay</h3>
+          <img id="mQR" alt="QR">
+        </div>
+
+        <p class="note">⚠️ Do not write any <b>gaming words</b> in remarks. Only write your <b>real name</b>.</p>
+        <input id="txn" type="text" placeholder="Enter Transaction ID or Remarks">
+        <button id="submitBtn" class="submit" onclick="submitNow()">Submit Order</button>
+
+        <form id="fallbackForm" action="https://formcarry.com/s/l4cLdlMhyf-" method="POST" style="display:none">
+          <input type="hidden" name="name" value="MLBB Customer">
+          <input type="hidden" name="email" value="no-email@order.local">
+          <input type="hidden" name="order" value="">
+          <input type="text" name="_gotcha" style="display:none">
+        </form>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const FORMCARRY_ENDPOINT = 'https://formcarry.com/s/l4cLdlMhyf-';
+  let chosen={method:'',qr:''};
+  const $=id=>document.getElementById(id);
+
+  function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('show'),3000);}
+
+  function toggleBuyBtn(){ $('buyBtn').disabled = !($('mlId').value.trim() && $('zoneId').value.trim() && chosen.method); }
+
+  document.querySelectorAll('.pay-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.pay-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      chosen.method=btn.dataset.method;
+      chosen.qr=btn.dataset.qr;
+      toggleBuyBtn();
+    });
+  });
+
+  ['mlId','zoneId','package'].forEach(id=>{
+    $(id).addEventListener('input',toggleBuyBtn);
+    $(id).addEventListener('change',toggleBuyBtn);
+  });
+
+  $('buyBtn').addEventListener('click',()=>{
+    const opt=$('package').selectedOptions[0];
+    $('mPlan').textContent=opt.value;
+    $('mPrice').textContent="Rs "+opt.dataset.price;
+    $('mId').textContent=$('mlId').value.trim();
+    $('mZone').textContent=$('zoneId').value.trim();
+    $('mMethod').textContent=chosen.method;
+    $('mQR').src=chosen.qr;
+    $('modal').style.display='flex';
+  });
+
+  function closeModal(){ $('modal').style.display='none'; }
+
+  async function sendToFormcarry(order){
+    const fd=new FormData();
+    fd.append('name','MLBB Customer');
+    fd.append('email','no-email@order.local');
+    fd.append('order',order);
+    fd.append('_gotcha','');
+    const res=await fetch(FORMCARRY_ENDPOINT,{method:'POST',body:fd,headers:{Accept:'application/json'}});
+    if(!res.ok) throw new Error('Formcarry failed');return res.json();
+  }
+
+  async function submitNow(){
+    const pkg=$('package').value;
+    const price=$('package').selectedOptions[0].dataset.price;
+    const uid=$('mlId').value.trim();
+    const zid=$('zoneId').value.trim();
+    const txn=$('txn').value.trim();
+    if(!uid||!zid||!txn){alert('Fill all fields');return;}
+    const order=`MLBB Diamond Order
+Package: ${pkg}
+Price: Rs ${price}
+User ID: ${uid}
+Zone ID: ${zid}
+Payment: ${chosen.method}
+Transaction/Remarks: ${txn}`;
+    const btn=$('submitBtn');const old=btn.textContent;
+    btn.disabled=true;btn.textContent='Sending...';
+    try{await sendToFormcarry(order);toast('✅ Order sent! We’ll top-up soon.');closeModal();}
+    catch(e){const f=$('fallbackForm');f.elements['order'].value=order;f.submit();}
+    finally{btn.disabled=false;btn.textContent=old;}
+  }
+
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+  $('modal').addEventListener('click',e=>{if(e.target===$('modal'))closeModal();});
+</script>
+</body>
+</html>
