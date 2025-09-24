@@ -2,30 +2,105 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Today's Offers • SM Digital Services</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    body { margin:0; font-family:Inter, sans-serif; background:#0b1115; color:#e9eef4; }
-    header { display:flex; justify-content:space-between; align-items:center; padding:12px 18px; background:#fff; border-bottom:2px solid #eee; }
-    header img { height:40px; }
-    header h1 { margin:0; font-size:18px; color:#111; }
-    header a { text-decoration:none; background:#000; color:#fff; padding:6px 16px; border-radius:20px; font-weight:600; }
+    body {
+      margin: 0;
+      font-family: Inter, sans-serif;
+      background: #0b1115;
+      color: #e9eef4;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 18px;
+      background: #fff;
+      border-bottom: 2px solid #eee;
+    }
+    header img { height: 40px; }
+    header h1 { margin: 0; font-size: 18px; color: #111; }
+    header a {
+      text-decoration: none;
+      background: #000;
+      color: #fff;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
 
-    h2 { font-size:22px; margin:20px 0 12px; padding-left:16px; }
+    h2 {
+      font-size: 20px;
+      margin: 24px 0 14px;
+      padding-left: 16px;
+      font-weight: 700;
+      color: #fff;
+    }
 
-    /* Card grid */
-    .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(110px,1fr)); gap:14px; padding:0 16px 24px; }
-    .card { background:#152233; border-radius:14px; padding:16px 10px; text-align:center; transition:.25s; }
-    .card:hover { transform:translateY(-4px); background:#1e2f44; }
-    .card img { width:64px; height:64px; object-fit:contain; margin-bottom:8px; }
-    .card span { font-weight:600; font-size:14px; display:block; color:#fff; }
+    /* Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 16px;
+      padding: 0 16px 28px;
+    }
+    .card {
+      background: #152233;
+      border-radius: 14px;
+      padding: 18px 10px;
+      text-align: center;
+      transition: 0.25s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      background: #1e2f44;
+    }
+    .card img {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+    .card span {
+      font-weight: 600;
+      font-size: 14px;
+      display: block;
+      color: #fff;
+    }
 
-    .social, .payment { text-align:center; margin:24px 0; }
-    .social-icons, .pay-icons { display:flex; justify-content:center; gap:16px; margin-top:10px; }
-    .social-icons img, .pay-icons img { width:40px; height:40px; border-radius:8px; background:#fff; padding:6px; }
+    .social, .payment {
+      text-align: center;
+      margin: 24px 0;
+    }
+    .social-icons, .pay-icons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .social-icons img, .pay-icons img {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background: #fff;
+      padding: 6px;
+    }
 
-    footer { text-align:center; padding:16px; font-size:14px; background:#0f1822; color:#b9c6d3; border-top:1px solid rgba(255,255,255,.08); }
+    footer {
+      text-align: center;
+      padding: 16px;
+      font-size: 14px;
+      background: #0f1822;
+      color: #b9c6d3;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
   </style>
 </head>
 <body>
@@ -42,30 +117,53 @@
   <!-- Subscriptions -->
   <h2>🔥 Subscriptions</h2>
   <div class="grid">
-    <!-- Example subscription product -->
     <a href="apeuni.html" class="card">
       <img src="png.images/logo-apeuni.png" alt="APEUni">
       <span>APEUni</span>
     </a>
-    <!-- Add more subscription items here -->
+    <a href="chatgpt.html" class="card">
+      <img src="png.images/logo-chatgpt.png" alt="ChatGPT Plus">
+      <span>ChatGPT Plus</span>
+    </a>
+    <a href="spotify.html" class="card">
+      <img src="png.images/logo-spotify.png" alt="Spotify">
+      <span>Spotify</span>
+    </a>
+    <a href="perplexity.html" class="card">
+      <img src="png.images/logo-perplexity.png" alt="Perplexity AI">
+      <span>Perplexity AI</span>
+    </a>
+    <a href="capcut.html" class="card">
+      <img src="png.images/logo-capcut.png" alt="CapCut Pro">
+      <span>CapCut Pro</span>
+    </a>
   </div>
 
   <!-- Premium Accounts -->
   <h2>💎 Premium Accounts</h2>
   <div class="grid">
-    <!-- Add your premium account items here -->
+    <a href="premium.html" class="card">
+      <img src="png.images/logo-premium.png" alt="Premium Accounts">
+      <span>Premium</span>
+    </a>
   </div>
 
   <!-- Premium Accounts (On Your Mail) -->
   <h2>📩 Premium Accounts (On Your Mail)</h2>
   <div class="grid">
-    <!-- Add your on-mail premium account items here -->
+    <a href="mailpremium.html" class="card">
+      <img src="png.images/logo-mail.png" alt="On Your Mail">
+      <span>On Your Mail</span>
+    </a>
   </div>
 
-  <!-- Social Media Services (SMM) -->
-  <h2>📱 Social Media Services (SMM)</h2>
+  <!-- Social Media Followers -->
+  <h2>📱 Social Media Followers</h2>
   <div class="grid">
-    <!-- Add your SMM items here -->
+    <a href="followers.html" class="card">
+      <img src="png.images/logo-followers.png" alt="Social Media Followers">
+      <span>Followers</span>
+    </a>
   </div>
 
   <!-- Social Media -->
