@@ -3,357 +3,348 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Premium Accounts • SM Digital Services</title>
+<title>New Order • Premium Accounts</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0d0f12; --card:#101520; --line:#20283a; --soft:#141b2b;
-    --text:#eaeef6; --muted:#aebcd1; --accent:#ff7a00; --accent2:#6a00ff; --ok:#25D366;
-    --radius:16px;
+    --bg:#fff6ef; --card:#ffeede; --line:#ffd6b9; --text:#2b303a; --muted:#6e7c8a;
+    --accent:#ff7a2c; --accent2:#ffae6f; --green:#23c552; --radius:16px;
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
-  .wrap{max-width:900px;margin:0 auto;padding:16px}
-
-  h1{margin:6px 0 12px;font-size:24px}
-  h2{margin:0 0 8px;font-size:18px}
-  p{margin:0 0 10px}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.45;font-size:14px}
+  .wrap{max-width:880px;margin:0 auto;padding:12px 12px 84px}
+  h1{margin:4px 0 8px;font-size:18px;font-weight:800}
+  h2{margin:0 0 8px;font-size:15px}
+  p,li{font-size:13px}
   .muted{color:var(--muted)}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin:12px 0}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;margin:10px 0}
 
-  /* Category pill */
-  .cat-pill{display:flex;align-items:center;justify-content:space-between;background:#121a2a;border:1px solid #23304a;border-radius:12px;padding:12px 14px}
-  .cat-pill b{font-size:15px}
-  .chev{opacity:.7}
+  .pill{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid var(--line);padding:12px;border-radius:14px;box-shadow:0 3px 0 var(--accent2) inset}
+  .pill b{font-size:14px}
+  .chev{opacity:.6}
 
-  /* Service list */
-  .service{background:#0f1626;border:1px solid #202a42;border-radius:16px;padding:10px}
-  .svc-head{display:flex;align-items:center;gap:8px;margin:4px 0 8px}
-  .svc-title{font-weight:700}
-  .svc-list{max-height:360px;overflow:auto;border-radius:12px}
-  .svc-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid #1d2740;cursor:pointer}
-  .svc-item:last-child{border-bottom:none}
-  .svc-item:hover{background:#121d33}
-  .svc-item.active{background:#1a2a4a;outline:2px solid #2b7bff}
-  .badge{min-width:36px;height:24px;padding:0 8px;border-radius:999px;background:#ff7a00;color:#141414;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px}
-  .svc-name{flex:1}
-  .svc-meta{font-size:12px;color:#cbd7ea}
+  .search{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:#fff}
+  .search:focus{outline:2px solid var(--accent)}
+
+  .svc-head{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+  .list{max-height:380px;overflow:auto;border-radius:12px;background:#fff}
+  .row{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-bottom:1px solid #f3d9c7;cursor:pointer}
+  .row:last-child{border-bottom:none}
+  .row:hover{background:#fff7f0}
+  .row.active{background:#fff1e5;outline:2px solid var(--accent)}
+  .badge{min-width:34px;height:22px;border-radius:999px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px}
+  .name{flex:1}
+  .name .title{font-weight:700;font-size:13px}
+  .name .meta{font-size:12px;color:#8b98a7;margin-top:2px}
   .price{font-weight:800;white-space:nowrap}
 
-  /* Filter */
-  .filter{display:flex;gap:8px;margin-bottom:8px}
-  .filter input{flex:1}
+  input,select,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:#fff}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--accent)}
 
-  /* Inputs */
-  input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #2a3250;background:var(--soft);color:#fff}
-  input:focus,select:focus{outline:2px solid var(--accent2)}
+  .pay-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .pay{flex:1 0 120px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;font-weight:700;cursor:pointer}
+  .pay.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 
-  /* Payment */
-  .pay-row{display:flex;gap:10px;flex-wrap:wrap}
-  .pay-btn{flex:1;min-width:110px;background:#131c30;border:1px solid #2a3554;border-radius:10px;padding:12px;text-align:center;cursor:pointer;font-weight:700}
-  .pay-btn.active{background:var(--accent2);border-color:var(--accent2)}
+  .qr-box{display:none;margin-top:8px;border-top:1px dashed var(--line);padding-top:10px}
+  .summary{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;margin:8px 0}
+  .summary b{color:#0d1d2a}
+  .qr{text-align:center}
+  .qr img{max-width:180px;background:#fff;border-radius:12px;padding:8px;display:block;margin:8px auto;border:1px solid var(--line)}
 
-  /* Summary + QR */
-  .qr-box{display:none;margin-top:10px;border-top:1px dashed #2b3658;padding-top:10px}
-  .summary{background:#0f1421;border:1px solid #20263a;border-radius:12px;padding:10px;margin:8px 0;font-size:14px}
-  .summary b{color:#cfe2ff}
-  .qr-wrap{text-align:center}
-  .qr-wrap img{max-width:200px;background:#fff;border-radius:12px;padding:8px;display:block;margin:8px auto}
-  .note{font-size:13px;color:#ffcdcd;margin-top:6px}
+  .submit{width:100%;background:var(--green);color:#fff;border:none;border-radius:12px;padding:12px 14px;font-weight:800;cursor:pointer}
+  .note{font-size:12px;color:#c4422a;margin-top:6px}
 
-  /* Buttons / Footer / Toast */
-  .submit{background:var(--ok);border:none;padding:14px 16px;border-radius:12px;color:#fff;font-weight:800;cursor:pointer;width:100%;margin-top:10px}
-  .footer-links{display:flex;gap:10px;justify-content:center;margin:18px 0 10px}
-  .footer-links a{color:#b7b7ff;text-decoration:none}
-  #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f1822;border:1px solid rgba(255,255,255,.12);color:#e9eef4;padding:10px 14px;border-radius:10px;opacity:0;transition:.25s;z-index:9999}
+  .bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:8px 12px}
+  .bar .icons{display:flex;justify-content:space-between;max-width:880px;margin:0 auto}
+  .btn{display:flex;flex-direction:column;align-items:center;gap:2px;color:#c35610;font-weight:700;font-size:11px;text-decoration:none}
+
+  #toast{position:fixed;left:50%;bottom:64px;transform:translateX(-50%);background:#333;color:#fff;padding:8px 10px;border-radius:8px;opacity:0;transition:.25s;z-index:9999}
   #toast.show{opacity:1}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>🎬 Premium Accounts (OTT)</h1>
-  <p class="muted">Select a service → choose payment → submit. Delivery via Email or Social (WhatsApp/IG/FB).</p>
+  <h1>New order</h1>
 
   <!-- Category -->
   <div class="card">
-    <div class="cat-pill">
-      <b>📚 Category</b>
-      <span class="chev">▼</span>
-    </div>
-    <div style="margin-top:8px" class="cat-pill">
-      <b>👑 PREMIUM ACCOUNTS</b>
-      <span class="chev">▼</span>
-    </div>
+    <h2>📚 Category</h2>
+    <div class="pill"><b>👑 PREMIUM ACCOUNTS</b><span class="chev">▾</span></div>
   </div>
 
   <!-- Service -->
-  <div class="card service">
-    <div class="svc-head">
-      <span class="svc-title">🗂 Service</span>
-      <span class="muted">Tap an item to select</span>
-    </div>
-
-    <!-- Filter -->
-    <div class="filter">
-      <input id="filter" type="text" placeholder="Search (e.g., Netflix 4K, Prime 1 Year, Crunchyroll)">
-    </div>
-
-    <!-- Scrollable list -->
-    <div id="svcList" class="svc-list">
-      <!-- Example rows: edit/duplicate freely -->
-      <div class="svc-item" data-plan="Netflix • 1 Month • 1 Device • HD" data-price="350">
-        <span class="badge">39</span>
-        <div class="svc-name">
-          <div>Netflix [1 MONTH] [1 DEVICE] [HD]</div>
-          <div class="svc-meta">28 days • Replacement warranty</div>
+  <div class="card">
+    <h2>🗂 Service</h2>
+    <input id="q" class="search" placeholder="Search for a service… (e.g., Netflix, Prime, Crunchyroll)">
+    <div class="list" id="list">
+      <!-- ✅ NETFLIX — FULL LINEUP -->
+      <div class="row" data-plan="Netflix [1 MONTH] [1 DEVICE] [HD]" data-price="350">
+        <span class="badge">101</span>
+        <div class="name">
+          <div class="title">Netflix [1 MONTH] [1 DEVICE] [HD]</div>
+          <div class="meta">28 days • Replacement warranty</div>
         </div>
         <div class="price">Rs. 350</div>
       </div>
 
-      <div class="svc-item" data-plan="Netflix • 1 Month • 4 Device • 4K HDR" data-price="950">
-        <span class="badge">510</span>
-        <div class="svc-name">
-          <div>Netflix [1 MONTH] [4 DEVICE] [4K HDR]</div>
-          <div class="svc-meta">On your mail • Replacement warranty</div>
+      <div class="row" data-plan="Netflix [1 MONTH] [2 DEVICE] [4K HDR]" data-price="700">
+        <span class="badge">102</span>
+        <div class="name">
+          <div class="title">Netflix [1 MONTH] [2 DEVICE] [4K HDR]</div>
+          <div class="meta">28 days • Replacement warranty</div>
+        </div>
+        <div class="price">Rs. 700</div>
+      </div>
+
+      <div class="row" data-plan="Netflix [1 MONTH] [4 DEVICE] [4K HDR]" data-price="950">
+        <span class="badge">103</span>
+        <div class="name">
+          <div class="title">Netflix [1 MONTH] [4 DEVICE] [4K HDR]</div>
+          <div class="meta">On your mail • 28 days</div>
         </div>
         <div class="price">Rs. 950</div>
       </div>
 
-      <div class="svc-item" data-plan="Netflix • 1 Year • 2 Device • 4K" data-price="3020">
-        <span class="badge">818</span>
-        <div class="svc-name">
-          <div>Netflix [1 YEAR] [2 DEVICE] [4K]</div>
-          <div class="svc-meta">6 months warranty</div>
+      <div class="row" data-plan="Netflix [1 YEAR] [1 DEVICE] [HD]" data-price="2350">
+        <span class="badge">201</span>
+        <div class="name">
+          <div class="title">Netflix [1 YEAR] [1 DEVICE] [HD]</div>
+          <div class="meta">6 months warranty</div>
+        </div>
+        <div class="price">Rs. 2,350</div>
+      </div>
+
+      <div class="row" data-plan="Netflix [1 YEAR] [2 DEVICE] [4K]" data-price="3020">
+        <span class="badge">202</span>
+        <div class="name">
+          <div class="title">Netflix [1 YEAR] [2 DEVICE] [4K]</div>
+          <div class="meta">6 months warranty</div>
         </div>
         <div class="price">Rs. 3,020</div>
       </div>
 
-      <div class="svc-item" data-plan="Amazon Prime • 1 Month" data-price="200">
+      <div class="row" data-plan="Netflix [1 YEAR] [4 DEVICE] [4K]" data-price="4650">
+        <span class="badge">203</span>
+        <div class="name">
+          <div class="title">Netflix [1 YEAR] [4 DEVICE] [4K]</div>
+          <div class="meta">6 months warranty</div>
+        </div>
+        <div class="price">Rs. 4,650</div>
+      </div>
+
+      <!-- 🔻 OTHER SERVICES (kept as in your file) -->
+      <div class="row" data-plan="Amazon Prime Video [1 MONTH]" data-price="200">
         <span class="badge">39</span>
-        <div class="svc-name">
-          <div>Amazon Prime Video [1 MONTH]</div>
-          <div class="svc-meta">All benefits</div>
+        <div class="name">
+          <div class="title">Amazon Prime Video [1 MONTH]</div>
+          <div class="meta">All benefits</div>
         </div>
         <div class="price">Rs. 200</div>
       </div>
 
-      <div class="svc-item" data-plan="Amazon Prime • 6 Months" data-price="800">
+      <div class="row" data-plan="Amazon Prime Video [6 MONTH]" data-price="800">
         <span class="badge">46</span>
-        <div class="svc-name">
-          <div>Amazon Prime Video [6 MONTH]</div>
-          <div class="svc-meta">Pass changeable</div>
+        <div class="name">
+          <div class="title">Amazon Prime Video [6 MONTH]</div>
+          <div class="meta">Pass changeable</div>
         </div>
         <div class="price">Rs. 800</div>
       </div>
 
-      <div class="svc-item" data-plan="Amazon Prime • 1 Year" data-price="1600">
+      <div class="row" data-plan="Amazon Prime Video [1 YEAR]" data-price="1600">
         <span class="badge">1571</span>
-        <div class="svc-name">
-          <div>Amazon Prime Video [1 YEAR]</div>
-          <div class="svc-meta">All benefits</div>
+        <div class="name">
+          <div class="title">Amazon Prime Video [1 YEAR]</div>
+          <div class="meta">All benefits</div>
         </div>
         <div class="price">Rs. 1,600</div>
       </div>
 
-      <div class="svc-item" data-plan="Crunchyroll • 1 Month" data-price="300">
+      <div class="row" data-plan="Crunchyroll [1 MONTH] [SHARED]" data-price="300">
         <span class="badge">448</span>
-        <div class="svc-name">
-          <div>CRUNCHYROLL [1 MONTH] [SHARED]</div>
-          <div class="svc-meta">Instant access</div>
+        <div class="name">
+          <div class="title">Crunchyroll [1 MONTH] [SHARED]</div>
+          <div class="meta">Instant access</div>
         </div>
         <div class="price">Rs. 300</div>
       </div>
 
-      <div class="svc-item" data-plan="Crunchyroll • 1 Year" data-price="1600">
+      <div class="row" data-plan="Crunchyroll [1 YEAR] [SHARED]" data-price="1600">
         <span class="badge">30</span>
-        <div class="svc-name">
-          <div>CRUNCHYROLL [1 YEAR] [SHARED]</div>
-          <div class="svc-meta">Best value</div>
+        <div class="name">
+          <div class="title">Crunchyroll [1 YEAR] [SHARED]</div>
+          <div class="meta">Best value</div>
         </div>
         <div class="price">Rs. 1,600</div>
       </div>
 
-      <div class="svc-item" data-plan="Disney+ • 1 Month" data-price="445">
+      <div class="row" data-plan="Disney+ [1 MONTH]" data-price="445">
         <span class="badge">62</span>
-        <div class="svc-name">
-          <div>Disney+ [1 MONTH]</div>
-          <div class="svc-meta">International</div>
-        </div>
+        <div class="name"><div class="title">Disney+ [1 MONTH]</div><div class="meta">International</div></div>
         <div class="price">Rs. 445</div>
       </div>
 
-      <div class="svc-item" data-plan="HBO Max • 1 Month" data-price="445">
+      <div class="row" data-plan="HBO Max [1 MONTH]" data-price="445">
         <span class="badge">77</span>
-        <div class="svc-name">
-          <div>HBO Max [1 MONTH]</div>
-          <div class="svc-meta">International</div>
-        </div>
+        <div class="name"><div class="title">HBO Max [1 MONTH]</div><div class="meta">International</div></div>
         <div class="price">Rs. 445</div>
       </div>
 
-      <div class="svc-item" data-plan="Hulu • 1 Month" data-price="445">
+      <div class="row" data-plan="Hulu [1 MONTH]" data-price="445">
         <span class="badge">52</span>
-        <div class="svc-name">
-          <div>Hulu [1 MONTH]</div>
-          <div class="svc-meta">International</div>
-        </div>
+        <div class="name"><div class="title">Hulu [1 MONTH]</div><div class="meta">International</div></div>
         <div class="price">Rs. 445</div>
       </div>
 
-      <div class="svc-item" data-plan="Paramount+ • 1 Month" data-price="445">
+      <div class="row" data-plan="Paramount+ [1 MONTH]" data-price="445">
         <span class="badge">61</span>
-        <div class="svc-name">
-          <div>Paramount+ [1 MONTH]</div>
-          <div class="svc-meta">International</div>
-        </div>
+        <div class="name"><div class="title">Paramount+ [1 MONTH]</div><div class="meta">International</div></div>
         <div class="price">Rs. 445</div>
       </div>
     </div>
   </div>
 
-  <!-- Delivery -->
+  <!-- Description / Rules -->
   <div class="card">
-    <h2>Delivery Contact</h2>
-    <input id="custEmail" type="email" placeholder="Your Email (for delivery)">
-    <input id="custSocial" type="text" placeholder="Your Social/WhatsApp link or number">
-    <p class="note">Provide at least one. We’ll deliver via Email or Social.</p>
+    <h2>📝 Description</h2>
+    <div class="card" style="background:#fff;border-color:#f3d9c7">
+      <p>❌ DON’T CHANGE PASSWORD • ❌ DON’T LOGIN MORE THAN 1 DEVICE • ❌ DON’T CHANGE PROFILE NAMES • ❌ DON’T CREATE NEW PROFILE</p>
+      <p>✔ 4K/UHD (where available) • ✔ 28-Days replacement (monthly) • ✔ 6-Months warranty (yearly)</p>
+      <p>✔ Put your <b>WhatsApp number</b> in the Link section so our team can contact you</p>
+    </div>
   </div>
 
-  <!-- Rules & Description -->
+  <!-- Order Details -->
   <div class="card">
-    <h2>Description / Rules & Regulations</h2>
-    <ul>
-      <li>⚡ Delivery within 0–30 minutes of payment.</li>
-      <li>❌ Don’t change password, profile names, or create new profiles.</li>
-      <li>❌ Don’t login on more than 1 device (for single-device plans).</li>
-      <li>✅ Replacement warranty: <b>28 days (monthly)</b> • <b>6 months (yearly)</b>.</li>
-      <li>💬 Support via WhatsApp / Viber / TikTok links below.</li>
-      <li>📝 Payment remarks: write <b>your real name only</b> (no OTT words).</li>
-    </ul>
+    <h2>🔗 Link</h2>
+    <input id="custEmail" placeholder="Your Email (delivery)">
+    <input id="custSocial" placeholder="Your Social/WhatsApp (e.g., 97798xxxxxxx or IG link)">
+  </div>
+
+  <div class="card">
+    <h2>⏱ Average Time</h2>
+    <div class="pill"><b>3 hours and 2 minutes</b></div>
+  </div>
+
+  <div class="card">
+    <h2>📉 Quantity</h2>
+    <input id="qty" type="number" min="1" value="1">
+    <p class="muted" style="margin-top:4px">Min: 1 • Max: 1000</p>
   </div>
 
   <!-- Payment -->
   <div class="card">
-    <h2>Payment</h2>
+    <h2>💳 Payment</h2>
     <div class="pay-row">
-      <div class="pay-btn" data-method="eSewa"  data-qr="png.images/logo-esewaqr.png">eSewa</div>
-      <div class="pay-btn" data-method="Khalti" data-qr="png.images/logo-khaltiqr.png">Khalti</div>
-      <div class="pay-btn" data-method="Bank"   data-qr="png.images/logo-bankqr.png">Bank</div>
+      <div class="pay" data-method="eSewa" data-qr="png.images/logo-esewaqr.png">eSewa</div>
+      <div class="pay" data-method="Khalti" data-qr="png.images/logo-khaltiqr.png">Khalti</div>
+      <div class="pay" data-method="Bank"   data-qr="png.images/logo-bankqr.png">Bank</div>
     </div>
 
     <div id="qrBox" class="qr-box">
-      <div class="summary">
-        <div id="summary"><b>Selected:</b> — • <b>Method:</b> —</div>
-        <div><b>Email:</b> <span id="sEmail">—</span></div>
-        <div><b>Social:</b> <span id="sSocial">—</span></div>
-      </div>
-      <div class="qr-wrap">
-        <img id="qrImg" alt="Payment QR">
-      </div>
-      <input id="txn" type="text" placeholder="Transaction ID or Remarks">
-      <button id="submitBtn" class="submit" onclick="submitNow()">Submit Order</button>
-      <p class="note">Don’t write OTT names in remarks — only your real name.</p>
+      <div class="summary" id="summary">Selected: — • Method: —</div>
+      <div><b>Email:</b> <span id="sEmail">—</span> &nbsp; <b>Social:</b> <span id="sSocial">—</span></div>
+      <div class="qr"><img id="qrImg" alt="Payment QR"></div>
+      <input id="txn" placeholder="Enter Transaction ID or Remarks">
+      <p class="note">Write ONLY your real name in remarks (don’t write Netflix/Prime etc.).</p>
+      <button id="submitBtn" class="submit" onclick="submitNow()">Submit</button>
     </div>
   </div>
+</div>
 
-  <div class="footer-links">
-    <a href="viber://chat?number=+9779828560029">Viber</a>
-    <a href="https://wa.me/9779828560029" target="_blank">WhatsApp</a>
-    <a href="https://tiktok.com/@samirmijar.np" target="_blank">TikTok</a>
+<!-- bottom nav -->
+<div class="bar">
+  <div class="icons">
+    <a class="btn" href="#"><span>🛒</span>New Order</a>
+    <a class="btn" href="#"><span>📦</span>Orders</a>
+    <a class="btn" href="#"><span>💲</span>Funds</a>
+    <a class="btn" href="https://wa.me/9779828560029" target="_blank"><span>🟢</span>WhatsApp</a>
+    <a class="btn" href="#"><span>⚙️</span>Account</a>
   </div>
 </div>
 
 <div id="toast"></div>
 
 <script>
-  const FORMCARRY_ENDPOINT = 'https://formcarry.com/s/l4cLdlMhyf-';
-  let chosen={method:'',qr:''}, picked={plan:'',price:''};
-  const $=id=>document.getElementById(id);
+  const FORMCARRY = 'https://formcarry.com/s/l4cLdlMhyf-';
+  let chosen = { method:'', qr:'' }, picked = { plan:'', price:'', qty:1 };
+  const $ = id => document.getElementById(id);
 
-  // Filter list
-  $('filter').addEventListener('input', e=>{
+  $('q').addEventListener('input', e=>{
     const q=e.target.value.toLowerCase();
-    document.querySelectorAll('.svc-item').forEach(it=>{
-      const txt=it.innerText.toLowerCase();
-      it.style.display=txt.includes(q)?'flex':'none';
+    document.querySelectorAll('.row').forEach(r=>{
+      r.style.display = r.innerText.toLowerCase().includes(q) ? 'flex' : 'none';
     });
   });
 
-  // Select a service
-  document.querySelectorAll('.svc-item').forEach(it=>{
-    it.addEventListener('click', ()=>{
-      document.querySelectorAll('.svc-item').forEach(x=>x.classList.remove('active'));
-      it.classList.add('active');
-      picked.plan = it.dataset.plan;
-      picked.price = 'Rs. '+ it.dataset.price;
+  document.querySelectorAll('.row').forEach(r=>{
+    r.addEventListener('click',()=>{
+      document.querySelectorAll('.row').forEach(x=>x.classList.remove('active'));
+      r.classList.add('active');
+      picked.plan = r.dataset.plan;
+      picked.price = 'Rs. ' + r.dataset.price;
       updateSummary();
     });
   });
 
-  // Payment
-  document.querySelectorAll('.pay-btn').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      document.querySelectorAll('.pay-btn').forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      chosen.method=btn.dataset.method;
-      chosen.qr=btn.dataset.qr;
+  $('qty').addEventListener('input',()=>{ picked.qty = Math.max(1, +$('qty').value||1); updateSummary(); });
+
+  document.querySelectorAll('.pay').forEach(p=>{
+    p.addEventListener('click',()=>{
+      document.querySelectorAll('.pay').forEach(x=>x.classList.remove('active'));
+      p.classList.add('active');
+      chosen.method=p.dataset.method; chosen.qr=p.dataset.qr;
       updateSummary();
     });
   });
 
-  // Live summary updates
   ['custEmail','custSocial'].forEach(id=>{
-    $(id).addEventListener('input', updateSummary);
-    $(id).addEventListener('change', updateSummary);
+    $(id).addEventListener('input',updateSummary);
+    $(id).addEventListener('change',updateSummary);
   });
 
   function updateSummary(){
     if(!chosen.method) return;
-    $('summary').innerHTML = `<b>Selected:</b> ${picked.plan || '—'} ${picked.price? '('+picked.price+')':''} • <b>Method:</b> ${chosen.method}`;
-    $('sEmail').textContent  = $('custEmail').value || '—';
-    $('sSocial').textContent = $('custSocial').value || '—';
-    $('qrImg').src = chosen.qr;
+    $('summary').innerHTML = `Selected: <b>${picked.plan || '—'}</b> (${picked.price || '-'}) • Qty: <b>${picked.qty}</b> • Method: <b>${chosen.method}</b>`;
+    $('sEmail').textContent  = $('custEmail').value.trim() || '—';
+    $('sSocial').textContent = $('custSocial').value.trim() || '—';
+    $('qrImg').src = chosen.qr || '';
     $('qrBox').style.display = 'block';
   }
 
-  function toast(msg){
-    const t=$('toast'); t.textContent=msg; t.classList.add('show');
-    clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('show'),3000);
-  }
+  function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('show'),2500);}
 
   async function submitNow(){
     const email=$('custEmail').value.trim();
     const social=$('custSocial').value.trim();
     const txn=$('txn').value.trim();
+    if(!picked.plan){alert('Select a service.');return;}
+    if(!chosen.method){alert('Choose a payment method.');return;}
+    if(!email && !social){alert('Provide Email or Social.');return;}
+    if(!txn){alert('Enter Transaction ID / remarks.');return;}
 
-    if(!picked.plan){ alert('Please select a service from the list.'); return; }
-    if(!chosen.method){ alert('Please choose a payment method.'); return; }
-    if(!email && !social){ alert('Provide Email or Social for delivery.'); return; }
-    if(!txn){ alert('Enter transaction ID or remarks.'); return; }
-
-    const orderText = `Premium OTT Order
-Selected: ${picked.plan}
+    const order = `Premium OTT Order
+Plan: ${picked.plan}
 Price: ${picked.price}
+Quantity: ${picked.qty}
 Delivery Email: ${email || '-'}
 Delivery Social: ${social || '-'}
-Payment Method: ${chosen.method}
-Transaction/Remarks: ${txn}`;
+Payment: ${chosen.method}
+Txn/Remarks: ${txn}`;
 
-    const fd=new FormData();
+    const fd = new FormData();
     fd.append('name','Premium OTT Customer');
     fd.append('email', email || 'no-email@customer.com');
-    fd.append('order', orderText);
+    fd.append('order', order);
 
-    const btn=$('submitBtn'), old=btn.textContent;
-    btn.disabled=true; btn.textContent='Sending...';
-
+    const btn=$('submitBtn'); const old=btn.textContent;
+    btn.disabled=true; btn.textContent='Sending…';
     try{
-      const res=await fetch(FORMCARRY_ENDPOINT,{method:'POST',body:fd,headers:{Accept:'application/json'}});
-      if(!res.ok) throw new Error('Formcarry error');
-      toast('✅ Order sent! We’ll contact you shortly.');
+      const res = await fetch(FORMCARRY,{method:'POST',body:fd,headers:{Accept:'application/json'}});
+      if(!res.ok) throw new Error();
+      toast('✅ Order sent! We’ll contact you soon.');
     }catch(e){
-      console.error(e);
-      toast('⚠️ Could not send order. Please try again.');
+      console.error(e); toast('⚠️ Could not send. Try again.');
     }finally{
       btn.disabled=false; btn.textContent=old;
     }
