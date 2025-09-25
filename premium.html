@@ -3,145 +3,232 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Premium OTT • SM Digital Services</title>
+<title>Premium Accounts • SM Digital Services</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0d0f12; --card:#101628; --line:#23283b;
-    --text:#eaeaea; --muted:#b9c6d3; --ok:#25D366;
+    --bg:#0d0f12; --card:#101520; --line:#20283a; --soft:#141b2b;
+    --text:#eaeef6; --muted:#aebcd1; --accent:#ff7a00; --accent2:#6a00ff; --ok:#25D366;
     --radius:16px;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
-  .wrap{max-width:860px;margin:0 auto;padding:18px}
-  h1{margin:6px 0 14px;font-size:26px}
-  h2{margin:0 0 10px;font-size:20px}
+  .wrap{max-width:900px;margin:0 auto;padding:16px}
+
+  h1{margin:6px 0 12px;font-size:24px}
+  h2{margin:0 0 8px;font-size:18px}
+  p{margin:0 0 10px}
   .muted{color:var(--muted)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin:12px 0}
 
-  /* Cards */
-  .plans{display:grid;gap:14px}
-  .plan{padding:16px;border-radius:14px;cursor:pointer;transition:.2s}
-  .plan h3{margin:0 0 6px;font-size:18px}
-  .plan .meta{font-size:13px;opacity:.85}
-  .plan .price{margin-top:6px;font-weight:700}
-  .plan:hover{transform:translateY(-2px)}
-  .plan.active{outline:3px solid #fff}
+  /* Category pill */
+  .cat-pill{display:flex;align-items:center;justify-content:space-between;background:#121a2a;border:1px solid #23304a;border-radius:12px;padding:12px 14px}
+  .cat-pill b{font-size:15px}
+  .chev{opacity:.7}
 
-  /* OTT colors */
-  .netflix{background:#e50914;color:#fff}
-  .prime{background:#0f79af;color:#fff}
-  .disney{background:#113ccf;color:#fff}
-  .crunchy{background:#f47521;color:#fff}
-  .hulu{background:#1ce783;color:#111}
-  .hbomax{background:#6e44ff;color:#fff}
-  .paramount{background:#0064ff;color:#fff}
+  /* Service list */
+  .service{background:#0f1626;border:1px solid #202a42;border-radius:16px;padding:10px}
+  .svc-head{display:flex;align-items:center;gap:8px;margin:4px 0 8px}
+  .svc-title{font-weight:700}
+  .svc-list{max-height:360px;overflow:auto;border-radius:12px}
+  .svc-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid #1d2740;cursor:pointer}
+  .svc-item:last-child{border-bottom:none}
+  .svc-item:hover{background:#121d33}
+  .svc-item.active{background:#1a2a4a;outline:2px solid #2b7bff}
+  .badge{min-width:36px;height:24px;padding:0 8px;border-radius:999px;background:#ff7a00;color:#141414;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px}
+  .svc-name{flex:1}
+  .svc-meta{font-size:12px;color:#cbd7ea}
+  .price{font-weight:800;white-space:nowrap}
+
+  /* Filter */
+  .filter{display:flex;gap:8px;margin-bottom:8px}
+  .filter input{flex:1}
+
+  /* Inputs */
+  input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #2a3250;background:var(--soft);color:#fff}
+  input:focus,select:focus{outline:2px solid var(--accent2)}
 
   /* Payment */
-  .pay-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-  .pay-btn{flex:1;min-width:110px;background:#1d2338;border:1px solid #2b3148;border-radius:10px;padding:12px;text-align:center;cursor:pointer;font-weight:700}
-  .pay-btn.active{background:#6a00ff;color:#fff;border-color:#6a00ff}
+  .pay-row{display:flex;gap:10px;flex-wrap:wrap}
+  .pay-btn{flex:1;min-width:110px;background:#131c30;border:1px solid #2a3554;border-radius:10px;padding:12px;text-align:center;cursor:pointer;font-weight:700}
+  .pay-btn.active{background:var(--accent2);border-color:var(--accent2)}
 
-  /* QR / Summary */
-  .qr-box{display:none;margin-top:14px;border-top:1px dashed #2b3148;padding-top:12px}
-  .summary{background:#0f1421;border:1px solid #20263a;border-radius:12px;padding:12px;margin:10px 0;font-size:14px}
+  /* Summary + QR */
+  .qr-box{display:none;margin-top:10px;border-top:1px dashed #2b3658;padding-top:10px}
+  .summary{background:#0f1421;border:1px solid #20263a;border-radius:12px;padding:10px;margin:8px 0;font-size:14px}
   .summary b{color:#cfe2ff}
   .qr-wrap{text-align:center}
   .qr-wrap img{max-width:200px;background:#fff;border-radius:12px;padding:8px;display:block;margin:8px auto}
+  .note{font-size:13px;color:#ffcdcd;margin-top:6px}
 
-  /* Inputs */
-  input{width:100%;padding:12px;border-radius:10px;border:1px solid #2b3148;background:#151b2e;color:#fff;margin:8px 0}
-  input:focus{outline:2px solid #6a00ff}
-
-  .note{font-size:13px;color:#ffcdcd;margin-top:8px}
-  .submit{background:var(--ok);border:none;padding:14px 16px;border-radius:12px;color:#fff;font-weight:700;cursor:pointer;width:100%;margin-top:12px}
+  /* Buttons / Footer / Toast */
+  .submit{background:var(--ok);border:none;padding:14px 16px;border-radius:12px;color:#fff;font-weight:800;cursor:pointer;width:100%;margin-top:10px}
   .footer-links{display:flex;gap:10px;justify-content:center;margin:18px 0 10px}
   .footer-links a{color:#b7b7ff;text-decoration:none}
-
   #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f1822;border:1px solid rgba(255,255,255,.12);color:#e9eef4;padding:10px 14px;border-radius:10px;opacity:0;transition:.25s;z-index:9999}
   #toast.show{opacity:1}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>✨ Premium OTT Subscriptions</h1>
-  <p class="muted">Choose your plan, pay easily with eSewa/Khalti/Bank, and get instant delivery 🎬🍿</p>
+  <h1>🎬 Premium Accounts (OTT)</h1>
+  <p class="muted">Select a service → choose payment → submit. Delivery via Email or Social (WhatsApp/IG/FB).</p>
 
-  <!-- Description -->
-  <div class="card" style="background:#141b30;border-radius:14px;padding:16px;margin:14px 0">
-    <h2>📌 Important Info</h2>
-    <ul>
-      <li>Fast delivery within 0–30 minutes after payment</li>
-      <li>Instant email/social delivery</li>
-      <li>Warranty on monthly & yearly plans</li>
-    </ul>
+  <!-- Category -->
+  <div class="card">
+    <div class="cat-pill">
+      <b>📚 Category</b>
+      <span class="chev">▼</span>
+    </div>
+    <div style="margin-top:8px" class="cat-pill">
+      <b>👑 PREMIUM ACCOUNTS</b>
+      <span class="chev">▼</span>
+    </div>
   </div>
 
-  <!-- Plans -->
-  <h2>Available Plans</h2>
-  <div class="plans" id="plans">
-    <div class="plan netflix" data-plan="Netflix 1 Device Monthly" data-price="350">
-      <h3>Netflix — 1 Device (Monthly)</h3>
-      <div class="meta">HD • 28 days</div>
-      <div class="price">Rs. 350</div>
+  <!-- Service -->
+  <div class="card service">
+    <div class="svc-head">
+      <span class="svc-title">🗂 Service</span>
+      <span class="muted">Tap an item to select</span>
     </div>
-    <div class="plan netflix" data-plan="Netflix 4 Devices Monthly" data-price="950">
-      <h3>Netflix — 4 Devices (Monthly)</h3>
-      <div class="meta">4K HDR • 28 days</div>
-      <div class="price">Rs. 950</div>
+
+    <!-- Filter -->
+    <div class="filter">
+      <input id="filter" type="text" placeholder="Search (e.g., Netflix 4K, Prime 1 Year, Crunchyroll)">
     </div>
-    <div class="plan netflix" data-plan="Netflix 4 Devices Yearly" data-price="4650">
-      <h3>Netflix — 4 Devices (Yearly)</h3>
-      <div class="meta">Warranty 6 Mo.</div>
-      <div class="price">Rs. 4650</div>
-    </div>
-    <div class="plan prime" data-plan="Amazon Prime 1 Year" data-price="1600">
-      <h3>Amazon Prime</h3>
-      <div class="meta">1 Year</div>
-      <div class="price">Rs. 1600</div>
-    </div>
-    <div class="plan crunchy" data-plan="Crunchyroll 1 Year" data-price="1600">
-      <h3>Crunchyroll</h3>
-      <div class="meta">1 Year</div>
-      <div class="price">Rs. 1600</div>
-    </div>
-    <div class="plan disney" data-plan="Disney+ 1 Month" data-price="445">
-      <h3>Disney+</h3>
-      <div class="meta">1 Month</div>
-      <div class="price">Rs. 445</div>
-    </div>
-    <div class="plan paramount" data-plan="Paramount+ 1 Month" data-price="445">
-      <h3>Paramount+</h3>
-      <div class="meta">1 Month</div>
-      <div class="price">Rs. 445</div>
-    </div>
-    <div class="plan hbomax" data-plan="HBO Max 1 Month" data-price="445">
-      <h3>HBO Max</h3>
-      <div class="meta">1 Month</div>
-      <div class="price">Rs. 445</div>
-    </div>
-    <div class="plan hulu" data-plan="Hulu 1 Month" data-price="445">
-      <h3>Hulu</h3>
-      <div class="meta">1 Month</div>
-      <div class="price">Rs. 445</div>
+
+    <!-- Scrollable list -->
+    <div id="svcList" class="svc-list">
+      <!-- Example rows: edit/duplicate freely -->
+      <div class="svc-item" data-plan="Netflix • 1 Month • 1 Device • HD" data-price="350">
+        <span class="badge">39</span>
+        <div class="svc-name">
+          <div>Netflix [1 MONTH] [1 DEVICE] [HD]</div>
+          <div class="svc-meta">28 days • Replacement warranty</div>
+        </div>
+        <div class="price">Rs. 350</div>
+      </div>
+
+      <div class="svc-item" data-plan="Netflix • 1 Month • 4 Device • 4K HDR" data-price="950">
+        <span class="badge">510</span>
+        <div class="svc-name">
+          <div>Netflix [1 MONTH] [4 DEVICE] [4K HDR]</div>
+          <div class="svc-meta">On your mail • Replacement warranty</div>
+        </div>
+        <div class="price">Rs. 950</div>
+      </div>
+
+      <div class="svc-item" data-plan="Netflix • 1 Year • 2 Device • 4K" data-price="3020">
+        <span class="badge">818</span>
+        <div class="svc-name">
+          <div>Netflix [1 YEAR] [2 DEVICE] [4K]</div>
+          <div class="svc-meta">6 months warranty</div>
+        </div>
+        <div class="price">Rs. 3,020</div>
+      </div>
+
+      <div class="svc-item" data-plan="Amazon Prime • 1 Month" data-price="200">
+        <span class="badge">39</span>
+        <div class="svc-name">
+          <div>Amazon Prime Video [1 MONTH]</div>
+          <div class="svc-meta">All benefits</div>
+        </div>
+        <div class="price">Rs. 200</div>
+      </div>
+
+      <div class="svc-item" data-plan="Amazon Prime • 6 Months" data-price="800">
+        <span class="badge">46</span>
+        <div class="svc-name">
+          <div>Amazon Prime Video [6 MONTH]</div>
+          <div class="svc-meta">Pass changeable</div>
+        </div>
+        <div class="price">Rs. 800</div>
+      </div>
+
+      <div class="svc-item" data-plan="Amazon Prime • 1 Year" data-price="1600">
+        <span class="badge">1571</span>
+        <div class="svc-name">
+          <div>Amazon Prime Video [1 YEAR]</div>
+          <div class="svc-meta">All benefits</div>
+        </div>
+        <div class="price">Rs. 1,600</div>
+      </div>
+
+      <div class="svc-item" data-plan="Crunchyroll • 1 Month" data-price="300">
+        <span class="badge">448</span>
+        <div class="svc-name">
+          <div>CRUNCHYROLL [1 MONTH] [SHARED]</div>
+          <div class="svc-meta">Instant access</div>
+        </div>
+        <div class="price">Rs. 300</div>
+      </div>
+
+      <div class="svc-item" data-plan="Crunchyroll • 1 Year" data-price="1600">
+        <span class="badge">30</span>
+        <div class="svc-name">
+          <div>CRUNCHYROLL [1 YEAR] [SHARED]</div>
+          <div class="svc-meta">Best value</div>
+        </div>
+        <div class="price">Rs. 1,600</div>
+      </div>
+
+      <div class="svc-item" data-plan="Disney+ • 1 Month" data-price="445">
+        <span class="badge">62</span>
+        <div class="svc-name">
+          <div>Disney+ [1 MONTH]</div>
+          <div class="svc-meta">International</div>
+        </div>
+        <div class="price">Rs. 445</div>
+      </div>
+
+      <div class="svc-item" data-plan="HBO Max • 1 Month" data-price="445">
+        <span class="badge">77</span>
+        <div class="svc-name">
+          <div>HBO Max [1 MONTH]</div>
+          <div class="svc-meta">International</div>
+        </div>
+        <div class="price">Rs. 445</div>
+      </div>
+
+      <div class="svc-item" data-plan="Hulu • 1 Month" data-price="445">
+        <span class="badge">52</span>
+        <div class="svc-name">
+          <div>Hulu [1 MONTH]</div>
+          <div class="svc-meta">International</div>
+        </div>
+        <div class="price">Rs. 445</div>
+      </div>
+
+      <div class="svc-item" data-plan="Paramount+ • 1 Month" data-price="445">
+        <span class="badge">61</span>
+        <div class="svc-name">
+          <div>Paramount+ [1 MONTH]</div>
+          <div class="svc-meta">International</div>
+        </div>
+        <div class="price">Rs. 445</div>
+      </div>
     </div>
   </div>
 
   <!-- Delivery -->
   <div class="card">
     <h2>Delivery Contact</h2>
-    <input id="custEmail" type="email" placeholder="Your Email">
-    <input id="custSocial" type="text" placeholder="Your Social/WhatsApp">
-    <p class="note">We deliver via Email or Social. Provide at least one.</p>
+    <input id="custEmail" type="email" placeholder="Your Email (for delivery)">
+    <input id="custSocial" type="text" placeholder="Your Social/WhatsApp link or number">
+    <p class="note">Provide at least one. We’ll deliver via Email or Social.</p>
   </div>
 
-  <!-- Rules -->
+  <!-- Rules & Description -->
   <div class="card">
-    <h2>Rules & Regulations</h2>
+    <h2>Description / Rules & Regulations</h2>
     <ul>
-      <li>❌ Don’t change password</li>
-      <li>❌ Don’t login more than 1 device (for single plan)</li>
-      <li>❌ Don’t rename profiles or add new ones</li>
-      <li>✅ Replacement warranty: 28 days on monthly, 6 months on yearly</li>
+      <li>⚡ Delivery within 0–30 minutes of payment.</li>
+      <li>❌ Don’t change password, profile names, or create new profiles.</li>
+      <li>❌ Don’t login on more than 1 device (for single-device plans).</li>
+      <li>✅ Replacement warranty: <b>28 days (monthly)</b> • <b>6 months (yearly)</b>.</li>
+      <li>💬 Support via WhatsApp / Viber / TikTok links below.</li>
+      <li>📝 Payment remarks: write <b>your real name only</b> (no OTT words).</li>
     </ul>
   </div>
 
@@ -149,9 +236,9 @@
   <div class="card">
     <h2>Payment</h2>
     <div class="pay-row">
-      <div class="pay-btn" data-method="eSewa" data-qr="png.images/logo-esewaqr.png">eSewa</div>
+      <div class="pay-btn" data-method="eSewa"  data-qr="png.images/logo-esewaqr.png">eSewa</div>
       <div class="pay-btn" data-method="Khalti" data-qr="png.images/logo-khaltiqr.png">Khalti</div>
-      <div class="pay-btn" data-method="Bank" data-qr="png.images/logo-bankqr.png">Bank</div>
+      <div class="pay-btn" data-method="Bank"   data-qr="png.images/logo-bankqr.png">Bank</div>
     </div>
 
     <div id="qrBox" class="qr-box">
@@ -160,9 +247,12 @@
         <div><b>Email:</b> <span id="sEmail">—</span></div>
         <div><b>Social:</b> <span id="sSocial">—</span></div>
       </div>
-      <div class="qr-wrap"><img id="qrImg" alt="Payment QR"></div>
+      <div class="qr-wrap">
+        <img id="qrImg" alt="Payment QR">
+      </div>
       <input id="txn" type="text" placeholder="Transaction ID or Remarks">
       <button id="submitBtn" class="submit" onclick="submitNow()">Submit Order</button>
+      <p class="note">Don’t write OTT names in remarks — only your real name.</p>
     </div>
   </div>
 
@@ -176,70 +266,97 @@
 <div id="toast"></div>
 
 <script>
-  const FORMCARRY = 'https://formcarry.com/s/l4cLdlMhyf-';
-  let picked = {plan:'', price:''}, chosen = {method:'', qr:''};
+  const FORMCARRY_ENDPOINT = 'https://formcarry.com/s/l4cLdlMhyf-';
+  let chosen={method:'',qr:''}, picked={plan:'',price:''};
   const $=id=>document.getElementById(id);
+
+  // Filter list
+  $('filter').addEventListener('input', e=>{
+    const q=e.target.value.toLowerCase();
+    document.querySelectorAll('.svc-item').forEach(it=>{
+      const txt=it.innerText.toLowerCase();
+      it.style.display=txt.includes(q)?'flex':'none';
+    });
+  });
+
+  // Select a service
+  document.querySelectorAll('.svc-item').forEach(it=>{
+    it.addEventListener('click', ()=>{
+      document.querySelectorAll('.svc-item').forEach(x=>x.classList.remove('active'));
+      it.classList.add('active');
+      picked.plan = it.dataset.plan;
+      picked.price = 'Rs. '+ it.dataset.price;
+      updateSummary();
+    });
+  });
+
+  // Payment
+  document.querySelectorAll('.pay-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.pay-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      chosen.method=btn.dataset.method;
+      chosen.qr=btn.dataset.qr;
+      updateSummary();
+    });
+  });
+
+  // Live summary updates
+  ['custEmail','custSocial'].forEach(id=>{
+    $(id).addEventListener('input', updateSummary);
+    $(id).addEventListener('change', updateSummary);
+  });
 
   function updateSummary(){
     if(!chosen.method) return;
     $('summary').innerHTML = `<b>Selected:</b> ${picked.plan || '—'} ${picked.price? '('+picked.price+')':''} • <b>Method:</b> ${chosen.method}`;
-    $('sEmail').textContent = $('custEmail').value || '—';
-    $('sSocial').textContent= $('custSocial').value || '—';
+    $('sEmail').textContent  = $('custEmail').value || '—';
+    $('sSocial').textContent = $('custSocial').value || '—';
     $('qrImg').src = chosen.qr;
-    $('qrBox').style.display='block';
+    $('qrBox').style.display = 'block';
   }
 
-  document.querySelectorAll('.plan').forEach(card=>{
-    card.addEventListener('click',()=>{
-      document.querySelectorAll('.plan').forEach(c=>c.classList.remove('active'));
-      card.classList.add('active');
-      picked.plan = card.dataset.plan;
-      picked.price = 'Rs. '+card.dataset.price;
-      updateSummary();
-    });
-  });
-
-  document.querySelectorAll('.pay-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      document.querySelectorAll('.pay-btn').forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      chosen.method = btn.dataset.method;
-      chosen.qr = btn.dataset.qr;
-      updateSummary();
-    });
-  });
-
-  ['custEmail','custSocial'].forEach(id=>{
-    $(id).addEventListener('input',updateSummary);
-    $(id).addEventListener('change',updateSummary);
-  });
-
-  function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('show'),3000);}
+  function toast(msg){
+    const t=$('toast'); t.textContent=msg; t.classList.add('show');
+    clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('show'),3000);
+  }
 
   async function submitNow(){
-    const email=$('custEmail').value.trim(), social=$('custSocial').value.trim(), txn=$('txn').value.trim();
-    if(!picked.plan){alert('Choose a plan.');return;}
-    if(!chosen.method){alert('Choose payment method.');return;}
-    if(!email && !social){alert('Provide Email or Social.');return;}
-    if(!txn){alert('Enter transaction/remarks.');return;}
+    const email=$('custEmail').value.trim();
+    const social=$('custSocial').value.trim();
+    const txn=$('txn').value.trim();
 
-    const order=`OTT Order
-Plan: ${picked.plan}
+    if(!picked.plan){ alert('Please select a service from the list.'); return; }
+    if(!chosen.method){ alert('Please choose a payment method.'); return; }
+    if(!email && !social){ alert('Provide Email or Social for delivery.'); return; }
+    if(!txn){ alert('Enter transaction ID or remarks.'); return; }
+
+    const orderText = `Premium OTT Order
+Selected: ${picked.plan}
 Price: ${picked.price}
-Delivery Email: ${email||'-'}
-Delivery Social: ${social||'-'}
-Payment: ${chosen.method}
-Txn: ${txn}`;
+Delivery Email: ${email || '-'}
+Delivery Social: ${social || '-'}
+Payment Method: ${chosen.method}
+Transaction/Remarks: ${txn}`;
 
     const fd=new FormData();
-    fd.append('name','OTT Customer');
-    fd.append('email',email||'no-email@customer.com');
-    fd.append('order',order);
+    fd.append('name','Premium OTT Customer');
+    fd.append('email', email || 'no-email@customer.com');
+    fd.append('order', orderText);
 
-    const btn=$('submitBtn');const old=btn.textContent;btn.disabled=true;btn.textContent='Sending...';
-    try{const r=await fetch(FORMCARRY,{method:'POST',body:fd,headers:{Accept:'application/json'}});if(!r.ok)throw new Error();toast('✅ Order sent! We’ll contact you.');}
-    catch(e){toast('⚠️ Could not send. Try again.');}
-    finally{btn.disabled=false;btn.textContent=old;}
+    const btn=$('submitBtn'), old=btn.textContent;
+    btn.disabled=true; btn.textContent='Sending...';
+
+    try{
+      const res=await fetch(FORMCARRY_ENDPOINT,{method:'POST',body:fd,headers:{Accept:'application/json'}});
+      if(!res.ok) throw new Error('Formcarry error');
+      toast('✅ Order sent! We’ll contact you shortly.');
+    }catch(e){
+      console.error(e);
+      toast('⚠️ Could not send order. Please try again.');
+    }finally{
+      btn.disabled=false; btn.textContent=old;
+    }
   }
 </script>
 </body>
