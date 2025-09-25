@@ -9,38 +9,43 @@
   :root{
     --bg:#fff6ef; --card:#ffeede; --line:#ffd6b9; --text:#2b303a; --muted:#6e7c8a;
     --accent:#ff7a2c; --accent2:#ffae6f; --green:#23c552; --radius:16px;
+    --white:#fff;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.45;font-size:14px}
-  .wrap{max-width:880px;margin:0 auto;padding:12px 12px 84px}
-  h1{margin:4px 0 8px;font-size:18px;font-weight:800}
+  .wrap{max-width:880px;margin:0 auto;padding:12px 12px 92px}
+  h1{margin:4px 0 10px;font-size:18px;font-weight:800}
   h2{margin:0 0 8px;font-size:15px}
   p,li{font-size:13px}
-  .muted{color:var(--muted)}
   .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;margin:10px 0}
 
-  /* compact pills */
-  .pillbar{display:flex;gap:8px;overflow:auto;padding:2px}
-  .pill{display:flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);padding:10px 12px;border-radius:14px;box-shadow:0 3px 0 var(--accent2) inset;white-space:nowrap;cursor:pointer;font-weight:700}
-  .pill.active{outline:2px solid var(--accent)}
-
-  /* compact service list */
-  .search{width:100%;padding:9px;border-radius:10px;border:1px solid var(--line);background:#fff;font-size:13px}
+  /* Top search */
+  .search-top{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px;margin:10px 0}
+  .search{width:100%;padding:9px 10px;border-radius:10px;border:1px solid var(--line);background:var(--white);font-size:13px}
   .search:focus{outline:2px solid var(--accent)}
 
+  /* Category select (TrustyHub-like) */
+  .cat-wrap{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px}
+  .cat-select{appearance:none;-webkit-appearance:none;-moz-appearance:none;
+    width:100%;padding:10px 40px 10px 12px;border-radius:12px;border:1px solid var(--line);
+    background:var(--white) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="%23ff7a2c"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center;
+    font-weight:800;font-size:13px;color:#222;box-shadow:0 3px 0 var(--accent2) inset}
+  .cat-select:focus{outline:2px solid var(--accent)}
+
+  /* Service list compact & professional */
   .list{max-height:56vh;overflow:auto;border-radius:12px;background:#fff;border:1px solid #f3d9c7}
-  .row{display:flex;align-items:flex-start;gap:10px;padding:8px 10px;border-bottom:1px solid #f7e4d6;cursor:pointer}
+  .row{display:flex;align-items:flex-start;gap:10px;padding:7px 10px;border-bottom:1px solid #f7e4d6;cursor:pointer}
   .row:last-child{border-bottom:none}
   .row:hover{background:#fff7f0}
   .row.active{background:#fff1e5;outline:2px solid var(--accent)}
-  .badge{min-width:30px;height:20px;border-radius:999px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:10px;margin-top:2px}
+  .badge{min-width:28px;height:18px;border-radius:999px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:10px;margin-top:2px}
   .name{flex:1}
-  .name .title{font-weight:700;font-size:12.5px;line-height:1.25}
-  .name .meta{font-size:11px;color:#8b98a7;margin-top:2px}
-  .price{font-weight:800;white-space:nowrap;font-size:12.5px}
+  .name .title{font-weight:700;font-size:12px;line-height:1.2}
+  .name .meta{font-size:10.5px;color:#8b98a7;margin-top:2px}
+  .price{font-weight:900;white-space:nowrap;font-size:12px;color:#0d1d2a}
 
-  input,select,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:#fff}
-  input:focus,select:focus,textarea:focus{outline:2px solid var(--accent)}
+  input,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:#fff}
+  input:focus,textarea:focus{outline:2px solid var(--accent)}
 
   .pay-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
   .pay{flex:1 0 120px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;font-weight:700;cursor:pointer}
@@ -55,6 +60,7 @@
   .submit{width:100%;background:var(--green);color:#fff;border:none;border-radius:12px;padding:12px 14px;font-weight:800;cursor:pointer}
   .note{font-size:12px;color:#c4422a;margin-top:6px}
 
+  /* bottom bar */
   .bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:8px 12px}
   .bar .icons{display:flex;justify-content:space-between;max-width:880px;margin:0 auto}
   .btn{display:flex;flex-direction:column;align-items:center;gap:2px;color:#c35610;font-weight:700;font-size:11px;text-decoration:none}
@@ -69,22 +75,26 @@
 <div class="wrap">
   <h1>New order</h1>
 
-  <!-- Category -->
-  <div class="card">
+  <!-- Search (top, small but visible) -->
+  <div class="search-top">
+    <input id="q" class="search" placeholder="Search for a service…">
+  </div>
+
+  <!-- Category (TrustyHub style) -->
+  <div class="cat-wrap">
     <h2>📚 Category</h2>
-    <div class="pillbar" id="catBar">
-      <div class="pill active" data-cat="PREMIUM">👑 PREMIUM ACCOUNTS</div>
-      <div class="pill" data-cat="PRIVATE">🔒 PREMIUM ACCOUNTS PRIVATE [ON YOUR MAIL]</div>
-      <div class="pill" data-cat="VPN">🛡️ PREMIUM VPN ACCOUNTS</div>
-    </div>
+    <select id="category" class="cat-select">
+      <option value="PREMIUM">👑 PREMIUM ACCOUNTS</option>
+      <option value="PRIVATE">🔒 PREMIUM ACCOUNTS {PRIVATE} [ON YOUR MAIL]</option>
+      <option value="VPN">🛡️ PREMIUM VPN ACCOUNTS</option>
+    </select>
   </div>
 
   <!-- Service -->
   <div class="card">
     <h2>🗂 Service</h2>
-    <input id="q" class="search" placeholder="Search… (e.g., Netflix, Spotify, ChatGPT, Prime)">
     <div class="list" id="list">
-      <!-- ===== PREMIUM (shared/regular) ===== -->
+      <!-- ===== PREMIUM ===== -->
       <div class="row" data-cat="PREMIUM" data-plan="Netflix [1 MONTH] [1 DEVICE] [HD]" data-price="350">
         <span class="badge">101</span>
         <div class="name">
@@ -208,7 +218,7 @@
         <div class="price">Rs. 445</div>
       </div>
 
-      <!-- ===== PRIVATE (on your mail) ===== -->
+      <!-- ===== PRIVATE (On your mail) ===== -->
       <div class="row" data-cat="PRIVATE" data-plan="Spotify Individual [12 MONTH] (On Your Mail)" data-price="2750">
         <span class="badge">P-SP12</span>
         <div class="name">
@@ -254,7 +264,7 @@
         <div class="price">Rs. 2,200</div>
       </div>
 
-      <div class="row" data-cat="PRIVATE" data-plan="Amazon Prime Video [6 MONTH] (On Your Mail)" data-price="2300">
+      <div class="row" data-cat="PRIVATE" data-plan="Prime Video [6 MONTH] (On Your Mail)" data-price="2300">
         <span class="badge">P-PR6</span>
         <div class="name">
           <div class="title">Prime Video • 6 Month</div>
@@ -263,7 +273,7 @@
         <div class="price">Rs. 2,300</div>
       </div>
 
-      <div class="row" data-cat="PRIVATE" data-plan="Amazon Prime Video [1 YEAR] (On Your Mail)" data-price="4400">
+      <div class="row" data-cat="PRIVATE" data-plan="Prime Video [1 YEAR] (On Your Mail)" data-price="4400">
         <span class="badge">P-PR12</span>
         <div class="name">
           <div class="title">Prime Video • 1 Year</div>
@@ -290,20 +300,26 @@
         <div class="price">Rs. 2,450</div>
       </div>
 
-      <!-- ===== VPN (placeholder; add your VPN items later) ===== -->
+      <!-- ===== VPN (add your VPN rows later) ===== -->
       <!-- Example:
-      <div class="row" data-cat="VPN" data-plan="Surfshark VPN [1 YEAR]" data-price="1999"> ... </div>
+      <div class="row" data-cat="VPN" data-plan="Surfshark VPN [1 YEAR]" data-price="1999">
+        <span class="badge">V-SS12</span>
+        <div class="name"><div class="title">Surfshark VPN • 1 Year</div><div class="meta">Private • Fast servers</div></div>
+        <div class="price">Rs. 1,999</div>
+      </div>
       -->
     </div>
   </div>
 
-  <!-- Description / Rules -->
+  <!-- Description (professional & short) -->
   <div class="card">
     <h2>📝 Description</h2>
     <div class="card" style="background:#fff;border-color:#f3d9c7">
-      <p style="font-size:12px;margin:6px 0">❌ Don’t change password • ❌ Don’t login more than 1 device • ❌ Don’t change profile names • ❌ Don’t create new profile</p>
-      <p style="font-size:12px;margin:6px 0">✔ 4K/UHD (where available) • ✔ 28-days replacement (monthly) • ✔ 6-months warranty (yearly)</p>
-      <p style="font-size:12px;margin:6px 0">✔ Put your <b>WhatsApp number</b> in the Link section so our team can contact you</p>
+      <ul style="margin:8px 0 4px 18px;padding:0">
+        <li style="font-size:12px">Do not change password or profiles. One device unless specified.</li>
+        <li style="font-size:12px">Monthly plans: 28-day replacement. Yearly plans: 6-month warranty.</li>
+        <li style="font-size:12px">Enter your valid email / WhatsApp so we can deliver & support quickly.</li>
+      </ul>
     </div>
   </div>
 
@@ -318,7 +334,7 @@
   <div class="card">
     <h2>📉 Quantity</h2>
     <input id="qty" type="number" min="1" value="1">
-    <p class="muted" style="margin-top:4px">Min: 1 • Max: 1000</p>
+    <p style="color:#8b98a7;margin-top:4px;font-size:12px">Min: 1 • Max: 1000</p>
   </div>
 
   <!-- Payment -->
@@ -335,7 +351,7 @@
       <div><b>Email:</b> <span id="sEmail">—</span> &nbsp; <b>Social:</b> <span id="sSocial">—</span></div>
       <div class="qr"><img id="qrImg" alt="Payment QR"></div>
       <input id="txn" placeholder="Enter Transaction ID or Remarks">
-      <p class="note">Write ONLY your real name in remarks (don’t write Netflix/Prime etc.).</p>
+      <p class="note">Write ONLY your real name in remarks (don’t write service names).</p>
       <button id="submitBtn" class="submit" onclick="submitNow()">Submit</button>
     </div>
   </div>
@@ -365,15 +381,11 @@
     picked: { plan:'', price:'', qty:1 }
   };
 
-  // Category pills -> filter list
-  document.querySelectorAll('#catBar .pill').forEach(p=>{
-    p.addEventListener('click', ()=>{
-      document.querySelectorAll('#catBar .pill').forEach(x=>x.classList.remove('active'));
-      p.classList.add('active');
-      state.category = p.dataset.cat;
-      applyFilters();
-      toast('Category: ' + state.category);
-    });
+  // Category dropdown -> filter list
+  $('category').addEventListener('change', ()=>{
+    state.category = $('category').value;
+    applyFilters();
+    toast('Category: ' + state.category);
   });
 
   // Search filter
@@ -389,7 +401,7 @@
       r.style.display = (catOk && qOk) ? 'flex' : 'none';
     });
   }
-  // Initial filter (ensure only PREMIUM visible on load)
+  // Initial filter
   applyFilters();
 
   // Select service
@@ -438,7 +450,7 @@
   function toast(m){
     const t=$('toast');
     t.textContent=m; t.classList.add('show');
-    clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('show'),2000);
+    clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('show'),1800);
   }
 
   async function submitNow(){
