@@ -19,24 +19,25 @@
   .muted{color:var(--muted)}
   .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;margin:10px 0}
 
-  .pill{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid var(--line);padding:12px;border-radius:14px;box-shadow:0 3px 0 var(--accent2) inset}
-  .pill b{font-size:14px}
-  .chev{opacity:.6}
+  /* compact pills */
+  .pillbar{display:flex;gap:8px;overflow:auto;padding:2px}
+  .pill{display:flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);padding:10px 12px;border-radius:14px;box-shadow:0 3px 0 var(--accent2) inset;white-space:nowrap;cursor:pointer;font-weight:700}
+  .pill.active{outline:2px solid var(--accent)}
 
-  .search{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:#fff}
+  /* compact service list */
+  .search{width:100%;padding:9px;border-radius:10px;border:1px solid var(--line);background:#fff;font-size:13px}
   .search:focus{outline:2px solid var(--accent)}
 
-  .svc-head{display:flex;align-items:center;gap:8px;margin-bottom:6px}
-  .list{max-height:380px;overflow:auto;border-radius:12px;background:#fff}
-  .row{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-bottom:1px solid #f3d9c7;cursor:pointer}
+  .list{max-height:56vh;overflow:auto;border-radius:12px;background:#fff;border:1px solid #f3d9c7}
+  .row{display:flex;align-items:flex-start;gap:10px;padding:8px 10px;border-bottom:1px solid #f7e4d6;cursor:pointer}
   .row:last-child{border-bottom:none}
   .row:hover{background:#fff7f0}
   .row.active{background:#fff1e5;outline:2px solid var(--accent)}
-  .badge{min-width:34px;height:22px;border-radius:999px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px}
+  .badge{min-width:30px;height:20px;border-radius:999px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:10px;margin-top:2px}
   .name{flex:1}
-  .name .title{font-weight:700;font-size:13px}
-  .name .meta{font-size:12px;color:#8b98a7;margin-top:2px}
-  .price{font-weight:800;white-space:nowrap}
+  .name .title{font-weight:700;font-size:12.5px;line-height:1.25}
+  .name .meta{font-size:11px;color:#8b98a7;margin-top:2px}
+  .price{font-weight:800;white-space:nowrap;font-size:12.5px}
 
   input,select,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:#fff}
   input:focus,select:focus,textarea:focus{outline:2px solid var(--accent)}
@@ -60,6 +61,8 @@
 
   #toast{position:fixed;left:50%;bottom:64px;transform:translateX(-50%);background:#333;color:#fff;padding:8px 10px;border-radius:8px;opacity:0;transition:.25s;z-index:9999}
   #toast.show{opacity:1}
+
+  @media (min-width:900px){ .list{max-height:420px} }
 </style>
 </head>
 <body>
@@ -69,138 +72,228 @@
   <!-- Category -->
   <div class="card">
     <h2>📚 Category</h2>
-    <div class="pill"><b>👑 PREMIUM ACCOUNTS</b><span class="chev">▾</span></div>
+    <div class="pillbar" id="catBar">
+      <div class="pill active" data-cat="PREMIUM">👑 PREMIUM ACCOUNTS</div>
+      <div class="pill" data-cat="PRIVATE">🔒 PREMIUM ACCOUNTS PRIVATE [ON YOUR MAIL]</div>
+      <div class="pill" data-cat="VPN">🛡️ PREMIUM VPN ACCOUNTS</div>
+    </div>
   </div>
 
   <!-- Service -->
   <div class="card">
     <h2>🗂 Service</h2>
-    <input id="q" class="search" placeholder="Search for a service… (e.g., Netflix, Prime, Crunchyroll)">
+    <input id="q" class="search" placeholder="Search… (e.g., Netflix, Spotify, ChatGPT, Prime)">
     <div class="list" id="list">
-      <!-- ✅ NETFLIX — FULL LINEUP -->
-      <div class="row" data-plan="Netflix [1 MONTH] [1 DEVICE] [HD]" data-price="350">
+      <!-- ===== PREMIUM (shared/regular) ===== -->
+      <div class="row" data-cat="PREMIUM" data-plan="Netflix [1 MONTH] [1 DEVICE] [HD]" data-price="350">
         <span class="badge">101</span>
         <div class="name">
-          <div class="title">Netflix [1 MONTH] [1 DEVICE] [HD]</div>
+          <div class="title">Netflix • 1 Month • 1 Device • HD</div>
           <div class="meta">28 days • Replacement warranty</div>
         </div>
         <div class="price">Rs. 350</div>
       </div>
 
-      <div class="row" data-plan="Netflix [1 MONTH] [2 DEVICE] [4K HDR]" data-price="700">
+      <div class="row" data-cat="PREMIUM" data-plan="Netflix [1 MONTH] [2 DEVICE] [4K HDR]" data-price="700">
         <span class="badge">102</span>
         <div class="name">
-          <div class="title">Netflix [1 MONTH] [2 DEVICE] [4K HDR]</div>
+          <div class="title">Netflix • 1 Month • 2 Device • 4K HDR</div>
           <div class="meta">28 days • Replacement warranty</div>
         </div>
         <div class="price">Rs. 700</div>
       </div>
 
-      <div class="row" data-plan="Netflix [1 MONTH] [4 DEVICE] [4K HDR]" data-price="950">
+      <div class="row" data-cat="PREMIUM" data-plan="Netflix [1 MONTH] [4 DEVICE] [4K HDR]" data-price="950">
         <span class="badge">103</span>
         <div class="name">
-          <div class="title">Netflix [1 MONTH] [4 DEVICE] [4K HDR]</div>
+          <div class="title">Netflix • 1 Month • 4 Device • 4K HDR</div>
           <div class="meta">On your mail • 28 days</div>
         </div>
         <div class="price">Rs. 950</div>
       </div>
 
-      <div class="row" data-plan="Netflix [1 YEAR] [1 DEVICE] [HD]" data-price="2350">
+      <div class="row" data-cat="PREMIUM" data-plan="Netflix [1 YEAR] [1 DEVICE] [HD]" data-price="2350">
         <span class="badge">201</span>
         <div class="name">
-          <div class="title">Netflix [1 YEAR] [1 DEVICE] [HD]</div>
+          <div class="title">Netflix • 1 Year • 1 Device • HD</div>
           <div class="meta">6 months warranty</div>
         </div>
         <div class="price">Rs. 2,350</div>
       </div>
 
-      <div class="row" data-plan="Netflix [1 YEAR] [2 DEVICE] [4K]" data-price="3020">
+      <div class="row" data-cat="PREMIUM" data-plan="Netflix [1 YEAR] [2 DEVICE] [4K]" data-price="3020">
         <span class="badge">202</span>
         <div class="name">
-          <div class="title">Netflix [1 YEAR] [2 DEVICE] [4K]</div>
+          <div class="title">Netflix • 1 Year • 2 Device • 4K</div>
           <div class="meta">6 months warranty</div>
         </div>
         <div class="price">Rs. 3,020</div>
       </div>
 
-      <div class="row" data-plan="Netflix [1 YEAR] [4 DEVICE] [4K]" data-price="4650">
+      <div class="row" data-cat="PREMIUM" data-plan="Netflix [1 YEAR] [4 DEVICE] [4K]" data-price="4650">
         <span class="badge">203</span>
         <div class="name">
-          <div class="title">Netflix [1 YEAR] [4 DEVICE] [4K]</div>
+          <div class="title">Netflix • 1 Year • 4 Device • 4K</div>
           <div class="meta">6 months warranty</div>
         </div>
         <div class="price">Rs. 4,650</div>
       </div>
 
-      <!-- 🔻 OTHER SERVICES (kept as in your file) -->
-      <div class="row" data-plan="Amazon Prime Video [1 MONTH]" data-price="200">
+      <div class="row" data-cat="PREMIUM" data-plan="Amazon Prime Video [1 MONTH]" data-price="200">
         <span class="badge">39</span>
         <div class="name">
-          <div class="title">Amazon Prime Video [1 MONTH]</div>
+          <div class="title">Amazon Prime Video • 1 Month</div>
           <div class="meta">All benefits</div>
         </div>
         <div class="price">Rs. 200</div>
       </div>
 
-      <div class="row" data-plan="Amazon Prime Video [6 MONTH]" data-price="800">
+      <div class="row" data-cat="PREMIUM" data-plan="Amazon Prime Video [6 MONTH]" data-price="800">
         <span class="badge">46</span>
         <div class="name">
-          <div class="title">Amazon Prime Video [6 MONTH]</div>
+          <div class="title">Amazon Prime Video • 6 Month</div>
           <div class="meta">Pass changeable</div>
         </div>
         <div class="price">Rs. 800</div>
       </div>
 
-      <div class="row" data-plan="Amazon Prime Video [1 YEAR]" data-price="1600">
+      <div class="row" data-cat="PREMIUM" data-plan="Amazon Prime Video [1 YEAR]" data-price="1600">
         <span class="badge">1571</span>
         <div class="name">
-          <div class="title">Amazon Prime Video [1 YEAR]</div>
+          <div class="title">Amazon Prime Video • 1 Year</div>
           <div class="meta">All benefits</div>
         </div>
         <div class="price">Rs. 1,600</div>
       </div>
 
-      <div class="row" data-plan="Crunchyroll [1 MONTH] [SHARED]" data-price="300">
+      <div class="row" data-cat="PREMIUM" data-plan="Crunchyroll [1 MONTH] [SHARED]" data-price="300">
         <span class="badge">448</span>
         <div class="name">
-          <div class="title">Crunchyroll [1 MONTH] [SHARED]</div>
+          <div class="title">Crunchyroll • 1 Month • Shared</div>
           <div class="meta">Instant access</div>
         </div>
         <div class="price">Rs. 300</div>
       </div>
 
-      <div class="row" data-plan="Crunchyroll [1 YEAR] [SHARED]" data-price="1600">
+      <div class="row" data-cat="PREMIUM" data-plan="Crunchyroll [1 YEAR] [SHARED]" data-price="1600">
         <span class="badge">30</span>
         <div class="name">
-          <div class="title">Crunchyroll [1 YEAR] [SHARED]</div>
+          <div class="title">Crunchyroll • 1 Year • Shared</div>
           <div class="meta">Best value</div>
         </div>
         <div class="price">Rs. 1,600</div>
       </div>
 
-      <div class="row" data-plan="Disney+ [1 MONTH]" data-price="445">
+      <div class="row" data-cat="PREMIUM" data-plan="Disney+ [1 MONTH]" data-price="445">
         <span class="badge">62</span>
-        <div class="name"><div class="title">Disney+ [1 MONTH]</div><div class="meta">International</div></div>
+        <div class="name"><div class="title">Disney+ • 1 Month</div><div class="meta">International</div></div>
         <div class="price">Rs. 445</div>
       </div>
 
-      <div class="row" data-plan="HBO Max [1 MONTH]" data-price="445">
+      <div class="row" data-cat="PREMIUM" data-plan="HBO Max [1 MONTH]" data-price="445">
         <span class="badge">77</span>
-        <div class="name"><div class="title">HBO Max [1 MONTH]</div><div class="meta">International</div></div>
+        <div class="name"><div class="title">HBO Max • 1 Month</div><div class="meta">International</div></div>
         <div class="price">Rs. 445</div>
       </div>
 
-      <div class="row" data-plan="Hulu [1 MONTH]" data-price="445">
+      <div class="row" data-cat="PREMIUM" data-plan="Hulu [1 MONTH]" data-price="445">
         <span class="badge">52</span>
-        <div class="name"><div class="title">Hulu [1 MONTH]</div><div class="meta">International</div></div>
+        <div class="name"><div class="title">Hulu • 1 Month</div><div class="meta">International</div></div>
         <div class="price">Rs. 445</div>
       </div>
 
-      <div class="row" data-plan="Paramount+ [1 MONTH]" data-price="445">
+      <div class="row" data-cat="PREMIUM" data-plan="Paramount+ [1 MONTH]" data-price="445">
         <span class="badge">61</span>
-        <div class="name"><div class="title">Paramount+ [1 MONTH]</div><div class="meta">International</div></div>
+        <div class="name"><div class="title">Paramount+ • 1 Month</div><div class="meta">International</div></div>
         <div class="price">Rs. 445</div>
       </div>
+
+      <!-- ===== PRIVATE (on your mail) ===== -->
+      <div class="row" data-cat="PRIVATE" data-plan="Spotify Individual [12 MONTH] (On Your Mail)" data-price="2750">
+        <span class="badge">P-SP12</span>
+        <div class="name">
+          <div class="title">Spotify Individual • 12 Month</div>
+          <div class="meta">On your mail • Full private • Worldwide support</div>
+        </div>
+        <div class="price">Rs. 2,750</div>
+      </div>
+
+      <div class="row" data-cat="PRIVATE" data-plan="ChatGPT Plus [1 MONTH] (On Your Mail)" data-price="2750">
+        <span class="badge">P-GPT1</span>
+        <div class="name">
+          <div class="title">ChatGPT Plus • 1 Month</div>
+          <div class="meta">On your mail • Full private • Genuine</div>
+        </div>
+        <div class="price">Rs. 2,750</div>
+      </div>
+
+      <div class="row" data-cat="PRIVATE" data-plan="Perplexity AI Pro [12 MONTH] (On Your Mail)" data-price="2750">
+        <span class="badge">P-PPLX12</span>
+        <div class="name">
+          <div class="title">Perplexity AI Pro • 12 Month</div>
+          <div class="meta">On your mail • Full private • Genuine</div>
+        </div>
+        <div class="price">Rs. 2,750</div>
+      </div>
+
+      <div class="row" data-cat="PRIVATE" data-plan="CapCut Pro [1 MONTH] (On Your Mail)" data-price="2150">
+        <span class="badge">P-CC1</span>
+        <div class="name">
+          <div class="title">CapCut Pro • 1 Month</div>
+          <div class="meta">On your mail • Full private</div>
+        </div>
+        <div class="price">Rs. 2,150</div>
+      </div>
+
+      <div class="row" data-cat="PRIVATE" data-plan="APEUni VIP [1 MONTH] (On Your Mail)" data-price="2200">
+        <span class="badge">P-APEU1</span>
+        <div class="name">
+          <div class="title">APEUni VIP • 1 Month</div>
+          <div class="meta">On your mail • Full private • Genuine</div>
+        </div>
+        <div class="price">Rs. 2,200</div>
+      </div>
+
+      <div class="row" data-cat="PRIVATE" data-plan="Amazon Prime Video [6 MONTH] (On Your Mail)" data-price="2300">
+        <span class="badge">P-PR6</span>
+        <div class="name">
+          <div class="title">Prime Video • 6 Month</div>
+          <div class="meta">On your mail • Full private</div>
+        </div>
+        <div class="price">Rs. 2,300</div>
+      </div>
+
+      <div class="row" data-cat="PRIVATE" data-plan="Amazon Prime Video [1 YEAR] (On Your Mail)" data-price="4400">
+        <span class="badge">P-PR12</span>
+        <div class="name">
+          <div class="title">Prime Video • 1 Year</div>
+          <div class="meta">On your mail • Full private</div>
+        </div>
+        <div class="price">Rs. 4,400</div>
+      </div>
+
+      <div class="row" data-cat="PRIVATE" data-plan="Crunchyroll [1 YEAR] (On Your Mail)" data-price="3800">
+        <span class="badge">P-CR12</span>
+        <div class="name">
+          <div class="title">Crunchyroll • 1 Year</div>
+          <div class="meta">On your mail • Full private</div>
+        </div>
+        <div class="price">Rs. 3,800</div>
+      </div>
+
+      <div class="row" data-cat="PRIVATE" data-plan="Zoom Workplace Pro [1 MONTH] (On Your Mail)" data-price="2450">
+        <span class="badge">P-ZOOM1</span>
+        <div class="name">
+          <div class="title">Zoom Workplace Pro • 1 Month</div>
+          <div class="meta">On your mail • Full private</div>
+        </div>
+        <div class="price">Rs. 2,450</div>
+      </div>
+
+      <!-- ===== VPN (placeholder; add your VPN items later) ===== -->
+      <!-- Example:
+      <div class="row" data-cat="VPN" data-plan="Surfshark VPN [1 YEAR]" data-price="1999"> ... </div>
+      -->
     </div>
   </div>
 
@@ -208,9 +301,9 @@
   <div class="card">
     <h2>📝 Description</h2>
     <div class="card" style="background:#fff;border-color:#f3d9c7">
-      <p>❌ DON’T CHANGE PASSWORD • ❌ DON’T LOGIN MORE THAN 1 DEVICE • ❌ DON’T CHANGE PROFILE NAMES • ❌ DON’T CREATE NEW PROFILE</p>
-      <p>✔ 4K/UHD (where available) • ✔ 28-Days replacement (monthly) • ✔ 6-Months warranty (yearly)</p>
-      <p>✔ Put your <b>WhatsApp number</b> in the Link section so our team can contact you</p>
+      <p style="font-size:12px;margin:6px 0">❌ Don’t change password • ❌ Don’t login more than 1 device • ❌ Don’t change profile names • ❌ Don’t create new profile</p>
+      <p style="font-size:12px;margin:6px 0">✔ 4K/UHD (where available) • ✔ 28-days replacement (monthly) • ✔ 6-months warranty (yearly)</p>
+      <p style="font-size:12px;margin:6px 0">✔ Put your <b>WhatsApp number</b> in the Link section so our team can contact you</p>
     </div>
   </div>
 
@@ -221,11 +314,7 @@
     <input id="custSocial" placeholder="Your Social/WhatsApp (e.g., 97798xxxxxxx or IG link)">
   </div>
 
-  <div class="card">
-    <h2>⏱ Average Time</h2>
-    <div class="pill"><b>3 hours and 2 minutes</b></div>
-  </div>
-
+  <!-- Quantity -->
   <div class="card">
     <h2>📉 Quantity</h2>
     <input id="qty" type="number" min="1" value="1">
@@ -257,8 +346,8 @@
   <div class="icons">
     <a class="btn" href="#"><span>🛒</span>New Order</a>
     <a class="btn" href="#"><span>📦</span>Orders</a>
-    <a class="btn" href="#"><span>💲</span>Funds</a>
-    <a class="btn" href="https://wa.me/9779828560029" target="_blank"><span>🟢</span>WhatsApp</a>
+    <a class="btn" href="https://instagram.com/sam_dgital" target="_blank" rel="noopener"><span>📷</span>Instagram</a>
+    <a class="btn" href="https://wa.me/9779860003403" target="_blank" rel="noopener"><span>🟢</span>WhatsApp</a>
     <a class="btn" href="#"><span>⚙️</span>Account</a>
   </div>
 </div>
@@ -267,69 +356,108 @@
 
 <script>
   const FORMCARRY = 'https://formcarry.com/s/l4cLdlMhyf-';
-  let chosen = { method:'', qr:'' }, picked = { plan:'', price:'', qty:1 };
   const $ = id => document.getElementById(id);
 
-  $('q').addEventListener('input', e=>{
-    const q=e.target.value.toLowerCase();
-    document.querySelectorAll('.row').forEach(r=>{
-      r.style.display = r.innerText.toLowerCase().includes(q) ? 'flex' : 'none';
+  let state = {
+    category: 'PREMIUM',
+    query: '',
+    chosen: { method:'', qr:'' },
+    picked: { plan:'', price:'', qty:1 }
+  };
+
+  // Category pills -> filter list
+  document.querySelectorAll('#catBar .pill').forEach(p=>{
+    p.addEventListener('click', ()=>{
+      document.querySelectorAll('#catBar .pill').forEach(x=>x.classList.remove('active'));
+      p.classList.add('active');
+      state.category = p.dataset.cat;
+      applyFilters();
+      toast('Category: ' + state.category);
     });
   });
 
+  // Search filter
+  $('q').addEventListener('input', e=>{
+    state.query = e.target.value.toLowerCase();
+    applyFilters();
+  });
+
+  function applyFilters(){
+    document.querySelectorAll('.row').forEach(r=>{
+      const catOk = (r.dataset.cat === state.category);
+      const qOk = r.innerText.toLowerCase().includes(state.query);
+      r.style.display = (catOk && qOk) ? 'flex' : 'none';
+    });
+  }
+  // Initial filter (ensure only PREMIUM visible on load)
+  applyFilters();
+
+  // Select service
   document.querySelectorAll('.row').forEach(r=>{
     r.addEventListener('click',()=>{
       document.querySelectorAll('.row').forEach(x=>x.classList.remove('active'));
       r.classList.add('active');
-      picked.plan = r.dataset.plan;
-      picked.price = 'Rs. ' + r.dataset.price;
+      state.picked.plan = r.dataset.plan;
+      state.picked.price = 'Rs. ' + r.dataset.price;
       updateSummary();
     });
   });
 
-  $('qty').addEventListener('input',()=>{ picked.qty = Math.max(1, +$('qty').value||1); updateSummary(); });
+  // Quantity
+  $('qty').addEventListener('input',()=>{
+    state.picked.qty = Math.max(1, +$('qty').value||1);
+    updateSummary();
+  });
 
+  // Payment selection
   document.querySelectorAll('.pay').forEach(p=>{
     p.addEventListener('click',()=>{
       document.querySelectorAll('.pay').forEach(x=>x.classList.remove('active'));
       p.classList.add('active');
-      chosen.method=p.dataset.method; chosen.qr=p.dataset.qr;
+      state.chosen.method=p.dataset.method;
+      state.chosen.qr=p.dataset.qr;
       updateSummary();
     });
   });
 
+  // Contact fields sync
   ['custEmail','custSocial'].forEach(id=>{
     $(id).addEventListener('input',updateSummary);
     $(id).addEventListener('change',updateSummary);
   });
 
   function updateSummary(){
-    if(!chosen.method) return;
-    $('summary').innerHTML = `Selected: <b>${picked.plan || '—'}</b> (${picked.price || '-'}) • Qty: <b>${picked.qty}</b> • Method: <b>${chosen.method}</b>`;
+    if(!state.chosen.method) return;
+    $('summary').innerHTML = `Selected: <b>${state.picked.plan || '—'}</b> (${state.picked.price || '-'}) • Qty: <b>${state.picked.qty}</b> • Method: <b>${state.chosen.method}</b>`;
     $('sEmail').textContent  = $('custEmail').value.trim() || '—';
     $('sSocial').textContent = $('custSocial').value.trim() || '—';
-    $('qrImg').src = chosen.qr || '';
+    $('qrImg').src = state.chosen.qr || '';
     $('qrBox').style.display = 'block';
   }
 
-  function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('show'),2500);}
+  function toast(m){
+    const t=$('toast');
+    t.textContent=m; t.classList.add('show');
+    clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('show'),2000);
+  }
 
   async function submitNow(){
     const email=$('custEmail').value.trim();
     const social=$('custSocial').value.trim();
     const txn=$('txn').value.trim();
-    if(!picked.plan){alert('Select a service.');return;}
-    if(!chosen.method){alert('Choose a payment method.');return;}
+    if(!state.picked.plan){alert('Select a service.');return;}
+    if(!state.chosen.method){alert('Choose a payment method.');return;}
     if(!email && !social){alert('Provide Email or Social.');return;}
     if(!txn){alert('Enter Transaction ID / remarks.');return;}
 
     const order = `Premium OTT Order
-Plan: ${picked.plan}
-Price: ${picked.price}
-Quantity: ${picked.qty}
+Category: ${state.category}
+Plan: ${state.picked.plan}
+Price: ${state.picked.price}
+Quantity: ${state.picked.qty}
 Delivery Email: ${email || '-'}
 Delivery Social: ${social || '-'}
-Payment: ${chosen.method}
+Payment: ${state.chosen.method}
 Txn/Remarks: ${txn}`;
 
     const fd = new FormData();
@@ -337,7 +465,7 @@ Txn/Remarks: ${txn}`;
     fd.append('email', email || 'no-email@customer.com');
     fd.append('order', order);
 
-    const btn=$('submitBtn'); const old=btn.textContent;
+    const btn=document.getElementById('submitBtn'); const old=btn.textContent;
     btn.disabled=true; btn.textContent='Sending…';
     try{
       const res = await fetch(FORMCARRY,{method:'POST',body:fd,headers:{Accept:'application/json'}});
