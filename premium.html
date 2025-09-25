@@ -8,31 +8,37 @@
 <style>
 :root{
   --bg:#fff6ef; --card:#ffeede; --line:#ffd6b9; --text:#2b303a; --muted:#6e7c8a;
-  --accent:#ff7a2c; --accent2:#ffae6f; --green:#23c552;
+  --accent:#ff7a2c; --green:#23c552;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;font-size:14px;line-height:1.42}
 .wrap{max-width:880px;margin:0 auto;padding:12px 12px 84px}
 h1{font-size:18px;font-weight:700;margin-bottom:10px}
 
-/* card + accordion */
+/* outer cards (accordion) */
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:10px 0;overflow:hidden}
-.card header{padding:10px 12px;cursor:pointer;background:#fff;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
-.card header span{font-weight:600}
+.card>header{padding:10px 12px;cursor:pointer;background:#fff;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.card>header span{font-weight:600}
 .card .content{display:none;padding:10px 12px}
 .card.active .content{display:block}
 
+/* inner service sections */
+.section{border:1px dashed var(--line);border-radius:10px;background:#fff;margin:8px 0;overflow:hidden}
+.section>header{padding:8px 10px;cursor:pointer;font-weight:600;background:#fff7f0;display:flex;justify-content:space-between;align-items:center}
+.section .body{display:none;padding:8px 8px 10px}
+.section.open .body{display:block}
+
 /* search */
-.search{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px}
+.search{width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px}
 .search:focus{outline:2px solid var(--accent)}
 
-/* list */
-.list{max-height:360px;overflow:auto;background:#fff;border-radius:10px;border:1px solid var(--line)}
+/* lists */
+.list{max-height:260px;overflow:auto;background:#fff;border-radius:10px;border:1px solid var(--line)}
 .row{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-bottom:1px solid #f3d9c7;font-size:12px;cursor:pointer}
 .row:last-child{border-bottom:none}
 .row:hover{background:#fff7f0}
 .row.active{background:#fff1e5;outline:1px solid var(--accent)}
-.price{font-weight:700}
+.price{font-weight:700;white-space:nowrap}
 
 /* inputs */
 input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:10px;margin:6px 0;font-size:13px}
@@ -66,54 +72,112 @@ button.submit{width:100%;padding:10px;background:var(--green);color:#fff;border:
   <div class="card active" id="servicesCard">
     <header><span>📺 Services</span>▾</header>
     <div class="content">
-      <input id="q" class="search" placeholder="Search service… (Netflix, Prime, Spotify, YouTube)">
-      <div class="list" id="list">
-        <!-- NETFLIX — MONTHLY -->
-        <div class="row" data-plan="Netflix [1 MONTH] [1 DEVICE] [HD]" data-price="350">Netflix [1M] • 1 Device • HD <span class="price">Rs.350</span></div>
-        <div class="row" data-plan="Netflix [1 MONTH] [2 DEVICE] [4K HDR]" data-price="700">Netflix [1M] • 2 Device • 4K HDR <span class="price">Rs.700</span></div>
-        <div class="row" data-plan="Netflix [1 MONTH] [4 DEVICE] [4K HDR]" data-price="950">Netflix [1M] • 4 Device • 4K HDR <span class="price">Rs.950</span></div>
-        <!-- NETFLIX — YEARLY -->
-        <div class="row" data-plan="Netflix [1 YEAR] [1 DEVICE] [HD]" data-price="2350">Netflix [1Y] • 1 Device • HD <span class="price">Rs.2350</span></div>
-        <div class="row" data-plan="Netflix [1 YEAR] [2 DEVICE] [4K]" data-price="3020">Netflix [1Y] • 2 Device • 4K <span class="price">Rs.3020</span></div>
-        <div class="row" data-plan="Netflix [1 YEAR] [4 DEVICE] [4K]" data-price="4650">Netflix [1Y] • 4 Device • 4K <span class="price">Rs.4650</span></div>
+      <input id="q" class="search" placeholder="Search service… (Netflix, Prime, Spotify, YouTube, VPN)">
 
-        <!-- YOUTUBE PREMIUM -->
-        <div class="row" data-plan="YouTube Premium [1 MONTH] [Individual]" data-price="280">YouTube Premium • 1M • Individual <span class="price">Rs.280</span></div>
+      <!-- Premium Accounts -->
+      <div class="section open">
+        <header>👑 Premium Accounts</header>
+        <div class="body">
+          <div class="list">
+            <div class="row" data-plan="Netflix [1Month] • 1 device • HD" data-price="350">
+              <span>Netflix [1Month] • 1 device • HD</span><span class="price">— NPR 350</span>
+            </div>
+            <div class="row" data-plan="Netflix [1Month] • 2 device • 4K HDR" data-price="700">
+              <span>Netflix [1Month] • 2 device • 4K HDR</span><span class="price">— NPR 700</span>
+            </div>
+            <div class="row" data-plan="Netflix [1Month] • 4 device • 4K HDR" data-price="950">
+              <span>Netflix [1Month] • 4 device • 4K HDR</span><span class="price">— NPR 950</span>
+            </div>
+            <div class="row" data-plan="Netflix [1Year] • 1 device • HD" data-price="2350">
+              <span>Netflix [1Year] • 1 device • HD</span><span class="price">— NPR 2350</span>
+            </div>
+            <div class="row" data-plan="Netflix [1Year] • 2 device • 4K" data-price="3020">
+              <span>Netflix [1Year] • 2 device • 4K</span><span class="price">— NPR 3020</span>
+            </div>
+            <div class="row" data-plan="Netflix [1Year] • 4 device • 4K" data-price="4650">
+              <span>Netflix [1Year] • 4 device • 4K</span><span class="price">— NPR 4650</span>
+            </div>
 
-        <!-- SPOTIFY INDIVIDUAL -->
-        <div class="row" data-plan="Spotify [2 MONTH] [Individual]" data-price="280">Spotify • 2M • Individual <span class="price">Rs.280</span></div>
-        <div class="row" data-plan="Spotify [3 MONTH] [Individual]" data-price="850">Spotify • 3M • Individual <span class="price">Rs.850</span></div>
-        <div class="row" data-plan="Spotify [12 MONTH] [Individual]" data-price="2750">Spotify • 12M • Individual <span class="price">Rs.2750</span></div>
+            <div class="row" data-plan="YouTube Premium • 1Month • Individual" data-price="280">
+              <span>YouTube Premium • 1Month • Individual</span><span class="price">— NPR 280</span>
+            </div>
+            <div class="row" data-plan="Spotify • 2Month • Individual" data-price="280">
+              <span>Spotify • 2Month • Individual</span><span class="price">— NPR 280</span>
+            </div>
+            <div class="row" data-plan="Spotify • 3Month • Individual" data-price="850">
+              <span>Spotify • 3Month • Individual</span><span class="price">— NPR 850</span>
+            </div>
+            <div class="row" data-plan="Spotify • 12Month • Individual" data-price="2750">
+              <span>Spotify • 12Month • Individual</span><span class="price">— NPR 2750</span>
+            </div>
 
-        <!-- PRIME / DISNEY / CRUNCHYROLL -->
-        <div class="row" data-plan="Amazon Prime Video [1 MONTH]" data-price="200">Amazon Prime • 1M <span class="price">Rs.200</span></div>
-        <div class="row" data-plan="Amazon Prime Video [6 MONTH]" data-price="800">Amazon Prime • 6M <span class="price">Rs.800</span></div>
-        <div class="row" data-plan="Amazon Prime Video [1 YEAR]" data-price="1600">Amazon Prime • 1Y <span class="price">Rs.1600</span></div>
-
-        <div class="row" data-plan="Disney+ Hotstar [1 MONTH]" data-price="445">Disney+ Hotstar • 1M <span class="price">Rs.445</span></div>
-        <div class="row" data-plan="Disney+ Hotstar [1 YEAR]" data-price="1600">Disney+ Hotstar • 1Y <span class="price">Rs.1600</span></div>
-
-        <div class="row" data-plan="Crunchyroll [1 MONTH] [Shared]" data-price="300">Crunchyroll • 1M • Shared <span class="price">Rs.300</span></div>
-        <div class="row" data-plan="Crunchyroll [1 YEAR] [Shared]" data-price="1600">Crunchyroll • 1Y • Shared <span class="price">Rs.1600</span></div>
+            <div class="row" data-plan="Amazon Prime • 1Month" data-price="200">
+              <span>Amazon Prime • 1Month</span><span class="price">— NPR 200</span>
+            </div>
+            <div class="row" data-plan="Amazon Prime • 6Month" data-price="800">
+              <span>Amazon Prime • 6Month</span><span class="price">— NPR 800</span>
+            </div>
+            <div class="row" data-plan="Amazon Prime • 1Year" data-price="1600">
+              <span>Amazon Prime • 1Year</span><span class="price">— NPR 1600</span>
+            </div>
+            <div class="row" data-plan="Disney+ Hotstar • 1Month" data-price="445">
+              <span>Disney+ Hotstar • 1Month</span><span class="price">— NPR 445</span>
+            </div>
+            <div class="row" data-plan="Disney+ Hotstar • 1Year" data-price="1600">
+              <span>Disney+ Hotstar • 1Year</span><span class="price">— NPR 1600</span>
+            </div>
+            <div class="row" data-plan="Crunchyroll • 1Month • Shared" data-price="300">
+              <span>Crunchyroll • 1Month • Shared</span><span class="price">— NPR 300</span>
+            </div>
+            <div class="row" data-plan="Crunchyroll • 1Year • Shared" data-price="1600">
+              <span>Crunchyroll • 1Year • Shared</span><span class="price">— NPR 1600</span>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <!-- Premium Accounts (on your mail) -->
+      <div class="section">
+        <header>📧 Premium Accounts (on your mail)</header>
+        <div class="body">
+          <div class="list">
+            <!-- add your own-mail variants/prices here -->
+            <div class="row" data-plan="Netflix [1Month] • On Your Mail • 1 device • HD" data-price="390">
+              <span>Netflix [1Month] • On Your Mail • 1 device • HD</span><span class="price">— NPR 390</span>
+            </div>
+            <div class="row" data-plan="Amazon Prime • On Your Mail • 1Month" data-price="230">
+              <span>Amazon Prime • On Your Mail • 1Month</span><span class="price">— NPR 230</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VPN -->
+      <div class="section">
+        <header>🔐 VPN</header>
+        <div class="body">
+          <div class="list">
+            <div class="row" data-plan="NordVPN • 1Year • 1 Account" data-price="1200">
+              <span>NordVPN • 1Year • 1 Account</span><span class="price">— NPR 1200</span>
+            </div>
+            <div class="row" data-plan="Surfshark • 1Year • 1 Account" data-price="1000">
+              <span>Surfshark • 1Year • 1 Account</span><span class="price">— NPR 1000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- Description -->
+  <!-- Rules -->
   <div class="card" id="descCard">
     <header><span>📝 Rules & Description</span>▾</header>
     <div class="content" style="font-size:12.5px">
-      ❌ Don’t change password<br>
-      ❌ Don’t login more than 1 device<br>
-      ❌ Don’t change profile names<br>
-      ❌ Don’t create new profile<br>
-      ✅ Mobile/HD supported (where available)<br>
-      ✅ 28-Days replacement (monthly) • 6-Months warranty (yearly)<br><br>
+      ❌ Don’t change password • ❌ Don’t login more than 1 device • ❌ Don’t change profile names • ❌ Don’t create new profile<br>
+      ✅ 28-Days replacement (monthly) • ✅ 6-Months warranty (yearly)<br><br>
       <b>How to order</b><br>
-      1) Select service and payment<br>
-      2) Enter Email / WhatsApp or Instagram<br>
-      3) Pay and enter Transaction ID / remarks (only your real name)<br>
-      4) Submit — we deliver by Email/DM
+      1) Select service & payment • 2) Enter Email / WhatsApp or Instagram • 3) Pay & enter Transaction ID (only your real name) • 4) Submit — we deliver by Email/DM
     </div>
   </div>
 
@@ -169,26 +233,28 @@ button.submit{width:100%;padding:10px;background:var(--green);color:#fff;border:
 </div>
 
 <script>
-const FORMCARRY = 'https://formcarry.com/s/l4cLdlMhyf-';
-const $ = id => document.getElementById(id);
+const FORMCARRY='https://formcarry.com/s/l4cLdlMhyf-';
+const $=id=>document.getElementById(id);
+let picked={plan:'',price:'',qty:1};
+let chosen={method:'',qr:''};
 
-let picked = { plan:'', price:'', qty:1 };
-let chosen = { method:'', qr:'' };
-
-/* accordion toggle */
-document.querySelectorAll('.card header').forEach(h=>{
-  h.addEventListener('click',()=> h.parentElement.classList.toggle('active'));
+/* outer accordions */
+document.querySelectorAll('.card>header').forEach(h=>{
+  h.addEventListener('click',()=>h.parentElement.classList.toggle('active'));
 });
-
-/* default open services + payment */
 document.getElementById('servicesCard').classList.add('active');
 document.getElementById('payCard').classList.add('active');
 
-/* search */
-$('q').addEventListener('input', e=>{
-  const q = e.target.value.toLowerCase();
+/* inner section toggles */
+document.querySelectorAll('.section>header').forEach(h=>{
+  h.addEventListener('click',()=>h.parentElement.classList.toggle('open'));
+});
+
+/* search across all rows */
+$('q').addEventListener('input',e=>{
+  const q=e.target.value.toLowerCase();
   document.querySelectorAll('.row').forEach(r=>{
-    r.style.display = r.innerText.toLowerCase().includes(q) ? 'flex' : 'none';
+    r.style.display=r.innerText.toLowerCase().includes(q)?'flex':'none';
   });
 });
 
@@ -197,87 +263,79 @@ document.querySelectorAll('.row').forEach(r=>{
   r.addEventListener('click',()=>{
     document.querySelectorAll('.row').forEach(x=>x.classList.remove('active'));
     r.classList.add('active');
-    picked.plan = r.dataset.plan;
-    picked.price = r.dataset.price;
+    picked.plan=r.dataset.plan;
+    picked.price=r.dataset.price;
     updateSummary();
+    document.getElementById('payCard').scrollIntoView({behavior:'smooth',block:'start'});
   });
 });
 
 /* quantity */
-$('qty').addEventListener('input', ()=>{
-  const n = Math.max(1, +$('qty').value || 1);
-  picked.qty = n;
-  updateSummary();
+$('qty').addEventListener('input',()=>{
+  const n=Math.max(1,+$('qty').value||1);
+  picked.qty=n; updateSummary();
 });
 
-/* payment select */
+/* payment */
 document.querySelectorAll('.pay').forEach(p=>{
   p.addEventListener('click',()=>{
     document.querySelectorAll('.pay').forEach(x=>x.classList.remove('active'));
     p.classList.add('active');
-    chosen.method = p.dataset.method;
-    chosen.qr = p.dataset.qr;
+    chosen.method=p.dataset.method; chosen.qr=p.dataset.qr;
     updateSummary();
   });
 });
 
-/* live contact fill */
+/* live contact display */
 ['custEmail','custSocial'].forEach(id=>{
-  $(id).addEventListener('input', updateSummary);
-  $(id).addEventListener('change', updateSummary);
+  $(id).addEventListener('input',updateSummary);
+  $(id).addEventListener('change',updateSummary);
 });
 
 function updateSummary(){
-  if(!picked.plan || !chosen.method) return;
-  $('summary').innerHTML =
-    `Selected: <b>${picked.plan}</b> (Rs. ${picked.price}) • Qty: <b>${picked.qty}</b> • Method: <b>${chosen.method}</b>`;
-  $('sEmail').textContent  = $('custEmail').value.trim() || '—';
-  $('sSocial').textContent = $('custSocial').value.trim() || '—';
-  $('qrImg').src = chosen.qr || '';
-  $('qrBox').style.display = 'block';
+  if(!picked.plan||!chosen.method) return;
+  $('summary').innerHTML=`Selected: <b>${picked.plan}</b> — NPR ${picked.price} • Qty: <b>${picked.qty}</b> • Method: <b>${chosen.method}</b>`;
+  $('sEmail').textContent=$('custEmail').value.trim()||'—';
+  $('sSocial').textContent=$('custSocial').value.trim()||'—';
+  $('qrImg').src=chosen.qr||'';
+  $('qrBox').style.display='block';
 }
 
-function toast(msg){
-  alert(msg); // lightweight - swap to custom toast if you want
-}
+function toast(m){ alert(m); }
 
 async function submitNow(){
-  const email = $('custEmail').value.trim();
-  const social = $('custSocial').value.trim();
-  const txn = $('txn').value.trim();
+  const email=$('custEmail').value.trim();
+  const social=$('custSocial').value.trim();
+  const txn=$('txn').value.trim();
+  if(!picked.plan){toast('Select a service.');return;}
+  if(!chosen.method){toast('Choose a payment method.');return;}
+  if(!email && !social){toast('Provide Email or Social for delivery.');return;}
+  if(!txn){toast('Enter Transaction ID / remarks.');return;}
 
-  if(!picked.plan){ toast('Select a service.'); return; }
-  if(!chosen.method){ toast('Choose a payment method.'); return; }
-  if(!email && !social){ toast('Provide Email or Social for delivery.'); return; }
-  if(!txn){ toast('Enter Transaction ID / remarks.'); return; }
-
-  const order = `Premium OTT Order
+  const order=`Premium OTT Order
 Plan: ${picked.plan}
-Price: Rs. ${picked.price}
+Price: NPR ${picked.price}
 Quantity: ${picked.qty}
-Delivery Email: ${email || '-'}
-Delivery Social: ${social || '-'}
+Delivery Email: ${email||'-'}
+Delivery Social: ${social||'-'}
 Payment: ${chosen.method}
 Txn/Remarks: ${txn}`;
 
-  const fd = new FormData();
-  fd.append('name', 'Premium OTT Customer');
-  fd.append('email', email || 'no-email@customer.com');
+  const fd=new FormData();
+  fd.append('name','Premium OTT Customer');
+  fd.append('email', email||'no-email@customer.com');
   fd.append('order', order);
 
-  const btn = document.getElementById('submitBtn');
-  const old = btn.textContent;
-  btn.disabled = true; btn.textContent = 'Sending…';
-
+  const btn=$('submitBtn'); const old=btn.textContent;
+  btn.disabled=true; btn.textContent='Sending…';
   try{
-    const res = await fetch(FORMCARRY, { method:'POST', body: fd, headers:{ Accept:'application/json' }});
+    const res=await fetch(FORMCARRY,{method:'POST',body:fd,headers:{Accept:'application/json'}});
     if(!res.ok) throw new Error('Formcarry error');
     toast('✅ Order sent! We’ll contact you soon.');
   }catch(e){
-    console.error(e);
-    toast('⚠️ Could not send order. Please try again.');
+    console.error(e); toast('⚠️ Could not send order. Please try again.');
   }finally{
-    btn.disabled = false; btn.textContent = old;
+    btn.disabled=false; btn.textContent=old;
   }
 }
 </script>
