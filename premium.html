@@ -15,22 +15,22 @@ body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-ser
 .wrap{max-width:880px;margin:0 auto;padding:12px}
 
 /* card */
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:10px 0;padding:10px}
-.card h2{font-size:14px;font-weight:700;margin-bottom:8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:10px 0;overflow:hidden}
+.card>header{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:#fff;border-bottom:1px solid var(--line);font-weight:700;cursor:pointer}
+.card .content{padding:10px 12px;display:none}
+.card.active .content{display:block}
 
-/* search small but visible */
-.search{width:100%;padding:7px 10px;border:1px solid var(--line);border-radius:10px;background:#fff;
-        font-size:13px}
+/* search */
+.search{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:#fff;font-size:13px}
 .search:focus{outline:2px solid var(--accent)}
 
 /* category tabs */
 .tabs{display:flex;gap:8px;flex-wrap:wrap}
-.tab{flex:1 1 260px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;
-     font-weight:700;cursor:pointer;text-align:center}
+.tab{flex:1 1 260px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center;font-weight:700;cursor:pointer}
 .tab.active{background:var(--accent);border-color:var(--accent);color:#fff}
 
-/* service list */
-.list{max-height:300px;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:10px}
+/* lists */
+.list{max-height:320px;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:10px}
 .row{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-bottom:1px solid #f3d9c7;font-size:12px;cursor:pointer}
 .row:last-child{border-bottom:none}
 .row:hover{background:var(--accent-soft)}
@@ -40,9 +40,10 @@ body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-ser
 /* inputs */
 input{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:#fff;margin:6px 0;font-size:13px}
 input:focus{outline:2px solid var(--accent)}
+.muted{color:var(--muted);font-size:12px}
 
 /* payment */
-.pay-row{display:flex;gap:8px;flex-wrap:wrap}
+.pay-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
 .pay{flex:1 0 110px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center;font-weight:700;cursor:pointer}
 .pay.active{background:var(--accent);border-color:var(--accent);color:#fff}
 
@@ -55,150 +56,183 @@ input:focus{outline:2px solid var(--accent)}
 /* submit */
 button.submit{width:100%;padding:12px;background:var(--ok);border:none;border-radius:12px;color:#fff;font-weight:800;cursor:pointer}
 .note{font-size:11.5px;color:#b03b1f;margin-top:4px}
-.muted{color:var(--muted);font-size:12px}
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <!-- Search -->
-  <div class="card">
-    <h2>🔎 Search for a service</h2>
-    <input id="q" class="search" placeholder="Netflix, Prime, Spotify, YouTube, VPN…">
+  <div class="card active" id="searchCard">
+    <header><span>🔎 Search for a service</span>▾</header>
+    <div class="content">
+      <input id="q" class="search" placeholder="Netflix, Prime, Spotify, YouTube, VPN…">
+    </div>
   </div>
 
   <!-- Category -->
-  <div class="card">
-    <h2>📚 Category</h2>
-    <div class="tabs" id="tabs">
-      <div class="tab active" data-cat="premium">PREMIUM ACCOUNTS</div>
-      <div class="tab" data-cat="mail">PREMIUM ACCOUNTS PRIVATE [ON YOUR MAIL]</div>
-      <div class="tab" data-cat="vpn">PREMIUM VPN ACCOUNTS</div>
+  <div class="card active" id="catCard">
+    <header><span>📚 Category</span>▾</header>
+    <div class="content">
+      <div class="tabs" id="tabs">
+        <div class="tab active" data-cat="premium">PREMIUM ACCOUNTS</div>
+        <div class="tab" data-cat="mail">PREMIUM ACCOUNTS PRIVATE [ON YOUR MAIL]</div>
+        <div class="tab" data-cat="vpn">PREMIUM VPN ACCOUNTS</div>
+      </div>
     </div>
   </div>
 
   <!-- Service -->
-  <div class="card">
-    <h2>🗂 Service</h2>
-    <!-- lists (one visible at a time) -->
-    <div class="list cat-premium" id="list-premium">
-      <!-- Netflix (format you wanted) -->
-      <div class="row" data-plan="Netflix [1Month] • 1 device • HD" data-price="350">
-        <span>Netflix [1Month] • 1 device • HD</span><span class="price">— NPR 350</span>
+  <div class="card active" id="serviceCard">
+    <header><span>🗂 Service</span>▾</header>
+    <div class="content">
+      <div class="list" id="list-premium">
+        <!-- Netflix -->
+        <div class="row" data-plan="Netflix [1Month] • 1 device • HD" data-price="350" data-note="Mobile/PC OK. 28-days replacement warranty.">
+          <span>Netflix [1Month] • 1 device • HD</span><span class="price">— NPR 350</span>
+        </div>
+        <div class="row" data-plan="Netflix [1Month] • 2 device • 4K HDR" data-price="700" data-note="Stream on up to 2 devices at once.">
+          <span>Netflix [1Month] • 2 device • 4K HDR</span><span class="price">— NPR 700</span>
+        </div>
+        <div class="row" data-plan="Netflix [1Month] • 4 device • 4K HDR" data-price="950" data-note="Best for families.">
+          <span>Netflix [1Month] • 4 device • 4K HDR</span><span class="price">— NPR 950</span>
+        </div>
+        <div class="row" data-plan="Netflix [1Year] • 1 device • HD" data-price="2350" data-note="Includes 6-months replacement warranty.">
+          <span>Netflix [1Year] • 1 device • HD</span><span class="price">— NPR 2350</span>
+        </div>
+        <div class="row" data-plan="Netflix [1Year] • 2 device • 4K" data-price="3020" data-note="Long-term value.">
+          <span>Netflix [1Year] • 2 device • 4K</span><span class="price">— NPR 3020</span>
+        </div>
+        <div class="row" data-plan="Netflix [1Year] • 4 device • 4K" data-price="4650" data-note="Ultra plan for 4 devices.">
+          <span>Netflix [1Year] • 4 device • 4K</span><span class="price">— NPR 4650</span>
+        </div>
+        <!-- Others -->
+        <div class="row" data-plan="YouTube Premium • 1Month • Individual" data-price="280" data-note="Ad-free YouTube + Music.">
+          <span>YouTube Premium • 1Month • Individual</span><span class="price">— NPR 280</span>
+        </div>
+        <div class="row" data-plan="Spotify • 2Month • Individual" data-price="280" data-note="Individual plan.">
+          <span>Spotify • 2Month • Individual</span><span class="price">— NPR 280</span>
+        </div>
+        <div class="row" data-plan="Spotify • 3Month • Individual" data-price="850" data-note="Individual plan.">
+          <span>Spotify • 3Month • Individual</span><span class="price">— NPR 850</span>
+        </div>
+        <div class="row" data-plan="Spotify • 12Month • Individual" data-price="2750" data-note="Best long-term value.">
+          <span>Spotify • 12Month • Individual</span><span class="price">— NPR 2750</span>
+        </div>
+        <div class="row" data-plan="Amazon Prime • 1Month" data-price="200" data-note="All benefits included.">
+          <span>Amazon Prime • 1Month</span><span class="price">— NPR 200</span>
+        </div>
+        <div class="row" data-plan="Amazon Prime • 6Month" data-price="800" data-note="Pass changeable.">
+          <span>Amazon Prime • 6Month</span><span class="price">— NPR 800</span>
+        </div>
+        <div class="row" data-plan="Amazon Prime • 1Year" data-price="1600" data-note="All benefits.">
+          <span>Amazon Prime • 1Year</span><span class="price">— NPR 1600</span>
+        </div>
+        <div class="row" data-plan="Disney+ Hotstar • 1Month" data-price="445" data-note="International account.">
+          <span>Disney+ Hotstar • 1Month</span><span class="price">— NPR 445</span>
+        </div>
+        <div class="row" data-plan="Crunchyroll • 1Month • Shared" data-price="300" data-note="Instant access; shared slot.">
+          <span>Crunchyroll • 1Month • Shared</span><span class="price">— NPR 300</span>
+        </div>
       </div>
-      <div class="row" data-plan="Netflix [1Month] • 2 device • 4K HDR" data-price="700">
-        <span>Netflix [1Month] • 2 device • 4K HDR</span><span class="price">— NPR 700</span>
-      </div>
-      <div class="row" data-plan="Netflix [1Month] • 4 device • 4K HDR" data-price="950">
-        <span>Netflix [1Month] • 4 device • 4K HDR</span><span class="price">— NPR 950</span>
-      </div>
-      <div class="row" data-plan="Netflix [1Year] • 1 device • HD" data-price="2350">
-        <span>Netflix [1Year] • 1 device • HD</span><span class="price">— NPR 2350</span>
-      </div>
-      <div class="row" data-plan="Netflix [1Year] • 2 device • 4K" data-price="3020">
-        <span>Netflix [1Year] • 2 device • 4K</span><span class="price">— NPR 3020</span>
-      </div>
-      <div class="row" data-plan="Netflix [1Year] • 4 device • 4K" data-price="4650">
-        <span>Netflix [1Year] • 4 device • 4K</span><span class="price">— NPR 4650</span>
-      </div>
-      <!-- YouTube + Spotify -->
-      <div class="row" data-plan="YouTube Premium • 1Month • Individual" data-price="280">
-        <span>YouTube Premium • 1Month • Individual</span><span class="price">— NPR 280</span>
-      </div>
-      <div class="row" data-plan="Spotify • 2Month • Individual" data-price="280">
-        <span>Spotify • 2Month • Individual</span><span class="price">— NPR 280</span>
-      </div>
-      <div class="row" data-plan="Spotify • 3Month • Individual" data-price="850">
-        <span>Spotify • 3Month • Individual</span><span class="price">— NPR 850</span>
-      </div>
-      <div class="row" data-plan="Spotify • 12Month • Individual" data-price="2750">
-        <span>Spotify • 12Month • Individual</span><span class="price">— NPR 2750</span>
-      </div>
-      <!-- Prime / Disney / Crunchyroll -->
-      <div class="row" data-plan="Amazon Prime • 1Month" data-price="200">
-        <span>Amazon Prime • 1Month</span><span class="price">— NPR 200</span>
-      </div>
-      <div class="row" data-plan="Amazon Prime • 6Month" data-price="800">
-        <span>Amazon Prime • 6Month</span><span class="price">— NPR 800</span>
-      </div>
-      <div class="row" data-plan="Amazon Prime • 1Year" data-price="1600">
-        <span>Amazon Prime • 1Year</span><span class="price">— NPR 1600</span>
-      </div>
-      <div class="row" data-plan="Disney+ Hotstar • 1Month" data-price="445">
-        <span>Disney+ Hotstar • 1Month</span><span class="price">— NPR 445</span>
-      </div>
-      <div class="row" data-plan="Crunchyroll • 1Month • Shared" data-price="300">
-        <span>Crunchyroll • 1Month • Shared</span><span class="price">— NPR 300</span>
-      </div>
-    </div>
 
-    <div class="list cat-mail" id="list-mail" style="display:none">
-      <div class="row" data-plan="Netflix [1Month] • Private (on your mail) • 1 device • HD" data-price="390">
-        <span>Netflix [1Month] • Private (on your mail) • 1 device • HD</span><span class="price">— NPR 390</span>
+      <div class="list" id="list-mail" style="display:none">
+        <div class="row" data-plan="Netflix [1Month] • Private (on your mail) • 1 device • HD" data-price="390" data-note="Delivered to your own email.">
+          <span>Netflix [1Month] • Private (on your mail) • 1 device • HD</span><span class="price">— NPR 390</span>
+        </div>
+        <div class="row" data-plan="Amazon Prime • Private (on your mail) • 1Month" data-price="230" data-note="Delivered to your mail.">
+          <span>Amazon Prime • Private (on your mail) • 1Month</span><span class="price">— NPR 230</span>
+        </div>
       </div>
-      <div class="row" data-plan="Amazon Prime • Private (on your mail) • 1Month" data-price="230">
-        <span>Amazon Prime • Private (on your mail) • 1Month</span><span class="price">— NPR 230</span>
-      </div>
-      <!-- add more private items as you need -->
-    </div>
 
-    <div class="list cat-vpn" id="list-vpn" style="display:none">
-      <div class="row" data-plan="NordVPN • 1Year • 1 Account" data-price="1200">
-        <span>NordVPN • 1Year • 1 Account</span><span class="price">— NPR 1200</span>
-      </div>
-      <div class="row" data-plan="Surfshark • 1Year • 1 Account" data-price="1000">
-        <span>Surfshark • 1Year • 1 Account</span><span class="price">— NPR 1000</span>
+      <div class="list" id="list-vpn" style="display:none">
+        <div class="row" data-plan="NordVPN • 1Year • 1 Account" data-price="1200" data-note="Secure global VPN.">
+          <span>NordVPN • 1Year • 1 Account</span><span class="price">— NPR 1200</span>
+        </div>
+        <div class="row" data-plan="Surfshark • 1Year • 1 Account" data-price="1000" data-note="Unlimited devices.">
+          <span>Surfshark • 1Year • 1 Account</span><span class="price">— NPR 1000</span>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Delivery Contact -->
-  <div class="card">
-    <h2>📨 Delivery (Email / Social media)</h2>
-    <input id="email" placeholder="Email (delivery)">
-    <input id="social" placeholder="Social link or number (FB/IG/WhatsApp)">
-    <div class="muted">We deliver through your Email or DM on your social.</div>
+  <!-- Description (auto-opens on product click) -->
+  <div class="card" id="descCard">
+    <header><span>📝 Description</span>▾</header>
+    <div class="content" id="descBody">
+      <div id="pickedLine" style="font-weight:600;margin-bottom:6px">Selected: —</div>
+      <ul style="margin-left:16px">
+        <li>❌ Don’t change password</li>
+        <li>❌ Don’t login more than 1 device (unless plan allows)</li>
+        <li>❌ Don’t change profile names / create new profile</li>
+        <li>✅ 28-days replacement (monthly) • ✅ 6-months warranty (yearly)</li>
+        <li>✅ Write ONLY your real name in payment remarks</li>
+      </ul>
+      <div id="noteLine" class="muted" style="margin-top:6px">Note: —</div>
+    </div>
+  </div>
+
+  <!-- Delivery -->
+  <div class="card" id="linkCard">
+    <header><span>📨 Delivery (Email / Social)</span>▾</header>
+    <div class="content">
+      <input id="email" placeholder="Email (delivery)">
+      <input id="social" placeholder="Social link or number (FB/IG/WhatsApp)">
+      <div class="muted">We deliver via Email or DM on your social.</div>
+    </div>
   </div>
 
   <!-- Payment -->
-  <div class="card">
-    <h2>💳 Payment Method</h2>
-    <div class="pay-row">
-      <div class="pay" data-method="eSewa" data-qr="png.images/logo-esewaqr.png">eSewa</div>
-      <div class="pay" data-method="Khalti" data-qr="png.images/logo-khaltiqr.png">Khalti</div>
-      <div class="pay" data-method="Bank"   data-qr="png.images/logo-bankqr.png">Bank</div>
-    </div>
+  <div class="card" id="payCard">
+    <header><span>💳 Payment Method</span>▾</header>
+    <div class="content">
+      <div class="pay-row">
+        <div class="pay" data-method="eSewa" data-qr="png.images/logo-esewaqr.png">eSewa</div>
+        <div class="pay" data-method="Khalti" data-qr="png.images/logo-khaltiqr.png">Khalti</div>
+        <div class="pay" data-method="Bank"   data-qr="png.images/logo-bankqr.png">Bank</div>
+      </div>
 
-    <div id="qrBox">
-      <div class="summary" id="summary">Selected: —</div>
-      <div><b>Email:</b> <span id="sEmail">—</span> &nbsp;&nbsp; <b>Social:</b> <span id="sSocial">—</span></div>
-      <div class="qr"><img id="qrImg" alt="Payment QR"></div>
-      <input id="txn" placeholder="Enter Transaction ID or Remarks">
-      <p class="note">Write ONLY your real name in remarks (don’t write Netflix/Prime etc.).</p>
-      <button class="submit" id="submitBtn" onclick="submitNow()">Submit order</button>
+      <div id="qrBox">
+        <div class="summary" id="summary">—</div>
+        <div><b>Email:</b> <span id="sEmail">—</span> &nbsp;&nbsp; <b>Social:</b> <span id="sSocial">—</span></div>
+        <div class="qr"><img id="qrImg" alt="Payment QR"></div>
+        <input id="txn" placeholder="Enter Transaction ID or Remarks">
+        <p class="note">Write ONLY your real name in remarks (don’t write Netflix/Prime etc.).</p>
+        <button class="submit" id="submitBtn" onclick="submitNow()">Submit order</button>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
 const FORMCARRY='https://formcarry.com/s/l4cLdlMhyf-';
-const $=sel=>document.querySelector(sel);
+const $=s=>document.querySelector(s);
 
-let picked={plan:'',price:''};
+let picked={plan:'',price:'',note:''};
 let chosen={method:'',qr:''};
 
-/* Category tabs */
+/* open default sections */
+['searchCard','catCard','serviceCard','descCard','linkCard','payCard'].forEach(id=>{
+  document.getElementById(id).classList.add('active');
+});
+
+/* accordion headers toggle */
+document.querySelectorAll('.card>header').forEach(h=>{
+  h.addEventListener('click',()=>h.parentElement.classList.toggle('active'));
+});
+
+/* category tabs */
 document.querySelectorAll('.tab').forEach(t=>{
   t.addEventListener('click',()=>{
     document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
     t.classList.add('active');
     const cat=t.dataset.cat;
-    document.querySelectorAll('.list').forEach(l=>l.style.display='none');
-    $('#list-'+cat).style.display='block';
+    ['premium','mail','vpn'].forEach(c=>{
+      document.getElementById('list-'+c)?.style.setProperty('display', c===cat ? 'block' : 'none');
+    });
   });
 });
 
-/* Search (across all lists) */
+/* search across all rows */
 $('#q').addEventListener('input',e=>{
   const q=e.target.value.toLowerCase();
   document.querySelectorAll('.list .row').forEach(r=>{
@@ -206,18 +240,24 @@ $('#q').addEventListener('input',e=>{
   });
 });
 
-/* Select a product */
+/* select product -> only show DESCRIPTION */
 document.querySelectorAll('.list .row').forEach(r=>{
   r.addEventListener('click',()=>{
     document.querySelectorAll('.list .row').forEach(x=>x.classList.remove('active'));
     r.classList.add('active');
     picked.plan=r.dataset.plan;
     picked.price=r.dataset.price;
-    updateSummary();
+    picked.note=r.dataset.note || '';
+    // update description
+    $('#pickedLine').textContent=`Selected: ${picked.plan} — NPR ${picked.price}`;
+    $('#noteLine').textContent = picked.note ? `Note: ${picked.note}` : 'Note: —';
+    // open description; do NOT open payment
+    document.getElementById('descCard').classList.add('active');
+    document.getElementById('descCard').scrollIntoView({behavior:'smooth',block:'start'});
   });
 });
 
-/* Payment choose */
+/* payment choose -> now show QR box */
 document.querySelectorAll('.pay').forEach(p=>{
   p.addEventListener('click',()=>{
     document.querySelectorAll('.pay').forEach(x=>x.classList.remove('active'));
@@ -228,7 +268,7 @@ document.querySelectorAll('.pay').forEach(p=>{
   });
 });
 
-/* Live contact fill */
+/* live contact display */
 ['#email','#social'].forEach(s=>{
   $(s).addEventListener('input',updateSummary);
   $(s).addEventListener('change',updateSummary);
@@ -243,7 +283,7 @@ function updateSummary(){
   $('#qrBox').style.display = 'block';
 }
 
-/* Submit to Formcarry */
+/* Submit */
 async function submitNow(){
   if(!picked.plan){ alert('Select a product first.'); return; }
   if(!chosen.method){ alert('Choose a payment method.'); return; }
