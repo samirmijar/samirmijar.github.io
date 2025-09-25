@@ -3,187 +3,141 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>New Order • Premium Accounts</title>
+<title>Premium Accounts • New Order</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#fff6ef; --card:#ffeede; --line:#ffd6b9; --text:#2b303a; --muted:#6e7c8a;
-  --accent:#ff7a2c; --accent-soft:#fff3e9; --ok:#22c55e;
+  --accent:#ff7a2c; --accent2:#ffae6f; --green:#23c552;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;font-size:14px;line-height:1.42}
-.wrap{max-width:880px;margin:0 auto;padding:12px}
+.wrap{max-width:880px;margin:0 auto;padding:12px 12px 84px}
+h1{font-size:18px;font-weight:700;margin-bottom:10px}
 
-/* card */
+/* card + accordion */
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:10px 0;overflow:hidden}
-.card>header{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:#fff;border-bottom:1px solid var(--line);font-weight:700;cursor:pointer}
-.card .content{padding:10px 12px;display:none}
+.card header{padding:10px 12px;cursor:pointer;background:#fff;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.card header span{font-weight:600}
+.card .content{display:none;padding:10px 12px}
 .card.active .content{display:block}
 
 /* search */
-.search{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:#fff;font-size:13px}
+.search{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px}
 .search:focus{outline:2px solid var(--accent)}
 
-/* category tabs */
-.tabs{display:flex;gap:8px;flex-wrap:wrap}
-.tab{flex:1 1 260px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center;font-weight:700;cursor:pointer}
-.tab.active{background:var(--accent);border-color:var(--accent);color:#fff}
-
-/* lists */
-.list{max-height:320px;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:10px}
-.row{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-bottom:1px solid #f3d9c7;font-size:12px;cursor:pointer}
+/* list */
+.list{max-height:360px;overflow:auto;background:#fff;border-radius:10px;border:1px solid var(--line)}
+.row{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-bottom:1px solid #f3d9c7;font-size:12px;cursor:pointer}
 .row:last-child{border-bottom:none}
-.row:hover{background:var(--accent-soft)}
-.row.active{background:#ffe7d6;outline:1px solid var(--accent)}
-.price{font-weight:700;white-space:nowrap}
+.row:hover{background:#fff7f0}
+.row.active{background:#fff1e5;outline:1px solid var(--accent)}
+.price{font-weight:700}
 
 /* inputs */
-input{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:#fff;margin:6px 0;font-size:13px}
+input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:10px;margin:6px 0;font-size:13px}
 input:focus{outline:2px solid var(--accent)}
-.muted{color:var(--muted);font-size:12px}
 
-/* payment */
-.pay-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
-.pay{flex:1 0 110px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center;font-weight:700;cursor:pointer}
-.pay.active{background:var(--accent);border-color:var(--accent);color:#fff}
+/* pay */
+.pay-row{display:flex;gap:8px;flex-wrap:wrap}
+.pay{flex:1 0 100px;padding:8px;text-align:center;border:1px solid var(--line);border-radius:10px;background:#fff;font-weight:600;font-size:13px;cursor:pointer}
+.pay.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 
-/* qr + summary */
-#qrBox{display:none;margin-top:8px;border-top:1px dashed var(--line);padding-top:10px}
-.summary{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px;margin-bottom:8px;font-size:13px}
-.qr{text-align:center}
-.qr img{max-width:180px;border:1px solid var(--line);border-radius:10px;padding:6px;background:#fff;margin:8px auto}
+/* summary + qr */
+#qrBox{display:none;margin-top:10px}
+.summary{font-size:13px;padding:8px;border:1px solid var(--line);border-radius:10px;background:#fff;margin-bottom:8px}
+.qr img{max-width:170px;margin:10px auto;display:block;padding:6px;border:1px solid var(--line);border-radius:10px;background:#fff}
 
 /* submit */
-button.submit{width:100%;padding:12px;background:var(--ok);border:none;border-radius:12px;color:#fff;font-weight:800;cursor:pointer}
-.note{font-size:11.5px;color:#b03b1f;margin-top:4px}
+button.submit{width:100%;padding:10px;background:var(--green);color:#fff;border:none;border-radius:10px;font-weight:800;cursor:pointer}
+.note{font-size:11px;color:#c4422a;margin-top:4px}
+
+/* bottom nav */
+.bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line)}
+.bar .icons{display:flex;justify-content:space-around;max-width:880px;margin:0 auto}
+.btn{flex:1;text-align:center;padding:6px 0;font-size:11px;font-weight:600;color:#c35610;text-decoration:none}
 </style>
 </head>
 <body>
 <div class="wrap">
+  <h1>🛒 New Order</h1>
 
-  <!-- Search -->
-  <div class="card active" id="searchCard">
-    <header><span>🔎 Search for a service</span>▾</header>
+  <!-- Services -->
+  <div class="card active" id="servicesCard">
+    <header><span>📺 Services</span>▾</header>
     <div class="content">
-      <input id="q" class="search" placeholder="Netflix, Prime, Spotify, YouTube, VPN…">
-    </div>
-  </div>
+      <input id="q" class="search" placeholder="Search service… (Netflix, Prime, Spotify, YouTube)">
+      <div class="list" id="list">
+        <!-- NETFLIX — MONTHLY -->
+        <div class="row" data-plan="Netflix [1 MONTH] [1 DEVICE] [HD]" data-price="350">Netflix [1M] • 1 Device • HD <span class="price">Rs.350</span></div>
+        <div class="row" data-plan="Netflix [1 MONTH] [2 DEVICE] [4K HDR]" data-price="700">Netflix [1M] • 2 Device • 4K HDR <span class="price">Rs.700</span></div>
+        <div class="row" data-plan="Netflix [1 MONTH] [4 DEVICE] [4K HDR]" data-price="950">Netflix [1M] • 4 Device • 4K HDR <span class="price">Rs.950</span></div>
+        <!-- NETFLIX — YEARLY -->
+        <div class="row" data-plan="Netflix [1 YEAR] [1 DEVICE] [HD]" data-price="2350">Netflix [1Y] • 1 Device • HD <span class="price">Rs.2350</span></div>
+        <div class="row" data-plan="Netflix [1 YEAR] [2 DEVICE] [4K]" data-price="3020">Netflix [1Y] • 2 Device • 4K <span class="price">Rs.3020</span></div>
+        <div class="row" data-plan="Netflix [1 YEAR] [4 DEVICE] [4K]" data-price="4650">Netflix [1Y] • 4 Device • 4K <span class="price">Rs.4650</span></div>
 
-  <!-- Category -->
-  <div class="card active" id="catCard">
-    <header><span>📚 Category</span>▾</header>
-    <div class="content">
-      <div class="tabs" id="tabs">
-        <div class="tab active" data-cat="premium">PREMIUM ACCOUNTS</div>
-        <div class="tab" data-cat="mail">PREMIUM ACCOUNTS PRIVATE [ON YOUR MAIL]</div>
-        <div class="tab" data-cat="vpn">PREMIUM VPN ACCOUNTS</div>
-      </div>
-    </div>
-  </div>
+        <!-- YOUTUBE PREMIUM -->
+        <div class="row" data-plan="YouTube Premium [1 MONTH] [Individual]" data-price="280">YouTube Premium • 1M • Individual <span class="price">Rs.280</span></div>
 
-  <!-- Service -->
-  <div class="card active" id="serviceCard">
-    <header><span>🗂 Service</span>▾</header>
-    <div class="content">
-      <div class="list" id="list-premium">
-        <!-- Netflix -->
-        <div class="row" data-plan="Netflix [1Month] • 1 device • HD" data-price="350" data-note="Mobile/PC OK. 28-days replacement warranty.">
-          <span>Netflix [1Month] • 1 device • HD</span><span class="price">— NPR 350</span>
-        </div>
-        <div class="row" data-plan="Netflix [1Month] • 2 device • 4K HDR" data-price="700" data-note="Stream on up to 2 devices at once.">
-          <span>Netflix [1Month] • 2 device • 4K HDR</span><span class="price">— NPR 700</span>
-        </div>
-        <div class="row" data-plan="Netflix [1Month] • 4 device • 4K HDR" data-price="950" data-note="Best for families.">
-          <span>Netflix [1Month] • 4 device • 4K HDR</span><span class="price">— NPR 950</span>
-        </div>
-        <div class="row" data-plan="Netflix [1Year] • 1 device • HD" data-price="2350" data-note="Includes 6-months replacement warranty.">
-          <span>Netflix [1Year] • 1 device • HD</span><span class="price">— NPR 2350</span>
-        </div>
-        <div class="row" data-plan="Netflix [1Year] • 2 device • 4K" data-price="3020" data-note="Long-term value.">
-          <span>Netflix [1Year] • 2 device • 4K</span><span class="price">— NPR 3020</span>
-        </div>
-        <div class="row" data-plan="Netflix [1Year] • 4 device • 4K" data-price="4650" data-note="Ultra plan for 4 devices.">
-          <span>Netflix [1Year] • 4 device • 4K</span><span class="price">— NPR 4650</span>
-        </div>
-        <!-- Others -->
-        <div class="row" data-plan="YouTube Premium • 1Month • Individual" data-price="280" data-note="Ad-free YouTube + Music.">
-          <span>YouTube Premium • 1Month • Individual</span><span class="price">— NPR 280</span>
-        </div>
-        <div class="row" data-plan="Spotify • 2Month • Individual" data-price="280" data-note="Individual plan.">
-          <span>Spotify • 2Month • Individual</span><span class="price">— NPR 280</span>
-        </div>
-        <div class="row" data-plan="Spotify • 3Month • Individual" data-price="850" data-note="Individual plan.">
-          <span>Spotify • 3Month • Individual</span><span class="price">— NPR 850</span>
-        </div>
-        <div class="row" data-plan="Spotify • 12Month • Individual" data-price="2750" data-note="Best long-term value.">
-          <span>Spotify • 12Month • Individual</span><span class="price">— NPR 2750</span>
-        </div>
-        <div class="row" data-plan="Amazon Prime • 1Month" data-price="200" data-note="All benefits included.">
-          <span>Amazon Prime • 1Month</span><span class="price">— NPR 200</span>
-        </div>
-        <div class="row" data-plan="Amazon Prime • 6Month" data-price="800" data-note="Pass changeable.">
-          <span>Amazon Prime • 6Month</span><span class="price">— NPR 800</span>
-        </div>
-        <div class="row" data-plan="Amazon Prime • 1Year" data-price="1600" data-note="All benefits.">
-          <span>Amazon Prime • 1Year</span><span class="price">— NPR 1600</span>
-        </div>
-        <div class="row" data-plan="Disney+ Hotstar • 1Month" data-price="445" data-note="International account.">
-          <span>Disney+ Hotstar • 1Month</span><span class="price">— NPR 445</span>
-        </div>
-        <div class="row" data-plan="Crunchyroll • 1Month • Shared" data-price="300" data-note="Instant access; shared slot.">
-          <span>Crunchyroll • 1Month • Shared</span><span class="price">— NPR 300</span>
-        </div>
-      </div>
+        <!-- SPOTIFY INDIVIDUAL -->
+        <div class="row" data-plan="Spotify [2 MONTH] [Individual]" data-price="280">Spotify • 2M • Individual <span class="price">Rs.280</span></div>
+        <div class="row" data-plan="Spotify [3 MONTH] [Individual]" data-price="850">Spotify • 3M • Individual <span class="price">Rs.850</span></div>
+        <div class="row" data-plan="Spotify [12 MONTH] [Individual]" data-price="2750">Spotify • 12M • Individual <span class="price">Rs.2750</span></div>
 
-      <div class="list" id="list-mail" style="display:none">
-        <div class="row" data-plan="Netflix [1Month] • Private (on your mail) • 1 device • HD" data-price="390" data-note="Delivered to your own email.">
-          <span>Netflix [1Month] • Private (on your mail) • 1 device • HD</span><span class="price">— NPR 390</span>
-        </div>
-        <div class="row" data-plan="Amazon Prime • Private (on your mail) • 1Month" data-price="230" data-note="Delivered to your mail.">
-          <span>Amazon Prime • Private (on your mail) • 1Month</span><span class="price">— NPR 230</span>
-        </div>
-      </div>
+        <!-- PRIME / DISNEY / CRUNCHYROLL -->
+        <div class="row" data-plan="Amazon Prime Video [1 MONTH]" data-price="200">Amazon Prime • 1M <span class="price">Rs.200</span></div>
+        <div class="row" data-plan="Amazon Prime Video [6 MONTH]" data-price="800">Amazon Prime • 6M <span class="price">Rs.800</span></div>
+        <div class="row" data-plan="Amazon Prime Video [1 YEAR]" data-price="1600">Amazon Prime • 1Y <span class="price">Rs.1600</span></div>
 
-      <div class="list" id="list-vpn" style="display:none">
-        <div class="row" data-plan="NordVPN • 1Year • 1 Account" data-price="1200" data-note="Secure global VPN.">
-          <span>NordVPN • 1Year • 1 Account</span><span class="price">— NPR 1200</span>
-        </div>
-        <div class="row" data-plan="Surfshark • 1Year • 1 Account" data-price="1000" data-note="Unlimited devices.">
-          <span>Surfshark • 1Year • 1 Account</span><span class="price">— NPR 1000</span>
-        </div>
+        <div class="row" data-plan="Disney+ Hotstar [1 MONTH]" data-price="445">Disney+ Hotstar • 1M <span class="price">Rs.445</span></div>
+        <div class="row" data-plan="Disney+ Hotstar [1 YEAR]" data-price="1600">Disney+ Hotstar • 1Y <span class="price">Rs.1600</span></div>
+
+        <div class="row" data-plan="Crunchyroll [1 MONTH] [Shared]" data-price="300">Crunchyroll • 1M • Shared <span class="price">Rs.300</span></div>
+        <div class="row" data-plan="Crunchyroll [1 YEAR] [Shared]" data-price="1600">Crunchyroll • 1Y • Shared <span class="price">Rs.1600</span></div>
       </div>
     </div>
   </div>
 
-  <!-- Description (auto-opens on product click) -->
+  <!-- Description -->
   <div class="card" id="descCard">
-    <header><span>📝 Description</span>▾</header>
-    <div class="content" id="descBody">
-      <div id="pickedLine" style="font-weight:600;margin-bottom:6px">Selected: —</div>
-      <ul style="margin-left:16px">
-        <li>❌ Don’t change password</li>
-        <li>❌ Don’t login more than 1 device (unless plan allows)</li>
-        <li>❌ Don’t change profile names / create new profile</li>
-        <li>✅ 28-days replacement (monthly) • ✅ 6-months warranty (yearly)</li>
-        <li>✅ Write ONLY your real name in payment remarks</li>
-      </ul>
-      <div id="noteLine" class="muted" style="margin-top:6px">Note: —</div>
+    <header><span>📝 Rules & Description</span>▾</header>
+    <div class="content" style="font-size:12.5px">
+      ❌ Don’t change password<br>
+      ❌ Don’t login more than 1 device<br>
+      ❌ Don’t change profile names<br>
+      ❌ Don’t create new profile<br>
+      ✅ Mobile/HD supported (where available)<br>
+      ✅ 28-Days replacement (monthly) • 6-Months warranty (yearly)<br><br>
+      <b>How to order</b><br>
+      1) Select service and payment<br>
+      2) Enter Email / WhatsApp or Instagram<br>
+      3) Pay and enter Transaction ID / remarks (only your real name)<br>
+      4) Submit — we deliver by Email/DM
     </div>
   </div>
 
-  <!-- Delivery -->
+  <!-- Link -->
   <div class="card" id="linkCard">
-    <header><span>📨 Delivery (Email / Social)</span>▾</header>
+    <header><span>🔗 Link (Delivery Contact)</span>▾</header>
     <div class="content">
-      <input id="email" placeholder="Email (delivery)">
-      <input id="social" placeholder="Social link or number (FB/IG/WhatsApp)">
-      <div class="muted">We deliver via Email or DM on your social.</div>
+      <input id="custEmail" placeholder="Your Email (delivery)">
+      <input id="custSocial" placeholder="Your WhatsApp / Instagram (e.g., 97798xxxxxxx or @handle)">
+    </div>
+  </div>
+
+  <!-- Quantity -->
+  <div class="card" id="qtyCard">
+    <header><span>📦 Quantity</span>▾</header>
+    <div class="content">
+      <input id="qty" type="number" min="1" value="1">
+      <div style="font-size:12px;color:var(--muted)">Min: 1 • Max: 1000</div>
     </div>
   </div>
 
   <!-- Payment -->
   <div class="card" id="payCard">
-    <header><span>💳 Payment Method</span>▾</header>
+    <header><span>💳 Payment</span>▾</header>
     <div class="content">
       <div class="pay-row">
         <div class="pay" data-method="eSewa" data-qr="png.images/logo-esewaqr.png">eSewa</div>
@@ -195,127 +149,135 @@ button.submit{width:100%;padding:12px;background:var(--ok);border:none;border-ra
         <div class="summary" id="summary">—</div>
         <div><b>Email:</b> <span id="sEmail">—</span> &nbsp;&nbsp; <b>Social:</b> <span id="sSocial">—</span></div>
         <div class="qr"><img id="qrImg" alt="Payment QR"></div>
-        <input id="txn" placeholder="Enter Transaction ID or Remarks">
+        <input id="txn" placeholder="Transaction ID / Remarks">
         <p class="note">Write ONLY your real name in remarks (don’t write Netflix/Prime etc.).</p>
-        <button class="submit" id="submitBtn" onclick="submitNow()">Submit order</button>
+        <button class="submit" id="submitBtn" onclick="submitNow()">Submit</button>
       </div>
     </div>
   </div>
 </div>
 
+<!-- Bottom Nav -->
+<div class="bar">
+  <div class="icons">
+    <a class="btn" href="#">🛒<br>Order</a>
+    <a class="btn" href="#">📦<br>Orders</a>
+    <a class="btn" href="https://wa.me/9779828560029" target="_blank">🟢<br>WhatsApp</a>
+    <a class="btn" href="https://instagram.com/sam_dgital" target="_blank">📷<br>Instagram</a>
+    <a class="btn" href="#">⚙️<br>Account</a>
+  </div>
+</div>
+
 <script>
-const FORMCARRY='https://formcarry.com/s/l4cLdlMhyf-';
-const $=s=>document.querySelector(s);
+const FORMCARRY = 'https://formcarry.com/s/l4cLdlMhyf-';
+const $ = id => document.getElementById(id);
 
-let picked={plan:'',price:'',note:''};
-let chosen={method:'',qr:''};
+let picked = { plan:'', price:'', qty:1 };
+let chosen = { method:'', qr:'' };
 
-/* open default sections */
-['searchCard','catCard','serviceCard','descCard','linkCard','payCard'].forEach(id=>{
-  document.getElementById(id).classList.add('active');
+/* accordion toggle */
+document.querySelectorAll('.card header').forEach(h=>{
+  h.addEventListener('click',()=> h.parentElement.classList.toggle('active'));
 });
 
-/* accordion headers toggle */
-document.querySelectorAll('.card>header').forEach(h=>{
-  h.addEventListener('click',()=>h.parentElement.classList.toggle('active'));
-});
+/* default open services + payment */
+document.getElementById('servicesCard').classList.add('active');
+document.getElementById('payCard').classList.add('active');
 
-/* category tabs */
-document.querySelectorAll('.tab').forEach(t=>{
-  t.addEventListener('click',()=>{
-    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
-    t.classList.add('active');
-    const cat=t.dataset.cat;
-    ['premium','mail','vpn'].forEach(c=>{
-      document.getElementById('list-'+c)?.style.setProperty('display', c===cat ? 'block' : 'none');
-    });
+/* search */
+$('q').addEventListener('input', e=>{
+  const q = e.target.value.toLowerCase();
+  document.querySelectorAll('.row').forEach(r=>{
+    r.style.display = r.innerText.toLowerCase().includes(q) ? 'flex' : 'none';
   });
 });
 
-/* search across all rows */
-$('#q').addEventListener('input',e=>{
-  const q=e.target.value.toLowerCase();
-  document.querySelectorAll('.list .row').forEach(r=>{
-    r.style.display=r.innerText.toLowerCase().includes(q)?'flex':'none';
-  });
-});
-
-/* select product -> only show DESCRIPTION */
-document.querySelectorAll('.list .row').forEach(r=>{
+/* select service */
+document.querySelectorAll('.row').forEach(r=>{
   r.addEventListener('click',()=>{
-    document.querySelectorAll('.list .row').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.row').forEach(x=>x.classList.remove('active'));
     r.classList.add('active');
-    picked.plan=r.dataset.plan;
-    picked.price=r.dataset.price;
-    picked.note=r.dataset.note || '';
-    // update description
-    $('#pickedLine').textContent=`Selected: ${picked.plan} — NPR ${picked.price}`;
-    $('#noteLine').textContent = picked.note ? `Note: ${picked.note}` : 'Note: —';
-    // open description; do NOT open payment
-    document.getElementById('descCard').classList.add('active');
-    document.getElementById('descCard').scrollIntoView({behavior:'smooth',block:'start'});
-  });
-});
-
-/* payment choose -> now show QR box */
-document.querySelectorAll('.pay').forEach(p=>{
-  p.addEventListener('click',()=>{
-    document.querySelectorAll('.pay').forEach(x=>x.classList.remove('active'));
-    p.classList.add('active');
-    chosen.method=p.dataset.method;
-    chosen.qr=p.dataset.qr;
+    picked.plan = r.dataset.plan;
+    picked.price = r.dataset.price;
     updateSummary();
   });
 });
 
-/* live contact display */
-['#email','#social'].forEach(s=>{
-  $(s).addEventListener('input',updateSummary);
-  $(s).addEventListener('change',updateSummary);
+/* quantity */
+$('qty').addEventListener('input', ()=>{
+  const n = Math.max(1, +$('qty').value || 1);
+  picked.qty = n;
+  updateSummary();
+});
+
+/* payment select */
+document.querySelectorAll('.pay').forEach(p=>{
+  p.addEventListener('click',()=>{
+    document.querySelectorAll('.pay').forEach(x=>x.classList.remove('active'));
+    p.classList.add('active');
+    chosen.method = p.dataset.method;
+    chosen.qr = p.dataset.qr;
+    updateSummary();
+  });
+});
+
+/* live contact fill */
+['custEmail','custSocial'].forEach(id=>{
+  $(id).addEventListener('input', updateSummary);
+  $(id).addEventListener('change', updateSummary);
 });
 
 function updateSummary(){
   if(!picked.plan || !chosen.method) return;
-  $('#summary').innerHTML = `Selected: <b>${picked.plan}</b> — NPR ${picked.price} • Method: <b>${chosen.method}</b>`;
-  $('#sEmail').textContent = $('#email').value.trim() || '—';
-  $('#sSocial').textContent = $('#social').value.trim() || '—';
-  $('#qrImg').src = chosen.qr || '';
-  $('#qrBox').style.display = 'block';
+  $('summary').innerHTML =
+    `Selected: <b>${picked.plan}</b> (Rs. ${picked.price}) • Qty: <b>${picked.qty}</b> • Method: <b>${chosen.method}</b>`;
+  $('sEmail').textContent  = $('custEmail').value.trim() || '—';
+  $('sSocial').textContent = $('custSocial').value.trim() || '—';
+  $('qrImg').src = chosen.qr || '';
+  $('qrBox').style.display = 'block';
 }
 
-/* Submit */
-async function submitNow(){
-  if(!picked.plan){ alert('Select a product first.'); return; }
-  if(!chosen.method){ alert('Choose a payment method.'); return; }
-  const email=$('#email').value.trim();
-  const social=$('#social').value.trim();
-  const txn=$('#txn').value.trim();
-  if(!email && !social){ alert('Provide Email or a Social link/number.'); return; }
-  if(!txn){ alert('Enter Transaction ID or remarks.'); return; }
+function toast(msg){
+  alert(msg); // lightweight - swap to custom toast if you want
+}
 
-  const order = `Premium Order
+async function submitNow(){
+  const email = $('custEmail').value.trim();
+  const social = $('custSocial').value.trim();
+  const txn = $('txn').value.trim();
+
+  if(!picked.plan){ toast('Select a service.'); return; }
+  if(!chosen.method){ toast('Choose a payment method.'); return; }
+  if(!email && !social){ toast('Provide Email or Social for delivery.'); return; }
+  if(!txn){ toast('Enter Transaction ID / remarks.'); return; }
+
+  const order = `Premium OTT Order
 Plan: ${picked.plan}
-Price: NPR ${picked.price}
+Price: Rs. ${picked.price}
+Quantity: ${picked.qty}
+Delivery Email: ${email || '-'}
+Delivery Social: ${social || '-'}
 Payment: ${chosen.method}
-Email: ${email||'-'}
-Social: ${social||'-'}
 Txn/Remarks: ${txn}`;
 
-  const fd=new FormData();
-  fd.append('name','Premium Customer');
+  const fd = new FormData();
+  fd.append('name', 'Premium OTT Customer');
   fd.append('email', email || 'no-email@customer.com');
   fd.append('order', order);
 
-  const btn=$('#submitBtn'); const old=btn.textContent;
-  btn.disabled=true; btn.textContent='Sending…';
+  const btn = document.getElementById('submitBtn');
+  const old = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Sending…';
+
   try{
-    const res=await fetch(FORMCARRY,{method:'POST',body:fd,headers:{Accept:'application/json'}});
+    const res = await fetch(FORMCARRY, { method:'POST', body: fd, headers:{ Accept:'application/json' }});
     if(!res.ok) throw new Error('Formcarry error');
-    alert('✅ Order sent! We will contact you soon.');
+    toast('✅ Order sent! We’ll contact you soon.');
   }catch(e){
-    console.error(e); alert('⚠️ Could not send order. Please try again.');
+    console.error(e);
+    toast('⚠️ Could not send order. Please try again.');
   }finally{
-    btn.disabled=false; btn.textContent=old;
+    btn.disabled = false; btn.textContent = old;
   }
 }
 </script>
