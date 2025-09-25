@@ -1,113 +1,341 @@
-<section class="poster">
-  <div class="poster-wrap">
-    <div class="poster-head">
-      <span class="badge">🎬 PREMIUM ACCOUNTS</span>
-      <h1>Netflix Cheap Ma, Chill Garera! 😎🍿</h1>
-      <p class="sub">Fast delivery • No jhanjhat • Chill with peace of mind</p>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Premium Accounts • SM Digital Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d0f12; --card:#101628; --line:#23283b; --soft:#151b2e;
+    --text:#eaeaea; --muted:#b9c6d3; --accent:#6a00ff; --ok:#25D366; --warn:#ffb3b3;
+    --radius:16px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
+  .wrap{max-width:960px;margin:0 auto;padding:18px}
+  h1{margin:6px 0 14px;font-size:24px}
+  h2{margin:0 0 10px;font-size:18px}
+  p{margin:0 0 10px}
+  .muted{color:var(--muted)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:14px 0}
 
-    <div class="grid">
+  /* Inputs */
+  input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #2b3148;background:var(--soft);color:#fff;margin:8px 0}
+  input:focus,select:focus{outline:2px solid var(--accent)}
+
+  /* Scrollable product row */
+  .scroll-row{display:flex;gap:12px;overflow:auto;padding-bottom:8px;scroll-snap-type:x mandatory}
+  .scroll-row::-webkit-scrollbar{height:8px}
+  .scroll-row::-webkit-scrollbar-thumb{background:#29314a;border-radius:99px}
+  .prod{min-width:240px;scroll-snap-align:start;background:#0f172a;border:1px solid #22304d;border-radius:14px;padding:14px;cursor:pointer;transition:transform .12s ease}
+  .prod:hover{transform:translateY(-2px)}
+  .prod.active{outline:2px solid var(--accent);box-shadow:0 0 0 4px rgba(106,0,255,.15) inset}
+  .prod h3{margin:0 0 6px;font-size:16px;color:#ffd166}
+  .prod .meta{display:flex;gap:8px;flex-wrap:wrap;font-size:12px;color:#c8d2e6}
+  .price{font-weight:800;font-size:16px;margin-top:8px;color:#9efc9e}
+
+  /* Payment buttons */
+  .pay-row{display:flex;gap:10px;flex-wrap:wrap}
+  .pay-btn{flex:1;min-width:110px;background:var(--soft);border:1px solid #2b3148;border-radius:10px;padding:12px;text-align:center;cursor:pointer;font-weight:700}
+  .pay-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+  /* QR / Summary */
+  .qr-box{display:none;margin-top:8px;border-top:1px dashed #2b3148;padding-top:12px}
+  .summary{background:#0f1421;border:1px solid #20263a;border-radius:12px;padding:12px;margin:10px 0;font-size:14px}
+  .summary b{color:#cfe2ff}
+  .qr-wrap{text-align:center}
+  .qr-wrap img{max-width:220px;background:#fff;border-radius:12px;padding:8px;display:block;margin:8px auto}
+  @media (max-width:420px){ .qr-wrap img{max-width:160px} }
+  .note{font-size:13px;color:#ffcdcd;margin-top:8px}
+
+  /* Buttons / footer / toast */
+  .submit{background:var(--ok);border:none;padding:14px 16px;border-radius:12px;color:#fff;font-weight:700;cursor:pointer;width:100%;margin-top:12px}
+  .footer-links{display:flex;gap:10px;justify-content:center;margin:18px 0 10px}
+  .footer-links a{color:#b7b7ff;text-decoration:none}
+  #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f1822;border:1px solid rgba(255,255,255,.12);color:#e9eef4;padding:10px 14px;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.28);opacity:0;transition:.25s;z-index:9999}
+  #toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🎬 Premium Streaming Accounts</h1>
+  <p class="muted">Fast delivery • Local payments (eSewa, Khalti, Bank) • Best prices</p>
+
+  <!-- SCROLLABLE PICKER -->
+  <div class="card">
+    <h2>Choose Your Plan (Scroll ▶)</h2>
+    <div class="scroll-row" id="products">
       <!-- Netflix Monthly -->
-      <div class="card">
-        <h3>Netflix — Monthly (28 days)</h3>
-        <p class="muted">Replacement warranty included</p>
-        <ul class="price-list">
-          <li>📺 1 Device (HD) <b>Rs. 350</b></li>
-          <li>📺 2 Devices (4K HDR) <b>Rs. 700</b></li>
-          <li>📺 4 Devices (4K HDR) <b>Rs. 950</b></li>
-        </ul>
+      <div class="prod" data-plan="Netflix • 1 Device • Monthly" data-price="350">
+        <h3>Netflix — Monthly</h3>
+        <div class="meta"><span>1 Device</span><span>HD</span><span>28 days</span></div>
+        <div class="price">Rs. 350</div>
+      </div>
+      <div class="prod" data-plan="Netflix • 2 Devices • Monthly (4K HDR)" data-price="700">
+        <h3>Netflix — Monthly</h3>
+        <div class="meta"><span>2 Devices</span><span>4K HDR</span><span>28 days</span></div>
+        <div class="price">Rs. 700</div>
+      </div>
+      <div class="prod" data-plan="Netflix • 4 Devices • Monthly (4K HDR)" data-price="950">
+        <h3>Netflix — Monthly</h3>
+        <div class="meta"><span>4 Devices</span><span>4K HDR</span><span>28 days</span></div>
+        <div class="price">Rs. 950</div>
       </div>
 
       <!-- Netflix Yearly -->
-      <div class="card">
+      <div class="prod" data-plan="Netflix • 1 Device • Yearly" data-price="2350">
         <h3>Netflix — Yearly</h3>
-        <p class="muted">6-month warranty</p>
-        <ul class="price-list">
-          <li>🔥 1 Device <b>Rs. 2,350</b></li>
-          <li>🔥 2 Devices <b>Rs. 3,020</b></li>
-          <li>🔥 4 Devices <b>Rs. 4,650</b></li>
-        </ul>
+        <div class="meta"><span>1 Device</span><span>6 Mo. Warranty</span></div>
+        <div class="price">Rs. 2,350</div>
+      </div>
+      <div class="prod" data-plan="Netflix • 2 Devices • Yearly" data-price="3020">
+        <h3>Netflix — Yearly</h3>
+        <div class="meta"><span>2 Devices</span><span>6 Mo. Warranty</span></div>
+        <div class="price">Rs. 3,020</div>
+      </div>
+      <div class="prod" data-plan="Netflix • 4 Devices • Yearly" data-price="4650">
+        <h3>Netflix — Yearly</h3>
+        <div class="meta"><span>4 Devices</span><span>6 Mo. Warranty</span></div>
+        <div class="price">Rs. 4,650</div>
       </div>
 
       <!-- Prime -->
-      <div class="card">
+      <div class="prod" data-plan="Amazon Prime Video • 1 Month" data-price="200">
         <h3>Amazon Prime Video</h3>
-        <ul class="price-list">
-          <li>1 Month <b>Rs. 200</b></li>
-          <li>6 Months <b>Rs. 800</b></li>
-          <li>1 Year <b>Rs. 1,600</b></li>
-        </ul>
+        <div class="meta"><span>1 Month</span></div>
+        <div class="price">Rs. 200</div>
+      </div>
+      <div class="prod" data-plan="Amazon Prime Video • 6 Months" data-price="800">
+        <h3>Amazon Prime Video</h3>
+        <div class="meta"><span>6 Months</span></div>
+        <div class="price">Rs. 800</div>
+      </div>
+      <div class="prod" data-plan="Amazon Prime Video • 1 Year" data-price="1600">
+        <h3>Amazon Prime Video</h3>
+        <div class="meta"><span>1 Year</span></div>
+        <div class="price">Rs. 1,600</div>
       </div>
 
       <!-- Crunchyroll -->
-      <div class="card">
+      <div class="prod" data-plan="Crunchyroll • 1 Month" data-price="300">
         <h3>Crunchyroll</h3>
-        <ul class="price-list">
-          <li>1 Month <b>Rs. 300</b></li>
-          <li>1 Year <b>Rs. 1,600</b></li>
-        </ul>
+        <div class="meta"><span>1 Month</span></div>
+        <div class="price">Rs. 300</div>
+      </div>
+      <div class="prod" data-plan="Crunchyroll • 1 Year" data-price="1600">
+        <h3>Crunchyroll</h3>
+        <div class="meta"><span>1 Year</span></div>
+        <div class="price">Rs. 1,600</div>
       </div>
 
-      <!-- Intl Streaming -->
-      <div class="card">
-        <h3>Premium International</h3>
-        <ul class="price-list">
-          <li>Disney+ — 1 Month <b>Rs. 445</b></li>
-          <li>Paramount+ — 1 Month <b>Rs. 445</b></li>
-          <li>HBO Max — 1 Month <b>Rs. 445</b></li>
-          <li>Hulu — 1 Month <b>Rs. 445</b></li>
-        </ul>
+      <!-- International -->
+      <div class="prod" data-plan="Disney+ • 1 Month" data-price="445">
+        <h3>Disney+</h3>
+        <div class="meta"><span>1 Month</span></div>
+        <div class="price">Rs. 445</div>
       </div>
-
-      <!-- How to Order -->
-      <div class="card">
-        <h3>📦 How to Order</h3>
-        <ol class="steps">
-          <li>Enter your <b>Email</b>.</li>
-          <li>Put your <b>WhatsApp number</b> in the link field so we can send the code.<br>
-              <span class="muted">Example: <code>9779860003403</code></span></li>
-          <li>Choose plan → Pay → <b>Submit</b>.</li>
-        </ol>
-        <a class="btn" href="#order">Submit</a>
+      <div class="prod" data-plan="Paramount+ • 1 Month" data-price="445">
+        <h3>Paramount+</h3>
+        <div class="meta"><span>1 Month</span></div>
+        <div class="price">Rs. 445</div>
+      </div>
+      <div class="prod" data-plan="HBO Max • 1 Month" data-price="445">
+        <h3>HBO Max</h3>
+        <div class="meta"><span>1 Month</span></div>
+        <div class="price">Rs. 445</div>
+      </div>
+      <div class="prod" data-plan="Hulu • 1 Month" data-price="445">
+        <h3>Hulu</h3>
+        <div class="meta"><span>1 Month</span></div>
+        <div class="price">Rs. 445</div>
       </div>
     </div>
 
-    <!-- Rules -->
-    <div class="rules">
-      <h3>Description / Rules</h3>
-      <ul>
-        <li>❌ Don’t change password</li>
-        <li>❌ Don’t login more than 1 device</li>
-        <li>❌ Don’t change profile names</li>
-        <li>❌ Don’t create new profile</li>
-        <li>✅ 28 days replacement warranty</li>
-      </ul>
-      <p class="tiny">Note: Use smartly so accounts don’t get locked. We’re one message away from your next binge! 📱</p>
+    <!-- Fallback select (optional) -->
+    <select id="planSelect" style="margin-top:10px">
+      <option value="">— Or choose from list —</option>
+      <option>Netflix • 1 Device • Monthly — Rs.350</option>
+      <option>Netflix • 2 Devices • Monthly — Rs.700</option>
+      <option>Netflix • 4 Devices • Monthly — Rs.950</option>
+      <option>Netflix • 1 Device • Yearly — Rs.2350</option>
+      <option>Netflix • 2 Devices • Yearly — Rs.3020</option>
+      <option>Netflix • 4 Devices • Yearly — Rs.4650</option>
+      <option>Amazon Prime Video • 1 Month — Rs.200</option>
+      <option>Amazon Prime Video • 6 Months — Rs.800</option>
+      <option>Amazon Prime Video • 1 Year — Rs.1600</option>
+      <option>Crunchyroll • 1 Month — Rs.300</option>
+      <option>Crunchyroll • 1 Year — Rs.1600</option>
+      <option>Disney+ • 1 Month — Rs.445</option>
+      <option>Paramount+ • 1 Month — Rs.445</option>
+      <option>HBO Max • 1 Month — Rs.445</option>
+      <option>Hulu • 1 Month — Rs.445</option>
+    </select>
+    <p class="muted" style="margin:6px 0 0">Tip: Tap a card above or use the dropdown. You can scroll sideways to see more options.</p>
+  </div>
+
+  <!-- Delivery Contact -->
+  <div class="card">
+    <h2>Delivery Contact</h2>
+    <input id="custEmail" type="email" placeholder="Your Email (for delivery)">
+    <input id="custSocial" type="text" placeholder="Your Social/WhatsApp (e.g., Instagram link or 97798xxxxxxx)">
+    <p class="note">We deliver via <b>Email</b> or <b>Social</b>. Provide at least one.</p>
+  </div>
+
+  <!-- Rules / Warranty -->
+  <div class="card">
+    <h2>Rules & Warranty</h2>
+    <ul style="margin:0 0 6px 18px">
+      <li>❌ <b>Don’t change the password.</b></li>
+      <li>❌ <b>Don’t login on more than 1 device.</b></li>
+      <li>❌ <b>Don’t change profile names.</b></li>
+      <li>❌ <b>Don’t create a new profile.</b></li>
+      <li>✅ <b>28 days replacement warranty</b> for monthly plans (fair-use policy).</li>
+    </ul>
+    <p class="note">Write ONLY your <b>real name</b> in payment remarks. Don’t write “Netflix / Prime / Hulu”.</p>
+  </div>
+
+  <!-- Payment -->
+  <div class="card">
+    <h2>Payment Method</h2>
+    <div class="pay-row">
+      <div class="pay-btn" data-method="eSewa"  data-qr="png.images/logo-esewaqr.png">eSewa</div>
+      <div class="pay-btn" data-method="Khalti" data-qr="png.images/logo-khaltiqr.png">Khalti</div>
+      <div class="pay-btn" data-method="Bank"   data-qr="png.images/logo-bankqr.png">Bank</div>
+    </div>
+
+    <div id="qrBox" class="qr-box">
+      <div class="summary">
+        <div id="summary"><b>Selected Plan:</b> — • <b>Method:</b> —</div>
+        <div><b>Delivery Email:</b> <span id="sEmail">—</span></div>
+        <div><b>Social:</b> <span id="sSocial">—</span></div>
+      </div>
+
+      <div class="qr-wrap">
+        <img id="qrImg" alt="Payment QR">
+      </div>
+
+      <input id="txn" type="text" placeholder="Enter Transaction ID or Remarks">
+      <button id="submitBtn" class="submit" onclick="submitNow()">Submit Order</button>
     </div>
   </div>
-</section>
 
-<style>
-  .poster{background:#0d0f12; padding:18px}
-  .poster-wrap{max-width:980px;margin:0 auto;color:#eaeaea;font-family:Inter,system-ui,sans-serif}
-  .poster-head{background:#111623;border:1px solid #262b3e;border-radius:18px;padding:16px;margin-bottom:14px}
-  .badge{display:inline-block;background:linear-gradient(90deg,#ff8a00,#ff2e7a);padding:6px 10px;border-radius:999px;font-weight:700}
-  .poster h1{margin:10px 0 4px;font-size:24px}
-  .sub{color:#b9c6d3}
-  .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-  @media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
-  @media (max-width:620px){.grid{grid-template-columns:1fr}}
-  .card{background:#0f1421;border:1px solid #20263a;border-radius:14px;padding:14px}
-  .card h3{margin:0 0 4px;color:#ffd166}
-  .muted{color:#9fb0c8;font-size:14px}
-  .price-list{list-style:none;padding:0;margin:8px 0 0}
-  .price-list li{display:flex;justify-content:space-between;border-bottom:1px dashed #27314a;padding:8px 0;font-size:15px}
-  .price-list b{color:#9efc9e}
-  .steps{margin:6px 0 0 20px}
-  .steps li{margin:6px 0}
-  .btn{display:inline-block;margin-top:10px;background:#25D366;color:#0b1a12;font-weight:800;text-decoration:none;padding:10px 14px;border-radius:10px}
-  .rules{margin-top:14px;background:#10182a;border:1px solid #21324e;border-radius:14px;padding:14px}
-  .rules h3{margin:0 0 6px;color:#ffb3b3}
-  .rules ul{margin:6px 0 8px 18px}
-  .tiny{color:#9fb0c8;font-size:13px}
-</style>
+  <div class="footer-links">
+    <a href="viber://chat?number=+9779828560029">Viber</a>
+    <a href="https://wa.me/9779828560029" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="https://tiktok.com/@samirmijar.np" target="_blank" rel="noopener">TikTok</a>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+  const FORMCARRY_ENDPOINT = 'https://formcarry.com/s/l4cLdlMhyf-';
+
+  let chosen = { method:'', qr:'' };
+  let picked = { plan:'', price:'' };
+
+  const $ = id => document.getElementById(id);
+
+  function toast(msg){
+    const t = $('toast'); t.textContent = msg; t.classList.add('show');
+    clearTimeout(toast._t); toast._t = setTimeout(()=>t.classList.remove('show'), 3000);
+  }
+
+  function setPicked(plan, price){
+    picked.plan = plan;
+    picked.price = price ? `Rs. ${price}` : '';
+    updateSummary();
+  }
+
+  // Cards selection
+  document.querySelectorAll('.prod').forEach(card=>{
+    card.addEventListener('click', ()=>{
+      document.querySelectorAll('.prod').forEach(c=>c.classList.remove('active'));
+      card.classList.add('active');
+      setPicked(card.dataset.plan, card.dataset.price);
+    });
+  });
+
+  // Dropdown fallback
+  $('planSelect').addEventListener('change', (e)=>{
+    const val = e.target.value;
+    if(!val) return;
+    // simple parse last number after Rs.
+    const m = val.match(/—\s*Rs\.(\d+)/);
+    const price = m ? m[1] : '';
+    setPicked(val.replace(/\s—\s*Rs\.\d+$/,''), price);
+  });
+
+  // Payment buttons
+  document.querySelectorAll('.pay-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.pay-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      chosen.method = btn.dataset.method;
+      chosen.qr     = btn.dataset.qr;
+      updateSummary();
+    });
+  });
+
+  // Live update
+  ['custEmail','custSocial'].forEach(id=>{
+    $(id).addEventListener('input', updateSummary);
+    $(id).addEventListener('change', updateSummary);
+  });
+
+  function hasDeliveryContact(){
+    return $('custEmail').value.trim() || $('custSocial').value.trim();
+  }
+
+  function updateSummary(){
+    if(!chosen.method) return; // only when a payment method is chosen
+    $('summary').innerHTML =
+      `<b>Selected Plan:</b> ${picked.plan || '—'} ${picked.price ? '('+picked.price+')' : ''} • <b>Method:</b> ${chosen.method}`;
+    $('sEmail').textContent  = $('custEmail').value.trim()  || '—';
+    $('sSocial').textContent = $('custSocial').value.trim() || '—';
+    $('qrImg').src = chosen.qr;
+    $('qrBox').style.display = 'block';
+  }
+
+  // Submit to Formcarry
+  async function submitNow(){
+    const email  = $('custEmail').value.trim();
+    const social = $('custSocial').value.trim();
+    const txn    = $('txn').value.trim();
+
+    if(!picked.plan){ alert('Please select a plan (tap a card or use the dropdown).'); return; }
+    if(!chosen.method){ alert('Please select a payment method.'); return; }
+    if(!email && !social){ alert('Provide Email or Social/WhatsApp for delivery.'); return; }
+    if(!txn){ alert('Enter Transaction ID or remarks.'); return; }
+
+    const orderText = `Premium Account Order
+Plan: ${picked.plan}
+Price: ${picked.price || '-'}
+Delivery Email: ${email || '-'}
+Delivery Social: ${social || '-'}
+Payment Method: ${chosen.method}
+Transaction/Remarks: ${txn}`;
+
+    const fd = new FormData();
+    fd.append('name','Premium Customer');
+    fd.append('email', email || 'no-email@customer.com');
+    fd.append('order', orderText);
+
+    const btn = $('submitBtn'); const old = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Sending...';
+
+    try{
+      const res = await fetch(FORMCARRY_ENDPOINT, { method:'POST', body:fd, headers:{Accept:'application/json'} });
+      if(!res.ok) throw new Error('Formcarry error');
+      toast('✅ Order sent! We’ll contact you shortly.');
+    }catch(e){
+      console.error(e);
+      toast('⚠️ Could not send order. Please try again.');
+    }finally{
+      btn.disabled = false; btn.textContent = old;
+    }
+  }
+</script>
+</body>
+</html>
