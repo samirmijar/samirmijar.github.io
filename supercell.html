@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Supercell Top-Up • SM Digital Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b1115; --panel:#111922; --soft:#0f1822; --line:#1f2c3a;
+    --text:#e9eef4; --muted:#b9c6d3; --accent:#ffcc00; --ok:#22c55e;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
+  header{padding:18px;text-align:center;background:var(--panel);border-bottom:2px solid var(--line)}
+  header h1{margin:0;font-size:22px}
+
+  /* slider */
+  .slider{width:100%;height:220px;overflow:hidden;position:relative;border-radius:12px;margin:10px auto 16px}
+  .slides{display:flex;width:400%;animation:slide 12s infinite}
+  .slides img{width:100%;height:220px;object-fit:cover}
+  @keyframes slide{
+    0%,20%{transform:translateX(0)}
+    25%,45%{transform:translateX(-100%)}
+    50%,70%{transform:translateX(-200%)}
+    75%,95%{transform:translateX(-300%)}
+    100%{transform:translateX(0)}
+  }
+
+  .wrap{max-width:880px;margin:0 auto;padding:12px}
+  h2{margin:16px 0 8px;font-size:18px;color:var(--accent)}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:12px;margin:10px 0}
+  .note{font-size:13px;color:var(--muted);background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:10px}
+
+  /* selectors */
+  label{display:block;font-weight:600;margin:6px 0 4px}
+  select,input,textarea{
+    width:100%;background:#0e1620;border:1px solid #233244;color:#fff;padding:10px;border-radius:10px
+  }
+  select:focus,input:focus,textarea:focus{outline:2px solid #6a9cff}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media (max-width:640px){ .grid{grid-template-columns:1fr} }
+
+  /* payment buttons */
+  .pay-row{display:flex;gap:8px;flex-wrap:wrap}
+  .pay{flex:1 0 120px;text-align:center;background:#0e1620;border:1px solid #233244;border-radius:10px;padding:10px;font-weight:700;cursor:pointer}
+  .pay.active{background:#6a00ff;border-color:#6a00ff;color:#fff}
+
+  /* qr/summary */
+  .qr-box{display:none;margin-top:10px;border-top:1px dashed #293b53;padding-top:10px}
+  .summary{background:#0f1822;border:1px solid #22334a;border-radius:10px;padding:10px;margin:8px 0;font-size:14px}
+  .qr{text-align:center}
+  .qr img{max-width:200px;background:#fff;border-radius:12px;padding:8px;border:1px solid #233244;margin:8px auto}
+
+  .submit{width:100%;background:var(--ok);border:none;color:#fff;font-weight:800;border-radius:12px;padding:12px;cursor:pointer}
+  .warn{color:#ffb7b7;font-size:12.5px}
+
+  /* tiny toast */
+  #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f1822;border:1px solid rgba(255,255,255,.12);color:#e9eef4;padding:10px 14px;border-radius:10px;opacity:0;transition:.25s;z-index:9999}
+  #toast.show{opacity:1}
+</style>
+</head>
+<body>
+  <header><h1>🔥 Supercell Game Top-Up</h1></header>
+
+  <div class="slider">
+    <div class="slides">
+      <img src="png.images/banner1.png" alt="Banner 1">
+      <img src="png.images/banner2.png" alt="Banner 2">
+      <img src="png.images/banner3.png" alt="Banner 3">
+      <img src="png.images/banner4.png" alt="Banner 4">
+    </div>
+  </div>
+
+  <div class="wrap">
+    <!-- Quick reference (static) -->
+    <div class="card">
+      <h2>Available Packs (Quick Reference)</h2>
+      <div class="grid">
+        <div class="note">
+          <b>Clash of Clans</b><br>
+          Gold Pass 270–980 • Event Pass 270–980 • Scenery 450–1950 • Gems 80–5800 NPR
+        </div>
+        <div class="note">
+          <b>Clash Royale</b><br>
+          Pass Royale 1950 • Gems 165–14500 • Emotes & offers
+        </div>
+        <div class="note">
+          <b>Brawl Stars</b><br>
+          Brawl Pass 450–980 • Plus 580–1020 • Offers 120–580 • Gems 145–5800
+        </div>
+        <div class="note">
+          <b>Hay Day</b><br>
+          Farm Pass 550–1250 • Diamonds 145–5800 • Coins 80–4640
+        </div>
+        <div class="note">
+          <b>Squad Busters</b><br>
+          Starter 750 • Super Pass 1450 • Coins 200–6550
+        </div>
+      </div>
+      <p class="note" style="margin-top:10px">
+        👉 Login required (Email + One-time code). ⚡ Fast & safe delivery. <br>
+        📩 Contact: WhatsApp/Viber <b>9860003403</b>
+      </p>
+    </div>
+
+    <!-- Order form -->
+    <div class="card">
+      <h2>Place Your Order</h2>
+
+      <div class="grid">
+        <div>
+          <label for="game">Game</label>
+          <select id="game">
+            <option value="" selected disabled>Select game…</option>
+            <option value="coc">Clash of Clans</option>
+            <option value="cr">Clash Royale</option>
+            <option value="bs">Brawl Stars</option>
+            <option value="hd">Hay Day</option>
+            <option value="sb">Squad Busters</option>
+          </select>
+        </div>
+        <div>
+          <label for="item">Item</label>
+          <select id="item" disabled>
+            <option value="" selected>Select item…</option>
+          </select>
+        </div>
+        <div>
+          <label for="pack">Package / Amount</label>
+          <select id="pack" disabled>
+            <option value="" selected>Select package…</option>
+          </select>
+        </div>
+        <div>
+          <label for="price">Price (NPR)</label>
+          <input id="price" type="text" readonly placeholder="—">
+        </div>
+      </div>
+
+      <div class="grid" style="margin-top:6px">
+        <div>
+          <label for="email">Delivery Email</label>
+          <input id="email" placeholder="Email to deliver code/login">
+        </div>
+        <div>
+          <label for="social">Social (FB/IG/WhatsApp)</label>
+          <input id="social" placeholder="Profile link or number">
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:8px">
+        <b>Important:</b> Write <b>only your real name</b> in payment remarks. Don’t write game names.
+      </div>
+
+      <h2 style="margin-top:16px">Payment</h2>
+      <div class="pay-row">
+        <div class="pay" data-method="eSewa"  data-qr="png.images/logo-esewaqr.png">eSewa</div>
+        <div class="pay" data-method="Khalti" data-qr="png.images/logo-khaltiqr.png">Khalti</div>
+        <div class="pay" data-method="Bank"   data-qr="png.images/logo-bankqr.png">Bank</div>
+      </div>
+
+      <div id="qrBox" class="qr-box">
+        <div id="summary" class="summary">Selected: —</div>
+        <div><b>Email:</b> <span id="sEmail">—</span> &nbsp; <b>Social:</b> <span id="sSocial">—</span></div>
+        <div class="qr"><img id="qrImg" alt="Payment QR"></div>
+        <input id="txn" placeholder="Enter Transaction ID or Remarks">
+        <p class="warn">Write ONLY your real name in remarks. No refunds for wrong details.</p>
+        <button id="submitBtn" class="submit" onclick="submitNow()">Submit Order</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+<script>
+  const FORMCARRY='https://formcarry.com/s/l4cLdlMhyf-';
+  const $=id=>document.getElementById(id);
+
+  // ---- Catalog (editable) ----
+  const CATALOG={
+    coc:{
+      name:'Clash of Clans',
+      items:{
+        'Gold Pass':     [{p:'Basic',npr:270},{p:'Plus',npr:980}],
+        'Event Pass':    [{p:'Basic',npr:270},{p:'Plus',npr:980}],
+        'Scenery':       [{p:'Any Scenery',npr:450},{p:'Premium Scenery',npr:1950}],
+        'Gems':          [{p:'80',npr:120},{p:'500',npr:650},{p:'1200',npr:1450},{p:'2500',npr:2850},{p:'5800',npr:6550}],
+      }
+    },
+    cr:{
+      name:'Clash Royale',
+      items:{
+        'Pass Royale':   [{p:'Season',npr:1950}],
+        'Gems':          [{p:'100',npr:165},{p:'500',npr:700},{p:'1200',npr:1500},{p:'6500',npr:7450},{p:'14000',npr:14500}],
+        'Emotes/Offers': [{p:'Special Offer',npr:450}]
+      }
+    },
+    bs:{
+      name:'Brawl Stars',
+      items:{
+        'Brawl Pass':      [{p:'Standard',npr:450},{p:'Season',npr:980}],
+        'Brawl Pass Plus': [{p:'Plus',npr:580},{p:'Plus Max',npr:1020}],
+        'Special Offers':  [{p:'Any Offer',npr:120},{p:'Bundle',npr:580}],
+        'Gems':            [{p:'80',npr:145},{p:'170',npr:300},{p:'360',npr:640},{p:'950',npr:1600},{p:'2000',npr:3200},{p:'4000',npr:5800}],
+      }
+    },
+    hd:{
+      name:'Hay Day',
+      items:{
+        'Farm Pass':  [{p:'Standard',npr:550},{p:'Plus',npr:1250}],
+        'Diamonds':   [{p:'80',npr:145},{p:'520',npr:900},{p:'1300',npr:2100},{p:'2800',npr:4300},{p:'5700',npr:5800}],
+        'Coins':      [{p:'500k',npr:80},{p:'3M',npr:720},{p:'10M',npr:4640}],
+      }
+    },
+    sb:{
+      name:'Squad Busters',
+      items:{
+        'Starter Bundle': [{p:'Bundle',npr:750}],
+        'Super Pass':     [{p:'Season',npr:1450}],
+        'Coins':          [{p:'200',npr:200},{p:'1000',npr:900},{p:'3000',npr:2400},{p:'12000',npr:6550}],
+      }
+    }
+  };
+
+  // ---- State ----
+  let state={game:'',item:'',pack:'',price:0,method:'',qr:''};
+
+  // ---- Populate items when game changes ----
+  $('game').addEventListener('change',()=>{
+    state.game=$('game').value;
+    const itemSel=$('item'); const packSel=$('pack');
+    itemSel.innerHTML='<option value="" selected>Select item…</option>';
+    packSel.innerHTML='<option value="" selected>Select package…</option>';
+    $('price').value=''; state.item=''; state.pack=''; state.price=0;
+
+    if(!state.game){ itemSel.disabled=true; packSel.disabled=true; return; }
+    const items=Object.keys(CATALOG[state.game].items);
+    items.forEach(it=>{
+      const opt=document.createElement('option'); opt.value=it; opt.textContent=it; itemSel.appendChild(opt);
+    });
+    itemSel.disabled=false; packSel.disabled=true;
+    updateSummary();
+  });
+
+  // ---- Populate packages when item changes ----
+  $('item').addEventListener('change',()=>{
+    state.item=$('item').value;
+    const packSel=$('pack'); packSel.innerHTML='<option value="" selected>Select package…</option>';
+    $('price').value=''; state.pack=''; state.price=0;
+
+    if(!state.item){ packSel.disabled=true; return; }
+    const packs=CATALOG[state.game].items[state.item];
+    packs.forEach(pk=>{
+      const opt=document.createElement('option'); opt.value=pk.p; opt.textContent=pk.p; opt.dataset.price=pk.npr; packSel.appendChild(opt);
+    });
+    packSel.disabled=false;
+    updateSummary();
+  });
+
+  // ---- Set price when package changes ----
+  $('pack').addEventListener('change',()=>{
+    const sel=$('pack').selectedOptions[0];
+    state.pack=sel?.value||''; state.price=Number(sel?.dataset.price||0);
+    $('price').value = state.price ? state.price : '';
+    updateSummary();
+  });
+
+  // ---- Payment selection ----
+  document.querySelectorAll('.pay').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.pay').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      state.method=btn.dataset.method; state.qr=btn.dataset.qr;
+      updateSummary(true);
+    });
+  });
+
+  // ---- Live contact preview ----
+  ['email','social'].forEach(id=>{
+    $(id).addEventListener('input',()=>updateSummary(true));
+  });
+
+  function updateSummary(showQR=false){
+    const gameLabel = state.game ? CATALOG[state.game].name : '—';
+    const line = `Selected: <b>${gameLabel}</b> • <b>${state.item||'—'}</b> • <b>${state.pack||'—'}</b> — NPR <b>${state.price||'—'}</b> • Method: <b>${state.method||'—'}</b>`;
+    $('summary').innerHTML=line;
+    $('sEmail').textContent=$('email').value.trim()||'—';
+    $('sSocial').textContent=$('social').value.trim()||'—';
+    $('qrImg').src = state.qr||'';
+    if(showQR && state.method) document.querySelector('.qr-box').style.display='block';
+  }
+
+  function toast(msg){
+    const t=$('toast'); t.textContent=msg; t.classList.add('show');
+    clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('show'),2500);
+  }
+
+  // ---- Submit to Formcarry ----
+  async function submitNow(){
+    if(!state.game||!state.item||!state.pack||!state.price){ alert('Select game, item and package.'); return; }
+    if(!state.method){ alert('Choose a payment method.'); return; }
+    const email=$('email').value.trim();
+    const social=$('social').value.trim();
+    if(!email && !social){ alert('Provide Email or Social for delivery.'); return; }
+    const txn=$('txn').value.trim();
+    if(!txn){ alert('Enter Transaction ID / remarks.'); return; }
+
+    const order=`Supercell Order
+Game: ${CATALOG[state.game].name}
+Item: ${state.item}
+Package: ${state.pack}
+Price: NPR ${state.price}
+Email: ${email||'-'}
+Social: ${social||'-'}
+Payment: ${state.method}
+Txn/Remarks: ${txn}`;
+
+    const fd=new FormData();
+    fd.append('name','Supercell Customer');
+    fd.append('email', email || 'no-email@customer.com');
+    fd.append('order', order);
+
+    const btn=$('submitBtn'); const old=btn.textContent;
+    btn.disabled=true; btn.textContent='Sending…';
+    try{
+      const res=await fetch(FORMCARRY,{method:'POST',body:fd,headers:{Accept:'application/json'}});
+      if(!res.ok) throw new Error('Formcarry error');
+      toast('✅ Order sent! We’ll contact you soon.');
+    }catch(e){
+      console.error(e); toast('⚠️ Could not send order. Try again.');
+    }finally{
+      btn.disabled=false; btn.textContent=old;
+    }
+  }
+</script>
+</body>
+</html>
