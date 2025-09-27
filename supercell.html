@@ -3,73 +3,81 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Supercell Top-Up • SM Digital Services</title>
+<title>Supercell Top-Up • View Prices & Contact</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#0c0f14; --card:#111722; --line:#1e2a38; --soft:#151e2d;
-    --text:#e9eef6; --muted:#9fb0c0; --accent:#6a00ff; --ok:#22c55e;
-    --radius:14px;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,sans-serif;line-height:1.55}
-  .wrap{max-width:860px;margin:0 auto;padding:14px 12px 80px}
+:root{
+  --bg:#0c0f14; --card:#111723; --line:#1e2a3a; --soft:#0f1622;
+  --text:#e8eef6; --muted:#9fb0c0; --accent:#6a00ff; --accent2:#ffcc00;
+  --radius:14px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
+.wrap{max-width:880px;margin:0 auto;padding:14px 12px 40px}
+h1{margin:0 0 8px;font-size:22px}
+h2{margin:0 0 8px;font-size:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin:12px 0}
+.muted{color:var(--muted);font-size:13px}
 
-  h1{margin:0 0 8px;font-size:22px}
-  h2{margin:0 0 8px;font-size:16px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin:12px 0}
-  .muted{color:var(--muted)}
+/* banner slider (3–4 images) */
+.slider{height:200px;overflow:hidden;border-radius:12px;margin:6px 0 14px}
+.slides{display:flex;width:400%;animation:slide 12s infinite}
+.slides img{width:100%;height:200px;object-fit:cover}
+@keyframes slide{
+  0%,20%{transform:translateX(0)}
+  25%,45%{transform:translateX(-100%)}
+  50%,70%{transform:translateX(-200%)}
+  75%,95%{transform:translateX(-300%)}
+  100%{transform:translateX(0)}
+}
 
-  /* banner slider */
-  .slider{height:200px;overflow:hidden;border-radius:12px;margin:6px 0 14px}
-  .slides{display:flex;width:400%;animation:slide 12s infinite}
-  .slides img{width:100%;height:200px;object-fit:cover}
-  @keyframes slide{
-    0%,20%{transform:translateX(0)}
-    25%,45%{transform:translateX(-100%)}
-    50%,70%{transform:translateX(-200%)}
-    75%,95%{transform:translateX(-300%)}
-    100%{transform:translateX(0)}
-  }
+/* contact buttons */
+.cta-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.cta{flex:1 1 220px;text-align:center;text-decoration:none;font-weight:700;
+     padding:10px 12px;border-radius:10px;border:1px solid #2b3a52;background:var(--soft);color:#e9eef4}
+.cta:hover{filter:brightness(1.08)}
+.cta.wa{border-color:#1f7a4a}
+.cta.ig{border-color:#b347ff}
+.cta.fb{border-color:#1877f2}
 
-  /* service list */
-  .list{border:1px solid #243348;border-radius:10px;overflow:hidden}
-  .row{padding:10px 12px;border-bottom:1px solid #1f2d40;cursor:pointer}
-  .row:last-child{border-bottom:none}
-  .row:hover{background:#101a2f}
-  .row.active{background:#16223d;outline:2px solid var(--accent)}
-  .title{font-weight:700;font-size:14px}
-  .meta{font-size:12px;color:#9fb0c2;margin-top:2px}
-  .price{font-weight:800;float:right}
+/* search */
+.search{width:100%;padding:10px;border-radius:10px;border:1px solid #2b3a52;background:var(--soft);color:#fff;margin-bottom:8px}
+.search:focus{outline:2px solid var(--accent)}
 
-  /* inputs */
-  input{width:100%;padding:10px;border-radius:10px;border:1px solid #2b3a52;background:var(--soft);color:#fff;margin:8px 0}
-  input:focus{outline:2px solid var(--accent)}
+/* game sections (accordion) */
+.section{border:1px dashed #2b3a52;border-radius:12px;overflow:hidden;margin:8px 0;background:#0f1625}
+.section>button{width:100%;text-align:left;background:#101b2e;color:#fff;border:none;padding:12px 14px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.section.open>button{background:#121f36}
+.body{display:none;padding:10px}
+.section.open .body{display:block}
 
-  /* payment / qr */
-  .qr-box{display:none;margin-top:10px;border-top:1px dashed #2a3b55;padding-top:12px}
-  .summary{background:#0f1824;border:1px solid #203048;border-radius:10px;padding:10px;margin:8px 0;font-size:14px}
-  .qr{text-align:center}
-  .qr img{max-width:200px;background:#fff;border-radius:12px;padding:8px;border:1px solid #24344a;margin:8px auto}
-  .note{font-size:13px;color:#ffcdcd;margin-top:6px}
-  .submit{width:100%;background:var(--ok);color:#fff;border:none;border-radius:12px;padding:12px;font-weight:700;cursor:pointer}
+/* rows */
+.list{border:1px solid #2b3a52;border-radius:10px;overflow:hidden}
+.row{padding:10px 12px;border-bottom:1px solid #1c2a41;cursor:pointer}
+.row:last-child{border-bottom:none}
+.row:hover{background:#101a2f}
+.row.active{background:#172340;outline:1px solid var(--accent)}
+.title{font-weight:700;font-size:14px}
+.meta{font-size:12px;color:#9fb0c2;margin-top:2px}
+.price{float:right;font-weight:800;color:#cfe2ff}
 
-  /* toast */
-  #toast{position:fixed;left:50%;bottom:64px;transform:translateX(-50%);background:#0f1822;border:1px solid rgba(255,255,255,.12);color:#e9eef4;padding:10px 14px;border-radius:10px;opacity:0;transition:.25s;z-index:9999}
-  #toast.show{opacity:1}
+/* detail viewer */
+#detail{display:none;margin-top:8px;border-top:1px dashed #2b3a52;padding-top:10px}
+.badge{display:inline-block;background:#1a2440;border:1px solid #2b3a52;border-radius:999px;padding:4px 8px;font-size:12px;margin-right:6px}
+.tip{font-size:12.5px;color:#ffddb2;margin-top:6px}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>🔥 Supercell Game Top-Up</h1>
+  <h1>🔥 Supercell Game Top-Up (via login)</h1>
 
-  <!-- Banner -->
+  <!-- Banners (replace images if you like; use 3 or 4) -->
   <div class="slider">
     <div class="slides">
-      <img src="png.images/banner1.png" alt="Banner1">
-      <img src="png.images/banner2.png" alt="Banner2">
-      <img src="png.images/banner3.png" alt="Banner3">
-      <img src="png.images/banner4.png" alt="Banner4">
+      <img src="png.images/banner1.png" alt="Banner 1">
+      <img src="png.images/banner2.png" alt="Banner 2">
+      <img src="png.images/banner3.png" alt="Banner 3">
+      <img src="png.images/banner4.png" alt="Banner 4">
     </div>
   </div>
 
@@ -77,120 +85,188 @@
   <div class="card">
     <h2>Supercell Gamers in Nepal – Instant Top-Up Service</h2>
     <p>We provide live top-up service for all Supercell games:<br>
-    🎮 Clash of Clans • Clash Royale • Brawl Stars • Hay Day • Squad Busters</p>
+      🎮 <b>Clash of Clans</b> • <b>Clash Royale</b> • <b>Brawl Stars</b> • <b>Hay Day</b> • <b>Squad Busters</b></p>
     <ul style="margin:6px 0 0;padding-left:18px">
       <li>✅ Instant Delivery</li>
       <li>✅ Safe & Secure (Login via Email + Code)</li>
       <li>✅ All passes, gems, coins, bundles available</li>
     </ul>
-    <p style="margin-top:8px">📲 Contact us now:<br>
-      WhatsApp: <b>+977 9860003403</b><br>
-      Instagram: <b>@sajilotopup</b>
-    </p>
-  </div>
-
-  <!-- Account -->
-  <div class="card">
-    <h2>Your Supercell Account</h2>
-    <input id="email" type="email" placeholder="Supercell Email (for login code)">
-    <input id="contact" type="text" placeholder="WhatsApp / Instagram (to send code)">
-  </div>
-
-  <!-- Services -->
-  <div class="card">
-    <h2>🎮 Options (All Games)</h2>
-    <div class="list" id="list">
-      <!-- COC -->
-      <div class="row" data-plan="Clash of Clans • Gold Pass" data-price="270"><span class="title">COC • Gold Pass</span><span class="price">270–980 NPR</span><div class="meta">Event, Scenery, Gems also available</div></div>
-      <!-- CR -->
-      <div class="row" data-plan="Clash Royale • Pass Royale" data-price="1950"><span class="title">CR • Pass Royale</span><span class="price">1950 NPR</span><div class="meta">Gems, Emotes, Special Offers</div></div>
-      <!-- BS -->
-      <div class="row" data-plan="Brawl Stars • Brawl Pass" data-price="450"><span class="title">BS • Brawl Pass</span><span class="price">450–980 NPR</span><div class="meta">Pass Plus, Gems, Offers</div></div>
-      <!-- HD -->
-      <div class="row" data-plan="Hay Day • Farm Pass" data-price="550"><span class="title">HD • Farm Pass</span><span class="price">550–1250 NPR</span><div class="meta">Diamonds & Coins available</div></div>
-      <!-- SB -->
-      <div class="row" data-plan="Squad Busters • Super Pass" data-price="1450"><span class="title">SB • Super Pass</span><span class="price">1450 NPR</span><div class="meta">Starter Bundle, Coins also available</div></div>
+    <div class="cta-row">
+      <a class="cta wa" href="https://wa.me/9779860003403" target="_blank" rel="noopener">📲 WhatsApp: +977 9860003403</a>
+      <a class="cta ig" href="https://instagram.com/sajilotopup" target="_blank" rel="noopener">📸 Instagram: @sajilotopup</a>
+      <a class="cta fb" href="https://facebook.com" target="_blank" rel="noopener">📘 Facebook: DM us</a>
     </div>
+    <p class="muted" style="margin-top:8px">Prices shown below are indicative starting ranges only. Message us to confirm the exact price and get instant top-up.</p>
   </div>
 
-  <!-- QR -->
+  <!-- Search -->
   <div class="card">
-    <h2>Complete Order</h2>
-    <div id="qrBox" class="qr-box">
-      <div class="summary" id="summary">Selected: —</div>
-      <div><b>Email:</b> <span id="sEmail">—</span> &nbsp; <b>Contact:</b> <span id="sContact">—</span></div>
-      <div class="qr"><img id="qrImg" src="png.images/logo-esewaqr.png" alt="QR"></div>
-      <p class="note">👉 Need login account (Email + Code). Safe & Fast Delivery.</p>
-      <input id="txn" type="text" placeholder="Enter Transaction ID or Remarks">
-      <button id="submitBtn" class="submit" onclick="submitNow()">Submit Order</button>
+    <h2>🔎 Search</h2>
+    <input id="q" class="search" placeholder="Search (e.g., Gold Pass, Gems 1200, Super Pass)…">
+  </div>
+
+  <!-- Games / Options (view-only prices) -->
+  <div class="card">
+    <h2>🎮 Options (tap to view details)</h2>
+
+    <!-- COC -->
+    <div class="section open">
+      <button type="button">Clash of Clans <span>▾</span></button>
+      <div class="body">
+        <div class="list">
+          <div class="row" data-game="Clash of Clans" data-item="Gold Pass" data-price="270–980 NPR">
+            <div class="title">Gold Pass <span class="price">270–980 NPR</span></div>
+            <div class="meta">Seasonal pass • Basic to Plus</div>
+          </div>
+          <div class="row" data-game="Clash of Clans" data-item="Event Pass" data-price="270–980 NPR">
+            <div class="title">Event Pass <span class="price">270–980 NPR</span></div>
+            <div class="meta">Limited events</div>
+          </div>
+          <div class="row" data-game="Clash of Clans" data-item="Scenery" data-price="450–1950 NPR">
+            <div class="title">Scenery <span class="price">450–1950 NPR</span></div>
+            <div class="meta">Seasonal/Theme sceneries</div>
+          </div>
+          <div class="row" data-game="Clash of Clans" data-item="Gems" data-price="80–5800 NPR">
+            <div class="title">Gems <span class="price">80–5800 NPR</span></div>
+            <div class="meta">Choose amount in chat</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CR -->
+    <div class="section">
+      <button type="button">Clash Royale <span>▾</span></button>
+      <div class="body">
+        <div class="list">
+          <div class="row" data-game="Clash Royale" data-item="Pass Royale" data-price="1950 NPR">
+            <div class="title">Pass Royale <span class="price">1950 NPR</span></div>
+            <div class="meta">Season rewards</div>
+          </div>
+          <div class="row" data-game="Clash Royale" data-item="Gems" data-price="165–14500 NPR">
+            <div class="title">Gems <span class="price">165–14500 NPR</span></div>
+            <div class="meta">All gem packs available</div>
+          </div>
+          <div class="row" data-game="Clash Royale" data-item="Emotes & Offers" data-price="Ask">
+            <div class="title">Emotes & Special Offers <span class="price">Ask</span></div>
+            <div class="meta">DM for current promos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BS -->
+    <div class="section">
+      <button type="button">Brawl Stars <span>▾</span></button>
+      <div class="body">
+        <div class="list">
+          <div class="row" data-game="Brawl Stars" data-item="Brawl Pass" data-price="450–980 NPR">
+            <div class="title">Brawl Pass <span class="price">450–980 NPR</span></div>
+            <div class="meta">Standard to Season</div>
+          </div>
+          <div class="row" data-game="Brawl Stars" data-item="Brawl Pass Plus" data-price="580–1020 NPR">
+            <div class="title">Brawl Pass Plus <span class="price">580–1020 NPR</span></div>
+            <div class="meta">Extra rewards</div>
+          </div>
+          <div class="row" data-game="Brawl Stars" data-item="Special Offers" data-price="120–580 NPR">
+            <div class="title">Special Offers <span class="price">120–580 NPR</span></div>
+            <div class="meta">Bundles & promos</div>
+          </div>
+          <div class="row" data-game="Brawl Stars" data-item="Gems" data-price="145–5800 NPR">
+            <div class="title">Gems <span class="price">145–5800 NPR</span></div>
+            <div class="meta">Pick amount in chat</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hay Day -->
+    <div class="section">
+      <button type="button">Hay Day <span>▾</span></button>
+      <div class="body">
+        <div class="list">
+          <div class="row" data-game="Hay Day" data-item="Farm Pass" data-price="550–1250 NPR">
+            <div class="title">Farm Pass <span class="price">550–1250 NPR</span></div>
+            <div class="meta">Monthly/Plus</div>
+          </div>
+          <div class="row" data-game="Hay Day" data-item="Diamonds" data-price="145–5800 NPR">
+            <div class="title">Diamonds <span class="price">145–5800 NPR</span></div>
+            <div class="meta">All packs</div>
+          </div>
+          <div class="row" data-game="Hay Day" data-item="Coins" data-price="80–4640 NPR">
+            <div class="title">Coins <span class="price">80–4640 NPR</span></div>
+            <div class="meta">Weekly deals too</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Squad Busters -->
+    <div class="section">
+      <button type="button">Squad Busters <span>▾</span></button>
+      <div class="body">
+        <div class="list">
+          <div class="row" data-game="Squad Busters" data-item="Starter Bundle" data-price="750 NPR">
+            <div class="title">Starter Bundle <span class="price">750 NPR</span></div>
+            <div class="meta">New players</div>
+          </div>
+          <div class="row" data-game="Squad Busters" data-item="Super Pass" data-price="1450 NPR">
+            <div class="title">Super Pass <span class="price">1450 NPR</span></div>
+            <div class="meta">Season pass</div>
+          </div>
+          <div class="row" data-game="Squad Busters" data-item="Coins" data-price="200–6550 NPR">
+            <div class="title">Coins <span class="price">200–6550 NPR</span></div>
+            <div class="meta">Choose amount in chat</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row details preview + contact -->
+    <div id="detail">
+      <div><span class="badge" id="dGame">—</span><span class="badge" id="dItem">—</span><span class="badge" id="dPrice">—</span></div>
+      <div class="tip">This is an <b>indicative starting price</b>. Tap a contact below to confirm final price & get instant top-up.</div>
+      <div class="cta-row" style="margin-top:10px">
+        <a class="cta wa" href="https://wa.me/9779860003403" target="_blank" rel="noopener">Chat on WhatsApp</a>
+        <a class="cta ig" href="https://instagram.com/sajilotopup" target="_blank" rel="noopener">DM on Instagram</a>
+        <a class="cta fb" href="https://facebook.com" target="_blank" rel="noopener">Message on Facebook</a>
+      </div>
     </div>
   </div>
 </div>
 
-<div id="toast"></div>
-
 <script>
-  const FORMCARRY='https://formcarry.com/s/l4cLdlMhyf-';
-  let picked={plan:"",price:""};
+  // Accordion toggle
+  document.querySelectorAll('.section>button').forEach(btn=>{
+    btn.addEventListener('click',()=>btn.parentElement.classList.toggle('open'));
+  });
 
-  const $=id=>document.getElementById(id);
+  // Search across all rows
+  const q=document.getElementById('q');
+  q.addEventListener('input',e=>{
+    const s=e.target.value.toLowerCase();
+    document.querySelectorAll('.row').forEach(r=>{
+      r.style.display = r.innerText.toLowerCase().includes(s)?'block':'none';
+    });
+  });
 
-  // select service
+  // Row selection -> just preview + contact (no payment)
+  const detail=document.getElementById('detail');
+  const dGame=document.getElementById('dGame');
+  const dItem=document.getElementById('dItem');
+  const dPrice=document.getElementById('dPrice');
+
   document.querySelectorAll('.row').forEach(r=>{
     r.addEventListener('click',()=>{
       document.querySelectorAll('.row').forEach(x=>x.classList.remove('active'));
       r.classList.add('active');
-      picked.plan=r.dataset.plan;
-      picked.price=r.dataset.price;
-      updateSummary();
+      dGame.textContent = r.dataset.game || '—';
+      dItem.textContent = r.dataset.item || '—';
+      dPrice.textContent= r.dataset.price|| '—';
+      detail.style.display='block';
+      detail.scrollIntoView({behavior:'smooth',block:'start'});
     });
   });
-
-  // live input update
-  ['email','contact'].forEach(id=>{
-    $(id).addEventListener('input',updateSummary);
-    $(id).addEventListener('change',updateSummary);
-  });
-
-  function updateSummary(){
-    $('summary').innerHTML=`Selected: <b>${picked.plan||'—'}</b> • NPR ${picked.price||'—'}`;
-    $('sEmail').textContent=$('email').value.trim()||'—';
-    $('sContact').textContent=$('contact').value.trim()||'—';
-    $('qrBox').style.display='block';
-  }
-
-  function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('show'),2500);}
-
-  async function submitNow(){
-    const email=$('email').value.trim();
-    const contact=$('contact').value.trim();
-    const txn=$('txn').value.trim();
-
-    if(!picked.plan){alert('Select a service.');return;}
-    if(!email||!contact){alert('Provide email + contact.');return;}
-    if(!txn){alert('Enter transaction ID.');return;}
-
-    const order=`Supercell Order
-Service: ${picked.plan}
-Price: NPR ${picked.price}
-Email: ${email}
-Contact: ${contact}
-Txn/Remarks: ${txn}`;
-
-    const fd=new FormData();
-    fd.append('name','Supercell Customer');
-    fd.append('email',email||'no-email@cust.com');
-    fd.append('order',order);
-
-    const btn=$('submitBtn');const old=btn.textContent;
-    btn.disabled=true;btn.textContent='Sending…';
-    try{
-      const res=await fetch(FORMCARRY,{method:'POST',body:fd,headers:{Accept:'application/json'}});
-      if(!res.ok) throw new Error();
-      toast('✅ Order sent! We’ll contact you soon.');
-    }catch(e){console.error(e);toast('⚠️ Could not send.');}
-    finally{btn.disabled=false;btn.textContent=old;}
-  }
 </script>
 </body>
 </html>
