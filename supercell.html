@@ -1,242 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Supercell Any Game Top-Up • SM Digital Services</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Supercell Top-Up • SM Digital Services</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0c0f17; --card:#121829; --soft:#171f34; --line:#243152;
-    --text:#e9eef6; --muted:#a9b6c9; --accent:#6a5cff;
-    --coc:#ff7a2c; --cr:#00d1ff; --bs:#ff3b7f; --hd:#42d97b; --sb:#ffd400;
-    --radius:16px;
+    --bg:#0b1115; --card:#0f1822; --soft:#152233;
+    --text:#e9eef4; --muted:#b9c6d3;
+    --accent:#ffb21a; --accent2:#ff415f; --accent3:#5b9dff;
+    --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.35);
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
-  .wrap{max-width:900px;margin:0 auto;padding:16px 14px 88px}
-  h1{margin:0 0 10px;font-size:22px}
-  h2{margin:0 0 8px;font-size:16px}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:980px;margin:auto;padding:14px}
 
-  /* slider */
-  .slider{height:190px;overflow:hidden;border-radius:14px;border:1px solid var(--line);margin:8px 0 14px}
-  .slides{display:flex;width:400%;animation:slide 12s infinite}
-  .slides img{width:100%;height:190px;object-fit:cover}
+  /* Header */
+  header{
+    text-align:center; padding:18px 14px 8px;
+  }
+  header h1{
+    margin:8px 0 4px; font-size:26px; font-weight:800; letter-spacing:.2px;
+    background: linear-gradient(90deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  header p{margin:4px 0 0; color:var(--muted)}
+
+  /* ===== Auto Slide Banner ===== */
+  .slider{width:100%; height:220px; overflow:hidden; position:relative; border-radius:16px; margin:10px auto 14px; box-shadow:var(--shadow)}
+  .slides{display:flex; width:400%; animation:slide 12s infinite}
+  .slides img{width:100%; height:220px; object-fit:cover}
   @keyframes slide{
-    0%,20%{transform:translateX(0)}
-    25%,45%{transform:translateX(-100%)}
-    50%,70%{transform:translateX(-200%)}
-    75%,95%{transform:translateX(-300%)}
-    100%{transform:translateX(0)}
+    0%,20%   {transform:translateX(0%)}
+    25%,45%  {transform:translateX(-100%)}
+    50%,70%  {transform:translateX(-200%)}
+    75%,95%  {transform:translateX(-300%)}
+    100%     {transform:translateX(0%)}
+  }
+  /* Use 300% if only 3 banners */
+
+  /* Info Card */
+  .card{
+    background:linear-gradient(180deg,#121c27, #0f1822);
+    padding:16px; border-radius:var(--radius); box-shadow:var(--shadow); margin:10px 0 16px;
+  }
+  .bullets{display:grid; grid-template-columns:1fr; gap:8px; margin:10px 0}
+  .bullet{
+    background:var(--soft); border-radius:12px; padding:10px 12px; display:flex; gap:10px; align-items:center;
+  }
+  .bullet b{color:#fff}
+
+  /* Contact */
+  .contact{display:flex; flex-wrap:wrap; gap:10px; margin-top:6px}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:999px; font-weight:600;
+    background:var(--accent); color:#111; box-shadow:0 6px 18px rgba(255,178,26,.25)
+  }
+  .btn.ig{background:var(--accent3); color:#0b1115; box-shadow:0 6px 18px rgba(91,157,255,.25)}
+  .btn:hover{opacity:.95}
+
+  /* Accordion (games) */
+  .game{margin:12px 0; border-radius:16px; overflow:hidden; box-shadow:var(--shadow); background:var(--card)}
+  .game summary{
+    list-style:none; cursor:pointer; padding:14px 16px; font-weight:700; font-size:18px;
+    background:linear-gradient(90deg,#112030,#142a3f);
+    display:flex; align-items:center; justify-content:space-between; user-select:none;
+  }
+  .game summary::-webkit-details-marker{display:none}
+  .tag{font-size:12px; color:#111; background:var(--accent); padding:4px 8px; border-radius:999px; font-weight:700}
+  .game .body{padding:12px 16px 16px; background:#0f1822}
+  .price-list{margin:8px 0 0; padding:0; list-style:none}
+  .price-list li{
+    background:var(--soft); margin:6px 0; padding:10px 12px; border-radius:12px; display:flex; justify-content:space-between; gap:10px
+  }
+  .price{font-weight:800; color:#ffd36e}
+  .hint{color:var(--muted); font-size:14px; margin-top:8px}
+
+  footer{
+    margin:20px 0 10px; padding:14px; text-align:center; color:var(--muted);
+    border-top:1px solid #1b2836
   }
 
-  /* cards */
-  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin:12px 0}
-  .muted{color:var(--muted)}
-
-  /* contacts */
-  .cta-row{display:flex;gap:8px;flex-wrap:wrap}
-  .cta{flex:1 1 220px;text-align:center;text-decoration:none;font-weight:800;padding:10px;border-radius:12px;border:1px solid #2a3a66;background:var(--soft);color:#fff}
-  .cta:hover{filter:brightness(1.1)}
-
-  /* search + pill */
-  .search{width:100%;padding:10px;border-radius:10px;border:1px solid #2b3b6a;background:var(--soft);color:#fff}
-  .search:focus{outline:2px solid var(--accent)}
-  .pill{display:flex;align-items:center;justify-content:space-between;background:var(--soft);border:1px solid #2a3a66;padding:10px;border-radius:12px}
-
-  /* service accordion */
-  .svc{border:1px solid #2a3a66;border-radius:14px;overflow:hidden}
-  .game{background:#0f1629;border-bottom:1px solid #1f2c4e}
-  .game:last-child{border-bottom:none}
-  .g-head{display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer}
-  .g-name{font-weight:800}
-  .g-tag{margin-left:auto;opacity:.8}
-  .g-head[data-game="Clash of Clans"]{background:linear-gradient(90deg,rgba(255,122,44,.18),transparent)}
-  .g-head[data-game="Clash Royale"]{background:linear-gradient(90deg,rgba(0,209,255,.18),transparent)}
-  .g-head[data-game="Brawl Stars"]{background:linear-gradient(90deg,rgba(255,59,127,.18),transparent)}
-  .g-head[data-game="Hay Day"]{background:linear-gradient(90deg,rgba(66,217,123,.18),transparent)}
-  .g-head[data-game="Squad Busters"]{background:linear-gradient(90deg,rgba(255,212,0,.18),transparent)}
-
-  .g-body{display:none;padding:0 10px 10px}
-  .item{background:#111a31;border:1px solid #22305a;border-radius:12px;padding:10px 12px;margin-top:8px}
-  .i-top{display:flex;align-items:center;gap:10px}
-  .i-title{font-weight:800}
-  .i-price{margin-left:auto;font-weight:800}
-  .i-note{font-size:12px;color:var(--muted);margin-top:4px}
-
-  /* bottom bar */
-  .bar{position:fixed;left:0;right:0;bottom:0;background:#0f1424;border-top:1px solid var(--line);padding:8px 10px}
-  .icons{display:flex;justify-content:space-between;max-width:900px;margin:0 auto}
-  .btn{display:flex;flex-direction:column;align-items:center;gap:2px;color:#d7dcff;text-decoration:none;font-size:11px}
+  /* Responsive */
+  @media(min-width:640px){
+    .bullets{grid-template-columns:repeat(3,1fr)}
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>🔥 Supercell — Any Game Top-Up</h1>
+  <div class="wrap">
 
-  <!-- slider -->
-  <div class="slider">
-    <div class="slides">
-      <img src="png.images/banner1.png" alt="Banner 1">
-      <img src="png.images/banner2.png" alt="Banner 2">
-      <img src="png.images/banner3.png" alt="Banner 3">
-      <img src="png.images/banner4.png" alt="Banner 4">
+    <header>
+      <h1>🔥 Supercell Gamers in Nepal – Instant Top-Up Service</h1>
+      <p>Live top-ups for Clash of Clans • Clash Royale • Brawl Stars • Hay Day • Squad Busters</p>
+    </header>
+
+    <!-- Top Auto Slide Banner -->
+    <div class="slider">
+      <div class="slides">
+        <img src="png.images/banner1.png" alt="Supercell Offer 1">
+        <img src="png.images/banner2.png" alt="Supercell Offer 2">
+        <img src="png.images/banner3.png" alt="Supercell Offer 3">
+        <img src="png.images/banner4.png" alt="Supercell Offer 4">
+      </div>
     </div>
-  </div>
 
-  <!-- intro + contact -->
-  <div class="card">
-    <p>Live top-up for <b>Clash of Clans</b>, <b>Clash Royale</b>, <b>Brawl Stars</b>, <b>Hay Day</b>, <b>Squad Busters</b>.</p>
-    <ul style="margin:6px 0 8px 18px">
-      <li>✅ Instant delivery</li>
-      <li>✅ Safe & secure: login via Email + Code</li>
-      <li>✅ All passes, gems, coins, bundles available</li>
-    </ul>
-    <div class="cta-row">
-      <a class="cta" href="https://wa.me/9779860003403" target="_blank" rel="noopener">📲 WhatsApp: +977 9860003403</a>
-      <a class="cta" href="https://instagram.com/sajilotopup" target="_blank" rel="noopener">📸 Instagram: @sajilotopup</a>
-      <a class="cta" href="https://facebook.com" target="_blank" rel="noopener">📘 Facebook: DM us</a>
-    </div>
-    <p class="muted" style="margin-top:8px">Prices shown here are <b>starting ranges</b> only. Message us to confirm the exact price and get instant top-up.</p>
-  </div>
+    <!-- Service Highlights + Contact -->
+    <section class="card">
+      <div class="bullets">
+        <div class="bullet">✅ <b>Instant Delivery</b></div>
+        <div class="bullet">🔒 <b>Safe & Secure</b> — Login via Email + One-Time Code</div>
+        <div class="bullet">🎁 <b>All passes, gems, coins, bundles</b> available</div>
+      </div>
 
-  <!-- search -->
-  <div class="card">
-    <input id="q" class="search" placeholder="Search service… (Gold Pass, Gems 1200, Super Pass)">
-  </div>
+      <div class="contact">
+        <a class="btn" href="https://wa.me/9779860003403?text=Hi%20I%20want%20Supercell%20top-up" target="_blank" rel="noopener">💬 WhatsApp: 9860003403</a>
+        <a class="btn ig" href="https://instagram.com/sajilotopup" target="_blank" rel="noopener">📸 Instagram: @sajilotopup</a>
+      </div>
+    </section>
 
-  <!-- category -->
-  <div class="card">
-    <h2>📚 Category</h2>
-    <div class="pill"><b>SUPERCELL — ANY GAME TOP-UP</b><span style="opacity:.6">▾</span></div>
-  </div>
+    <!-- Games Accordion -->
+    <details class="game" open>
+      <summary>🎮 Clash of Clans <span class="tag">Click & See</span></summary>
+      <div class="body">
+        <ul class="price-list">
+          <li><span>Gold Pass</span> <span class="price">270 – 980 NPR</span></li>
+          <li><span>Event Pass</span> <span class="price">270 – 980 NPR</span></li>
+          <li><span>Scenery</span> <span class="price">450 – 1950 NPR</span></li>
+          <li><span>Gems</span> <span class="price">80 – 5800 NPR</span></li>
+        </ul>
+        <p class="hint">Login method: share Supercell ID email → confirm one-time code. No password required.</p>
+      </div>
+    </details>
 
-  <!-- services -->
-  <div class="card">
-    <h2>🗂 Service</h2>
-    <div class="svc" id="svc"></div>
-  </div>
-</div>
+    <details class="game">
+      <summary>🎮 Clash Royale <span class="tag">Click & See</span></summary>
+      <div class="body">
+        <ul class="price-list">
+          <li><span>Pass Royale</span> <span class="price">1950 NPR</span></li>
+          <li><span>Gems</span> <span class="price">165 – 14500 NPR</span></li>
+          <li><span>Emotes & Special Offers</span> <span class="price">Available</span></li>
+        </ul>
+      </div>
+    </details>
 
-<!-- bottom bar -->
-<div class="bar">
-  <div class="icons">
-    <a class="btn" href="#"><span>🛒</span>Services</a>
-    <a class="btn" target="_blank" href="https://wa.me/9779860003403"><span>🟢</span>WhatsApp</a>
-    <a class="btn" target="_blank" href="https://instagram.com/sajilotopup"><span>📸</span>Instagram</a>
-    <a class="btn" href="#"><span>⚙️</span>Account</a>
+    <details class="game">
+      <summary>🎮 Brawl Stars <span class="tag">Click & See</span></summary>
+      <div class="body">
+        <ul class="price-list">
+          <li><span>Brawl Pass</span> <span class="price">450 – 980 NPR</span></li>
+          <li><span>Brawl Pass Plus</span> <span class="price">580 – 1020 NPR</span></li>
+          <li><span>Special Offers</span> <span class="price">120 – 580 NPR</span></li>
+          <li><span>Gems</span> <span class="price">145 – 5800 NPR</span></li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="game">
+      <summary>🎮 Hay Day <span class="tag">Click & See</span></summary>
+      <div class="body">
+        <ul class="price-list">
+          <li><span>Farm Pass</span> <span class="price">550 – 1250 NPR</span></li>
+          <li><span>Diamonds</span> <span class="price">145 – 5800 NPR</span></li>
+          <li><span>Coins</span> <span class="price">80 – 4640 NPR</span></li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="game">
+      <summary>🎮 Squad Busters <span class="tag">Click & See</span></summary>
+      <div class="body">
+        <ul class="price-list">
+          <li><span>Starter Bundle</span> <span class="price">750 NPR</span></li>
+          <li><span>Super Pass</span> <span class="price">1450 NPR</span></li>
+          <li><span>Coins</span> <span class="price">200 – 6550 NPR</span></li>
+        </ul>
+      </div>
+    </details>
+
+    <footer>
+      © <span id="y"></span> SM Digital Services • All rights reserved.
+    </footer>
   </div>
-</div>
 
 <script>
-/* ---------- DATA (prices are starting ranges to show) ---------- */
-const DATA = [
-  {
-    game:"Clash of Clans",
-    items:[
-      {title:"Gold Pass", price:"270–980 NPR", note:"Seasonal pass (Basic/Plus)."},
-      {title:"Event Pass", price:"270–980 NPR", note:"Limited-time events."},
-      {title:"Scenery",   price:"450–1950 NPR", note:"Seasonal / theme sceneries."},
-      {title:"Gems",      price:"80–5800 NPR",  note:"All gem packs — tell us the amount."}
-    ]
-  },
-  {
-    game:"Clash Royale",
-    items:[
-      {title:"Pass Royale", price:"1950 NPR", note:"Season rewards & perks."},
-      {title:"Gems",        price:"165–14500 NPR", note:"All gem packs — pick amount in chat."},
-      {title:"Emotes & Special Offers", price:"Ask", note:"Prices vary by shop rotation."}
-    ]
-  },
-  {
-    game:"Brawl Stars",
-    items:[
-      {title:"Brawl Pass",      price:"450–980 NPR", note:"Standard / Season variants."},
-      {title:"Brawl Pass Plus", price:"580–1020 NPR", note:"Extra rewards included."},
-      {title:"Special Offers",  price:"120–580 NPR", note:"Daily/weekly promo bundles."},
-      {title:"Gems",            price:"145–5800 NPR", note:"All gem packs."}
-    ]
-  },
-  {
-    game:"Hay Day",
-    items:[
-      {title:"Farm Pass", price:"550–1250 NPR", note:"Monthly pass or Plus."},
-      {title:"Diamonds", price:"145–5800 NPR", note:"All diamond packs."},
-      {title:"Coins",    price:"80–4640 NPR",  note:"Weekly coin deals available."}
-    ]
-  },
-  {
-    game:"Squad Busters",
-    items:[
-      {title:"Starter Bundle", price:"750 NPR",  note:"Great for new squads."},
-      {title:"Super Pass",     price:"1450 NPR", note:"Full season benefits."},
-      {title:"Coins",          price:"200–6550 NPR", note:"All coin bundles."}
-    ]
-  }
-];
+  // Set copyright year
+  document.getElementById('y').textContent = new Date().getFullYear();
 
-/* ---------- RENDER ---------- */
-const svc = document.getElementById('svc');
-function render(list=DATA){
-  svc.innerHTML = '';
-  list.forEach(block=>{
-    const g = document.createElement('div'); g.className='game';
-    const head = document.createElement('div'); head.className='g-head'; head.dataset.game = block.game;
-    head.innerHTML = `<div class="g-name">🎮 ${block.game}</div><div class="g-tag">tap to view ▾</div>`;
-    const body = document.createElement('div'); body.className='g-body';
-
-    block.items.forEach(it=>{
-      const row = document.createElement('div'); row.className='item';
-      row.innerHTML = `
-        <div class="i-top">
-          <div class="i-title">${it.title}</div>
-          <div class="i-price">${it.price}</div>
-        </div>
-        <div class="i-note">${it.note}</div>
-      `;
-      body.appendChild(row);
-    });
-
-    head.addEventListener('click', ()=>{
-      const open = body.style.display==='block';
-      // close others
-      document.querySelectorAll('.g-body').forEach(b=>b.style.display='none');
-      document.querySelectorAll('.g-tag').forEach(t=>t.textContent='tap to view ▾');
-      // toggle current
-      body.style.display = open ? 'none' : 'block';
-      head.querySelector('.g-tag').textContent = open ? 'tap to view ▾' : 'hide ▲';
-      // scroll into view when opening
-      if(!open) head.scrollIntoView({behavior:'smooth',block:'start'});
-    });
-
-    g.appendChild(head);
-    g.appendChild(body);
-    svc.appendChild(g);
-  });
-}
-render();
-
-/* ---------- SEARCH (filters items across all games) ---------- */
-const q = document.getElementById('q');
-q.addEventListener('input', e=>{
-  const s = e.target.value.trim().toLowerCase();
-  if(!s){ render(); return; }
-
-  const filtered = DATA.map(g=>{
-    const items = g.items.filter(it =>
-      (g.game.toLowerCase().includes(s)) ||
-      (it.title.toLowerCase().includes(s)) ||
-      (it.price.toLowerCase().includes(s)) ||
-      (it.note.toLowerCase().includes(s))
-    );
-    return {...g, items};
-  }).filter(g=>g.items.length>0);
-
-  render(filtered);
-  // auto-open the first matched game
-  const firstHead = document.querySelector('.g-head');
-  if(firstHead){ firstHead.click(); }
-});
+  // If you only use 3 banners, reduce width to 300%:
+  // document.querySelector('.slides').style.width = '300%';
 </script>
 </body>
 </html>
