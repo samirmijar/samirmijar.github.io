@@ -1,118 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Clash of Clans — Top-Up • SM Digital Services</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#0b1115; --card:#0f1822; --soft:#152233;
-    --text:#e9eef4; --muted:#b9c6d3;
-    --accent:#ffb21a; --accent2:#5b9dff;
-    --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.35);
-  }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.6}
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:860px;margin:auto;padding:14px}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Supercell Top-Up • SM Digital Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: Inter, sans-serif;
+      background: #0b1115;
+      color: #e9eef4;
+      line-height: 1.6;
+    }
 
-  .back{color:var(--muted);display:inline-block;margin:6px 0 10px}
-  header{display:flex;align-items:center;gap:12px;margin-bottom:8px}
-  header img{width:52px;height:52px;border-radius:14px;object-fit:cover}
-  header h1{margin:0;font-size:24px}
-  .badge{font-weight:800;color:#111;background:var(--accent);border-radius:999px;padding:6px 10px;margin-left:auto}
+    /* ===== Banner Slider ===== */
+    .slider {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+    .slides {
+      display: flex;
+      width: 400%;
+      animation: slide 12s infinite;
+    }
+    .slides img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    @keyframes slide {
+      0%, 20% { transform: translateX(0%); }
+      25%, 45% { transform: translateX(-100%); }
+      50%, 70% { transform: translateX(-200%); }
+      75%, 95% { transform: translateX(-300%); }
+      100% { transform: translateX(0%); }
+    }
 
-  /* Slider */
-  .slider{width:100%;height:220px;overflow:hidden;border-radius:16px;box-shadow:var(--shadow);margin:12px 0 16px}
-  .slides{display:flex;width:400%;animation:slide 12s infinite}
-  .slides img{width:100%;height:220px;object-fit:cover}
-  @keyframes slide{
-    0%,20%{transform:translateX(0%)}25%,45%{transform:translateX(-100%)}
-    50%,70%{transform:translateX(-200%)}75%,95%{transform:translateX(-300%)}
-    100%{transform:translateX(0%)}
-  }
-  /* set width:300% if using 3 banners */
+    /* ===== Hero Section ===== */
+    .hero {
+      text-align: center;
+      padding: 20px;
+      background: #111922;
+      border-bottom: 2px solid #1f2c3a;
+    }
+    .hero h1 {
+      font-size: 22px;
+      color: #ffcc00;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      margin: 6px 0;
+      font-size: 15px;
+    }
 
-  .card{background:linear-gradient(180deg,#13202c,#0f1822);border:1px solid #1a2633;border-radius:16px;box-shadow:var(--shadow);padding:14px;margin:12px 0}
-  .card h2{margin:0 0 6px;font-size:18px;color:#ffd36e}
+    /* ===== Contact ===== */
+    .contact {
+      text-align: center;
+      padding: 12px;
+    }
+    .contact p {
+      margin: 6px 0;
+      font-size: 15px;
+    }
 
-  .list{padding-left:18px;margin:8px 0}
-  .note{color:var(--muted);font-size:14px;margin-top:8px}
-
-  /* CTA row */
-  .cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
-  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 14px;border-radius:12px;font-weight:800}
-  .btn.wh{background:#25d366;color:#0b1115}
-  .btn.ig{background:var(--accent2);color:#0b1115}
-
-  footer{margin:18px 0 8px;text-align:center;color:var(--muted)}
-</style>
+    /* ===== Game Section ===== */
+    .content {
+      padding: 16px;
+      max-width: 800px;
+      margin: auto;
+    }
+    .content h2 {
+      font-size: 18px;
+      margin-top: 28px;
+      background: linear-gradient(90deg, #ff415f, #7f5bff);
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: #fff;
+    }
+    .content ul {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0;
+    }
+    .content li {
+      background: #152233;
+      margin: 6px 0;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+  </style>
 </head>
 <body>
-<div class="wrap">
 
-  <a class="back" href="supercell.html">← Back Home / Supercell</a>
-
-  <header>
-    <img src="png.images/icon-coc.png" alt="Clash of Clans">
-    <h1>Clash of Clans — Live Top-Up</h1>
-    <span class="badge">Starting from 270–980 NPR</span>
-  </header>
-
-  <!-- 3–4 banner auto slide -->
+  <!-- Banner Auto Slide -->
   <div class="slider">
-    <div class="slides" id="slides">
-      <img src="png.images/logo-banner1.png" alt="COC Offer 1">
-      <img src="png.images/logo-banner2.png" alt="COC Offer 2">
-      <img src="png.images/logo-banner3.png" alt="COC Offer 3">
-      <img src="png.images/logo-banner4.png" alt="COC Offer 4">
+    <div class="slides">
+      <img src="png.images/banner1.png" alt="Banner 1">
+      <img src="png.images/banner2.png" alt="Banner 2">
+      <img src="png.images/banner3.png" alt="Banner 3">
+      <img src="png.images/banner4.png" alt="Banner 4">
     </div>
   </div>
 
-  <!-- Description -->
-  <section class="card">
-    <h2>Description</h2>
-    <p>
-      We provide <b>live top-up</b> for Clash of Clans — Gold Pass, Event Pass, Scenery and Gems.
-      Prices vary per account due to in-game offers, so the amount shown is
-      <b>starting from 270–980 NPR</b> (for passes). Send us your screenshot and we’ll confirm the exact price.
-    </p>
-    <div class="cta-row">
-      <a class="btn wh" href="https://wa.me/9779860003403?text=Hi%2C%20I%20want%20COC%20top-up.%20Sharing%20my%20in-game%20screenshot%20now." target="_blank" rel="noopener">💬 Order on WhatsApp</a>
-      <a class="btn ig" href="https://instagram.com/sajilotopup" target="_blank" rel="noopener">📸 DM on Instagram</a>
-    </div>
-  </section>
+  <!-- Hero -->
+  <div class="hero">
+    <h1>🔥 Supercell Gamers in Nepal – Instant Top-Up Service</h1>
+    <p>We provide live top-up service for all Supercell games:<br>
+      🎮 Clash of Clans • Clash Royale • Brawl Stars • Hay Day • Squad Busters</p>
+    <p>✅ Instant Delivery<br>
+       ✅ Safe & Secure (Login via Email + Code)<br>
+       ✅ All passes, gems, coins, bundles available</p>
+  </div>
 
-  <!-- How to top-up (COC) -->
-  <section class="card">
-    <h2>How to do COC Top-Up</h2>
-    <ol class="list">
-      <li><b>Take a clear screenshot</b> of the product in your shop (price visible).</li>
-      <li>Send the screenshot to us on <b>WhatsApp/Instagram</b>.</li>
-      <li><b>Login method:</b> Share your Supercell ID <b>email</b>. We request a <b>one-time code</b> (no password).</li>
-      <li>Make payment via <b>eSewa / Khalti / Bank</b> and share the <b>Txn ID</b>.</li>
-      <li>We top-up <b>instantly</b> and send confirmation.</li>
-    </ol>
-    <p class="note">Please don’t write game words (UC/diamonds/gems) in payment remarks—use “online shopping” or your name.</p>
-  </section>
+  <!-- Contact -->
+  <div class="contact">
+    <p>📲 WhatsApp: +977 9860003403</p>
+    <p>📸 Instagram: @sajilotopup</p>
+  </div>
 
-  <!-- Contact bar -->
-  <section class="card">
-    <h2>Need help?</h2>
-    <div class="cta-row">
-      <a class="btn wh" href="https://wa.me/9779860003403" target="_blank" rel="noopener">💬 WhatsApp: 9860003403</a>
-      <a class="btn ig" href="https://instagram.com/sajilotopup" target="_blank" rel="noopener">📸 Instagram: @sajilotopup</a>
-    </div>
-  </section>
+  <!-- Game List -->
+  <div class="content">
+    <h2>🎮 Clash of Clans</h2>
+    <ul>
+      <li>Gold Pass — 270–980 NPR</li>
+      <li>Event Pass — 270–980 NPR</li>
+      <li>Scenery — 450–1950 NPR</li>
+      <li>Gems — 80–5800 NPR</li>
+    </ul>
 
-  <footer>© <span id="y"></span> SM Digital Services • All rights reserved.</footer>
-</div>
+    <h2>🎮 Clash Royale</h2>
+    <ul>
+      <li>Pass Royale — 1950 NPR</li>
+      <li>Gems — 165–14500 NPR</li>
+      <li>Emotes & Special Offers available</li>
+    </ul>
 
-<script>
-  // If you only use 3 banners, uncomment the next line:
-  // document.getElementById('slides').style.width = '300%';
-  document.getElementById('y').textContent = new Date().getFullYear();
-</script>
+    <h2>🎮 Brawl Stars</h2>
+    <ul>
+      <li>Brawl Pass — 450–980 NPR</li>
+      <li>Brawl Pass Plus — 580–1020 NPR</li>
+      <li>Special Offers — 120–580 NPR</li>
+      <li>Gems — 145–5800 NPR</li>
+    </ul>
+
+    <h2>🎮 Hay Day</h2>
+    <ul>
+      <li>Farm Pass — 550–1250 NPR</li>
+      <li>Diamonds — 145–5800 NPR</li>
+      <li>Coins — 80–4640 NPR</li>
+      <li>Offers & Weekly Deals available</li>
+    </ul>
+
+    <h2>🎮 Squad Busters</h2>
+    <ul>
+      <li>Starter Bundle — 750 NPR</li>
+      <li>Super Pass — 1450 NPR</li>
+      <li>Coins — 200–6550 NPR</li>
+    </ul>
+  </div>
+
 </body>
 </html>
