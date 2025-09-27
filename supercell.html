@@ -9,188 +9,187 @@
   :root{
     --bg:#0b1115; --card:#0f1822; --soft:#152233;
     --text:#e9eef4; --muted:#b9c6d3;
-    --accent:#ffb21a; --accent2:#ff415f; --accent3:#5b9dff;
-    --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.35);
+    --accent:#26d07c; --accent2:#ffb21a; --accent3:#5b9dff;
+    --radius:18px; --round:14px; --shadow:0 10px 30px rgba(0,0,0,.35);
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.6}
   a{color:inherit;text-decoration:none}
   .wrap{max-width:980px;margin:auto;padding:14px}
 
-  /* Header */
-  header{
-    text-align:center; padding:18px 14px 8px;
-  }
-  header h1{
-    margin:8px 0 4px; font-size:26px; font-weight:800; letter-spacing:.2px;
-    background: linear-gradient(90deg,var(--accent),var(--accent2));
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-  }
+  header{text-align:center;padding:16px 10px 8px}
+  header h1{margin:8px 0 4px; font-size:24px; font-weight:800;
+    background:linear-gradient(90deg,var(--accent2),var(--accent));
+    -webkit-background-clip:text; background-clip:text; color:transparent}
   header p{margin:4px 0 0; color:var(--muted)}
 
-  /* ===== Auto Slide Banner ===== */
-  .slider{width:100%; height:220px; overflow:hidden; position:relative; border-radius:16px; margin:10px auto 14px; box-shadow:var(--shadow)}
-  .slides{display:flex; width:400%; animation:slide 12s infinite}
-  .slides img{width:100%; height:220px; object-fit:cover}
+  /* Top auto slider */
+  .slider{width:100%;height:220px;overflow:hidden;position:relative;border-radius:16px;margin:10px 0 14px;box-shadow:var(--shadow)}
+  .slides{display:flex;width:400%;animation:slide 12s infinite}
+  .slides img{width:100%;height:220px;object-fit:cover}
   @keyframes slide{
-    0%,20%   {transform:translateX(0%)}
-    25%,45%  {transform:translateX(-100%)}
-    50%,70%  {transform:translateX(-200%)}
-    75%,95%  {transform:translateX(-300%)}
-    100%     {transform:translateX(0%)}
-  }
-  /* Use 300% if only 3 banners */
-
-  /* Info Card */
-  .card{
-    background:linear-gradient(180deg,#121c27, #0f1822);
-    padding:16px; border-radius:var(--radius); box-shadow:var(--shadow); margin:10px 0 16px;
-  }
-  .bullets{display:grid; grid-template-columns:1fr; gap:8px; margin:10px 0}
-  .bullet{
-    background:var(--soft); border-radius:12px; padding:10px 12px; display:flex; gap:10px; align-items:center;
-  }
-  .bullet b{color:#fff}
-
-  /* Contact */
-  .contact{display:flex; flex-wrap:wrap; gap:10px; margin-top:6px}
-  .btn{
-    display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:999px; font-weight:600;
-    background:var(--accent); color:#111; box-shadow:0 6px 18px rgba(255,178,26,.25)
-  }
-  .btn.ig{background:var(--accent3); color:#0b1115; box-shadow:0 6px 18px rgba(91,157,255,.25)}
-  .btn:hover{opacity:.95}
-
-  /* Accordion (games) */
-  .game{margin:12px 0; border-radius:16px; overflow:hidden; box-shadow:var(--shadow); background:var(--card)}
-  .game summary{
-    list-style:none; cursor:pointer; padding:14px 16px; font-weight:700; font-size:18px;
-    background:linear-gradient(90deg,#112030,#142a3f);
-    display:flex; align-items:center; justify-content:space-between; user-select:none;
-  }
-  .game summary::-webkit-details-marker{display:none}
-  .tag{font-size:12px; color:#111; background:var(--accent); padding:4px 8px; border-radius:999px; font-weight:700}
-  .game .body{padding:12px 16px 16px; background:#0f1822}
-  .price-list{margin:8px 0 0; padding:0; list-style:none}
-  .price-list li{
-    background:var(--soft); margin:6px 0; padding:10px 12px; border-radius:12px; display:flex; justify-content:space-between; gap:10px
-  }
-  .price{font-weight:800; color:#ffd36e}
-  .hint{color:var(--muted); font-size:14px; margin-top:8px}
-
-  footer{
-    margin:20px 0 10px; padding:14px; text-align:center; color:var(--muted);
-    border-top:1px solid #1b2836
+    0%,20%{transform:translateX(0%)} 25%,45%{transform:translateX(-100%)}
+    50%,70%{transform:translateX(-200%)} 75%,95%{transform:translateX(-300%)}
+    100%{transform:translateX(0%)}
   }
 
-  /* Responsive */
-  @media(min-width:640px){
-    .bullets{grid-template-columns:repeat(3,1fr)}
-  }
+  /* Highlights + contact */
+  .card{background:linear-gradient(180deg,#13202c,#0f1822);padding:16px;border-radius:var(--radius);box-shadow:var(--shadow)}
+  .hl{display:grid;gap:8px;margin:6px 0 10px}
+  .pill{background:var(--soft);padding:10px 12px;border-radius:12px}
+  .contact{display:flex;flex-wrap:wrap;gap:10px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;font-weight:700}
+  .wh{background:var(--accent);color:#0b1115}
+  .ig{background:var(--accent3);color:#0b1115}
+
+  /* Game sections */
+  details.game{margin:14px 0;border-radius:16px;overflow:hidden;background:var(--card);box-shadow:var(--shadow)}
+  details.game summary{
+    list-style:none;cursor:pointer;padding:14px 16px;font-weight:800;font-size:18px;
+    display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,#112030,#172c42);user-select:none}
+  details.game summary::-webkit-details-marker{display:none}
+  .tag{font-size:12px;background:var(--accent2);color:#111;padding:4px 8px;border-radius:999px}
+  .body{padding:12px 14px 16px}
+  .groupTitle{color:#ffd36e;margin:0 0 8px}
+
+  /* Radio list */
+  .radio-list{margin:8px 0 12px;padding:0;list-style:none}
+  .opt{background:#0f1a27;border-radius:16px;padding:12px;margin:8px 0;display:flex;align-items:center;gap:12px;border:1px solid #1b2a3a}
+  .opt input{appearance:none;width:22px;height:22px;border:2px solid #58708a;border-radius:50%;display:grid;place-items:center}
+  .opt input:checked{border-color:#78ffa8}
+  .opt input:checked::before{content:"";width:12px;height:12px;border-radius:50%;background:#78ffa8;display:block}
+  .opt .txt{flex:1}
+  .price{font-weight:800;color:#ffd36e}
+
+  .actions{display:flex;gap:8px;flex-wrap:wrap}
+  .cta{background:var(--accent);color:#0b1115;border:none;padding:10px 14px;border-radius:12px;font-weight:800;cursor:pointer}
+  .note{color:var(--muted);font-size:14px;margin-top:6px}
+
+  footer{margin:20px 0 10px;padding:14px;text-align:center;color:var(--muted);border-top:1px solid #1b2836}
+  @media(min-width:640px){.hl{grid-template-columns:repeat(3,1fr)}}
 </style>
 </head>
 <body>
-  <div class="wrap">
+<div class="wrap">
 
-    <header>
-      <h1>🔥 Supercell Gamers in Nepal – Instant Top-Up Service</h1>
-      <p>Live top-ups for Clash of Clans • Clash Royale • Brawl Stars • Hay Day • Squad Busters</p>
-    </header>
+  <header>
+    <h1>🔥 Supercell Gamers in Nepal – Instant Top-Up Service</h1>
+    <p>Live top-ups for Clash of Clans • Clash Royale • Brawl Stars • Hay Day • Squad Busters</p>
+  </header>
 
-    <!-- Top Auto Slide Banner -->
-    <div class="slider">
-      <div class="slides">
-        <img src="png.images/banner1.png" alt="Supercell Offer 1">
-        <img src="png.images/banner2.png" alt="Supercell Offer 2">
-        <img src="png.images/banner3.png" alt="Supercell Offer 3">
-        <img src="png.images/banner4.png" alt="Supercell Offer 4">
-      </div>
+  <!-- Top Auto Slide Banner (use your saved files) -->
+  <div class="slider">
+    <div class="slides" id="slides">
+      <img src="png.images/logo-banner1.png" alt="Banner 1">
+      <img src="png.images/logo-banner2.png" alt="Banner 2">
+      <img src="png.images/logo-banner3.png" alt="Banner 3">
+      <img src="png.images/logo-banner4.png" alt="Banner 4">
     </div>
-
-    <!-- Service Highlights + Contact -->
-    <section class="card">
-      <div class="bullets">
-        <div class="bullet">✅ <b>Instant Delivery</b></div>
-        <div class="bullet">🔒 <b>Safe & Secure</b> — Login via Email + One-Time Code</div>
-        <div class="bullet">🎁 <b>All passes, gems, coins, bundles</b> available</div>
-      </div>
-
-      <div class="contact">
-        <a class="btn" href="https://wa.me/9779860003403?text=Hi%20I%20want%20Supercell%20top-up" target="_blank" rel="noopener">💬 WhatsApp: 9860003403</a>
-        <a class="btn ig" href="https://instagram.com/sajilotopup" target="_blank" rel="noopener">📸 Instagram: @sajilotopup</a>
-      </div>
-    </section>
-
-    <!-- Games Accordion -->
-    <details class="game" open>
-      <summary>🎮 Clash of Clans <span class="tag">Click & See</span></summary>
-      <div class="body">
-        <ul class="price-list">
-          <li><span>Gold Pass</span> <span class="price">270 – 980 NPR</span></li>
-          <li><span>Event Pass</span> <span class="price">270 – 980 NPR</span></li>
-          <li><span>Scenery</span> <span class="price">450 – 1950 NPR</span></li>
-          <li><span>Gems</span> <span class="price">80 – 5800 NPR</span></li>
-        </ul>
-        <p class="hint">Login method: share Supercell ID email → confirm one-time code. No password required.</p>
-      </div>
-    </details>
-
-    <details class="game">
-      <summary>🎮 Clash Royale <span class="tag">Click & See</span></summary>
-      <div class="body">
-        <ul class="price-list">
-          <li><span>Pass Royale</span> <span class="price">1950 NPR</span></li>
-          <li><span>Gems</span> <span class="price">165 – 14500 NPR</span></li>
-          <li><span>Emotes & Special Offers</span> <span class="price">Available</span></li>
-        </ul>
-      </div>
-    </details>
-
-    <details class="game">
-      <summary>🎮 Brawl Stars <span class="tag">Click & See</span></summary>
-      <div class="body">
-        <ul class="price-list">
-          <li><span>Brawl Pass</span> <span class="price">450 – 980 NPR</span></li>
-          <li><span>Brawl Pass Plus</span> <span class="price">580 – 1020 NPR</span></li>
-          <li><span>Special Offers</span> <span class="price">120 – 580 NPR</span></li>
-          <li><span>Gems</span> <span class="price">145 – 5800 NPR</span></li>
-        </ul>
-      </div>
-    </details>
-
-    <details class="game">
-      <summary>🎮 Hay Day <span class="tag">Click & See</span></summary>
-      <div class="body">
-        <ul class="price-list">
-          <li><span>Farm Pass</span> <span class="price">550 – 1250 NPR</span></li>
-          <li><span>Diamonds</span> <span class="price">145 – 5800 NPR</span></li>
-          <li><span>Coins</span> <span class="price">80 – 4640 NPR</span></li>
-        </ul>
-      </div>
-    </details>
-
-    <details class="game">
-      <summary>🎮 Squad Busters <span class="tag">Click & See</span></summary>
-      <div class="body">
-        <ul class="price-list">
-          <li><span>Starter Bundle</span> <span class="price">750 NPR</span></li>
-          <li><span>Super Pass</span> <span class="price">1450 NPR</span></li>
-          <li><span>Coins</span> <span class="price">200 – 6550 NPR</span></li>
-        </ul>
-      </div>
-    </details>
-
-    <footer>
-      © <span id="y"></span> SM Digital Services • All rights reserved.
-    </footer>
   </div>
 
+  <!-- Highlights + Contact -->
+  <section class="card">
+    <div class="hl">
+      <div class="pill">✅ Instant Delivery</div>
+      <div class="pill">🔒 Safe & Secure — Login via Email + One-Time Code</div>
+      <div class="pill">🎁 All passes, gems, coins, bundles available</div>
+    </div>
+    <div class="contact">
+      <a class="btn wh" href="https://wa.me/9779860003403?text=Hi%2C%20I%20want%20Supercell%20top-up" target="_blank" rel="noopener">💬 WhatsApp: 9860003403</a>
+      <a class="btn ig" href="https://instagram.com/sajilotopup" target="_blank" rel="noopener">📸 Instagram: @sajilotopup</a>
+    </div>
+  </section>
+
+  <!-- ================== Games (Radio style) ================== -->
+  <!-- COC -->
+  <details class="game" open>
+    <summary>🎮 Clash of Clans <span class="tag">Select a package</span></summary>
+    <div class="body">
+      <h4 class="groupTitle">Packages</h4>
+      <ul class="radio-list" id="coc">
+        <li class="opt"><input type="radio" name="coc" value="Gold Pass — 270–980 NPR"><div class="txt">Gold Pass</div><span class="price">270–980 NPR</span></li>
+        <li class="opt"><input type="radio" name="coc" value="Event Pass — 270–980 NPR"><div class="txt">Event Pass</div><span class="price">270–980 NPR</span></li>
+        <li class="opt"><input type="radio" name="coc" value="Scenery — 450–1950 NPR"><div class="txt">Scenery</div><span class="price">450–1950 NPR</span></li>
+        <li class="opt"><input type="radio" name="coc" value="Gems — 80–5800 NPR"><div class="txt">Gems</div><span class="price">80–5800 NPR</span></li>
+      </ul>
+      <div class="actions">
+        <button class="cta" onclick="order('Clash of Clans','coc')">Order via WhatsApp</button>
+      </div>
+      <p class="note">Login method: share Supercell ID email → confirm one-time code. No password required.</p>
+    </div>
+  </details>
+
+  <!-- CR -->
+  <details class="game">
+    <summary>🎮 Clash Royale <span class="tag">Select a package</span></summary>
+    <div class="body">
+      <ul class="radio-list" id="cr">
+        <li class="opt"><input type="radio" name="cr" value="Pass Royale — 1950 NPR"><div class="txt">Pass Royale</div><span class="price">1950 NPR</span></li>
+        <li class="opt"><input type="radio" name="cr" value="Gems — 165–14500 NPR"><div class="txt">Gems</div><span class="price">165–14500 NPR</span></li>
+        <li class="opt"><input type="radio" name="cr" value="Emotes & Special Offers — Available"><div class="txt">Emotes & Special Offers</div><span class="price">Available</span></li>
+      </ul>
+      <div class="actions"><button class="cta" onclick="order('Clash Royale','cr')">Order via WhatsApp</button></div>
+    </div>
+  </details>
+
+  <!-- BS -->
+  <details class="game">
+    <summary>🎮 Brawl Stars <span class="tag">Select a package</span></summary>
+    <div class="body">
+      <ul class="radio-list" id="bs">
+        <li class="opt"><input type="radio" name="bs" value="Brawl Pass — 450–980 NPR"><div class="txt">Brawl Pass</div><span class="price">450–980 NPR</span></li>
+        <li class="opt"><input type="radio" name="bs" value="Brawl Pass Plus — 580–1020 NPR"><div class="txt">Brawl Pass Plus</div><span class="price">580–1020 NPR</span></li>
+        <li class="opt"><input type="radio" name="bs" value="Special Offers — 120–580 NPR"><div class="txt">Special Offers</div><span class="price">120–580 NPR</span></li>
+        <li class="opt"><input type="radio" name="bs" value="Gems — 145–5800 NPR"><div class="txt">Gems</div><span class="price">145–5800 NPR</span></li>
+      </ul>
+      <div class="actions"><button class="cta" onclick="order('Brawl Stars','bs')">Order via WhatsApp</button></div>
+    </div>
+  </details>
+
+  <!-- Hay Day -->
+  <details class="game">
+    <summary>🎮 Hay Day <span class="tag">Select a package</span></summary>
+    <div class="body">
+      <ul class="radio-list" id="hd">
+        <li class="opt"><input type="radio" name="hd" value="Farm Pass — 550–1250 NPR"><div class="txt">Farm Pass</div><span class="price">550–1250 NPR</span></li>
+        <li class="opt"><input type="radio" name="hd" value="Diamonds — 145–5800 NPR"><div class="txt">Diamonds</div><span class="price">145–5800 NPR</span></li>
+        <li class="opt"><input type="radio" name="hd" value="Coins — 80–4640 NPR"><div class="txt">Coins</div><span class="price">80–4640 NPR</span></li>
+      </ul>
+      <div class="actions"><button class="cta" onclick="order('Hay Day','hd')">Order via WhatsApp</button></div>
+    </div>
+  </details>
+
+  <!-- Squad Busters -->
+  <details class="game">
+    <summary>🎮 Squad Busters <span class="tag">Select a package</span></summary>
+    <div class="body">
+      <ul class="radio-list" id="sb">
+        <li class="opt"><input type="radio" name="sb" value="Starter Bundle — 750 NPR"><div class="txt">Starter Bundle</div><span class="price">750 NPR</span></li>
+        <li class="opt"><input type="radio" name="sb" value="Super Pass — 1450 NPR"><div class="txt">Super Pass</div><span class="price">1450 NPR</span></li>
+        <li class="opt"><input type="radio" name="sb" value="Coins — 200–6550 NPR"><div class="txt">Coins</div><span class="price">200–6550 NPR</span></li>
+      </ul>
+      <div class="actions"><button class="cta" onclick="order('Squad Busters','sb')">Order via WhatsApp</button></div>
+    </div>
+  </details>
+
+  <footer>© <span id="y"></span> SM Digital Services • All rights reserved.</footer>
+</div>
+
 <script>
-  // Set copyright year
+  // Banner width tweak if you only use 3 images:
+  // document.getElementById('slides').style.width = '300%';
+
+  // Copyright year
   document.getElementById('y').textContent = new Date().getFullYear();
 
-  // If you only use 3 banners, reduce width to 300%:
-  // document.querySelector('.slides').style.width = '300%';
+  // Build WhatsApp message from selected radio
+  function order(game, groupId){
+    const sel = document.querySelector(`#${groupId} input:checked`);
+    if(!sel){ alert('Please select a package first.'); return; }
+    const pkg = sel.value;
+    const msg = `Hi, I want a Supercell top-up.%0A%0AGame: ${encodeURIComponent(game)}%0APackage: ${encodeURIComponent(pkg)}%0A%0AMy Supercell ID email:%0AMy contact for login code:`;
+    window.open(`https://wa.me/9779860003403?text=${msg}`,'_blank');
+  }
 </script>
 </body>
 </html>
