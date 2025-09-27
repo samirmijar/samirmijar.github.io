@@ -1,137 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Supercell Top-Up • SM Digital Services</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#0b1320;      /* clean navy */
-    --card:#0f1a2b;    /* section blocks */
-    --line:#20304a;    /* ultra-thin lines */
-    --text:#eaf0fb;    /* main text */
-    --sub:#9fb0c8;     /* secondary text */
-    --blue:#3aa1ff;    /* accent */
-    --gold:#ffc938;    /* headings */
-    --pill:#142440;    /* price pill bg */
-    --radius:14px;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Supercell Top-Up • SM Digital Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body{margin:0;font-family:Inter,sans-serif;background:#0a1220;color:#e9eef9;line-height:1.5}
+    header{text-align:center;padding:18px;background:#111c33;border-bottom:2px solid #1f2a44}
+    header h1{margin:0;font-size:22px;color:#ffcc33}
 
-  .wrap{max-width:900px;margin:0 auto;padding:16px 14px 60px}
+    /* Banner */
+    .slider{width:100%;height:200px;overflow:hidden;position:relative}
+    .slides{display:flex;width:400%;animation:slide 12s infinite}
+    .slides img{width:100%;height:200px;object-fit:cover}
+    @keyframes slide{
+      0%,20%{transform:translateX(0)}
+      25%,45%{transform:translateX(-100%)}
+      50%,70%{transform:translateX(-200%)}
+      75%,95%{transform:translateX(-300%)}
+      100%{transform:translateX(0)}
+    }
 
-  /* --- Slim slider (no bulky frame) --- */
-  .slider{height:200px;overflow:hidden;border-radius:16px;margin:4px 0 16px;border:1px solid var(--line)}
-  .slides{display:flex;width:400%;animation:slide 12s infinite}
-  .slides img{width:100%;height:200px;object-fit:cover}
-  @keyframes slide{
-    0%,20%{transform:translateX(0)}
-    25%,45%{transform:translateX(-100%)}
-    50%,70%{transform:translateX(-200%)}
-    75%,95%{transform:translateX(-300%)}
-    100%{transform:translateX(0)}
-  }
+    .wrap{max-width:900px;margin:auto;padding:18px}
+    .intro{background:#111c33;padding:14px;border-radius:10px;margin-bottom:20px}
+    .intro p{margin:6px 0}
+    .contact a{display:block;margin:6px 0;text-decoration:none;padding:10px;border-radius:8px;text-align:center}
+    .wa{background:#25D366;color:#fff}
+    .ig{background:#E1306C;color:#fff}
 
-  /* --- Cards --- */
-  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin:14px 0}
-  h1{margin:0 0 6px;font-size:22px;color:var(--gold);letter-spacing:.2px}
-  p{margin:6px 0}
-  .muted{color:var(--sub)}
-
-  /* --- Contact buttons (flat) --- */
-  .cta-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-  .cta{flex:1;text-align:center;text-decoration:none;font-weight:700;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:#13233f;color:#dfe9ff}
-  .cta:hover{background:#163056}
-
-  /* --- Game sections --- */
-  .game{border:1px solid var(--line);border-radius:16px;padding:12px 12px 8px;margin:14px 0}
-  .g-title{display:flex;align-items:center;gap:8px;margin:2px 0 10px}
-  .g-title span{font-weight:800;font-size:16px;color:var(--gold)}
-  .rows{display:flex;flex-direction:column;gap:8px}
-  .row{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#101d34}
-  .name{font-weight:600}
-  .price{font-weight:800;background:var(--pill);border:1px solid var(--line);padding:6px 10px;border-radius:999px;color:#bfe0ff}
-
-  footer{margin-top:18px;text-align:center;color:var(--sub);font-size:13px}
-</style>
+    /* Dropdown */
+    .game{background:#111c33;border:1px solid #1f2a44;border-radius:10px;margin:12px 0}
+    .game summary{cursor:pointer;padding:12px;font-weight:600;color:#ffcc33;font-size:18px}
+    .game ul{list-style:none;padding:0;margin:0}
+    .game li{padding:12px 14px;border-top:1px solid #1f2a44;display:flex;justify-content:space-between}
+    .game li span{color:#ffcc33}
+  </style>
 </head>
 <body>
-  <div class="wrap">
 
-    <!-- Top banners -->
-    <div class="slider">
-      <div class="slides">
-        <img src="png.images/banner1.png" alt="Banner 1">
-        <img src="png.images/banner2.png" alt="Banner 2">
-        <img src="png.images/banner3.png" alt="Banner 3">
-        <img src="png.images/banner4.png" alt="Banner 4">
-      </div>
-    </div>
+<header>
+  <h1>🔥 Supercell Gamers in Nepal – Instant Top-Up</h1>
+</header>
 
-    <!-- Intro -->
-    <div class="card">
-      <h1>🔥 Supercell Gamers in Nepal – Instant Top-Up Service</h1>
-      <p>We top-up all Supercell titles: <b>Clash of Clans</b>, <b>Clash Royale</b>, <b>Brawl Stars</b>, <b>Hay Day</b>, <b>Squad Busters</b>.</p>
-      <p>✅ Instant delivery &nbsp;•&nbsp; ✅ Safe login (Email + Code) &nbsp;•&nbsp; ✅ Passes, gems, coins & bundles</p>
-      <div class="cta-row">
-        <a class="cta" href="https://wa.me/9779860003403" target="_blank">WhatsApp: +977 9860003403</a>
-        <a class="cta" href="https://instagram.com/sajilotopup" target="_blank">Instagram: @sajilotopup</a>
-      </div>
-      <p class="muted">Prices shown below are starting ranges only. Message us to confirm exact price & get instant top-up.</p>
-    </div>
-
-    <!-- Games -->
-    <section class="game">
-      <div class="g-title"><span>🎮 Clash of Clans</span></div>
-      <div class="rows">
-        <div class="row"><div class="name">Gold Pass</div><div class="price">270 – 980 NPR</div></div>
-        <div class="row"><div class="name">Event Pass</div><div class="price">270 – 980 NPR</div></div>
-        <div class="row"><div class="name">Scenery</div><div class="price">450 – 1950 NPR</div></div>
-        <div class="row"><div class="name">Gems</div><div class="price">80 – 5800 NPR</div></div>
-      </div>
-    </section>
-
-    <section class="game">
-      <div class="g-title"><span>🎮 Clash Royale</span></div>
-      <div class="rows">
-        <div class="row"><div class="name">Pass Royale</div><div class="price">1950 NPR</div></div>
-        <div class="row"><div class="name">Gems</div><div class="price">165 – 14,500 NPR</div></div>
-        <div class="row"><div class="name">Emotes & Offers</div><div class="price">Available</div></div>
-      </div>
-    </section>
-
-    <section class="game">
-      <div class="g-title"><span>🎮 Brawl Stars</span></div>
-      <div class="rows">
-        <div class="row"><div class="name">Brawl Pass</div><div class="price">450 – 980 NPR</div></div>
-        <div class="row"><div class="name">Brawl Pass Plus</div><div class="price">580 – 1020 NPR</div></div>
-        <div class="row"><div class="name">Special Offers</div><div class="price">120 – 580 NPR</div></div>
-        <div class="row"><div class="name">Gems</div><div class="price">145 – 5800 NPR</div></div>
-      </div>
-    </section>
-
-    <section class="game">
-      <div class="g-title"><span>🎮 Hay Day</span></div>
-      <div class="rows">
-        <div class="row"><div class="name">Farm Pass</div><div class="price">550 – 1250 NPR</div></div>
-        <div class="row"><div class="name">Diamonds</div><div class="price">145 – 5800 NPR</div></div>
-        <div class="row"><div class="name">Coins</div><div class="price">80 – 4640 NPR</div></div>
-      </div>
-      <p class="muted" style="margin-top:8px">Weekly deals on diamonds & coins available.</p>
-    </section>
-
-    <section class="game">
-      <div class="g-title"><span>🎮 Squad Busters</span></div>
-      <div class="rows">
-        <div class="row"><div class="name">Starter Bundle</div><div class="price">750 NPR</div></div>
-        <div class="row"><div class="name">Super Pass</div><div class="price">1450 NPR</div></div>
-        <div class="row"><div class="name">Coins</div><div class="price">200 – 6550 NPR</div></div>
-      </div>
-    </section>
-
-    <footer>© 2025 SM Digital Services. All rights reserved.</footer>
+<!-- Auto Slide Banner -->
+<div class="slider">
+  <div class="slides">
+    <img src="png.images/banner1.png" alt="Banner 1">
+    <img src="png.images/banner2.png" alt="Banner 2">
+    <img src="png.images/banner3.png" alt="Banner 3">
+    <img src="png.images/banner4.png" alt="Banner 4">
   </div>
+</div>
+
+<div class="wrap">
+  <!-- Intro -->
+  <div class="intro">
+    <p>We provide live top-up service for all Supercell games:</p>
+    <p>🎮 Clash of Clans • Clash Royale • Brawl Stars • Hay Day • Squad Busters</p>
+    <p>✅ Instant Delivery</p>
+    <p>✅ Safe & Secure (Login via Email + Code)</p>
+    <p>✅ All passes, gems, coins, bundles available</p>
+    <div class="contact">
+      <a href="https://wa.me/9779860003403" target="_blank" class="wa">📲 WhatsApp: +977 9860003403</a>
+      <a href="https://instagram.com/sajilotopup" target="_blank" class="ig">📸 Instagram: @sajilotopup</a>
+    </div>
+  </div>
+
+  <!-- Games -->
+  <details class="game">
+    <summary>🎮 Clash of Clans</summary>
+    <ul>
+      <li>Gold Pass <span>270 – 980 NPR</span></li>
+      <li>Event Pass <span>270 – 980 NPR</span></li>
+      <li>Scenery <span>450 – 1950 NPR</span></li>
+      <li>Gems <span>80 – 5800 NPR</span></li>
+    </ul>
+  </details>
+
+  <details class="game">
+    <summary>🎮 Clash Royale</summary>
+    <ul>
+      <li>Pass Royale <span>1950 NPR</span></li>
+      <li>Gems <span>165 – 14500 NPR</span></li>
+      <li>Emotes & Offers <span>Available</span></li>
+    </ul>
+  </details>
+
+  <details class="game">
+    <summary>🎮 Brawl Stars</summary>
+    <ul>
+      <li>Brawl Pass <span>450 – 980 NPR</span></li>
+      <li>Brawl Pass Plus <span>580 – 1020 NPR</span></li>
+      <li>Special Offers <span>120 – 580 NPR</span></li>
+      <li>Gems <span>145 – 5800 NPR</span></li>
+    </ul>
+  </details>
+
+  <details class="game">
+    <summary>🎮 Hay Day</summary>
+    <ul>
+      <li>Farm Pass <span>550 – 1250 NPR</span></li>
+      <li>Diamonds <span>145 – 5800 NPR</span></li>
+      <li>Coins <span>80 – 4640 NPR</span></li>
+    </ul>
+  </details>
+
+  <details class="game">
+    <summary>🎮 Squad Busters</summary>
+    <ul>
+      <li>Starter Bundle <span>750 NPR</span></li>
+      <li>Super Pass <span>1450 NPR</span></li>
+      <li>Coins <span>200 – 6550 NPR</span></li>
+    </ul>
+  </details>
+
+  <p style="text-align:center;color:#a9b8d3;margin-top:20px">© 2025 SM Digital Services</p>
+</div>
+
 </body>
 </html>
