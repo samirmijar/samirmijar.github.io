@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Supercell Top-Up • SM Digital Services</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0c0f17; --card:#11182a; --line:#1e2a45; --soft:#152040;
-    --text:#e9eef6; --muted:#a8b6cc;
-    --accent:#7f5bff; --accent2:#ff415f;   /* gradient accents */
-    --gold:#ffcc33; --blue:#33a8ff; --green:#25d366; --pink:#ff5ca7; --teal:#22d3ee; --lime:#3be477;
-    --radius:16px;
+    --bg:#0a1220; --card:#111c33; --line:#1f2a44;
+    --text:#e9eef9; --muted:#a9b8d3;
+    --blue:#1e90ff; --gold:#ffcc33;
+    --radius:14px;
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
-
+  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,sans-serif;line-height:1.55}
   .wrap{max-width:900px;margin:0 auto;padding:14px 12px 60px}
 
-  /* ===== Top Auto Slider ===== */
-  .slider{height:210px;overflow:hidden;border-radius:14px;border:1px solid var(--line);margin:6px 0 14px}
+  /* Banner slider */
+  .slider{height:210px;overflow:hidden;border-radius:var(--radius);border:1px solid var(--line);margin:6px 0 14px}
   .slides{display:flex;width:400%;animation:slide 12s infinite}
   .slides img{width:100%;height:210px;object-fit:cover}
   @keyframes slide{
@@ -30,53 +28,36 @@
     100%{transform:translateX(0)}
   }
 
-  /* ===== Cards / Sections ===== */
+  /* Card / section */
   .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin:12px 0}
-  h1{margin:0 0 8px;font-size:22px;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  h1{margin:0 0 8px;font-size:22px;color:var(--gold)}
+  h2{margin:0 0 8px;font-size:18px;color:var(--gold)}
   p{margin:6px 0}
   .muted{color:var(--muted)}
 
-  /* ===== CTA Buttons ===== */
+  /* Contact buttons */
   .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-  .cta{
-    flex:1 1 240px; text-align:center; text-decoration:none; font-weight:800;
-    padding:10px 12px; border-radius:12px; border:1px solid #2a3a66; background:var(--soft); color:#fff
-  }
-  .cta:hover{filter:brightness(1.08)}
-  .wa{border-color:#1f7a4a}
-  .ig{border-color:#b347ff}
-  .fb{border-color:#1877f2}
+  .cta{flex:1;text-align:center;text-decoration:none;font-weight:800;
+       padding:10px 12px;border-radius:10px;border:1px solid var(--line);
+       background:#182444;color:#fff}
+  .cta:hover{background:var(--blue)}
 
-  /* ===== Game Blocks ===== */
-  .game{background:#0f162a;border:1px solid #233154;border-radius:14px;padding:12px 12px 10px;margin:12px 0}
-  .game h2{
-    margin:0 0 8px;font-size:16px;display:inline-flex;align-items:center;gap:8px;
-    padding:6px 10px;border-radius:999px;border:1px solid #2a3a66;background:linear-gradient(90deg,#1a2240,transparent);
-  }
-  .tag{font-weight:800;padding:2px 8px;border-radius:999px;font-size:11px;margin-left:6px}
-  .coc{background:rgba(255,122,44,.18); color:#ffae7a; border:1px solid rgba(255,122,44,.35)}
-  .cr{ background:rgba(0,209,255,.18);  color:#7ee4ff; border:1px solid rgba(0,209,255,.35)}
-  .bs{ background:rgba(255,92,167,.18); color:#ffb4d3; border:1px solid rgba(255,92,167,.35)}
-  .hd{ background:rgba(66,217,123,.18); color:#b6f5ce; border:1px solid rgba(66,217,123,.35)}
-  .sb{ background:rgba(255,212,0,.18);  color:#ffe381; border:1px solid rgba(255,212,0,.35)}
+  /* Game blocks */
+  .game{background:#0e1930;border:1px solid var(--line);border-radius:var(--radius);padding:12px;margin:12px 0}
+  .game h3{margin:0 0 8px;font-size:16px;color:var(--gold)}
+  ul{list-style:none;padding:0;margin:0}
+  li{background:#111f3f;border:1px solid #24345a;border-radius:8px;
+     padding:8px 10px;margin:6px 0;display:flex;justify-content:space-between;font-size:14px}
+  .name{font-weight:600}
+  .price{font-weight:700;color:#bfe0ff}
 
-  ul.pack{list-style:none;padding:0;margin:6px 0}
-  ul.pack li{
-    background:#111a33;border:1px solid #22305a;border-radius:10px;
-    padding:10px 12px;margin:6px 0; display:flex; align-items:center; justify-content:space-between;
-    font-size:14px
-  }
-  .name{font-weight:700}
-  .price{font-weight:800;color:#cfe2ff}
-
-  /* ===== Footer ===== */
-  footer{margin:16px 0 0;text-align:center;color:#aab6c9;font-size:13px}
+  footer{margin:20px 0 0;text-align:center;font-size:13px;color:#8f9bb5}
 </style>
 </head>
 <body>
   <div class="wrap">
 
-    <!-- Top Auto Slide (replace image paths if needed) -->
+    <!-- Banner -->
     <div class="slider">
       <div class="slides">
         <img src="png.images/banner1.png" alt="Banner 1">
@@ -86,69 +67,68 @@
       </div>
     </div>
 
-    <!-- Intro / Hero -->
+    <!-- Intro -->
     <div class="card">
       <h1>🔥 Supercell Gamers in Nepal – Instant Top-Up Service</h1>
       <p>We provide live top-up service for all Supercell games:<br>
-        🎮 <b>Clash of Clans</b> • <b>Clash Royale</b> • <b>Brawl Stars</b> • <b>Hay Day</b> • <b>Squad Busters</b></p>
+      🎮 <b>Clash of Clans</b> • <b>Clash Royale</b> • <b>Brawl Stars</b> • <b>Hay Day</b> • <b>Squad Busters</b></p>
       <p>✅ Instant Delivery<br>
          ✅ Safe & Secure (Login via Email + Code)<br>
          ✅ All passes, gems, coins, bundles available</p>
-
-      <p style="margin-top:8px"><b>📲 Contact us now for instant top-up:</b></p>
+      <p><b>📲 Contact us now:</b></p>
       <div class="cta-row">
-        <a class="cta wa" href="https://wa.me/9779860003403" target="_blank" rel="noopener">WhatsApp: +977 9860003403</a>
-        <a class="cta ig" href="https://instagram.com/sajilotopup" target="_blank" rel="noopener">Instagram: @sajilotopup</a>
+        <a class="cta" href="https://wa.me/9779860003403" target="_blank">WhatsApp: +977 9860003403</a>
+        <a class="cta" href="https://instagram.com/sajilotopup" target="_blank">Instagram: @sajilotopup</a>
       </div>
-      <p class="muted" style="margin-top:8px">💡 Prices below are starting ranges to help you choose. Message us to confirm exact price & top-up instantly.</p>
+      <p class="muted">💡 Prices below are indicative ranges. Final rates will be confirmed in chat.</p>
     </div>
 
-    <!-- Games & Price Lists -->
+    <!-- Games -->
     <div class="game">
-      <h2>🎮 Clash of Clans <span class="tag coc">COC</span></h2>
-      <ul class="pack">
-        <li><span class="name">Gold Pass</span> <span class="price">270 – 980 NPR</span></li>
-        <li><span class="name">Event Pass</span> <span class="price">270 – 980 NPR</span></li>
-        <li><span class="name">Scenery</span> <span class="price">450 – 1950 NPR</span></li>
-        <li><span class="name">Gems</span> <span class="price">80 – 5800 NPR</span></li>
+      <h3>🎮 Clash of Clans</h3>
+      <ul>
+        <li><span class="name">Gold Pass</span><span class="price">270 – 980 NPR</span></li>
+        <li><span class="name">Event Pass</span><span class="price">270 – 980 NPR</span></li>
+        <li><span class="name">Scenery</span><span class="price">450 – 1950 NPR</span></li>
+        <li><span class="name">Gems</span><span class="price">80 – 5800 NPR</span></li>
       </ul>
     </div>
 
     <div class="game">
-      <h2>🎮 Clash Royale <span class="tag cr">CR</span></h2>
-      <ul class="pack">
-        <li><span class="name">Pass Royale</span> <span class="price">1950 NPR</span></li>
-        <li><span class="name">Gems</span> <span class="price">165 – 14,500 NPR</span></li>
-        <li><span class="name">Emotes & Special Offers</span> <span class="price">Ask</span></li>
+      <h3>🎮 Clash Royale</h3>
+      <ul>
+        <li><span class="name">Pass Royale</span><span class="price">1950 NPR</span></li>
+        <li><span class="name">Gems</span><span class="price">165 – 14,500 NPR</span></li>
+        <li><span class="name">Emotes & Offers</span><span class="price">Available</span></li>
       </ul>
     </div>
 
     <div class="game">
-      <h2>🎮 Brawl Stars <span class="tag bs">BS</span></h2>
-      <ul class="pack">
-        <li><span class="name">Brawl Pass</span> <span class="price">450 – 980 NPR</span></li>
-        <li><span class="name">Brawl Pass Plus</span> <span class="price">580 – 1020 NPR</span></li>
-        <li><span class="name">Special Offer</span> <span class="price">120 – 580 NPR</span></li>
-        <li><span class="name">Gems</span> <span class="price">145 – 5800 NPR</span></li>
+      <h3>🎮 Brawl Stars</h3>
+      <ul>
+        <li><span class="name">Brawl Pass</span><span class="price">450 – 980 NPR</span></li>
+        <li><span class="name">Brawl Pass Plus</span><span class="price">580 – 1020 NPR</span></li>
+        <li><span class="name">Special Offers</span><span class="price">120 – 580 NPR</span></li>
+        <li><span class="name">Gems</span><span class="price">145 – 5800 NPR</span></li>
       </ul>
     </div>
 
     <div class="game">
-      <h2>🎮 Hay Day <span class="tag hd">HD</span></h2>
-      <ul class="pack">
-        <li><span class="name">Farm Pass</span> <span class="price">550 – 1250 NPR</span></li>
-        <li><span class="name">Diamonds</span> <span class="price">145 – 5800 NPR</span></li>
-        <li><span class="name">Coins</span> <span class="price">80 – 4640 NPR</span></li>
+      <h3>🎮 Hay Day</h3>
+      <ul>
+        <li><span class="name">Farm Pass</span><span class="price">550 – 1250 NPR</span></li>
+        <li><span class="name">Diamonds</span><span class="price">145 – 5800 NPR</span></li>
+        <li><span class="name">Coins</span><span class="price">80 – 4640 NPR</span></li>
       </ul>
-      <p class="muted" style="margin:6px 2px 0">Offers & weekly deals available (diamonds & coins).</p>
+      <p class="muted">Weekly deals on diamonds & coins also available.</p>
     </div>
 
     <div class="game">
-      <h2>🎮 Squad Busters <span class="tag sb">SB</span></h2>
-      <ul class="pack">
-        <li><span class="name">Starter Bundle</span> <span class="price">750 NPR</span></li>
-        <li><span class="name">Super Pass</span> <span class="price">1450 NPR</span></li>
-        <li><span class="name">Coins</span> <span class="price">200 – 6550 NPR</span></li>
+      <h3>🎮 Squad Busters</h3>
+      <ul>
+        <li><span class="name">Starter Bundle</span><span class="price">750 NPR</span></li>
+        <li><span class="name">Super Pass</span><span class="price">1450 NPR</span></li>
+        <li><span class="name">Coins</span><span class="price">200 – 6550 NPR</span></li>
       </ul>
     </div>
 
