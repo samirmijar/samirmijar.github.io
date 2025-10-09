@@ -29,8 +29,12 @@
     .tab{padding:11px 18px;border-radius:24px;background:var(--soft);cursor:pointer;font-weight:700;border:1px solid var(--line);white-space:nowrap}
     .tab.active{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff;border-color:transparent}
 
-    /* 3-up grid */
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    /* 4-up grid (responsive) */
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    @media (max-width:1100px){ .grid{grid-template-columns:repeat(3,1fr)} }
+    @media (max-width:760px){ .grid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:420px){ .grid{grid-template-columns:1fr} }
+
     .card{
       background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
       padding:12px;display:flex;flex-direction:column;align-items:center;text-align:center
@@ -96,7 +100,7 @@
         <a href="mlbb.html" class="title-link"><h3 class="name">Mobile Legends (MLBB)</h3></a>
       </div>
 
-      <div class="card topup" data-name="Clash of Clans">
+      <div class="card topup" data-name="Supercell Clash of Clans Clash Royale Brawl Stars">
         <a href="supercell.html" class="thumb"><img src="/png.images/logo-supercell.png" alt="Supercell Games"></a>
         <a href="supercell.html" class="title-link"><h3 class="name">Supercell Games</h3></a>
       </div>
@@ -124,6 +128,62 @@
       <div class="card topup" data-name="Poppo Coins">
         <a href="poppo.html" class="thumb"><img src="/png.images/logo-poppo.png" alt="Poppo"></a>
         <a href="poppo.html" class="title-link"><h3 class="name">Poppo Coins</h3></a>
+      </div>
+
+      <!-- ===== NEW GAMES YOU REQUESTED ===== -->
+      <div class="card topup" data-name="Delta Force">
+        <a href="deltaforce.html" class="thumb"><img src="/png.images/logo-deltaforce.png" alt="Delta Force"></a>
+        <a href="deltaforce.html" class="title-link"><h3 class="name">Delta Force</h3></a>
+      </div>
+
+      <div class="card topup" data-name="Blood Strike">
+        <a href="bloodstrike.html" class="thumb"><img src="/png.images/logo-bloodstrike.png" alt="Blood Strike"></a>
+        <a href="bloodstrike.html" class="title-link"><h3 class="name">Blood Strike</h3></a>
+      </div>
+
+      <div class="card topup" data-name="Honor of Kings HoK">
+        <a href="honorofkings.html" class="thumb"><img src="/png.images/logo-honorofkings.png" alt="Honor of Kings"></a>
+        <a href="honorofkings.html" class="title-link"><h3 class="name">Honor of Kings</h3></a>
+      </div>
+
+      <div class="card topup" data-name="Genshin Impact Genesis Crystals Welkin">
+        <a href="genshin.html" class="thumb"><img src="/png.images/logo-genshin.png" alt="Genshin Impact"></a>
+        <a href="genshin.html" class="title-link"><h3 class="name">Genshin Impact</h3></a>
+      </div>
+
+      <div class="card topup" data-name="Marvel Rivals">
+        <a href="marvelrivals.html" class="thumb"><img src="/png.images/logo-marvelrivals.png" alt="Marvel Rivals"></a>
+        <a href="marvelrivals.html" class="title-link"><h3 class="name">Marvel Rivals</h3></a>
+      </div>
+
+      <div class="card topup" data-name="Arena Breakout Bonds">
+        <a href="arenabreakout-bonds.html" class="thumb"><img src="/png.images/logo-arenabreakout-bonds.png" alt="Arena Breakout Bonds"></a>
+        <a href="arenabreakout-bonds.html" class="title-link"><h3 class="name">Arena Breakout • Bonds</h3></a>
+      </div>
+
+      <div class="card topup" data-name="LifeAfter">
+        <a href="lifeafter.html" class="thumb"><img src="/png.images/logo-lifeafter.png" alt="LifeAfter"></a>
+        <a href="lifeafter.html" class="title-link"><h3 class="name">LifeAfter</h3></a>
+      </div>
+
+      <div class="card topup" data-name="Call of Duty CODM CP">
+        <a href="callofduty.html" class="thumb"><img src="/png.images/logo-codm.png" alt="Call of Duty"></a>
+        <a href="callofduty.html" class="title-link"><h3 class="name">Call of Duty</h3></a>
+      </div>
+
+      <div class="card topup" data-name="eFootball iOS Coins">
+        <a href="efootball-ios.html" class="thumb"><img src="/png.images/logo-efootball-ios.png" alt="EFootball (iOS)"></a>
+        <a href="efootball-ios.html" class="title-link"><h3 class="name">EFootball (iOS)</h3></a>
+      </div>
+
+      <div class="card topup" data-name="Farlight 84 Flame Gold">
+        <a href="farlight84.html" class="thumb"><img src="/png.images/logo-farlight84.png" alt="Farlight 84"></a>
+        <a href="farlight84.html" class="title-link"><h3 class="name">Farlight 84</h3></a>
+      </div>
+
+      <div class="card topup" data-name="EA Sports FC Points UCL">
+        <a href="ea-fc.html" class="thumb"><img src="/png.images/logo-ea-fc.png" alt="EA Sports FC"></a>
+        <a href="ea-fc.html" class="title-link"><h3 class="name">EA Sports FC</h3></a>
       </div>
 
       <!-- ===== SUBSCRIPTIONS ===== -->
