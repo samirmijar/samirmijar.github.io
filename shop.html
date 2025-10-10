@@ -1,130 +1,358 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Sewabyte • Shop</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-  body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: #f7f9fc;
-    color: #111;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shop • SM Digital Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0d0f12; --card:#ffffff; --line:#e7eaf0; --soft:#f7f9fc;
+      --text:#111; --muted:#5a6b7c; --accent1:#ff7a00; --accent2:#ff415f;
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:#eaeaea;font-family:Inter,system-ui,sans-serif}
+    .wrap{max-width:1200px;margin:0 auto;padding:14px}
 
-  .shop-section {
-    background: #fff;
-    padding: 40px 16px 80px;
-    text-align: center;
-  }
+    /* header */
+    .head-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0}
+    .title{font-weight:900;font-size:28px;margin-right:auto;color:#fff}
+    .search-box{flex:1;min-width:220px}
+    .search-box input{
+      width:100%;padding:12px 14px;border-radius:12px;border:1px solid #2a3242;
+      background:#121a25;color:#e9eef6;font-size:15px
+    }
 
-  .shop-title {
-    font-size: 26px;
-    font-weight: 800;
-    margin-bottom: 28px;
-    color: #111;
-  }
+    /* tabs */
+    .tabs{display:flex;gap:10px;overflow-x:auto;margin:12px 0}
+    .tab{padding:11px 18px;border-radius:24px;background:#121a25;cursor:pointer;font-weight:700;border:1px solid #223049;white-space:nowrap;color:#e9eef6}
+    .tab.active{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff;border-color:transparent}
 
-  /* 4×4 grid always */
-  .shop-grid {
-    display: grid;
-    gap: 12px;
-    grid-template-columns: repeat(4, 1fr);
-    justify-items: center;
-    align-items: start;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+    /* 3-up grid (same as before) */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media (max-width:860px){ .grid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:480px){ .grid{grid-template-columns:1fr} }
 
-  .card {
-    background: #fff;
-    border-radius: 14px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    overflow: hidden;
-    text-align: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    width: 100%;
-    max-width: 260px;
-    text-decoration: none;
-    color: inherit;
-    display: block;
-  }
+    /* CARD — white theme */
+    .card{
+      background:var(--card);border:1px solid var(--line);border-radius:18px;
+      padding:12px;display:flex;flex-direction:column;align-items:center;text-align:center;
+      box-shadow:0 6px 18px rgba(0,0,0,.12);
+    }
+    .thumb{width:100%;aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:#eef2f7;margin-bottom:10px;display:block}
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .title-link{color:inherit;text-decoration:none}
+    .name{font-size:15px;font-weight:900;margin:0;color:#111}
+    .meta,.price{display:none}
 
-  .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
-  }
+    .note{margin:14px 0 0;padding:12px;border:1px solid #223049;border-radius:12px;background:#0f1822;color:#cfe2ff}
 
-  .card img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    display: block;
-  }
-
-  .card h3 {
-    font-size: 13px;
-    font-weight: 700;
-    margin: 10px 0 12px;
-    color: #111;
-    padding: 0 6px;
-    line-height: 1.25;
-  }
-</style>
+    /* Floating speed-dial */
+    .fab{position:fixed; right:16px; bottom:18px; z-index:9999}
+    .fab-main{
+      width:58px;height:58px;border:0;border-radius:50%;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:#fff;
+      display:grid;place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.28); cursor:pointer;
+    }
+    .fab-menu{position:absolute; right:0; bottom:70px; display:flex; flex-direction:column; gap:10px;
+      opacity:0; pointer-events:none; transform:translateY(8px) scale(.98); transform-origin:bottom right;
+      transition:opacity .18s ease, transform .18s ease;
+    }
+    .fab.open .fab-menu{opacity:1; pointer-events:auto; transform:translateY(0) scale(1)}
+    .fab-item{
+      width:48px; height:48px; border-radius:50%; display:grid; place-items:center;
+      background:#0f1822; border:1px solid rgba(255,255,255,.12); box-shadow:0 8px 18px rgba(0,0,0,.25)
+    }
+    .fab-item img{width:24px;height:24px;object-fit:contain}
+  </style>
 </head>
 <body>
+  <div class="wrap">
+    <div class="head-row">
+      <div class="title">Shop</div>
+      <div class="search-box">
+        <input id="search" type="search" placeholder="Search products (e.g., Free Fire, PUBG, iTunes)…">
+      </div>
+    </div>
 
-<section class="shop-section">
-  <h2 class="shop-title">Our Services</h2>
+    <div class="tabs" id="tabs">
+      <div class="tab active" data-cat="topup">Top Up</div>
+      <div class="tab" data-cat="subs">Subscription</div>
+      <div class="tab" data-cat="gift">Gift Card & Vouchers</div>
+      <div class="tab" data-cat="smm">SMM Services</div>
+    </div>
 
-  <div class="shop-grid">
+    <div id="grid" class="grid">
+      <!-- ===== TOP UP (original + NEW) ===== -->
+      <div class="card topup" data-name="Free Fire diamonds">
+        <a href="freefire.html" class="thumb"><img src="/png.images/logo-freefire.png" alt="Free Fire"></a>
+        <a href="freefire.html" class="title-link"><h3 class="name">Free Fire Diamonds</h3></a>
+      </div>
 
-    <!-- Top-up -->
-    <a class="card" href="freefire.html"><img src="/png.images/logo-freefire.png" alt=""><h3>Free Fire Diamonds</h3></a>
-    <a class="card" href="weekly.html"><img src="/png.images/logo-weekly.png" alt=""><h3>Weekly / Monthly</h3></a>
-    <a class="card" href="ff-levelup.html"><img src="/png.images/logo-fflevelup.png" alt=""><h3>Free Fire Level Up</h3></a>
-    <a class="card" href="pubg.html"><img src="/png.images/logo-pubg.png" alt=""><h3>PUBG Mobile UC</h3></a>
-    <a class="card" href="mlbb.html"><img src="/png.images/logo-mlbb.png" alt=""><h3>Mobile Legends</h3></a>
-    <a class="card" href="clashofclans.html"><img src="/png.images/logo-coc.png" alt=""><h3>Clash of Clans</h3></a>
-    <a class="card" href="unipin.html"><img src="/png.images/logo-unipin.png" alt=""><h3>Unipin Voucher</h3></a>
-    <a class="card" href="roblox.html"><img src="/png.images/logo-roblox.png" alt=""><h3>Roblox Robux</h3></a>
-    <a class="card" href="genshin.html"><img src="/png.images/logo-genshin.png" alt=""><h3>Genshin Impact</h3></a>
-    <a class="card" href="marvelrivals.html"><img src="/png.images/logo-marvelrivals.png" alt=""><h3>Marvel Rivals</h3></a>
-    <a class="card" href="honorofkings.html"><img src="/png.images/logo-honorofkings.png" alt=""><h3>Honor of Kings</h3></a>
-    <a class="card" href="deltaforce.html"><img src="/png.images/logo-deltaforce.png" alt=""><h3>Delta Force</h3></a>
-    <a class="card" href="farlight84.html"><img src="/png.images/logo-farlight84.png" alt=""><h3>Farlight 84</h3></a>
-    <a class="card" href="arenabreakout.html"><img src="/png.images/logo-arenabreakout-bonds.png" alt=""><h3>Arena Breakout Bonds</h3></a>
-    <a class="card" href="efootball-ios.html"><img src="/png.images/logo-efootball-ios.png" alt=""><h3>EFootball (iOS)</h3></a>
-    <a class="card" href="ea-fc.html"><img src="/png.images/logo-ea-fc.png" alt=""><h3>EA Sports FC</h3></a>
+      <div class="card topup" data-name="PUBG Mobile UC">
+        <a href="pubg.html" class="thumb"><img src="/png.images/logo-pubg.png" alt="PUBG Mobile"></a>
+        <a href="pubg.html" class="title-link"><h3 class="name">PUBG Mobile UC</h3></a>
+      </div>
 
-    <!-- Subscriptions -->
-    <a class="card" href="apeuni.html"><img src="/png.images/logo-apeuni.png" alt=""><h3>APEUni VIP</h3></a>
-    <a class="card" href="chatgpt.html"><img src="/png.images/logo-chatgpt.png" alt=""><h3>ChatGPT Plus</h3></a>
-    <a class="card" href="perplexity.html"><img src="/png.images/logo-perplexity.png" alt=""><h3>Perplexity Pro</h3></a>
-    <a class="card" href="spotify.html"><img src="/png.images/logo-spotify.png" alt=""><h3>Spotify 12M</h3></a>
-    <a class="card" href="netflix.html"><img src="/png.images/logo-netflix.png" alt=""><h3>Netflix Premium</h3></a>
-    <a class="card" href="primevideo.html"><img src="/png.images/logo-primevideo.png" alt=""><h3>Prime Video</h3></a>
-    <a class="card" href="youtube.html"><img src="/png.images/logo-youtube.png" alt=""><h3>YouTube Premium</h3></a>
-    <a class="card" href="canva.html"><img src="/png.images/logo-canva.png" alt=""><h3>Canva Pro</h3></a>
-    <a class="card" href="surfshark.html"><img src="/png.images/logo-surfshark.png" alt=""><h3>Surfshark VPN</h3></a>
-    <a class="card" href="duolingo.html"><img src="/png.images/logo-duolingo.png" alt=""><h3>Duolingo Super</h3></a>
-    <a class="card" href="googleone.html"><img src="/png.images/logo-google-one.png" alt=""><h3>Google One + Gemini</h3></a>
-    <a class="card" href="elevenlabs.html"><img src="/png.images/logo-elevenlab.png" alt=""><h3>ElevenLabs</h3></a>
-    <a class="card" href="discord.html"><img src="/png.images/logo-discord.png" alt=""><h3>Discord Nitro</h3></a>
-    <a class="card" href="telegram.html"><img src="/png.images/logo-telegram.png" alt=""><h3>Telegram Premium</h3></a>
-    <a class="card" href="capcut.html"><img src="/png.images/logo-capcut.png" alt=""><h3>CapCut Pro</h3></a>
-    <a class="card" href="picsart.html"><img src="/png.images/logo-picsart.png" alt=""><h3>PicsArt Pro</h3></a>
+      <div class="card topup" data-name="Mobile Legends MLBB">
+        <a href="mlbb.html" class="thumb"><img src="/png.images/logo-mlbb.png" alt="MLBB"></a>
+        <a href="mlbb.html" class="title-link"><h3 class="name">Mobile Legends (MLBB)</h3></a>
+      </div>
 
-    <!-- Gift Cards -->
-    <a class="card" href="itunes.html"><img src="/png.images/logo-itunes.png" alt=""><h3>iTunes USA</h3></a>
-    <a class="card" href="unipin.html"><img src="/png.images/logo-unipin.png" alt=""><h3>Unipin BD</h3></a>
-    <a class="card" href="garena-shell.html"><img src="/png.images/logo-shell.png" alt=""><h3>Garena MY Shell</h3></a>
-    <a class="card" href="xbox.html"><img src="/png.images/logo-xbox.png" alt=""><h3>Xbox Gift Card</h3></a>
-    <a class="card" href="nintendo.html"><img src="/png.images/logo-nintendo.png" alt=""><h3>Nintendo eShop</h3></a>
-    <a class="card" href="psn.html"><img src="/png.images/logo-ps.png" alt=""><h3>PlayStation PSN</h3></a>
+      <div class="card topup" data-name="Supercell Clash of Clans Clash Royale Brawl Stars">
+        <a href="supercell.html" class="thumb"><img src="/png.images/logo-supercell.png" alt="Supercell Games"></a>
+        <a href="supercell.html" class="title-link"><h3 class="name">Supercell Games</h3></a>
+      </div>
+
+      <div class="card topup" data-name="eFootball PES 2025">
+        <a href="efootball.html" class="thumb"><img src="/png.images/logo-efootball.png" alt="eFootball"></a>
+        <a href="efootball.html" class="title-link"><h3 class="name">eFootball</h3></a>
+      </div>
+
+      <div class="card topup" data-name="Roblox Robux">
+        <a href="roblox.html" class="thumb"><img src="/png.images/logo-roblox.png" alt="Roblox"></a>
+        <a href="roblox.html" class="title-link"><h3 class="name">Roblox Robux</h3></a>
+      </div>
+
+      <div class="card topup" data-name="TikTok Coins">
+        <a href="tiktok.html" class="thumb"><img src="/png.images/logo-tiktok.png" alt="TikTok"></a>
+        <a href="tiktok.html" class="title-link"><h3 class="name">TikTok Coins</h3></a>
+      </div>
+
+      <div class="card topup" data-name="Chamet Coins">
+        <a href="chamet.html" class="thumb"><img src="/png.images/logo-chamet.png" alt="Chamet"></a>
+        <a href="chamet.html" class="title-link"><h3 class="name">Chamet Coins</h3></a>
+      </div>
+
+      <div class="card topup" data-name="Poppo Coins">
+        <a href="poppo.html" class="thumb"><img src="/png.images/logo-poppo.png" alt="Poppo"></a>
+        <a href="poppo.html" class="title-link"><h3 class="name">Poppo Coins</h3></a>
+      </div>
+
+      <!-- ====== NEW GAMES ADDED ====== -->
+      <div class="card topup" data-name="Delta Force">
+        <a href="deltaforce.html" class="thumb"><img src="/png.images/logo-deltaforce.png" alt="Delta Force"></a>
+        <a href="deltaforce.html" class="title-link"><h3 class="name">Delta Force</h3></a>
+      </div>
+
+      <div class="card topup" data-name="Blood Strike">
+        <a href="bloodstrike.html" class="thumb"><img src="/png.images/logo-bloodstrike.png" alt="Blood Strike"></a>
+        <a href="bloodstrike.html" class="title-link"><h3 class="name">Blood Strike</h3></a>
+      </div>
+
+      <div class="card topup" data-name="Honor of Kings HoK">
+        <a href="honorofkings.html" class="thumb"><img src="/png.images/logo-honorofkings.png" alt="Honor of Kings"></a>
+        <a href="honorofkings.html" class="title-link"><h3 class="name">Honor of Kings</h3></a>
+      </div>
+
+      <div class="card topup" data-name="Genshin Impact Genesis Crystals Welkin">
+        <a href="genshin.html" class="thumb"><img src="/png.images/logo-genshin.png" alt="Genshin Impact"></a>
+        <a href="genshin.html" class="title-link"><h3 class="name">Genshin Impact</h3></a>
+      </div>
+
+      <div class="card topup" data-name="Marvel Rivals">
+        <a href="marvelrivals.html" class="thumb"><img src="/png.images/logo-marvelrivals.png" alt="Marvel Rivals"></a>
+        <a href="marvelrivals.html" class="title-link"><h3 class="name">Marvel Rivals</h3></a>
+      </div>
+
+      <div class="card topup" data-name="Arena Breakout Bonds">
+        <a href="arenabreakout-bonds.html" class="thumb"><img src="/png.images/logo-arenabreakout-bonds.png" alt="Arena Breakout Bonds"></a>
+        <a href="arenabreakout-bonds.html" class="title-link"><h3 class="name">Arena Breakout • Bonds</h3></a>
+      </div>
+
+      <div class="card topup" data-name="LifeAfter">
+        <a href="lifeafter.html" class="thumb"><img src="/png.images/logo-lifeafter.png" alt="LifeAfter"></a>
+        <a href="lifeafter.html" class="title-link"><h3 class="name">LifeAfter</h3></a>
+      </div>
+
+      <div class="card topup" data-name="Call of Duty CODM CP">
+        <a href="callofduty.html" class="thumb"><img src="/png.images/logo-codm.png" alt="Call of Duty"></a>
+        <a href="callofduty.html" class="title-link"><h3 class="name">Call of Duty</h3></a>
+      </div>
+
+      <div class="card topup" data-name="eFootball iOS Coins">
+        <a href="efootball-ios.html" class="thumb"><img src="/png.images/logo-efootball-ios.png" alt="EFootball (iOS)"></a>
+        <a href="efootball-ios.html" class="title-link"><h3 class="name">EFootball (iOS)</h3></a>
+      </div>
+
+      <div class="card topup" data-name="Farlight 84 Flame Gold">
+        <a href="farlight84.html" class="thumb"><img src="/png.images/logo-farlight84.png" alt="Farlight 84"></a>
+        <a href="farlight84.html" class="title-link"><h3 class="name">Farlight 84</h3></a>
+      </div>
+
+      <div class="card topup" data-name="EA Sports FC Points UCL">
+        <a href="ea-fc.html" class="thumb"><img src="/png.images/logo-ea-fc.png" alt="EA Sports FC"></a>
+        <a href="ea-fc.html" class="title-link"><h3 class="name">EA Sports FC</h3></a>
+      </div>
+
+      <!-- ===== SUBSCRIPTIONS (unchanged) ===== -->
+      <div class="card subs" data-name="APEUni VIP">
+        <a href="apeuni.html" class="thumb"><img src="/png.images/logo-apeuni.png" alt="APEUni VIP"></a>
+        <a href="apeuni.html" class="title-link"><h3 class="name">APEUni VIP</h3></a>
+      </div>
+
+      <div class="card subs" data-name="ChatGPT Plus">
+        <a href="chatgpt.html" class="thumb"><img src="/png.images/logo-chatgpt.png" alt="ChatGPT Plus"></a>
+        <a href="chatgpt.html" class="title-link"><h3 class="name">ChatGPT Plus</h3></a>
+      </div>
+
+      <div class="card subs" data-name="Perplexity Pro">
+        <a href="perplexity.html" class="thumb"><img src="/png.images/logo-perplexity.png" alt="Perplexity Pro"></a>
+        <a href="perplexity.html" class="title-link"><h3 class="name">Perplexity Pro (1Y)</h3></a>
+      </div>
+
+      <div class="card subs" data-name="Spotify 12M">
+        <a href="spotify.html" class="thumb"><img src="/png.images/logo-spotify.png" alt="Spotify"></a>
+        <a href="spotify.html" class="title-link"><h3 class="name">Spotify (12M Code)</h3></a>
+      </div>
+
+      <div class="card subs" data-name="CapCut Pro">
+        <a href="capcut.html" class="thumb"><img src="/png.images/logo-capcut.png" alt="CapCut Pro"></a>
+        <a href="capcut.html" class="title-link"><h3 class="name">CapCut Pro</h3></a>
+      </div>
+
+      <div class="card subs" data-name="Netflix Premium">
+        <a href="netflix.html" class="thumb"><img src="/png.images/logo-netflix.png" alt="Netflix"></a>
+        <a href="netflix.html" class="title-link"><h3 class="name">Netflix Premium</h3></a>
+      </div>
+
+      <div class="card subs" data-name="Prime Video">
+        <a href="primevideo.html" class="thumb"><img src="/png.images/logo-primevideo.png" alt="Prime Video"></a>
+        <a href="primevideo.html" class="title-link"><h3 class="name">Prime Video</h3></a>
+      </div>
+
+      <div class="card subs" data-name="YouTube Premium">
+        <a href="youtube.html" class="thumb"><img src="/png.images/logo-youtube.png" alt="YouTube Premium"></a>
+        <a href="youtube.html" class="title-link"><h3 class="name">YouTube Premium</h3></a>
+      </div>
+
+      <div class="card subs" data-name="PicsArt Pro">
+        <a href="picsart.html" class="thumb"><img src="/png.images/logo-picsart.png" alt="PicsArt Pro"></a>
+        <a href="picsart.html" class="title-link"><h3 class="name">PicsArt Pro</h3></a>
+      </div>
+
+      <div class="card subs" data-name="Surfshark VPN">
+        <a href="surfshark.html" class="thumb"><img src="/png.images/logo-surfshark.png" alt="Surfshark VPN"></a>
+        <a href="surfshark.html" class="title-link"><h3 class="name">Surfshark VPN</h3></a>
+      </div>
+
+      <div class="card subs" data-name="Canva Pro">
+        <a href="canva.html" class="thumb"><img src="/png.images/logo-canva.png" alt="Canva Pro"></a>
+        <a href="canva.html" class="title-link"><h3 class="name">Canva Pro</h3></a>
+      </div>
+
+      <div class="card subs" data-name="Duolingo Super">
+        <a href="duolingo.html" class="thumb"><img src="/png.images/logo-duolingo.png" alt="Duolingo Super"></a>
+        <a href="duolingo.html" class="title-link"><h3 class="name">Duolingo Super</h3></a>
+      </div>
+
+      <div class="card subs" data-name="Google One + Gemini">
+        <a href="googleone.html" class="thumb"><img src="/png.images/logo-google-one.png" alt="Google One"></a>
+        <a href="googleone.html" class="title-link"><h3 class="name">Google One + Gemini</h3></a>
+      </div>
+
+      <div class="card subs" data-name="ElevenLabs">
+        <a href="elevenlabs.html" class="thumb"><img src="/png.images/logo-elevenlab.png" alt="ElevenLabs"></a>
+        <a href="elevenlabs.html" class="title-link"><h3 class="name">ElevenLabs</h3></a>
+      </div>
+
+      <div class="card subs" data-name="Discord Nitro">
+        <a href="discord.html" class="thumb"><img src="/png.images/logo-discord.png" alt="Discord Nitro"></a>
+        <a href="discord.html" class="title-link"><h3 class="name">Discord Nitro</h3></a>
+      </div>
+
+      <div class="card subs" data-name="Telegram Premium">
+        <a href="telegram.html" class="thumb"><img src="/png.images/logo-telegram.png" alt="Telegram Premium"></a>
+        <a href="telegram.html" class="title-link"><h3 class="name">Telegram Premium</h3></a>
+      </div>
+
+      <!-- ===== GIFT CARDS ===== -->
+      <div class="card gift" data-name="UNIPIN BD">
+        <a href="unipin.html" class="thumb"><img src="/png.images/logo-unipin.png" alt="UNIPIN"></a>
+        <a href="unipin.html" class="title-link"><h3 class="name">UNIPIN BD</h3></a>
+      </div>
+
+      <div class="card gift" data-name="iTunes USA">
+        <a href="itunes.html" class="thumb"><img src="/png.images/logo-itunes.png" alt="iTunes USA"></a>
+        <a href="itunes.html" class="title-link"><h3 class="name">iTunes USA</h3></a>
+      </div>
+
+      <div class="card gift" data-name="Garena MY Shell">
+        <a href="garena-shell.html" class="thumb"><img src="/png.images/logo-shell.png" alt="Garena Shell"></a>
+        <a href="garena-shell.html" class="title-link"><h3 class="name">Garena MY Shell</h3></a>
+      </div>
+
+      <div class="card gift" data-name="Xbox">
+        <a href="xbox.html" class="thumb"><img src="/png.images/logo-xbox.png" alt="Xbox"></a>
+        <a href="xbox.html" class="title-link"><h3 class="name">Xbox</h3></a>
+      </div>
+
+      <div class="card gift" data-name="Nintendo eShop">
+        <a href="nintendo.html" class="thumb"><img src="/png.images/logo-nintendo.png" alt="Nintendo eShop"></a>
+        <a href="nintendo.html" class="title-link"><h3 class="name">Nintendo eShop</h3></a>
+      </div>
+
+      <div class="card gift" data-name="PlayStation PSN">
+        <a href="psn.html" class="thumb"><img src="/png.images/logo-ps.png" alt="PlayStation"></a>
+        <a href="psn.html" class="title-link"><h3 class="name">PlayStation (PSN)</h3></a>
+      </div>
+    </div>
+
+    <div class="note">Tap any logo or name to open its detail page. Use the search bar or tabs to filter.</div>
   </div>
-</section>
 
+  <!-- Floating speed-dial (tap to open/close) -->
+  <div class="fab" id="chatFab" aria-label="Open contacts">
+    <button class="fab-main" type="button" aria-haspopup="true" aria-expanded="false">💬</button>
+    <nav class="fab-menu" aria-label="Contact links">
+      <a class="fab-item" href="https://wa.me/9779828560029" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <img src="/png.images/logo-whatsapp.png" alt="">
+      </a>
+      <a class="fab-item" href="https://instagram.com/sajilotopup.np" target="_blank" rel="noopener" aria-label="Instagram">
+        <img src="/png.images/logo-instagram.png" alt="">
+      </a>
+      <a class="fab-item" href="https://facebook.com/sajilotopupnp" target="_blank" rel="noopener" aria-label="Facebook">
+        <img src="/png.images/logo-facebook.png" alt="">
+      </a>
+    </nav>
+  </div>
+
+<script>
+  // tabs
+  const tabs = document.querySelectorAll('.tab');
+  const cards = document.querySelectorAll('.card');
+  function show(cat){ cards.forEach(c=> c.style.display = c.classList.contains(cat) ? 'flex' : 'none'); }
+  tabs.forEach(t=> t.addEventListener('click', ()=>{ tabs.forEach(x=>x.classList.remove('active')); t.classList.add('active'); show(t.dataset.cat); document.getElementById('search').value=''; }));
+  show('topup');
+
+  // search within active tab
+  document.getElementById('search').addEventListener('input', function(){
+    const q=this.value.toLowerCase(), active=document.querySelector('.tab.active').dataset.cat;
+    cards.forEach(c=>{
+      const okCat=c.classList.contains(active);
+      const okText=(c.dataset.name||c.innerText).toLowerCase().includes(q);
+      c.style.display=(okCat && okText)?'flex':'none';
+    });
+    if(!q) show(active);
+  });
+
+  // floating speed-dial open/close
+  (function(){
+    const fab = document.getElementById('chatFab');
+    if(!fab) return;
+    const main = fab.querySelector('.fab-main');
+    main.addEventListener('click', ()=>{
+      fab.classList.toggle('open');
+      main.setAttribute('aria-expanded', fab.classList.contains('open'));
+    });
+    document.addEventListener('click', (e)=>{
+      if(!fab.contains(e.target)) { fab.classList.remove('open'); main.setAttribute('aria-expanded','false'); }
+    });
+    document.addEventListener('keydown', (e)=>{
+      if(e.key==='Escape'){ fab.classList.remove('open'); main.setAttribute('aria-expanded','false'); }
+    });
+  }());
+</script>
 </body>
 </html>
