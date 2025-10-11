@@ -8,8 +8,7 @@
   <style>
     :root{
       --bg:#0d0f12; --card:#ffffff; --line:#e7eaf0; --soft:#f7f9fc;
-      --text:#111; --muted:#5a6b7c; --accent1:#ff7a00; --accent2:#ff415f;
-      --radius:16px;
+      --text:#111; --muted:#5a6b7c; --accent1:#ff7a00; --accent2:#ff415f; --radius:16px;
     }
     *{box-sizing:border-box}
     body{margin:0;background:var(--bg);color:#eaeaea;font-family:Inter,system-ui,sans-serif}
@@ -29,7 +28,7 @@
     .tab{padding:11px 18px;border-radius:24px;background:#121a25;cursor:pointer;font-weight:700;border:1px solid #223049;white-space:nowrap;color:#e9eef6}
     .tab.active{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff;border-color:transparent}
 
-    /* 3-up grid (same as before) */
+    /* 3×3 grid (your original layout) */
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     @media (max-width:860px){ .grid{grid-template-columns:repeat(2,1fr)} }
     @media (max-width:480px){ .grid{grid-template-columns:1fr} }
@@ -84,7 +83,7 @@
     </div>
 
     <div id="grid" class="grid">
-      <!-- ===== TOP UP (original + NEW) ===== -->
+      <!-- ===== TOP UP (previous items + NEW; EXCLUDES Weekly/Monthly & Level Up) ===== -->
       <div class="card topup" data-name="Free Fire diamonds">
         <a href="freefire.html" class="thumb"><img src="/png.images/logo-freefire.png" alt="Free Fire"></a>
         <a href="freefire.html" class="title-link"><h3 class="name">Free Fire Diamonds</h3></a>
@@ -130,7 +129,7 @@
         <a href="poppo.html" class="title-link"><h3 class="name">Poppo Coins</h3></a>
       </div>
 
-      <!-- ====== NEW GAMES ADDED ====== -->
+      <!-- ===== NEW GAMES ADDED ===== -->
       <div class="card topup" data-name="Delta Force">
         <a href="deltaforce.html" class="thumb"><img src="/png.images/logo-deltaforce.png" alt="Delta Force"></a>
         <a href="deltaforce.html" class="title-link"><h3 class="name">Delta Force</h3></a>
@@ -186,7 +185,7 @@
         <a href="ea-fc.html" class="title-link"><h3 class="name">EA Sports FC</h3></a>
       </div>
 
-      <!-- ===== SUBSCRIPTIONS (unchanged) ===== -->
+      <!-- ===== SUBSCRIPTIONS (same as before) ===== -->
       <div class="card subs" data-name="APEUni VIP">
         <a href="apeuni.html" class="thumb"><img src="/png.images/logo-apeuni.png" alt="APEUni VIP"></a>
         <a href="apeuni.html" class="title-link"><h3 class="name">APEUni VIP</h3></a>
