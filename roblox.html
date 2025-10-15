@@ -7,9 +7,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0d0f12; --card:#111623; --line:#23283b; --soft:#151b2e;
-    --text:#e9eef4; --muted:#b9c6d3; --accent:#ff2e7a; --gold:#ffd166;
-    --ok:#25D366; --radius:16px;
+    /* ROBLOX THEME */
+    --bg:#0b0d10; --card:#111418; --line:#22262d; --soft:#151a21;
+    --text:#f1f4f8; --muted:#aeb7c3;
+    --accent:#ff2d2d;        /* Roblox red */
+    --accent-2:#ff5a5a;      /* lighter red */
+    --ok:#25D366; --gold:#ffd166;
+    --radius:16px;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
@@ -19,36 +23,45 @@
   .brand-logo{width:40px;height:40px;object-fit:contain;margin-left:auto}
 
   h1{margin:8px 0 0;font-size:24px;color:var(--accent)}
-  h2{margin:0 0 10px;color:var(--gold)}
+  h2{margin:0 0 10px;color:#ffdede}
   p{margin:0 0 10px}
   .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:14px 0}
   .note{font-size:14px;color:#ffcdcd}
 
-  input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #2b3148;background:var(--soft);color:#fff;margin:8px 0}
+  input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #2b3140;background:var(--soft);color:#fff;margin:8px 0}
   input:focus,select:focus{outline:2px solid var(--accent)}
 
   .pay-row{display:flex;gap:10px;flex-wrap:wrap}
-  .pay-btn{flex:1;min-width:110px;background:var(--soft);border:1px solid #2b3148;border-radius:10px;padding:12px;text-align:center;cursor:pointer;font-weight:700}
+  .pay-btn{flex:1;min-width:110px;background:var(--soft);border:1px solid #2b3140;border-radius:10px;padding:12px;text-align:center;cursor:pointer;font-weight:700;color:#fff}
   .pay-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
 
-  .cta{background:var(--gold);border:none;padding:14px 16px;border-radius:12px;color:#111;font-weight:800;cursor:pointer;width:100%;margin-top:10px}
+  .cta{background:var(--accent);border:none;padding:14px 16px;border-radius:12px;color:#fff;font-weight:800;cursor:pointer;width:100%;margin-top:10px}
   .cta[disabled]{opacity:.5;cursor:not-allowed}
 
   .footer-links{display:flex;gap:10px;justify-content:center;margin:18px 0 10px}
   .footer-links a{color:#9ecbff;text-decoration:none}
 
-  #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f1822;border:1px solid rgba(255,255,255,.12);color:#e9eef4;padding:10px 14px;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.28);opacity:0;transition:.25s;z-index:9999}
+  #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f151c;border:1px solid rgba(255,255,255,.12);color:#e9eef4;padding:10px 14px;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.28);opacity:0;transition:.25s;z-index:9999}
   #toast.show{opacity:1}
+
+  /* ===== Banner (2 slides) ===== */
+  .slider{width:100%;height:180px;overflow:hidden;border-radius:14px;margin:8px 0 16px;border:1px solid var(--line)}
+  .slides{display:flex;width:200%;height:100%;animation:rbx 8s infinite}
+  .slides img{width:100%;height:180px;object-fit:cover}
+  @keyframes rbx{
+    0%{transform:translateX(0)} 45%{transform:translateX(0)}
+    55%{transform:translateX(-50%)} 100%{transform:translateX(-50%)}
+  }
 
   /* modal */
   .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.68);display:none;align-items:center;justify-content:center;padding:18px;z-index:9990}
-  .modal{width:100%;max-width:560px;background:#0f1425;border:1px solid #223259;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.45)}
-  .modal-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #1e2639}
-  .modal-head h3{margin:0;font-size:18px;color:var(--gold)}
-  .modal-close{background:transparent;border:none;color:#cfd6ff;font-size:22px;cursor:pointer}
+  .modal{width:100%;max-width:560px;background:#0f1420;border:1px solid #223044;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+  .modal-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #1f2734}
+  .modal-head h3{margin:0;font-size:18px;color:#ffdede}
+  .modal-close{background:transparent;border:none;color:#d7def0;font-size:22px;cursor:pointer}
   .modal-body{padding:14px 16px}
-  .summary{background:#0b1220;border:1px solid #20263a;border-radius:12px;padding:12px;margin:10px 0;font-size:14px}
-  .summary b{color:var(--gold)}
+  .summary{background:#0b1118;border:1px solid #1e2430;border-radius:12px;padding:12px;margin:10px 0;font-size:14px}
+  .summary b{color:#ffdede}
   .qr-wrap{text-align:center}
   .qr-wrap img{max-width:220px;background:#fff;border-radius:12px;padding:8px;display:block;margin:8px auto}
   @media (max-width:420px){ .qr-wrap img{max-width:160px} }
@@ -64,6 +77,14 @@
       <img class="brand-logo" src="png.images/logo-roblox.png" alt="Roblox">
     </div>
 
+    <!-- 2-SLIDE BANNER -->
+    <div class="slider">
+      <div class="slides">
+        <img src="png.images/roblox-banner-1.jpg" alt="Roblox Deals">
+        <img src="png.images/roblox-banner-2.jpg" alt="Fast Robux Top-Up">
+      </div>
+    </div>
+
     <h1>Roblox Robux (Top-Up — Nepal)</h1>
     <p class="note" style="margin-top:6px">⚡ Delivery in 5–30 minutes • All purchases are <b>non-refundable</b> and <b>non-returnable</b>.</p>
 
@@ -76,26 +97,19 @@
       <p class="note">We may need to send a verification code. Please provide a real contact.</p>
     </div>
 
-    <!-- Packs -->
+    <!-- Pack List (updated) -->
     <div class="card">
       <h2>2) Select the Amount You Want to Buy</h2>
-
-      <h3 style="margin:10px 0 6px;color:#fff">🟦 Basic Packs</h3>
-      <select id="basic">
-        <option value="80 Robux" data-price="190">80 Robux — NPR 190</option>
-        <option value="500 Robux" data-price="1100">500 Robux — NPR 1100</option>
+      <select id="packs">
+        <option value="40 Robux"   data-price="125">40 Robux — Rs. 125</option>
+        <option value="80 Robux"   data-price="200">80 Robux — Rs. 200</option>
+        <option value="400 Robux"  data-price="950">400 Robux — Rs. 950</option>
+        <option value="800 Robux"  data-price="1900">800 Robux — Rs. 1,900</option>
+        <option value="1,700 Robux" data-price="3990">1,700 Robux — Rs. 3,990</option>
+        <option value="4,500 Robux" data-price="8200">4,500 Robux — Rs. 8,200</option>
+        <option value="10,000 Robux" data-price="16500">10,000 Robux — Rs. 16,500</option>
+        <option value="22,500 Robux" data-price="33000">22,500 Robux — Rs. 33,000</option>
       </select>
-
-      <h3 style="margin:16px 0 6px;color:#fff">🟦 Premium Packs</h3>
-      <select id="premium">
-        <option value="450 Robux" data-price="975">450 Robux — NPR 975</option>
-        <option value="1,000 Robux" data-price="2095">1,000 Robux — NPR 2,095</option>
-        <option value="2,200 Robux" data-price="4100">2,200 Robux — NPR 4,100</option>
-        <option value="4,500 Robux" data-price="7600">4,500 Robux — NPR 7,600</option>
-        <option value="10,000 Robux" data-price="14500">10,000 Robux — NPR 14,500</option>
-        <option value="22,500 Robux" data-price="29000">22,500 Robux — NPR 29,000</option>
-      </select>
-      <p class="note">Tip: Change either Basic or Premium — whichever you edit last will be used.</p>
     </div>
 
     <!-- Payment -->
@@ -109,53 +123,13 @@
       <button id="buyBtn" class="cta" disabled>Buy Now!</button>
     </div>
 
-    <!-- Important content blocks -->
+    <!-- Info -->
     <div class="card">
-      <h2>⚡ About Roblox Top-Up</h2>
-      <p>
-        Roblox is a global platform where millions create and enjoy immersive experiences.
-        Robux is the in-game currency used for premium items, game passes, and subscriptions.
-        With SM Digital Services, you can top up Robux in Nepal via <b>eSewa</b>, <b>Khalti</b>, or
-        <b>Bank transfer</b>—fast, safe, and affordable.
-      </p>
-    </div>
-
-    <div class="card">
-      <h2>✅ Why Choose Our Service?</h2>
-      <ul style="margin:0 0 10px 18px">
-        <li>⚡ <b>Instant Delivery:</b> Robux credited within 5–30 minutes.</li>
-        <li>💰 <b>Affordable Pricing:</b> Local prices starting from NPR 190.</li>
-        <li>🔐 <b>Secure Payments:</b> eSewa, Khalti, or Bank.</li>
-        <li>🎟️ <b>Subs & Gift Cards:</b> We support a wide range of options.</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h2>📝 How to Top Up Robux</h2>
-      <ol style="margin:0 0 10px 18px">
-        <li>Enter your <b>Roblox Username</b>, <b>Password</b>, and a <b>Contact</b> for the login code.</li>
-        <li>Select a <b>Robux package</b> (Basic or Premium).</li>
-        <li>Choose your <b>payment method</b> and click <b>Buy Now</b>.</li>
-        <li>Scan the QR and complete payment.</li>
-        <li>Receive Robux in <b>5–30 minutes</b>.</li>
-      </ol>
-    </div>
-
-    <div class="card">
-      <h2>⚠️ Important Information</h2>
+      <h2>⚠️ Important</h2>
       <p class="note">
         • Double-check your Username & Password before submitting. <br>
-        • Do <b>NOT</b> write any gaming words (UC/Robux/Diamond) in remarks — write your <b>real name only</b>.<br>
-        • All purchases are <b>non-refundable & non-returnable</b>.<br>
+        • Do <b>NOT</b> write any gaming words (Robux/UC/Diamond) in remarks — write your <b>real name only</b>. <br>
         • If verification is needed, we’ll contact you via the method you provided (FB/IG/WhatsApp/Phone).
-      </p>
-    </div>
-
-    <div class="card">
-      <h2>🔎 How to Find Your Roblox Username</h2>
-      <p>
-        Open Roblox and check your profile (top-right menu on PC or mobile). Your
-        Username is shown clearly—use the correct login details to avoid delays.
       </p>
     </div>
 
@@ -186,7 +160,7 @@
         </div>
 
         <div class="qr-wrap">
-          <h3 style="color:var(--gold)">Scan & Pay</h3>
+          <h3 style="color:#ffdede">Scan & Pay</h3>
           <img id="mQR" alt="Payment QR">
         </div>
 
@@ -205,16 +179,19 @@
   </div>
 
 <script>
-  const FORMCARRY_ENDPOINT = 'https://formcarry.com/s/l4cLdlMhyf-';
+  const FORMCARRY_ENDPOINT='https://formcarry.com/s/l4cLdlMhyf-';
   let chosen={method:'',qr:''}, current={item:'',price:'—'};
   const $=id=>document.getElementById(id);
 
   function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('show'),3000)}
 
-  // track which pack is active (last changed wins)
-  function pick(item,price){current.item=item;current.price=price?`NPR ${price}`:'—';}
-  $('basic').addEventListener('change',e=>{const o=e.target.selectedOptions[0];pick(o.value,o.dataset.price);toggleBuyBtn();});
-  $('premium').addEventListener('change',e=>{const o=e.target.selectedOptions[0];pick(o.value,o.dataset.price);toggleBuyBtn();});
+  // pack picker
+  $('packs').addEventListener('change',e=>{
+    const o=e.target.selectedOptions[0];
+    current.item=o.value;
+    current.price=`Rs. ${o.dataset.price}`;
+    toggleBuyBtn();
+  });
 
   // payment buttons
   document.querySelectorAll('.pay-btn').forEach(btn=>{
