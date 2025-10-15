@@ -1,271 +1,307 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Roblox Robux • SM Digital Services</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    /* ROBLOX THEME */
-    --bg:#0b0d10; --card:#111418; --line:#22262d; --soft:#151a21;
-    --text:#f1f4f8; --muted:#aeb7c3;
-    --accent:#ff2d2d;        /* Roblox red */
-    --accent-2:#ff5a5a;      /* lighter red */
-    --ok:#25D366; --gold:#ffd166;
+    --bg1:#0a0f1f; --bg2:#111831;                /* premium gaming gradient */
+    --card:#141c2d; --line:#21314b;
+    --text:#e9eef4; --muted:#a9b8d3;
+    --accent:#00bfff;                            /* cyan */
+    --robux:#00ff88;                             /* robux green */
+    --ok:#25D366;                                /* submit */
     --radius:16px;
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
-  .wrap{max-width:900px;margin:0 auto;padding:18px}
-  .topbar{display:flex;align-items:center;gap:10px;padding:12px 0}
-  .topbar a{color:#9ecbff;text-decoration:none}
-  .brand-logo{width:40px;height:40px;object-fit:contain;margin-left:auto}
+  body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--text);background:linear-gradient(180deg,var(--bg1),var(--bg2));line-height:1.6}
+  header{text-align:center;padding:18px 10px}
+  header h1{margin:0;font-size:26px;color:var(--robux)}
+  header p{margin:6px 0 0;color:var(--muted)}
+  .wrap{max-width:960px;margin:0 auto;padding:0 14px 28px}
 
-  h1{margin:8px 0 0;font-size:24px;color:var(--accent)}
-  h2{margin:0 0 10px;color:#ffdede}
-  p{margin:0 0 10px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:14px 0}
-  .note{font-size:14px;color:#ffcdcd}
+  /* ====== SLIDER ====== */
+  .rbx-hero{position:relative;overflow:hidden;border-radius:20px;margin:10px auto}
+  .rbx-track{display:flex;width:200%;transition:transform .6s ease}
+  .rbx-slide{flex:0 0 100%;height:230px;background:#000;position:relative}
+  @media(min-width:720px){.rbx-slide{height:360px}}
+  .rbx-slide img,.rbx-slide video{width:100%;height:100%;object-fit:cover;display:block}
+  .rbx-cap{position:absolute;left:16px;bottom:16px;background:rgba(0,0,0,.55);backdrop-filter:blur(2px);padding:10px 14px;border-radius:12px;font-weight:700}
+  .rbx-dots{position:absolute;right:14px;bottom:14px;display:flex;gap:6px}
+  .rbx-dot{width:8px;height:8px;border-radius:50%;background:#ffffff66}
+  .rbx-dot.active{background:#fff}
 
-  input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #2b3140;background:var(--soft);color:#fff;margin:8px 0}
+  /* ====== CARDS ====== */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-top:14px;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+  .card h2{margin:0 0 10px;color:var(--robux);font-size:18px}
+  .muted{color:var(--muted)}
+  input,select{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#0f1728;color:#fff;margin-top:8px}
   input:focus,select:focus{outline:2px solid var(--accent)}
+  .row{display:flex;gap:10px;flex-wrap:wrap}
+  .row > *{flex:1 1 220px}
 
-  .pay-row{display:flex;gap:10px;flex-wrap:wrap}
-  .pay-btn{flex:1;min-width:110px;background:var(--soft);border:1px solid #2b3140;border-radius:10px;padding:12px;text-align:center;cursor:pointer;font-weight:700;color:#fff}
-  .pay-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  .pay-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+  .pay{flex:1 1 120px;text-align:center;padding:10px;border-radius:10px;background:#0f1728;border:1px solid var(--line);cursor:pointer;font-weight:700}
+  .pay.active{background:var(--accent);border-color:var(--accent)}
 
-  .cta{background:var(--accent);border:none;padding:14px 16px;border-radius:12px;color:#fff;font-weight:800;cursor:pointer;width:100%;margin-top:10px}
+  .cta{width:100%;margin-top:10px;background:var(--robux);border:none;color:#0a0f1f;font-weight:800;padding:14px;border-radius:12px;cursor:pointer}
   .cta[disabled]{opacity:.5;cursor:not-allowed}
 
-  .footer-links{display:flex;gap:10px;justify-content:center;margin:18px 0 10px}
-  .footer-links a{color:#9ecbff;text-decoration:none}
+  /* ====== LIST ====== */
+  .packs ul{list-style:none;margin:0;padding:0}
+  .packs li{display:flex;justify-content:space-between;background:rgba(255,255,255,.05);padding:10px 12px;border-radius:10px;margin:6px 0}
+  .packs li span{color:var(--robux);font-weight:700}
 
-  #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f151c;border:1px solid rgba(255,255,255,.12);color:#e9eef4;padding:10px 14px;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.28);opacity:0;transition:.25s;z-index:9999}
+  /* ====== TOAST ====== */
+  #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f1822;border:1px solid rgba(255,255,255,.12);color:#e9eef4;padding:10px 14px;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.28);opacity:0;transition:.25s;z-index:9999}
   #toast.show{opacity:1}
 
-  /* ===== Banner (2 slides) ===== */
-  .slider{width:100%;height:180px;overflow:hidden;border-radius:14px;margin:8px 0 16px;border:1px solid var(--line)}
-  .slides{display:flex;width:200%;height:100%;animation:rbx 8s infinite}
-  .slides img{width:100%;height:180px;object-fit:cover}
-  @keyframes rbx{
-    0%{transform:translateX(0)} 45%{transform:translateX(0)}
-    55%{transform:translateX(-50%)} 100%{transform:translateX(-50%)}
-  }
-
-  /* modal */
+  /* ====== MODAL ====== */
   .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.68);display:none;align-items:center;justify-content:center;padding:18px;z-index:9990}
-  .modal{width:100%;max-width:560px;background:#0f1420;border:1px solid #223044;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.45)}
-  .modal-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #1f2734}
-  .modal-head h3{margin:0;font-size:18px;color:#ffdede}
-  .modal-close{background:transparent;border:none;color:#d7def0;font-size:22px;cursor:pointer}
+  .modal{width:100%;max-width:560px;background:#0f1425;border:1px solid #223259;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+  .modal-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #1e2639}
+  .modal-head h3{margin:0;color:#ffd166}
+  .modal-close{background:transparent;border:none;color:#cfd6ff;font-size:24px;cursor:pointer}
   .modal-body{padding:14px 16px}
-  .summary{background:#0b1118;border:1px solid #1e2430;border-radius:12px;padding:12px;margin:10px 0;font-size:14px}
-  .summary b{color:#ffdede}
-  .qr-wrap{text-align:center}
-  .qr-wrap img{max-width:220px;background:#fff;border-radius:12px;padding:8px;display:block;margin:8px auto}
-  @media (max-width:420px){ .qr-wrap img{max-width:160px} }
-  .submit{background:var(--ok);border:none;padding:14px 16px;border-radius:12px;color:#fff;font-weight:800;cursor:pointer;width:100%;margin-top:12px}
+  .summary{background:#0b1220;border:1px solid #20263a;border-radius:12px;padding:12px;margin:10px 0;font-size:14px}
+  .summary b{color:#ffd166}
+  .qr{text-align:center}
+  .qr img{max-width:220px;background:#fff;border-radius:12px;padding:8px;display:block;margin:8px auto}
+  @media(max-width:420px){.qr img{max-width:160px}}
+  .submit{width:100%;margin-top:12px;background:var(--ok);color:#fff;border:none;padding:14px;border-radius:12px;font-weight:800;cursor:pointer}
+  .warn{font-size:13px;color:#ffbdbd}
+  footer{text-align:center;color:var(--muted);font-size:13px;padding:14px 0 80px} /* space for float bar */
+
+  /* ===== Floating Social Bar ===== */
+  .float-social {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 10000;
+  }
+  .float-social a {
+    display: flex;align-items: center;justify-content: center;
+    width: 48px;height: 48px;border-radius: 50%;
+    background: linear-gradient(145deg, #00ff88, #00bfff);
+    box-shadow: 0 0 12px rgba(0,255,150,0.4);
+    color: #fff;font-size: 22px;text-decoration: none;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .float-social a:hover { transform: scale(1.08); box-shadow: 0 0 18px rgba(0,255,150,0.7); }
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="topbar">
-      <a href="index.html">← Back Home</a>
-      <span style="opacity:.6">/</span>
-      <span>Roblox Robux</span>
-      <img class="brand-logo" src="png.images/logo-roblox.png" alt="Roblox">
-    </div>
+<header>
+  <h1>🔥 Roblox Robux Top-Up (Nepal)</h1>
+  <p>Fast • Safe • Trusted by Nepali Gamers 🇳🇵</p>
+</header>
 
-    <!-- 2-SLIDE BANNER -->
-    <div class="slider">
-      <div class="slides">
-        <img src="png.images/roblox-banner-1.jpg" alt="Roblox Deals">
-        <img src="png.images/roblox-banner-2.jpg" alt="Fast Robux Top-Up">
+<div class="wrap">
+  <!-- SLIDER -->
+  <div class="rbx-hero" id="rbxHero">
+    <div class="rbx-track" id="rbxTrack">
+      <div class="rbx-slide">
+        <video autoplay muted playsinline loop>
+          <source src="roblox.mp4.mov" type="video/quicktime">
+          <source src="roblox.mp4.mov" type="video/mp4">
+        </video>
+        <div class="rbx-cap">⚡ Instant Robux Delivery</div>
+      </div>
+      <div class="rbx-slide">
+        <img src="Roblox-banner.png" alt="Roblox Banner">
+        <div class="rbx-cap">🎮 Trusted Top-Up • SajiloTopup</div>
       </div>
     </div>
+    <div class="rbx-dots"><span class="rbx-dot active"></span><span class="rbx-dot"></span></div>
+  </div>
 
-    <h1>Roblox Robux (Top-Up — Nepal)</h1>
-    <p class="note" style="margin-top:6px">⚡ Delivery in 5–30 minutes • All purchases are <b>non-refundable</b> and <b>non-returnable</b>.</p>
+  <!-- INFO BAR -->
+  <div class="card">
+    💎 Prices below are indicative. Message us on WhatsApp/Instagram to confirm today’s rate & get instant top-up.
+  </div>
 
-    <!-- Account -->
-    <div class="card">
-      <h2>1) Enter Your Account Data</h2>
-      <input id="username" type="text" placeholder="Roblox Username" required>
-      <input id="pass" type="password" placeholder="Roblox Password" required>
-      <input id="contact" type="text" placeholder="Contact for login code (FB/IG/WhatsApp/Phone)" required>
-      <p class="note">We may need to send a verification code. Please provide a real contact.</p>
-    </div>
+  <!-- PACK LIST -->
+  <div class="card packs">
+    <h2>💰 Robux Packs</h2>
+    <ul>
+      <li>40 Robux <span>Rs. 125</span></li>
+      <li>80 Robux <span>Rs. 200</span></li>
+      <li>400 Robux <span>Rs. 950</span></li>
+      <li>800 Robux <span>Rs. 1,900</span></li>
+      <li>1,700 Robux <span>Rs. 3,990</span></li>
+      <li>4,500 Robux <span>Rs. 8,200</span></li>
+      <li>10,000 Robux <span>Rs. 16,500</span></li>
+      <li>22,500 Robux <span>Rs. 33,000</span></li>
+    </ul>
+  </div>
 
-    <!-- Pack List (updated) -->
-    <div class="card">
-      <h2>2) Select the Amount You Want to Buy</h2>
-      <select id="packs">
-        <option value="40 Robux"   data-price="125">40 Robux — Rs. 125</option>
-        <option value="80 Robux"   data-price="200">80 Robux — Rs. 200</option>
-        <option value="400 Robux"  data-price="950">400 Robux — Rs. 950</option>
-        <option value="800 Robux"  data-price="1900">800 Robux — Rs. 1,900</option>
-        <option value="1,700 Robux" data-price="3990">1,700 Robux — Rs. 3,990</option>
-        <option value="4,500 Robux" data-price="8200">4,500 Robux — Rs. 8,200</option>
-        <option value="10,000 Robux" data-price="16500">10,000 Robux — Rs. 16,500</option>
-        <option value="22,500 Robux" data-price="33000">22,500 Robux — Rs. 33,000</option>
+  <!-- ORDER FORM -->
+  <div class="card">
+    <h2>🧾 Order Details</h2>
+    <div class="row">
+      <select id="pack">
+        <option value="" disabled selected>Select Robux Pack…</option>
+        <option value="40 Robux" data-price="125">40 Robux — Rs.125</option>
+        <option value="80 Robux" data-price="200">80 Robux — Rs.200</option>
+        <option value="400 Robux" data-price="950">400 Robux — Rs.950</option>
+        <option value="800 Robux" data-price="1900">800 Robux — Rs.1,900</option>
+        <option value="1,700 Robux" data-price="3990">1,700 Robux — Rs.3,990</option>
+        <option value="4,500 Robux" data-price="8200">4,500 Robux — Rs.8,200</option>
+        <option value="10,000 Robux" data-price="16500">10,000 Robux — Rs.16,500</option>
+        <option value="22,500 Robux" data-price="33000">22,500 Robux — Rs.33,000</option>
       </select>
+      <input id="user" placeholder="Roblox Username">
+      <input id="pass" type="password" placeholder="Roblox Password">
+      <input id="contact" placeholder="Contact for login code (FB/IG/WhatsApp/Phone)">
     </div>
 
-    <!-- Payment -->
-    <div class="card">
-      <h2>3) Payment Method</h2>
-      <div class="pay-row">
-        <div class="pay-btn" data-method="eSewa"  data-qr="png.images/logo-esewaqr.png">eSewa</div>
-        <div class="pay-btn" data-method="Khalti" data-qr="png.images/logo-khaltiqr.png">Khalti</div>
-        <div class="pay-btn" data-method="Bank"   data-qr="png.images/logo-bankqr.png">Bank</div>
-      </div>
-      <button id="buyBtn" class="cta" disabled>Buy Now!</button>
+    <h2 style="margin-top:12px">💳 Payment Method</h2>
+    <div class="pay-row">
+      <div class="pay" data-method="eSewa"  data-qr="png.images/logo-esewaqr.png">eSewa</div>
+      <div class="pay" data-method="Khalti" data-qr="png.images/logo-khaltiqr.png">Khalti</div>
+      <div class="pay" data-method="Bank"   data-qr="png.images/logo-bankqr.png">Bank</div>
     </div>
 
-    <!-- Info -->
-    <div class="card">
-      <h2>⚠️ Important</h2>
-      <p class="note">
-        • Double-check your Username & Password before submitting. <br>
-        • Do <b>NOT</b> write any gaming words (Robux/UC/Diamond) in remarks — write your <b>real name only</b>. <br>
-        • If verification is needed, we’ll contact you via the method you provided (FB/IG/WhatsApp/Phone).
-      </p>
-    </div>
-
-    <div class="footer-links">
-      <a href="viber://chat?number=+9779828560029">Viber</a>
-      <a href="https://wa.me/9779828560029" target="_blank">WhatsApp</a>
-      <a href="https://tiktok.com/@samirmijar.np" target="_blank">TikTok</a>
-    </div>
+    <button id="buy" class="cta" disabled>Buy Now</button>
+    <p class="muted" style="margin-top:8px">We may need a verification code — keep your contact online.</p>
   </div>
 
-  <div id="toast"></div>
+  <div class="card">
+    <h2>⚠️ Important</h2>
+    <p class="warn">Do <b>NOT</b> write any gaming words (Robux/Top-Up) in payment remarks. Only your <b>real name</b> or phone number.</p>
+  </div>
 
-  <!-- Modal -->
-  <div id="modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal">
-      <div class="modal-head">
-        <h3 id="modalTitle">Complete Your Purchase</h3>
-        <button class="modal-close" onclick="closeModal()">×</button>
+  <footer>© 2025 SM Digital Services • SajiloTopup.NP</footer>
+</div>
+
+<div id="toast"></div>
+
+<!-- MODAL -->
+<div id="modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="mTitle">Complete Your Purchase</h3>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="summary">
+        <div><b>Pack:</b> <span id="mPack">—</span></div>
+        <div><b>Price:</b> <span id="mPrice">—</span></div>
+        <div><b>Username:</b> <span id="mUser">—</span></div>
+        <div><b>Password:</b> <span id="mPass">—</span></div>
+        <div><b>Contact:</b> <span id="mContact">—</span></div>
+        <div><b>Payment:</b> <span id="mMethod">—</span></div>
       </div>
-      <div class="modal-body">
-        <div class="summary">
-          <div><b>Selected:</b> <span id="mItem">—</span></div>
-          <div><b>Price:</b> <span id="mPrice">—</span></div>
-          <div><b>Username:</b> <span id="mUser">—</span></div>
-          <div><b>Password:</b> <span id="mPass">—</span></div>
-          <div><b>Contact:</b> <span id="mContact">—</span></div>
-          <div><b>Payment:</b> <span id="mMethod">—</span></div>
-        </div>
 
-        <div class="qr-wrap">
-          <h3 style="color:#ffdede">Scan & Pay</h3>
-          <img id="mQR" alt="Payment QR">
-        </div>
-
-        <p class="note">⚠️ Do NOT write any <b>gaming words</b> in remarks. Only your <b>real name</b>.</p>
-        <input id="txn" type="text" placeholder="Enter Transaction ID or Remarks">
-        <button id="submitBtn" class="submit" onclick="submitNow()">Submit Order</button>
-
-        <!-- Fallback POST to Formcarry if AJAX fails -->
-        <form id="fallbackForm" action="https://formcarry.com/s/l4cLdlMhyf-" method="POST" style="display:none">
-          <input type="hidden" name="name" value="Roblox Customer">
-          <input type="hidden" name="email" value="no-email@order.local">
-          <input type="hidden" name="order" value="">
-        </form>
+      <div class="qr">
+        <h3 style="color:#ffd166;margin:6px 0 4px">Scan & Pay</h3>
+        <img id="mQR" alt="Payment QR">
       </div>
+
+      <p class="warn">Do not write gaming words in remarks. Write your real name only.</p>
+      <input id="txn" placeholder="Enter Transaction ID or Remarks">
+      <button id="submitBtn" class="submit" onclick="submitNow()">Submit Order</button>
+
+      <!-- Fallback form -->
+      <form id="fallbackForm" action="https://formcarry.com/s/l4cLdlMhyf-" method="POST" style="display:none">
+        <input type="hidden" name="name" value="Roblox Customer">
+        <input type="hidden" name="email" value="no-email@order.local">
+        <input type="hidden" name="order" value="">
+      </form>
     </div>
   </div>
+</div>
+
+<!-- Floating Social Bar -->
+<div class="float-social">
+  <a href="https://wa.me/9779860003403" target="_blank" title="WhatsApp"><span>💬</span></a>
+  <a href="https://instagram.com/sajilotopup.np" target="_blank" title="Instagram"><span>📸</span></a>
+</div>
 
 <script>
-  const FORMCARRY_ENDPOINT='https://formcarry.com/s/l4cLdlMhyf-';
-  let chosen={method:'',qr:''}, current={item:'',price:'—'};
+  const FORMCARRY='https://formcarry.com/s/l4cLdlMhyf-';
+  let chosen={method:'',qr:''};
+
   const $=id=>document.getElementById(id);
+  function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('show'),2600);}
 
-  function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('show'),3000)}
+  // slider
+  (function(){
+    const track=$('rbxTrack'), dots=document.querySelectorAll('.rbx-dot');
+    let i=0,timer;
+    const go=n=>{i=(n+2)%2;track.style.transform=`translateX(-${i*100}%)`;dots.forEach((d,k)=>d.classList.toggle('active',k===i));};
+    const play=()=>timer=setInterval(()=>go(i+1),4000), stop=()=>clearInterval(timer);
+    document.addEventListener('visibilitychange',()=>document.hidden?stop():play());
+    let x0=null; track.addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:true});
+    track.addEventListener('touchend',e=>{if(x0==null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)go(i+(dx<0?1:-1));x0=null;});
+    play();
+  })();
 
-  // pack picker
-  $('packs').addEventListener('change',e=>{
-    const o=e.target.selectedOptions[0];
-    current.item=o.value;
-    current.price=`Rs. ${o.dataset.price}`;
-    toggleBuyBtn();
-  });
+  // enable buy button
+  function ready(){
+    const ok=$('pack').value && $('user').value.trim() && $('pass').value.trim() && $('contact').value.trim() && chosen.method;
+    $('buy').disabled=!ok;
+  }
+  ['pack','user','pass','contact'].forEach(id=>{ $(id).addEventListener('input',ready); $(id).addEventListener('change',ready); });
 
-  // payment buttons
-  document.querySelectorAll('.pay-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      document.querySelectorAll('.pay-btn').forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      chosen.method=btn.dataset.method; chosen.qr=btn.dataset.qr;
-      toggleBuyBtn();
+  // payment select
+  document.querySelectorAll('.pay').forEach(p=>{
+    p.addEventListener('click',()=>{
+      document.querySelectorAll('.pay').forEach(x=>x.classList.remove('active'));
+      p.classList.add('active'); chosen.method=p.dataset.method; chosen.qr=p.dataset.qr; ready();
     });
   });
 
-  // enable Buy Now when ready
-  function toggleBuyBtn(){
-    const ok=$('username').value.trim()&&$('pass').value.trim()&&$('contact').value.trim()&&chosen.method&&current.item;
-    $('buyBtn').disabled=!ok;
-  }
-  ['username','pass','contact'].forEach(id=>{
-    $(id).addEventListener('input',toggleBuyBtn);
-    $(id).addEventListener('change',toggleBuyBtn);
-  });
-
   // open modal
-  $('buyBtn').addEventListener('click',()=>{
-    $('mItem').textContent=current.item||'—';
-    $('mPrice').textContent=current.price||'—';
-    $('mUser').textContent=$('username').value.trim()||'—';
-    $('mPass').textContent=$('pass').value.trim()||'—';
-    $('mContact').textContent=$('contact').value.trim()||'—';
-    $('mMethod').textContent=chosen.method||'—';
-    $('mQR').src=chosen.qr||'';
+  $('buy').addEventListener('click',()=>{
+    const opt=$('pack').selectedOptions[0];
+    $('mPack').textContent=opt.value;
+    $('mPrice').textContent='Rs. '+opt.dataset.price;
+    $('mUser').textContent=$('user').value.trim();
+    $('mPass').textContent=$('pass').value.trim();
+    $('mContact').textContent=$('contact').value.trim();
+    $('mMethod').textContent=chosen.method;
+    $('mQR').src=chosen.qr;
     $('modal').style.display='flex';
   });
   function closeModal(){ $('modal').style.display='none'; }
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+  $('modal').addEventListener('click',e=>{ if(e.target.id==='modal') closeModal(); });
 
-  // send to Formcarry
-  async function sendToFormcarry(order){
+  // send to formcarry
+  async function sendOrder(order){
     const fd=new FormData();
     fd.append('name','Roblox Customer');
     fd.append('email','no-email@order.local');
     fd.append('order',order);
-    const res=await fetch(FORMCARRY_ENDPOINT,{method:'POST',body:fd,headers:{Accept:'application/json'}});
-    if(!res.ok) throw new Error('Formcarry failed'); return res.json();
+    const res=await fetch(FORMCARRY,{method:'POST',body:fd,headers:{Accept:'application/json'}});
+    if(!res.ok) throw new Error('send fail'); return res.json();
   }
 
-  // final submit
   async function submitNow(){
-    const user=$('username').value.trim(), pass=$('pass').value.trim(), contact=$('contact').value.trim(), txn=$('txn').value.trim();
-    if(!user||!pass||!contact||!txn){alert('Please fill all required fields.');return;}
-
+    const txn=$('txn').value.trim();
+    if(!txn){alert('Enter Transaction ID / remarks');return;}
+    const opt=$('pack').selectedOptions[0];
     const order=`Roblox Robux Order
-Selected: ${current.item}
-Price: ${current.price}
-Username: ${user}
-Password: ${pass}
-Contact for Code: ${contact}
+Pack: ${opt.value}
+Price: Rs ${opt.dataset.price}
+Username: ${$('user').value.trim()}
+Password: ${$('pass').value.trim()}
+Contact: ${$('contact').value.trim()}
 Payment: ${chosen.method}
 Transaction/Remarks: ${txn}`;
 
     const btn=$('submitBtn'); const old=btn.textContent;
-    btn.disabled=true; btn.textContent='Sending...';
-    try{
-      await sendToFormcarry(order);
-      toast('✅ Order sent! We’ll process shortly.');
-      closeModal();
-    }catch(e){
-      const f=$('fallbackForm'); f.elements['order'].value=order; f.submit();
-    }finally{
-      btn.disabled=false; btn.textContent=old;
-    }
+    btn.disabled=true; btn.textContent='Sending…';
+    try{ await sendOrder(order); toast('✅ Order sent! We will top-up shortly.'); closeModal(); }
+    catch(e){ const f=$('fallbackForm'); f.elements['order'].value=order; f.submit(); }
+    finally{ btn.disabled=false; btn.textContent=old; }
   }
-
-  // close modal UX
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
-  document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal();});
 </script>
 </body>
 </html>
