@@ -3,39 +3,44 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>The Sam Store • Charge. Play. Enjoy.</title>
-<meta name="theme-color" content="#1a1030" />
+<title>The Sam Store • Digital Top-Ups & Subscriptions</title>
+<meta name="theme-color" content="#140a2e" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    /* DARK (default) */
+    /* ===== DARK (default) ===== */
     --bg:#070712;
     --bg2:#120b24;
     --top:#2a1958;
+
     --panel:rgba(255,255,255,.06);
-    --panel2:rgba(255,255,255,.08);
+    --panel2:rgba(255,255,255,.09);
     --line:rgba(255,255,255,.10);
+
     --text:#f4f6ff;
     --muted:#b9c3e2;
 
     --shadow:0 18px 55px rgba(0,0,0,.55);
-    --radius:22px;
+    --radius:24px;
 
     --cta:linear-gradient(90deg,#ff7a00,#ff3d8b);
     --cta2:linear-gradient(90deg,#7c3aed,#00eaff);
   }
 
-  /* LIGHT (toggle) */
+  /* ===== LIGHT THEME ===== */
   [data-theme="light"]{
     --bg:#f6f7ff;
     --bg2:#eef1ff;
-    --top:rgba(255,255,255,.82);
+    --top:rgba(255,255,255,.86);
+
     --panel:rgba(0,0,0,.04);
     --panel2:rgba(0,0,0,.06);
     --line:rgba(0,0,0,.08);
+
     --text:#0b1020;
     --muted:#3e4a68;
+
     --shadow:0 18px 55px rgba(9,12,24,.12);
   }
 
@@ -54,24 +59,31 @@
   a{color:inherit;text-decoration:none}
   img{display:block;max-width:100%}
 
-  /* ===== Premium background details (clean) ===== */
+  /* ===== PREMIUM BACKGROUND (clean) ===== */
+  .glow{
+    position:fixed; inset:-40px; z-index:-3; pointer-events:none;
+    background:
+      radial-gradient(520px 420px at 15% 10%, rgba(255,122,0,.16), transparent 60%),
+      radial-gradient(520px 420px at 85% 12%, rgba(0,234,255,.14), transparent 60%),
+      radial-gradient(520px 420px at 50% 88%, rgba(124,58,237,.16), transparent 60%);
+    filter: blur(10px);
+    opacity:.9;
+  }
   .mesh{
     position:fixed; inset:0; z-index:-2; pointer-events:none;
-    opacity:.18;
+    opacity:.16;
     background-image: radial-gradient(rgba(255,255,255,.14) 1px, transparent 1px);
     background-size: 34px 34px;
-    mask-image: radial-gradient(700px 520px at 50% 22%, #000 42%, transparent 78%);
+    mask-image: radial-gradient(700px 520px at 50% 20%, #000 42%, transparent 80%);
   }
-  .glow{
-    position:fixed; inset:-30px; z-index:-3; pointer-events:none;
-    background:
-      radial-gradient(520px 420px at 15% 10%, rgba(255,122,0,.14), transparent 60%),
-      radial-gradient(520px 420px at 85% 12%, rgba(0,234,255,.12), transparent 60%),
-      radial-gradient(520px 420px at 50% 88%, rgba(124,58,237,.14), transparent 60%);
-    filter: blur(6px);
+  .grain{
+    position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+    opacity:.10;
+    mix-blend-mode: overlay;
   }
 
-  /* ===== Header (clean, SAMstore-like) ===== */
+  /* ===== HEADER ===== */
   header{
     position:sticky; top:0; z-index:1000;
     background:linear-gradient(180deg, rgba(42,25,88,.98), rgba(42,25,88,.90));
@@ -83,6 +95,7 @@
     background:var(--top);
     border-bottom:1px solid var(--line);
   }
+
   .topbar{
     height:74px;
     display:flex;
@@ -152,12 +165,8 @@
     text-overflow:ellipsis;
     max-width:46vw;
   }
-  @media(min-width:520px){
-    .brand img{height:46px}
-    .brand span{font-size:20px}
-  }
 
-  /* ===== Drawer ===== */
+  /* ===== DRAWER ===== */
   .drawer-overlay{
     position:fixed; inset:0;
     background:rgba(0,0,0,.62);
@@ -217,32 +226,32 @@
     color:#fff;
   }
 
-  /* ===== Main ===== */
+  /* ===== MAIN ===== */
   .container{
     max-width:900px;
     margin:0 auto;
-    padding:18px 14px 120px;
+    padding:18px 14px 110px;
   }
 
-  /* ===== HERO ONLY (clean) ===== */
+  /* ===== HERO (clean, premium) ===== */
   .hero{
     margin-top:14px;
     border-radius:28px;
     border:1px solid var(--line);
     box-shadow:var(--shadow);
-    background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
     overflow:hidden;
     position:relative;
+    background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
   }
   .hero::before{
     content:"";
     position:absolute; inset:-2px;
-    background: linear-gradient(120deg, rgba(255,122,0,.70), rgba(255,61,139,.65), rgba(124,58,237,.55), rgba(0,234,255,.45));
+    background: linear-gradient(120deg, rgba(255,122,0,.55), rgba(255,61,139,.55), rgba(124,58,237,.50), rgba(0,234,255,.45));
     background-size:260% 260%;
-    animation: heroGlow 8s linear infinite;
-    opacity:.28;
+    animation: heroGlow 10s linear infinite;
+    opacity:.35;
     pointer-events:none;
-    filter: blur(18px);
+    filter: blur(26px);
   }
   @keyframes heroGlow{
     0%{background-position:0% 50%}
@@ -252,57 +261,27 @@
 
   .hero-inner{
     position:relative;
-    padding:26px 18px;
-    background:linear-gradient(180deg, rgba(18,11,36,.72), rgba(18,11,36,.42));
+    padding:28px 18px 22px;
+    background:linear-gradient(180deg, rgba(18,11,36,.72), rgba(18,11,36,.35));
   }
   [data-theme="light"] .hero-inner{
-    background:linear-gradient(180deg, rgba(255,255,255,.80), rgba(255,255,255,.55));
+    background:linear-gradient(180deg, rgba(255,255,255,.86), rgba(255,255,255,.58));
   }
 
   .hero h1{
-    margin:0 0 10px;
-    font-size:44px;
-    line-height:1.02;
+    margin:0 0 18px;
+    font-size:48px;
+    line-height:1.0;
     font-weight:900;
-    letter-spacing:-.8px;
+    letter-spacing:-.9px;
   }
-  @media(max-width:420px){
-    .hero h1{font-size:38px}
-  }
-
-  .hero p{
-    margin:0 0 16px;
-    color:var(--muted);
-    line-height:1.65;
-    max-width:60ch;
-    font-size:15px;
-  }
-
-  /* pills */
-  .pillRow{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    margin:14px 0 18px;
-  }
-  .pill{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding:11px 12px;
-    border-radius:999px;
-    background:var(--panel);
-    border:1px solid var(--line);
-    font-weight:900;
-    font-size:12px;
-  }
-  .pill .emo{opacity:.95}
+  @media(max-width:420px){ .hero h1{font-size:40px} }
 
   /* buttons */
   .btnRow{
     display:grid;
     gap:12px;
-    margin-top:4px;
+    margin-top:10px;
   }
   .btn{
     display:flex;
@@ -316,6 +295,8 @@
     background:var(--panel);
     transition:.16s ease;
     box-shadow:0 10px 26px rgba(0,0,0,.22);
+    text-transform:uppercase;
+    letter-spacing:.5px;
   }
   .btn:hover{transform:translateY(-2px); background:var(--panel2)}
   .btn:active{transform:scale(.99)}
@@ -329,18 +310,6 @@
   .btnIcon{
     width:22px;height:22px;object-fit:contain;
     filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
-  }
-
-  /* mascot area (optional, clean) */
-  .hero-bottom{
-    margin-top:18px;
-    display:flex;
-    justify-content:center;
-  }
-  .mascot{
-    width:min(320px, 92%);
-    filter: drop-shadow(0 18px 30px rgba(0,0,0,.45));
-    opacity:.98;
   }
 
   /* WhatsApp floating */
@@ -365,16 +334,13 @@
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
   }
-
-  /* subtle reveal */
-  .reveal{opacity:0; transform:translateY(10px); transition:opacity .55s ease, transform .55s ease}
-  .reveal.show{opacity:1; transform:translateY(0)}
 </style>
 </head>
 
 <body>
   <div class="glow" aria-hidden="true"></div>
   <div class="mesh" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
 
   <!-- Header -->
   <header>
@@ -405,44 +371,27 @@
     <nav>
       <a class="primary" href="shop.html">Shop</a>
       <a href="todaysoffer.html">Today’s Offer</a>
-      <a href="contact.html">Contact Us</a>
       <a href="about.html">About Us</a>
     </nav>
   </aside>
 
   <main class="container">
     <!-- HERO ONLY -->
-    <section class="hero reveal">
+    <section class="hero">
       <div class="hero-inner">
-        <h1>Charge. Play. Enjoy.</h1>
-        <p>Premium subscriptions, AI tools, and game top-ups — fast delivery and reliable support in Nepal.</p>
-
-        <div class="pillRow">
-          <span class="pill"><span class="emo">⚡</span> 0–30 min delivery</span>
-          <span class="pill"><span class="emo">✅</span> Verified process</span>
-          <span class="pill"><span class="emo">💬</span> WhatsApp support</span>
-        </div>
+        <h1>Charge. Play.<br>Enjoy.</h1>
 
         <div class="btnRow">
-          <!-- ✅ Today’s Offer with animated gif icon -->
+          <!-- Today’s Offer with animated gif icon -->
           <a class="btn" href="todaysoffer.html">
             <img class="btnIcon" src="png.images/Referral-gift.gif" alt="">
             TODAY’S OFFER
           </a>
 
-          <!-- ✅ SHOP NOW ALL CAPS -->
+          <!-- SHOP NOW all caps -->
           <a class="btn btnPrimary" href="shop.html">
             🛒 SHOP NOW
           </a>
-
-          <a class="btn" href="contact.html">
-            ☎️ CONTACT US
-          </a>
-        </div>
-
-        <div class="hero-bottom">
-          <!-- optional mascot (remove if you want super-clean) -->
-          <img class="mascot" src="png.images/logo-mascots.png" alt="Mascot">
         </div>
       </div>
     </section>
@@ -454,7 +403,7 @@
   </a>
 
   <footer>
-    © 2026 <strong>The Sam Store</strong> — owned by <strong>Samir Mijar</strong>
+    © 2026 <strong>The Sam Store</strong>
   </footer>
 
 <script>
@@ -471,20 +420,6 @@
   overlay.addEventListener('click', closeDrawer);
   closeBtn.addEventListener('click', closeDrawer);
   document.addEventListener('keydown', e=>{ if(e.key === 'Escape') closeDrawer(); });
-
-  // Scroll reveal
-  (function(){
-    const items = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
-          e.target.classList.add('show');
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    items.forEach(el=>io.observe(el));
-  }());
 
   // Theme toggle
   const themeBtn = document.getElementById('themeBtn');
