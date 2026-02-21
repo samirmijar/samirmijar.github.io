@@ -3,482 +3,604 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>The Sam Store • AI & Gaming Top-Ups</title>
-<meta name="theme-color" content="#070A12" />
+<title>The Sam Store • Charge. Play. Enjoy.</title>
+<meta name="theme-color" content="#1a1030" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --bg:#070A12;
-    --text:#EAF0FF;
-    --muted:#A9B6D6;
+    --bg:#0b0a14;
+    --bg2:#120b24;
+    --top:#2a1958;          /* purple header */
+    --panel:#17122a;        /* cards */
+    --panel2:#1d1634;
+    --line:rgba(255,255,255,.10);
+    --text:#f4f6ff;
+    --muted:#b9c3e2;
+    --shadow:0 18px 50px rgba(0,0,0,.45);
+    --radius:18px;
 
-    --glass:rgba(255,255,255,.06);
-    --glass2:rgba(255,255,255,.08);
-    --line:rgba(255,255,255,.12);
-
-    --shadow:0 18px 60px rgba(0,0,0,.55);
-
-    --neon1:#00EAFF;
-    --neon2:#7C3AED;
-    --neon3:#FF3D7A;
-
-    --grad:linear-gradient(90deg,var(--neon1),var(--neon2),var(--neon3));
-    --radius:22px;
+    --accent:#7c3aed;       /* purple */
+    --accent2:#00eaff;      /* cyan */
+    --cta:linear-gradient(90deg,#ff7a00,#ff3d8b);
   }
 
   *{box-sizing:border-box}
-  html,body{height:100%}
   body{
     margin:0;
     font-family:Inter,system-ui,Arial,sans-serif;
     color:var(--text);
-    background:var(--bg);
+    background:
+      radial-gradient(900px 600px at 20% 10%, rgba(124,58,237,.18), transparent 60%),
+      radial-gradient(900px 600px at 80% 10%, rgba(0,234,255,.10), transparent 60%),
+      linear-gradient(180deg, var(--bg), var(--bg2));
     overflow-x:hidden;
   }
   a{color:inherit;text-decoration:none}
-  img{max-width:100%;display:block}
+  img{display:block;max-width:100%}
 
-  /* ===== Futuristic Background ===== */
-  .bg{
-    position:fixed; inset:0; z-index:-1; overflow:hidden;
-    background:
-      radial-gradient(900px 600px at 20% 10%, rgba(0,234,255,.16), transparent 60%),
-      radial-gradient(900px 600px at 80% 20%, rgba(124,58,237,.18), transparent 62%),
-      radial-gradient(900px 600px at 50% 92%, rgba(255,61,122,.14), transparent 60%),
-      #070A12;
+  /* subtle dotted/mesh background */
+  .mesh{
+    position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.22;
+    background-image: radial-gradient(rgba(255,255,255,.10) 1px, transparent 1px);
+    background-size: 34px 34px;
+    mask-image: radial-gradient(700px 480px at 50% 22%, #000 35%, transparent 75%);
   }
 
-  /* subtle grid */
-  .gridlines{
-    position:absolute; inset:0;
-    background-image:
-      linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px);
-    background-size: 46px 46px;
-    opacity:.14;
-    mask-image: radial-gradient(circle at 50% 25%, #000 0%, transparent 68%);
-    pointer-events:none;
+  /* ===== Top Header (SAMstore style) ===== */
+  header{
+    position:sticky; top:0; z-index:1000;
+    background:linear-gradient(180deg, rgba(42,25,88,.98), rgba(42,25,88,.92));
+    border-bottom:1px solid rgba(255,255,255,.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
-
-  /* animated blobs */
-  .blob{
-    position:absolute; width:520px; height:520px; border-radius:50%;
-    filter: blur(48px);
-    opacity:.55;
-    animation: float 12s ease-in-out infinite;
-    mix-blend-mode: screen;
-    pointer-events:none;
-  }
-  .b1{left:-200px; top:-220px; background:radial-gradient(circle at 30% 30%, rgba(0,234,255,.9), rgba(124,58,237,.35), transparent 70%); animation-duration:14s;}
-  .b2{right:-220px; top:10px; background:radial-gradient(circle at 30% 30%, rgba(255,61,122,.85), rgba(124,58,237,.35), transparent 70%); animation-duration:16s;}
-  .b3{left:15%; bottom:-280px; background:radial-gradient(circle at 30% 30%, rgba(124,58,237,.9), rgba(0,234,255,.22), transparent 70%); animation-duration:18s;}
-
-  @keyframes float{
-    0%,100%{transform:translate3d(0,0,0) scale(1)}
-    50%{transform:translate3d(22px,-18px,0) scale(1.04)}
-  }
-
-  /* particles */
-  #particles{position:absolute; inset:0; width:100%; height:100%}
-
-  /* ===== Topbar (clean gaming brand) ===== */
   .topbar{
-    position:sticky; top:0; z-index:50;
-    display:flex; align-items:center; justify-content:space-between;
-    gap:12px;
-    padding:12px 14px;
-    background:rgba(9,12,22,.55);
-    border-bottom:1px solid rgba(255,255,255,.10);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    height:74px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 14px;
+    max-width:1200px;
+    margin:0 auto;
+    gap:10px;
   }
 
-  .left-actions, .right-actions{
-    display:flex; align-items:center; gap:10px;
+  .left-icons, .right-icons{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    min-width:110px;
   }
 
-  .iconBtn{
-    width:44px;height:44px;border-radius:16px;
-    display:grid;place-items:center;
+  .icon-btn{
+    width:44px;height:44px;
+    border-radius:14px;
+    display:grid; place-items:center;
     background:rgba(255,255,255,.06);
     border:1px solid rgba(255,255,255,.10);
-    box-shadow:0 10px 26px rgba(0,0,0,.35);
+    color:#fff;
     cursor:pointer;
-    transition:transform .15s ease, background .15s ease;
+    transition:.15s ease;
+    user-select:none;
   }
-  .iconBtn:active{transform:scale(.96)}
-  .iconBtn:hover{background:rgba(255,255,255,.09)}
+  .icon-btn:hover{transform:translateY(-2px); background:rgba(255,255,255,.09)}
+  .icon-btn:active{transform:scale(.97)}
+
+  .cartWrap{position:relative}
   .badge{
     position:absolute;
-    margin-top:-30px;margin-left:26px;
-    min-width:18px;height:18px;border-radius:999px;
+    top:-7px; right:-7px;
+    min-width:18px; height:18px;
     padding:0 6px;
-    display:inline-flex;align-items:center;justify-content:center;
-    font-size:11px;font-weight:900;
+    display:grid; place-items:center;
+    background:#ff3b30;
     color:#fff;
-    background:linear-gradient(90deg,#ff3d7a,#ff7a00);
-    border:1px solid rgba(255,255,255,.16);
-  }
-
-  .logoCenter{
-    display:flex; align-items:center; justify-content:center;
-    gap:10px;
-    min-width:140px;
-  }
-  .logoGif{height:34px; width:auto; object-fit:contain; filter: drop-shadow(0 12px 22px rgba(0,0,0,.45));}
-  .brandText{
+    font-size:12px;
     font-weight:900;
-    letter-spacing:.8px;
-    text-transform:uppercase;
-    font-size:14px;
-    opacity:.9;
+    border-radius:999px;
+    border:2px solid rgba(0,0,0,.25);
   }
 
-  /* drawer */
-  .drawer-overlay{
-    position:fixed; inset:0; background:rgba(0,0,0,.55);
-    opacity:0; pointer-events:none; transition:.2s; z-index:90;
-  }
-  .drawer{
-    position:fixed; inset:0 0 0 auto; width:84%; max-width:360px;
-    transform:translateX(100%); transition:.25s ease;
-    z-index:91;
-    padding:18px 16px;
-    background:rgba(9,12,22,.86);
-    border-left:1px solid rgba(255,255,255,.12);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-  }
-  .nav-open .drawer{transform:none}
-  .nav-open .drawer-overlay{opacity:1; pointer-events:auto}
-
-  .drawerHead{
-    display:flex; align-items:center; justify-content:space-between;
-    margin-bottom:16px;
-  }
-  .drawerHead b{letter-spacing:.5px}
-  .closeBtn{
-    width:44px;height:44px;border-radius:16px;
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.10);
-    color:#fff; font-size:22px; cursor:pointer;
-  }
-  .drawerNav{display:grid; gap:10px; margin-top:8px}
-  .drawerNav a{
-    padding:12px 14px;border-radius:18px;
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.10);
-    font-weight:800;
-  }
-  .drawerNav a.primary{
-    background:linear-gradient(90deg, rgba(0,234,255,.20), rgba(124,58,237,.20), rgba(255,61,122,.18));
-    border-color:rgba(255,255,255,.16);
-  }
-
-  /* ===== Layout ===== */
-  .container{max-width:1100px;margin:0 auto;padding:18px 14px 120px}
-
-  /* ===== Hero Card ===== */
-  .hero{
-    margin-top:10px;
-    border-radius:28px;
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.10);
-    box-shadow:var(--shadow);
-    overflow:hidden;
-    position:relative;
-  }
-  .hero::before{
-    content:"";
-    position:absolute; inset:-2px;
-    background:linear-gradient(120deg, rgba(0,234,255,.7), rgba(124,58,237,.7), rgba(255,61,122,.7));
-    background-size:260% 260%;
-    animation: glow 7s linear infinite;
-    opacity:.26;
-    pointer-events:none;
-  }
-  @keyframes glow{
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-  }
-
-  .heroInner{
-    position:relative; z-index:1;
-    padding:22px 16px;
-    display:grid;
-    gap:14px;
-  }
-
-  .heroTitle{
-    margin:0;
-    font-size:30px;
-    line-height:1.05;
-    font-weight:900;
-    letter-spacing:-.5px;
-  }
-  @media(min-width:520px){ .heroTitle{font-size:40px} }
-
-  .heroTitle span{
-    background:linear-gradient(90deg,#fff,#a7f5ff);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-  }
-
-  .sub{
-    margin:0;
-    color:var(--muted);
-    font-size:14px;
-    max-width:58ch;
-  }
-
-  /* ===== Buttons ===== */
-  .actions{
-    display:grid;
-    gap:12px;
-    margin-top:6px;
-  }
-
-  .btn{
-    width:100%;
+  .brand{
     display:flex;
     align-items:center;
     justify-content:center;
     gap:10px;
-    padding:16px 16px;
-    border-radius:18px;
+    min-width:0;
+    flex:1;
+  }
+  .brand img{
+    height:40px;
+    width:auto;
+    object-fit:contain;
+    filter: drop-shadow(0 12px 30px rgba(0,0,0,.55));
+  }
+  .brand span{
     font-weight:900;
-    letter-spacing:.8px;
-    text-transform:uppercase;
+    letter-spacing:.4px;
+    font-size:18px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width:46vw;
+  }
+
+  @media (min-width:520px){
+    .brand span{font-size:20px}
+    .brand img{height:44px}
+  }
+
+  /* ===== Drawer ===== */
+  .drawer-overlay{
+    position:fixed; inset:0;
+    background:rgba(0,0,0,.60);
+    opacity:0; pointer-events:none;
+    transition:.2s;
+    z-index:1200;
+  }
+  .drawer{
+    position:fixed; inset:0 0 0 auto;
+    width:84%; max-width:380px;
+    transform:translateX(100%);
+    transition:.26s ease;
+    z-index:1210;
+    padding:18px 16px;
+    background:rgba(18,11,36,.95);
+    border-left:1px solid rgba(255,255,255,.10);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow:var(--shadow);
+  }
+  .nav-open .drawer{transform:none}
+  .nav-open .drawer-overlay{opacity:1; pointer-events:auto}
+
+  .drawer .close{
+    position:absolute; top:12px; right:12px;
+    width:46px;height:46px;
+    border-radius:14px;
     border:1px solid rgba(255,255,255,.12);
     background:rgba(255,255,255,.06);
-    box-shadow:0 16px 40px rgba(0,0,0,.40);
-    transition:transform .18s ease, background .18s ease;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    color:#fff;
+    font-size:26px;
+    cursor:pointer;
   }
-  .btn:hover{transform:translateY(-2px); background:rgba(255,255,255,.08)}
-  .btnPrimary{
+  .drawer nav{
+    margin-top:64px;
+    display:grid;
+    gap:12px;
+  }
+  .drawer a{
+    padding:12px 16px;
+    border-radius:14px;
+    font-weight:900;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.10);
+  }
+  .drawer a.primary{
+    background:linear-gradient(135deg, rgba(124,58,237,.95), rgba(0,234,255,.55));
     border-color:transparent;
-    background:linear-gradient(90deg,#ff7a00,#ff3d7a);
-  }
-  .btnPrimary:hover{filter:saturate(1.05)}
-
-  .btnIcon{
-    width:22px;height:22px;object-fit:contain;
   }
 
-  /* Offer button with animated glow */
-  .offerBtn{
-    background:linear-gradient(90deg, rgba(0,234,255,.14), rgba(124,58,237,.18));
-    border:1px solid rgba(255,255,255,.16);
-    position:relative;
+  /* ===== Layout ===== */
+  .container{
+    max-width:1200px;
+    margin:0 auto;
+    padding:16px 14px 110px;
+  }
+
+  /* ===== HERO BANNER (like SAMstore big banner) ===== */
+  .hero{
+    margin-top:14px;
+    border-radius:22px;
     overflow:hidden;
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:var(--shadow);
+    background:linear-gradient(135deg, rgba(124,58,237,.25), rgba(0,234,255,.10));
+    position:relative;
   }
-  .offerBtn::after{
+  .hero::before{
     content:"";
-    position:absolute; inset:-40%;
-    background:radial-gradient(circle at 30% 40%, rgba(0,234,255,.22), transparent 55%),
-               radial-gradient(circle at 70% 50%, rgba(255,61,122,.18), transparent 58%);
-    animation: sweep 3.5s ease-in-out infinite;
-    opacity:.8;
+    position:absolute; inset:0;
+    background:
+      radial-gradient(900px 360px at 30% 20%, rgba(255,255,255,.10), transparent 60%),
+      radial-gradient(900px 360px at 80% 30%, rgba(255,61,139,.12), transparent 60%);
+    pointer-events:none;
   }
-  @keyframes sweep{
-    0%,100%{transform:translateX(-6%)}
-    50%{transform:translateX(6%)}
+  .hero-inner{
+    position:relative;
+    padding:22px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:16px;
+    align-items:center;
+    background:linear-gradient(180deg, rgba(23,18,42,.75), rgba(23,18,42,.45));
   }
-  .offerBtn > *{position:relative; z-index:1}
+  @media(min-width:900px){
+    .hero-inner{grid-template-columns:1.2fr .8fr; padding:26px}
+  }
 
-  /* ===== WhatsApp Floating (premium) ===== */
-  .waFloat{
+  .hero h1{
+    margin:0 0 10px;
+    font-size:36px;
+    line-height:1.05;
+    font-weight:900;
+    letter-spacing:-.6px;
+  }
+  @media(min-width:520px){ .hero h1{font-size:46px} }
+
+  .hero p{
+    margin:0 0 16px;
+    color:var(--muted);
+    max-width:62ch;
+    line-height:1.6;
+  }
+
+  .pillRow{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 18px}
+  .pill{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:10px 12px;
+    border-radius:999px;
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.10);
+    font-weight:800;
+    font-size:12px;
+    color:#eaf0ff;
+  }
+
+  .ctaRow{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:12px;
+    margin-top:4px;
+  }
+  @media(min-width:520px){ .ctaRow{grid-template-columns:repeat(3,1fr)} }
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    padding:14px 16px;
+    border-radius:14px;
+    font-weight:900;
+    border:1px solid rgba(255,255,255,.10);
+    background:rgba(255,255,255,.07);
+    transition:.15s ease;
+  }
+  .btn:hover{transform:translateY(-2px); background:rgba(255,255,255,.10)}
+  .btnPrimary{
+    background:var(--cta);
+    border-color:transparent;
+    box-shadow:0 18px 46px rgba(255,61,139,.18);
+  }
+  .btnPrimary:hover{box-shadow:0 22px 60px rgba(255,61,139,.22)}
+
+  .heroArt{
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,.10);
+    background:rgba(0,0,0,.18);
+    padding:16px;
+    display:grid;
+    place-items:center;
+    min-height:220px;
+  }
+  .heroArt img{
+    width:min(320px,100%);
+    filter: drop-shadow(0 24px 40px rgba(0,0,0,.55));
+  }
+
+  /* ===== Sections ===== */
+  .section{margin-top:18px}
+  .sectionHead{
+    display:flex;align-items:flex-end;justify-content:space-between;gap:10px;
+    margin:18px 2px 12px;
+  }
+  .sectionHead h2{
+    margin:0;
+    font-size:18px;
+    font-weight:900;
+  }
+  .sectionHead a{color:#b8c8ff;font-weight:900;font-size:13px}
+
+  /* cards grid like pro SaaS */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+  }
+  @media(min-width:720px){ .grid{grid-template-columns:repeat(4,1fr)} }
+
+  .card{
+    border-radius:18px;
+    padding:14px;
+    background:linear-gradient(180deg, rgba(15,23,42,.85), rgba(15,23,42,.65));
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+    transition:.15s ease;
+    min-height:130px;
+    display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .card:hover{transform:translateY(-4px); border-color:rgba(0,234,255,.20)}
+  .cardTop{display:flex;align-items:center;gap:10px}
+  .cardTop img{
+    width:44px;height:44px;object-fit:contain;
+    border-radius:14px;
+    padding:7px;
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.10);
+  }
+  .card strong{font-weight:900}
+  .sub{color:var(--muted);font-size:12px;margin-top:4px}
+  .foot{color:#dfe9ff;font-size:12px;opacity:.92}
+
+  /* Trust */
+  .trust{
+    display:grid;grid-template-columns:1fr;gap:12px;
+  }
+  @media(min-width:900px){ .trust{grid-template-columns:repeat(3,1fr)} }
+  .trustCard{
+    border-radius:18px;
+    padding:14px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+  .trustCard b{display:block;margin-bottom:6px}
+  .trustCard p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+
+  /* Payments */
+  .payStrip{
+    display:flex;flex-wrap:wrap;gap:12px;
+    align-items:center;justify-content:center;
+    padding:14px;
+    border-radius:18px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+  .payStrip img{
+    width:46px;height:46px;
+    background:#fff;
+    border-radius:14px;
+    padding:6px;
+  }
+
+  /* WhatsApp FAB */
+  .wa-fab{
     position:fixed;
     right:16px;
     bottom:18px;
-    z-index:1200;
-    width:64px;height:64px;border-radius:999px;
+    z-index:2000;
+    width:62px;height:62px;
+    border-radius:50%;
     display:grid;place-items:center;
-    background:linear-gradient(90deg,#25D366,#0CCB5A);
-    box-shadow:0 18px 44px rgba(0,0,0,.40);
+    background:linear-gradient(135deg,#25D366,#1fbf5a);
+    box-shadow:0 18px 46px rgba(0,0,0,.35);
     border:1px solid rgba(255,255,255,.14);
-    transition:transform .15s ease;
+    transition:.15s ease;
   }
-  .waFloat:active{transform:scale(.96)}
-  .waFloat img{width:30px;height:30px;object-fit:contain}
+  .wa-fab:hover{transform:translateY(-3px)}
+  .wa-fab img{width:28px;height:28px}
 
-  /* small footer */
   footer{
     padding:18px 12px;
     text-align:center;
-    color:rgba(233,240,255,.7);
+    color:#cbd5e1;
+    background:rgba(0,0,0,.18);
     border-top:1px solid rgba(255,255,255,.08);
-    background:rgba(9,12,22,.55);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
+
+  /* Scroll reveal (very subtle) */
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .55s ease, transform .55s ease}
+  .reveal.show{opacity:1; transform:translateY(0)}
 </style>
 </head>
 
 <body>
-  <!-- Background -->
-  <div class="bg" aria-hidden="true">
-    <div class="blob b1"></div>
-    <div class="blob b2"></div>
-    <div class="blob b3"></div>
-    <div class="gridlines"></div>
-    <canvas id="particles"></canvas>
-  </div>
+  <div class="mesh" aria-hidden="true"></div>
 
-  <!-- Topbar -->
-  <header class="topbar">
-    <div class="left-actions">
-      <div style="position:relative">
-        <button class="iconBtn" type="button" aria-label="Cart">
-          🛍️
-        </button>
-        <span class="badge">0</span>
+  <!-- HEADER -->
+  <header>
+    <div class="topbar">
+      <div class="left-icons">
+        <div class="icon-btn cartWrap" title="Basket" aria-label="Basket">
+          🛍️ <span class="badge" id="cartBadge">0</span>
+        </div>
+        <div class="icon-btn" title="Account" aria-label="Account">👤</div>
       </div>
 
-      <button class="iconBtn" type="button" aria-label="Account">
-        👤
-      </button>
-    </div>
+      <a class="brand" href="index.html" aria-label="The Sam Store Home">
+        <!-- ✅ Your LIVE logo -->
+        <img src="png.images/samstore-logo.gif" alt="The Sam Store">
+        <span>The Sam Store</span>
+      </a>
 
-    <div class="logoCenter" aria-label="The Sam Store">
-      <img class="logoGif" src="png.images/samstore-logo.gif" alt="The Sam Store">
-    </div>
-
-    <div class="right-actions">
-      <button class="iconBtn" type="button" aria-label="Theme">
-        ☀️
-      </button>
-      <button class="iconBtn sm-menu-toggle" type="button" aria-label="Menu">
-        ☰
-      </button>
+      <div class="right-icons">
+        <button class="icon-btn" id="themeBtn" title="Theme" aria-label="Theme">☀️</button>
+        <button class="icon-btn sm-menu-toggle" title="Menu" aria-label="Menu">☰</button>
+      </div>
     </div>
   </header>
 
   <!-- Drawer -->
   <div class="drawer-overlay" id="drawerOverlay"></div>
-  <aside class="drawer" id="drawer" aria-label="Menu">
-    <div class="drawerHead">
-      <b>THE SAM STORE</b>
-      <button class="closeBtn" id="drawerClose" aria-label="Close">×</button>
-    </div>
-    <nav class="drawerNav">
-      <a class="primary" href="shop.html">SHOP</a>
-      <a href="todaysoffer.html">TODAY’S OFFER</a>
-      <a href="shop.html#topup">TOP UP</a>
-      <a href="shop.html#subs">SUBSCRIPTIONS</a>
-      <a href="shop.html#gift">GIFT CARDS</a>
+  <aside class="drawer" id="drawer" aria-label="Main menu">
+    <button class="close" id="drawerClose" aria-label="Close menu">×</button>
+    <nav>
+      <a class="primary" href="shop.html">Shop</a>
+      <a href="todaysoffer.html">Today’s Offer</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact Us</a>
     </nav>
   </aside>
 
   <main class="container">
-    <!-- Clean Futuristic Hero -->
-    <section class="hero">
-      <div class="heroInner">
-        <h1 class="heroTitle"><span>AI. Subscriptions. Game Top-Ups.</span></h1>
-        <p class="sub">Fast delivery in Nepal • Verified process • Support on WhatsApp</p>
+    <!-- HERO -->
+    <section class="hero reveal">
+      <div class="hero-inner">
+        <div>
+          <h1>Charge. Play. Enjoy.</h1>
+          <p>Premium subscriptions, AI tools, and game top-ups — fast delivery and reliable support in Nepal.</p>
 
-        <div class="actions">
-          <a class="btn offerBtn" href="todaysoffer.html">
-            <img class="btnIcon" src="png.images/Referral-gift.gif" alt="">
-            TODAY’S OFFER
-          </a>
+          <div class="pillRow">
+            <span class="pill">⚡ 0–30 min delivery</span>
+            <span class="pill">✅ Verified process</span>
+            <span class="pill">💬 WhatsApp support</span>
+          </div>
 
-          <a class="btn btnPrimary" href="shop.html">
-            🛒 SHOP NOW
-          </a>
+          <div class="ctaRow">
+            <a class="btn" href="todaysoffer.html">🔥 Today’s Offer</a>
+            <a class="btn btnPrimary" href="shop.html">🛒 Shop Now</a>
+            <a class="btn" href="contact.html">☎️ Contact Us</a>
+          </div>
         </div>
+
+        <div class="heroArt">
+          <img src="png.images/logo-mascots.png" alt="Mascot">
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="section reveal">
+      <div class="sectionHead">
+        <h2>Popular Categories</h2>
+        <a href="shop.html">View all →</a>
+      </div>
+
+      <div class="grid">
+        <a class="card" href="shop.html">
+          <div class="cardTop">
+            <img src="png.images/logo-chatgptai.png" alt="AI Tools">
+            <div>
+              <strong>AI Tools</strong>
+              <div class="sub">ChatGPT • Canva • more</div>
+            </div>
+          </div>
+          <div class="foot">Fast activation • Support included</div>
+        </a>
+
+        <a class="card" href="shop.html">
+          <div class="cardTop">
+            <img src="png.images/logo-freefire.png" alt="Game Top-Up">
+            <div>
+              <strong>Game Top-Up</strong>
+              <div class="sub">Free Fire • PUBG • more</div>
+            </div>
+          </div>
+          <div class="foot">UID top-up • Secure process</div>
+        </a>
+
+        <a class="card" href="shop.html">
+          <div class="cardTop">
+            <img src="png.images/logo-spotifys.png" alt="Subscriptions">
+            <div>
+              <strong>Subscriptions</strong>
+              <div class="sub">Netflix • YouTube • VPN</div>
+            </div>
+          </div>
+          <div class="foot">Affordable plans • Quick delivery</div>
+        </a>
+
+        <a class="card" href="shop.html">
+          <div class="cardTop">
+            <img src="png.images/logo-unipin.png" alt="Gift Cards">
+            <div>
+              <strong>Gift Cards</strong>
+              <div class="sub">iTunes • PSN • Xbox</div>
+            </div>
+          </div>
+          <div class="foot">Instant codes • Easy support</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Trust -->
+    <section class="section reveal">
+      <div class="sectionHead">
+        <h2>Why People Choose Us</h2>
+      </div>
+
+      <div class="trust">
+        <div class="trustCard">
+          <b>✅ Verified & Safe Process</b>
+          <p>Clear payment & activation workflow to keep things smooth and secure.</p>
+        </div>
+        <div class="trustCard">
+          <b>⚡ Fast Response</b>
+          <p>Most orders processed within 0–30 minutes after verification.</p>
+        </div>
+        <div class="trustCard">
+          <b>💬 Real Support</b>
+          <p>Contact us on WhatsApp for quick guidance and updates.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Payments -->
+    <section class="section reveal">
+      <div class="sectionHead">
+        <h2>We Accept Payments</h2>
+      </div>
+
+      <div class="payStrip">
+        <img src="png.images/logo-esewa.png" alt="eSewa">
+        <img src="png.images/logo-khalti.png" alt="Khalti">
+        <img src="png.images/logo-bank.png" alt="Bank Transfer">
       </div>
     </section>
   </main>
 
-  <!-- WhatsApp Floating -->
-  <a class="waFloat" href="https://wa.me/9779828560029" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <!-- WhatsApp floating -->
+  <a class="wa-fab" href="https://wa.me/9779828560029" target="_blank" rel="noopener" aria-label="WhatsApp">
     <img src="png.images/logo-whatsapp.png" alt="WhatsApp">
   </a>
 
   <footer>
-    ©2026 The Sam Store • Owned by Samir Mijar
+    Copyright ©2026 <strong>The Sam Store</strong> — owned by <strong>Samir Mijar</strong>
   </footer>
 
 <script>
   // Drawer open/close
   const body = document.body;
   const overlay = document.getElementById('drawerOverlay');
-  const closeBtn= document.getElementById('drawerClose');
-  document.querySelectorAll('.sm-menu-toggle').forEach(b=> b.addEventListener('click', ()=> body.classList.add('nav-open')));
-  overlay.addEventListener('click', ()=> body.classList.remove('nav-open'));
-  closeBtn.addEventListener('click', ()=> body.classList.remove('nav-open'));
-  document.addEventListener('keydown', e=>{ if(e.key==='Escape') body.classList.remove('nav-open'); });
+  const closeBtn = document.getElementById('drawerClose');
+  const openBtns = document.querySelectorAll('.sm-menu-toggle');
 
-  // Subtle particles (no library)
+  function openDrawer(){ body.classList.add('nav-open'); }
+  function closeDrawer(){ body.classList.remove('nav-open'); }
+
+  openBtns.forEach(b=> b.addEventListener('click', openDrawer));
+  overlay.addEventListener('click', closeDrawer);
+  closeBtn.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', e=>{ if(e.key === 'Escape') closeDrawer(); });
+
+  // Scroll reveal
   (function(){
-    const c = document.getElementById('particles');
-    if(!c) return;
-    const ctx = c.getContext('2d');
-    let w,h,dpr;
-    const dots = [];
-    const DOTS = 55;
-
-    function resize(){
-      dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-      w = c.clientWidth; h = c.clientHeight;
-      c.width = Math.floor(w * dpr);
-      c.height = Math.floor(h * dpr);
-      ctx.setTransform(dpr,0,0,dpr,0,0);
-    }
-    function rand(min,max){ return Math.random()*(max-min)+min; }
-    function init(){
-      dots.length = 0;
-      for(let i=0;i<DOTS;i++){
-        dots.push({
-          x: rand(0,w), y: rand(0,h),
-          vx: rand(-0.18,0.18), vy: rand(-0.18,0.18),
-          r: rand(1.0,2.1),
-          a: rand(0.16,0.48)
-        });
-      }
-    }
-
-    function step(){
-      ctx.clearRect(0,0,w,h);
-
-      for(const p of dots){
-        p.x += p.vx; p.y += p.vy;
-        if(p.x<0||p.x>w) p.vx *= -1;
-        if(p.y<0||p.y>h) p.vy *= -1;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-        ctx.fillStyle = `rgba(180,230,255,${p.a})`;
-        ctx.fill();
-      }
-
-      for(let i=0;i<dots.length;i++){
-        for(let j=i+1;j<dots.length;j++){
-          const a = dots[i], b = dots[j];
-          const dx = a.x-b.x, dy = a.y-b.y;
-          const dist = Math.hypot(dx,dy);
-          if(dist < 120){
-            ctx.strokeStyle = `rgba(0,234,255,${(1-dist/120)*0.08})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(a.x,a.y);
-            ctx.lineTo(b.x,b.y);
-            ctx.stroke();
-          }
+    const items = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('show');
+          io.unobserve(e.target);
         }
-      }
-
-      requestAnimationFrame(step);
-    }
-
-    resize(); init(); step();
-    window.addEventListener('resize', ()=>{ resize(); init(); });
+      });
+    }, { threshold: 0.12 });
+    items.forEach(el=>io.observe(el));
   }());
+
+  // Optional: Light/Dark toggle (simple)
+  const themeBtn = document.getElementById('themeBtn');
+  let bright = false;
+  themeBtn.addEventListener('click', ()=>{
+    bright = !bright;
+    document.documentElement.style.setProperty('--bg', bright ? '#f7f8ff' : '#0b0a14');
+    document.documentElement.style.setProperty('--bg2', bright ? '#eef1ff' : '#120b24');
+    document.documentElement.style.setProperty('--text', bright ? '#0b1020' : '#f4f6ff');
+    document.documentElement.style.setProperty('--muted', bright ? '#3b4a6a' : '#b9c3e2');
+    themeBtn.textContent = bright ? '🌙' : '☀️';
+  });
 </script>
 </body>
 </html>
