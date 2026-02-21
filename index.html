@@ -3,114 +3,94 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>The Sam Store • Gaming Top-Ups & Subscriptions</title>
-<meta name="theme-color" content="#2a145a" />
+<title>The Sam Store • Charge. Play. Enjoy.</title>
+<meta name="theme-color" content="#1a1030" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --bg:#06070f;
-    --panel:rgba(15,18,34,.58);
-    --panel2:rgba(10,12,22,.55);
-    --line:rgba(255,255,255,.12);
-    --text:#eaf0ff;
-    --muted:#b9c6d3;
-    --radius:20px;
-    --shadow:0 18px 60px rgba(0,0,0,.55);
+    --bg:#0b0a14;
+    --bg2:#120b24;
+    --top:#2a1958;          /* purple header */
+    --panel:#17122a;        /* cards */
+    --panel2:#1d1634;
+    --line:rgba(255,255,255,.10);
+    --text:#f4f6ff;
+    --muted:#b9c3e2;
+    --shadow:0 18px 50px rgba(0,0,0,.45);
+    --radius:18px;
 
-    /* SAM-store-ish gaming gradients */
-    --vio1:#5b1bff;
-    --vio2:#7c3aed;
-    --vio3:#a855f7;
-    --cyan:#00eaff;
-    --pink:#ff3d8b;
-    --gold:#ffcc00;
-
-    --gradTop:linear-gradient(135deg,#2a145a 0%, #3b1b83 35%, #2b1263 70%, #23104c 100%);
-    --gradCTA:linear-gradient(90deg,#ff7a00,#ff3d8b);
-    --gradNeon:linear-gradient(90deg,#00eaff,#6a00ff);
+    --accent:#7c3aed;       /* purple */
+    --accent2:#00eaff;      /* cyan */
+    --cta:linear-gradient(90deg,#ff7a00,#ff3d8b);
   }
 
   *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
   body{
     margin:0;
-    background:var(--bg);
-    color:var(--text);
     font-family:Inter,system-ui,Arial,sans-serif;
+    color:var(--text);
+    background:
+      radial-gradient(900px 600px at 20% 10%, rgba(124,58,237,.18), transparent 60%),
+      radial-gradient(900px 600px at 80% 10%, rgba(0,234,255,.10), transparent 60%),
+      linear-gradient(180deg, var(--bg), var(--bg2));
     overflow-x:hidden;
   }
   a{color:inherit;text-decoration:none}
-  img{max-width:100%;display:block}
+  img{display:block;max-width:100%}
 
-  /* ===== ULTRA BACKGROUND ===== */
-  .bg{
-    position:fixed; inset:0; z-index:-2; overflow:hidden;
-    background:
-      radial-gradient(1200px 900px at 8% 10%, rgba(91,27,255,.22), transparent 60%),
-      radial-gradient(1100px 800px at 90% 14%, rgba(255,61,139,.18), transparent 60%),
-      radial-gradient(1200px 900px at 50% 92%, rgba(0,234,255,.14), transparent 62%),
-      #050611;
-  }
-  #particles{position:absolute; inset:0; width:100%; height:100%}
-
-  .blob{
-    position:absolute; width:680px; height:680px; border-radius:50%;
-    filter: blur(52px);
-    opacity:.55;
-    animation: float 12s ease-in-out infinite;
-    mix-blend-mode: screen;
-    pointer-events:none;
-    z-index:-1;
-  }
-  .b1{left:-220px; top:-240px; background:radial-gradient(circle at 30% 30%, rgba(91,27,255,.95), rgba(255,61,139,.35), transparent 70%); animation-duration:14s;}
-  .b2{right:-240px; top:10px; background:radial-gradient(circle at 30% 30%, rgba(0,234,255,.85), rgba(124,58,237,.45), transparent 70%); animation-duration:16s;}
-  .b3{left:18%; bottom:-340px; background:radial-gradient(circle at 30% 30%, rgba(168,85,247,.85), rgba(255,61,139,.30), transparent 70%); animation-duration:18s;}
-  @keyframes float{
-    0%,100%{transform:translate3d(0,0,0) scale(1)}
-    50%{transform:translate3d(34px,-26px,0) scale(1.05)}
-  }
-  .grain{
-    position:absolute; inset:0;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
-    opacity:.10; pointer-events:none; mix-blend-mode: overlay;
+  /* subtle dotted/mesh background */
+  .mesh{
+    position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.22;
+    background-image: radial-gradient(rgba(255,255,255,.10) 1px, transparent 1px);
+    background-size: 34px 34px;
+    mask-image: radial-gradient(700px 480px at 50% 22%, #000 35%, transparent 75%);
   }
 
-  /* ===== PREMIUM TOP BAR (SAM STORE STYLE) ===== */
-  .topbar{
+  /* ===== Top Header (SAMstore style) ===== */
+  header{
     position:sticky; top:0; z-index:1000;
-    height:74px;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:0 14px;
-    background:var(--gradTop);
+    background:linear-gradient(180deg, rgba(42,25,88,.98), rgba(42,25,88,.92));
     border-bottom:1px solid rgba(255,255,255,.08);
-    box-shadow:0 14px 40px rgba(0,0,0,.42);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
-  .topbar::after{
-    content:"";
-    position:absolute; inset:-1px;
-    background:linear-gradient(90deg, rgba(0,234,255,.16), rgba(255,61,139,.14), rgba(91,27,255,.16));
-    opacity:.35;
-    pointer-events:none;
+  .topbar{
+    height:74px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 14px;
+    max-width:1200px;
+    margin:0 auto;
+    gap:10px;
   }
-  .left-icons,.right-icons{display:flex; align-items:center; gap:10px; position:relative; z-index:1}
+
+  .left-icons, .right-icons{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    min-width:110px;
+  }
 
   .icon-btn{
-    position:relative;
-    width:42px;height:42px;
-    display:grid; place-items:center;
+    width:44px;height:44px;
     border-radius:14px;
-    background:rgba(255,255,255,.08);
+    display:grid; place-items:center;
+    background:rgba(255,255,255,.06);
     border:1px solid rgba(255,255,255,.10);
     color:#fff;
     cursor:pointer;
-    transition:.18s ease;
+    transition:.15s ease;
     user-select:none;
   }
-  .icon-btn:hover{transform:translateY(-2px); background:rgba(255,255,255,.14)}
-  .icon-btn:active{transform:scale(.96)}
+  .icon-btn:hover{transform:translateY(-2px); background:rgba(255,255,255,.09)}
+  .icon-btn:active{transform:scale(.97)}
+
+  .cartWrap{position:relative}
   .badge{
-    position:absolute; top:-7px; right:-7px;
+    position:absolute;
+    top:-7px; right:-7px;
     min-width:18px; height:18px;
     padding:0 6px;
     display:grid; place-items:center;
@@ -122,57 +102,59 @@
     border:2px solid rgba(0,0,0,.25);
   }
 
-  .logo-center{
-    position:relative; z-index:1;
-    display:flex; align-items:center; gap:10px;
-    font-weight:900;
-    letter-spacing:.6px;
+  .brand{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    min-width:0;
+    flex:1;
   }
-  .logo-center img{
-    height:38px;
+  .brand img{
+    height:40px;
+    width:auto;
     object-fit:contain;
-    filter: drop-shadow(0 12px 22px rgba(0,0,0,.50));
+    filter: drop-shadow(0 12px 30px rgba(0,0,0,.55));
   }
-  .logo-center span{
+  .brand span{
+    font-weight:900;
+    letter-spacing:.4px;
     font-size:18px;
-    background:linear-gradient(90deg,#ffffff,#bff5ff);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
     white-space:nowrap;
-  }
-  @media (min-width:520px){
-    .logo-center img{height:42px}
-    .logo-center span{font-size:20px}
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width:46vw;
   }
 
-  /* ===== DRAWER MENU ===== */
+  @media (min-width:520px){
+    .brand span{font-size:20px}
+    .brand img{height:44px}
+  }
+
+  /* ===== Drawer ===== */
   .drawer-overlay{
     position:fixed; inset:0;
-    background:rgba(0,0,0,.55);
-    opacity:0; pointer-events:none; transition:.2s;
-    z-index:1100;
+    background:rgba(0,0,0,.60);
+    opacity:0; pointer-events:none;
+    transition:.2s;
+    z-index:1200;
   }
   .drawer{
     position:fixed; inset:0 0 0 auto;
     width:84%; max-width:380px;
-    background:rgba(10,12,22,.82);
     transform:translateX(100%);
-    transition:.28s ease;
-    z-index:1110;
+    transition:.26s ease;
+    z-index:1210;
     padding:18px 16px;
+    background:rgba(18,11,36,.95);
     border-left:1px solid rgba(255,255,255,.10);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     box-shadow:var(--shadow);
   }
-  .drawer::before{
-    content:"";
-    position:absolute; inset:0;
-    background:
-      radial-gradient(700px 420px at 20% 10%, rgba(0,234,255,.12), transparent 60%),
-      radial-gradient(700px 420px at 90% 20%, rgba(255,61,139,.10), transparent 62%);
-    pointer-events:none;
-  }
+  .nav-open .drawer{transform:none}
+  .nav-open .drawer-overlay{opacity:1; pointer-events:auto}
+
   .drawer .close{
     position:absolute; top:12px; right:12px;
     width:46px;height:46px;
@@ -182,453 +164,387 @@
     color:#fff;
     font-size:26px;
     cursor:pointer;
-    z-index:1;
   }
-  .drawer .nav-group{
-    position:relative; z-index:1;
-    margin-top:62px;
-    display:grid; gap:12px;
+  .drawer nav{
+    margin-top:64px;
+    display:grid;
+    gap:12px;
   }
   .drawer a{
-    display:flex; align-items:center; justify-content:center;
-    padding:12px 18px;
-    border-radius:999px;
+    padding:12px 16px;
+    border-radius:14px;
     font-weight:900;
-    background:var(--gradCTA);
-    border:1px solid rgba(255,255,255,.10);
-    box-shadow:0 16px 34px rgba(0,0,0,.35);
-  }
-  .drawer a.secondary{
     background:rgba(255,255,255,.06);
-    box-shadow:none;
+    border:1px solid rgba(255,255,255,.10);
   }
-  .nav-open .drawer{transform:none}
-  .nav-open .drawer-overlay{opacity:1; pointer-events:auto}
+  .drawer a.primary{
+    background:linear-gradient(135deg, rgba(124,58,237,.95), rgba(0,234,255,.55));
+    border-color:transparent;
+  }
 
-  /* ===== PAGE WRAP ===== */
+  /* ===== Layout ===== */
   .container{
-    max-width:1120px;
+    max-width:1200px;
     margin:0 auto;
-    padding:18px 14px 120px;
+    padding:16px 14px 110px;
   }
 
-  /* ===== HERO ===== */
+  /* ===== HERO BANNER (like SAMstore big banner) ===== */
   .hero{
-    position:relative;
-    border-radius:26px;
-    padding:22px;
-    background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    margin-top:14px;
+    border-radius:22px;
+    overflow:hidden;
     border:1px solid rgba(255,255,255,.10);
     box-shadow:var(--shadow);
-    overflow:hidden;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background:linear-gradient(135deg, rgba(124,58,237,.25), rgba(0,234,255,.10));
+    position:relative;
   }
   .hero::before{
     content:"";
-    position:absolute; inset:-2px;
-    border-radius:28px;
-    padding:2px;
-    background: linear-gradient(120deg, rgba(0,234,255,.85), rgba(91,27,255,.90), rgba(255,61,139,.85), rgba(168,85,247,.85));
-    background-size:300% 300%;
-    animation: neon 8s linear infinite;
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity:.75;
+    position:absolute; inset:0;
+    background:
+      radial-gradient(900px 360px at 30% 20%, rgba(255,255,255,.10), transparent 60%),
+      radial-gradient(900px 360px at 80% 30%, rgba(255,61,139,.12), transparent 60%);
     pointer-events:none;
   }
-  @keyframes neon{
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-  }
-
-  .hero-grid{
-    position:relative; z-index:1;
+  .hero-inner{
+    position:relative;
+    padding:22px;
     display:grid;
     grid-template-columns:1fr;
     gap:16px;
     align-items:center;
+    background:linear-gradient(180deg, rgba(23,18,42,.75), rgba(23,18,42,.45));
   }
-  @media (min-width:900px){
-    .hero-grid{grid-template-columns:1.2fr .8fr; gap:22px;}
+  @media(min-width:900px){
+    .hero-inner{grid-template-columns:1.2fr .8fr; padding:26px}
   }
 
   .hero h1{
     margin:0 0 10px;
+    font-size:36px;
+    line-height:1.05;
     font-weight:900;
-    font-size:32px;
-    line-height:1.08;
-    background:linear-gradient(90deg,#ffffff,#bff5ff);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+    letter-spacing:-.6px;
   }
-  @media (min-width:520px){ .hero h1{font-size:42px} }
-  .hero p{margin:0 0 16px;color:#dbe7ff;max-width:60ch}
+  @media(min-width:520px){ .hero h1{font-size:46px} }
 
-  .pill-row{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 18px}
+  .hero p{
+    margin:0 0 16px;
+    color:var(--muted);
+    max-width:62ch;
+    line-height:1.6;
+  }
+
+  .pillRow{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 18px}
   .pill{
-    display:inline-flex; align-items:center; gap:8px;
+    display:inline-flex;align-items:center;gap:8px;
     padding:10px 12px;
     border-radius:999px;
-    background:rgba(255,255,255,.06);
+    background:rgba(255,255,255,.07);
     border:1px solid rgba(255,255,255,.10);
-    color:#ecf4ff;
-    font-weight:900;
+    font-weight:800;
     font-size:12px;
+    color:#eaf0ff;
   }
-  .pill b{color:#fff}
 
-  .cta-grid{display:grid;grid-template-columns:1fr;gap:12px}
+  .ctaRow{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:12px;
+    margin-top:4px;
+  }
+  @media(min-width:520px){ .ctaRow{grid-template-columns:repeat(3,1fr)} }
+
   .btn{
-    display:inline-flex; align-items:center; justify-content:center; gap:10px;
-    font-weight:900; font-size:15px;
-    padding:14px 18px;
-    border-radius:999px;
-    transition:.18s ease;
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    padding:14px 16px;
+    border-radius:14px;
+    font-weight:900;
     border:1px solid rgba(255,255,255,.10);
-    box-shadow:0 18px 46px rgba(0,0,0,.30);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background:rgba(255,255,255,.07);
+    transition:.15s ease;
   }
-  .btn-primary{
-    background:var(--gradCTA);
+  .btn:hover{transform:translateY(-2px); background:rgba(255,255,255,.10)}
+  .btnPrimary{
+    background:var(--cta);
     border-color:transparent;
+    box-shadow:0 18px 46px rgba(255,61,139,.18);
   }
-  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 22px 60px rgba(255,61,139,.22)}
-  .btn-soft{
-    background:rgba(255,255,255,.06);
-  }
-  .btn-soft:hover{transform:translateY(-2px); background:rgba(255,255,255,.09)}
-  @media (min-width:520px){ .cta-grid{grid-template-columns:repeat(3,1fr)} }
+  .btnPrimary:hover{box-shadow:0 22px 60px rgba(255,61,139,.22)}
 
-  .hero-card{
-    border-radius:22px;
-    padding:16px;
-    background:rgba(255,255,255,.05);
+  .heroArt{
+    border-radius:18px;
     border:1px solid rgba(255,255,255,.10);
-    box-shadow:0 20px 60px rgba(0,0,0,.40);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    background:rgba(0,0,0,.18);
+    padding:16px;
+    display:grid;
+    place-items:center;
+    min-height:220px;
   }
-  .hero-card .mascot{
-    width:min(300px,100%);
-    margin:0 auto;
-    filter: drop-shadow(0 22px 40px rgba(0,0,0,.55));
+  .heroArt img{
+    width:min(320px,100%);
+    filter: drop-shadow(0 24px 40px rgba(0,0,0,.55));
   }
 
-  /* ===== SECTIONS ===== */
+  /* ===== Sections ===== */
   .section{margin-top:18px}
-  .section-title{
-    display:flex; align-items:flex-end; justify-content:space-between; gap:10px;
+  .sectionHead{
+    display:flex;align-items:flex-end;justify-content:space-between;gap:10px;
     margin:18px 2px 12px;
   }
-  .section-title h2{
+  .sectionHead h2{
     margin:0;
     font-size:18px;
     font-weight:900;
-    background:linear-gradient(90deg,#ffffff,#bff5ff);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
   }
-  .section-title a{color:#a8c7ff;font-weight:900;font-size:13px}
+  .sectionHead a{color:#b8c8ff;font-weight:900;font-size:13px}
 
-  /* Cards grid */
+  /* cards grid like pro SaaS */
   .grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
     gap:12px;
   }
-  @media (min-width:720px){ .grid{grid-template-columns:repeat(4,1fr)} }
+  @media(min-width:720px){ .grid{grid-template-columns:repeat(4,1fr)} }
 
-  .mini-card{
-    position:relative;
-    border-radius:20px;
-    padding:14px 12px;
-    background:rgba(255,255,255,.05);
+  .card{
+    border-radius:18px;
+    padding:14px;
+    background:linear-gradient(180deg, rgba(15,23,42,.85), rgba(15,23,42,.65));
     border:1px solid rgba(255,255,255,.10);
-    box-shadow:0 18px 60px rgba(0,0,0,.40);
-    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-    overflow:hidden;
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    min-height:128px;
-    display:flex; flex-direction:column; justify-content:space-between;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+    transition:.15s ease;
+    min-height:130px;
+    display:flex;flex-direction:column;justify-content:space-between;
   }
-  .mini-card::before{
-    content:"";
-    position:absolute; inset:-1px;
-    background:
-      radial-gradient(340px 180px at 20% 10%, rgba(0,234,255,.14), transparent 60%),
-      radial-gradient(360px 200px at 90% 20%, rgba(255,61,139,.12), transparent 62%),
-      radial-gradient(320px 220px at 50% 120%, rgba(91,27,255,.18), transparent 65%);
-    pointer-events:none;
+  .card:hover{transform:translateY(-4px); border-color:rgba(0,234,255,.20)}
+  .cardTop{display:flex;align-items:center;gap:10px}
+  .cardTop img{
+    width:44px;height:44px;object-fit:contain;
+    border-radius:14px;
+    padding:7px;
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.10);
   }
-  .mini-card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 26px 80px rgba(0,0,0,.55);
-    border-color:rgba(0,234,255,.22);
-  }
-  .mini-top{display:flex; align-items:center; gap:10px; position:relative; z-index:1}
-  .mini-top img{width:44px;height:44px;object-fit:contain; filter: drop-shadow(0 10px 18px rgba(0,0,0,.45));}
-  .mini-top strong{font-weight:900}
-  .mini-sub{position:relative; z-index:1; font-size:12px; color:#cfe2ff; opacity:.95}
+  .card strong{font-weight:900}
+  .sub{color:var(--muted);font-size:12px;margin-top:4px}
+  .foot{color:#dfe9ff;font-size:12px;opacity:.92}
 
-  /* Trust row */
+  /* Trust */
   .trust{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:12px;
+    display:grid;grid-template-columns:1fr;gap:12px;
   }
-  @media (min-width:900px){ .trust{grid-template-columns:repeat(3,1fr)} }
-  .trust-card{
-    border-radius:20px;
-    padding:14px 14px;
-    background:rgba(255,255,255,.05);
+  @media(min-width:900px){ .trust{grid-template-columns:repeat(3,1fr)} }
+  .trustCard{
+    border-radius:18px;
+    padding:14px;
+    background:rgba(255,255,255,.06);
     border:1px solid rgba(255,255,255,.10);
-    box-shadow:0 18px 60px rgba(0,0,0,.40);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
   }
-  .trust-card b{display:block;margin-bottom:4px}
-  .trust-card p{margin:0;color:#dbe7ff;font-size:13px}
+  .trustCard b{display:block;margin-bottom:6px}
+  .trustCard p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
 
   /* Payments */
-  .pay-strip{
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
-    align-items:center;
-    justify-content:center;
+  .payStrip{
+    display:flex;flex-wrap:wrap;gap:12px;
+    align-items:center;justify-content:center;
     padding:14px;
-    border-radius:20px;
-    background:rgba(255,255,255,.05);
+    border-radius:18px;
+    background:rgba(255,255,255,.06);
     border:1px solid rgba(255,255,255,.10);
-    box-shadow:0 18px 60px rgba(0,0,0,.40);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
   }
-  .pay-strip img{
+  .payStrip img{
     width:46px;height:46px;
     background:#fff;
     border-radius:14px;
     padding:6px;
   }
 
-  /* Scroll reveal */
-  .reveal{
-    opacity:0;
-    transform: translateY(14px);
-    filter: blur(6px);
-    transition: opacity .7s ease, transform .7s ease, filter .7s ease;
-  }
-  .reveal.show{
-    opacity:1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
-
-  /* ===== FLOATING CONTACT (WhatsApp primary) ===== */
-  .fab{position:fixed; right:16px; bottom:18px; z-index:9999}
-  .fab-main{
-    width:64px;height:64px;border:0;border-radius:50%;
-    background:var(--gradCTA);
-    color:#fff;
+  /* WhatsApp FAB */
+  .wa-fab{
+    position:fixed;
+    right:16px;
+    bottom:18px;
+    z-index:2000;
+    width:62px;height:62px;
+    border-radius:50%;
     display:grid;place-items:center;
-    box-shadow:0 18px 46px rgba(0,0,0,.38);
-    cursor:pointer;
-    transition:transform .15s ease;
+    background:linear-gradient(135deg,#25D366,#1fbf5a);
+    box-shadow:0 18px 46px rgba(0,0,0,.35);
+    border:1px solid rgba(255,255,255,.14);
+    transition:.15s ease;
   }
-  .fab-main:active{transform:scale(.96)}
-  .fab-menu{
-    position:absolute; right:0; bottom:76px;
-    display:flex; flex-direction:column; gap:12px;
-    opacity:0; pointer-events:none;
-    transform:translateY(8px) scale(.98);
-    transform-origin:bottom right;
-    transition:opacity .18s ease, transform .18s ease;
-  }
-  .fab.open .fab-menu{opacity:1; pointer-events:auto; transform:translateY(0) scale(1)}
-  .fab-item{
-    width:66px;height:66px;border-radius:50%;
-    display:grid;place-items:center;
-    background:rgba(10,12,22,.86);
-    border:1px solid rgba(255,255,255,.12);
-    box-shadow:0 16px 34px rgba(0,0,0,.40);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-  }
-  .fab-item img{width:34px;height:34px;object-fit:contain}
+  .wa-fab:hover{transform:translateY(-3px)}
+  .wa-fab img{width:28px;height:28px}
 
   footer{
     padding:18px 12px;
     text-align:center;
     color:#cbd5e1;
-    background:rgba(10,12,22,.72);
+    background:rgba(0,0,0,.18);
     border-top:1px solid rgba(255,255,255,.08);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
   }
+
+  /* Scroll reveal (very subtle) */
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .55s ease, transform .55s ease}
+  .reveal.show{opacity:1; transform:translateY(0)}
 </style>
 </head>
 
 <body>
-  <!-- Background layers -->
-  <div class="bg" aria-hidden="true">
-    <div class="blob b1"></div>
-    <div class="blob b2"></div>
-    <div class="blob b3"></div>
-    <canvas id="particles"></canvas>
-    <div class="grain"></div>
-  </div>
+  <div class="mesh" aria-hidden="true"></div>
 
-  <!-- ===== TOPBAR ===== -->
-  <header class="topbar">
-    <div class="left-icons">
-      <div class="icon-btn" aria-label="Basket" title="Basket">
-        🛍️ <span class="badge" id="cartBadge">0</span>
+  <!-- HEADER -->
+  <header>
+    <div class="topbar">
+      <div class="left-icons">
+        <div class="icon-btn cartWrap" title="Basket" aria-label="Basket">
+          🛍️ <span class="badge" id="cartBadge">0</span>
+        </div>
+        <div class="icon-btn" title="Account" aria-label="Account">👤</div>
       </div>
-      <div class="icon-btn" aria-label="Account" title="Account">👤</div>
-    </div>
 
-    <a class="logo-center" href="index.html" aria-label="The Sam Store • Home">
-      <!-- ✅ Put your logo file here -->
-      <img src="png.images/samstore-logo.png" alt="The Sam Store">
-      <span>The Sam Store</span>
-    </a>
+      <a class="brand" href="index.html" aria-label="The Sam Store Home">
+        <!-- ✅ Your LIVE logo -->
+        <img src="png.images/samstore-logo.gif" alt="The Sam Store">
+        <span>The Sam Store</span>
+      </a>
 
-    <div class="right-icons">
-      <div class="icon-btn" aria-label="Theme" title="Theme">☀️</div>
-      <div class="icon-btn sm-menu-toggle" aria-label="Menu" title="Menu">☰</div>
+      <div class="right-icons">
+        <button class="icon-btn" id="themeBtn" title="Theme" aria-label="Theme">☀️</button>
+        <button class="icon-btn sm-menu-toggle" title="Menu" aria-label="Menu">☰</button>
+      </div>
     </div>
   </header>
 
-  <!-- Drawer overlay + panel -->
+  <!-- Drawer -->
   <div class="drawer-overlay" id="drawerOverlay"></div>
   <aside class="drawer" id="drawer" aria-label="Main menu">
     <button class="close" id="drawerClose" aria-label="Close menu">×</button>
-    <nav class="nav-group">
-      <a href="index.html">Home</a>
-      <a href="shop.html">Shop</a>
+    <nav>
+      <a class="primary" href="shop.html">Shop</a>
       <a href="todaysoffer.html">Today’s Offer</a>
-      <a href="blog.html" class="secondary">Blog</a>
-      <a href="about.html" class="secondary">About Us</a>
-      <a href="contact.html" class="secondary">Contact Us</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact Us</a>
     </nav>
   </aside>
 
   <main class="container">
     <!-- HERO -->
     <section class="hero reveal">
-      <div class="hero-grid">
+      <div class="hero-inner">
         <div>
           <h1>Charge. Play. Enjoy.</h1>
           <p>Premium subscriptions, AI tools, and game top-ups — fast delivery and reliable support in Nepal.</p>
 
-          <div class="pill-row">
-            <span class="pill">⚡ <b>0–30 min</b> delivery</span>
+          <div class="pillRow">
+            <span class="pill">⚡ 0–30 min delivery</span>
             <span class="pill">✅ Verified process</span>
             <span class="pill">💬 WhatsApp support</span>
           </div>
 
-          <div class="cta-grid">
-            <a href="todaysoffer.html" class="btn btn-soft">🔥 Today’s Offer</a>
-            <a href="shop.html" class="btn btn-primary">🛒 Shop Now</a>
-            <a href="contact.html" class="btn btn-soft">☎️ Contact Us</a>
+          <div class="ctaRow">
+            <a class="btn" href="todaysoffer.html">🔥 Today’s Offer</a>
+            <a class="btn btnPrimary" href="shop.html">🛒 Shop Now</a>
+            <a class="btn" href="contact.html">☎️ Contact Us</a>
           </div>
         </div>
 
-        <div class="hero-card">
-          <!-- you can replace this with a banner image too -->
-          <img class="mascot" src="png.images/logo-mascots.png" alt="The Sam Store Mascot">
+        <div class="heroArt">
+          <img src="png.images/logo-mascots.png" alt="Mascot">
         </div>
       </div>
     </section>
 
-    <!-- FEATURED -->
+    <!-- Categories -->
     <section class="section reveal">
-      <div class="section-title">
+      <div class="sectionHead">
         <h2>Popular Categories</h2>
         <a href="shop.html">View all →</a>
       </div>
 
       <div class="grid">
-        <a class="mini-card" href="shop.html">
-          <div class="mini-top">
+        <a class="card" href="shop.html">
+          <div class="cardTop">
             <img src="png.images/logo-chatgptai.png" alt="AI Tools">
             <div>
               <strong>AI Tools</strong>
-              <div class="mini-sub">ChatGPT • Canva • more</div>
+              <div class="sub">ChatGPT • Canva • more</div>
             </div>
           </div>
-          <div class="mini-sub">Fast activation • Support included</div>
+          <div class="foot">Fast activation • Support included</div>
         </a>
 
-        <a class="mini-card" href="shop.html">
-          <div class="mini-top">
+        <a class="card" href="shop.html">
+          <div class="cardTop">
             <img src="png.images/logo-freefire.png" alt="Game Top-Up">
             <div>
               <strong>Game Top-Up</strong>
-              <div class="mini-sub">Free Fire • PUBG • more</div>
+              <div class="sub">Free Fire • PUBG • more</div>
             </div>
           </div>
-          <div class="mini-sub">UID top-up • Secure process</div>
+          <div class="foot">UID top-up • Secure process</div>
         </a>
 
-        <a class="mini-card" href="shop.html">
-          <div class="mini-top">
+        <a class="card" href="shop.html">
+          <div class="cardTop">
             <img src="png.images/logo-spotifys.png" alt="Subscriptions">
             <div>
               <strong>Subscriptions</strong>
-              <div class="mini-sub">Netflix • YouTube • VPN</div>
+              <div class="sub">Netflix • YouTube • VPN</div>
             </div>
           </div>
-          <div class="mini-sub">Affordable plans • Quick delivery</div>
+          <div class="foot">Affordable plans • Quick delivery</div>
         </a>
 
-        <a class="mini-card" href="shop.html">
-          <div class="mini-top">
+        <a class="card" href="shop.html">
+          <div class="cardTop">
             <img src="png.images/logo-unipin.png" alt="Gift Cards">
             <div>
               <strong>Gift Cards</strong>
-              <div class="mini-sub">iTunes • PSN • Xbox</div>
+              <div class="sub">iTunes • PSN • Xbox</div>
             </div>
           </div>
-          <div class="mini-sub">Instant codes • Easy support</div>
+          <div class="foot">Instant codes • Easy support</div>
         </a>
       </div>
     </section>
 
-    <!-- TRUST -->
+    <!-- Trust -->
     <section class="section reveal">
-      <div class="section-title">
+      <div class="sectionHead">
         <h2>Why People Choose Us</h2>
       </div>
 
       <div class="trust">
-        <div class="trust-card">
+        <div class="trustCard">
           <b>✅ Verified & Safe Process</b>
           <p>Clear payment & activation workflow to keep things smooth and secure.</p>
         </div>
-        <div class="trust-card">
+        <div class="trustCard">
           <b>⚡ Fast Response</b>
           <p>Most orders processed within 0–30 minutes after verification.</p>
         </div>
-        <div class="trust-card">
+        <div class="trustCard">
           <b>💬 Real Support</b>
           <p>Contact us on WhatsApp for quick guidance and updates.</p>
         </div>
       </div>
     </section>
 
-    <!-- PAYMENTS -->
+    <!-- Payments -->
     <section class="section reveal">
-      <div class="section-title">
+      <div class="sectionHead">
         <h2>We Accept Payments</h2>
       </div>
 
-      <div class="pay-strip">
+      <div class="payStrip">
         <img src="png.images/logo-esewa.png" alt="eSewa">
         <img src="png.images/logo-khalti.png" alt="Khalti">
         <img src="png.images/logo-bank.png" alt="Bank Transfer">
@@ -636,36 +552,20 @@
     </section>
   </main>
 
-  <!-- Floating chat -->
-  <div class="fab" id="chatFab" aria-label="Open chat menu">
-    <button class="fab-main" type="button" aria-haspopup="true" aria-expanded="false" title="Chat us">
-      <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
-        <path d="M21 12c0 4.418-4.03 8-9 8-1.32 0-2.57-.223-3.7-.627L3 20l.76-3.04C3.27 15.76 3 14.9 3 14c0-4.418 4.03-8 9-8s9 3.582 9 8z" fill="#fff"/>
-      </svg>
-    </button>
-    <nav class="fab-menu" aria-label="Chat channels">
-      <a class="fab-item" href="https://wa.me/9779828560029" target="_blank" rel="noopener" aria-label="WhatsApp">
-        <img src="png.images/logo-whatsapp.png" alt="WhatsApp">
-      </a>
-      <a class="fab-item" href="https://instagram.com/sam.dgital" target="_blank" rel="noopener" aria-label="Instagram">
-        <img src="png.images/logo-instagram.png" alt="Instagram">
-      </a>
-      <a class="fab-item" href="https://facebook.com/yourpage" target="_blank" rel="noopener" aria-label="Facebook">
-        <img src="png.images/logo-facebook.png" alt="Facebook">
-      </a>
-    </nav>
-  </div>
+  <!-- WhatsApp floating -->
+  <a class="wa-fab" href="https://wa.me/9779828560029" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <img src="png.images/logo-whatsapp.png" alt="WhatsApp">
+  </a>
 
   <footer>
     Copyright ©2026 <strong>The Sam Store</strong> — owned by <strong>Samir Mijar</strong>
   </footer>
 
 <script>
-  // ===== Drawer open/close =====
+  // Drawer open/close
   const body = document.body;
   const overlay = document.getElementById('drawerOverlay');
-  const drawer  = document.getElementById('drawer');
-  const closeBtn= document.getElementById('drawerClose');
+  const closeBtn = document.getElementById('drawerClose');
   const openBtns = document.querySelectorAll('.sm-menu-toggle');
 
   function openDrawer(){ body.classList.add('nav-open'); }
@@ -674,26 +574,9 @@
   openBtns.forEach(b=> b.addEventListener('click', openDrawer));
   overlay.addEventListener('click', closeDrawer);
   closeBtn.addEventListener('click', closeDrawer);
-  document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeDrawer(); });
+  document.addEventListener('keydown', e=>{ if(e.key === 'Escape') closeDrawer(); });
 
-  // ===== Floating Chat speed-dial =====
-  (function(){
-    const fab = document.getElementById('chatFab');
-    if(!fab) return;
-    const main = fab.querySelector('.fab-main');
-    main.addEventListener('click', ()=>{
-      fab.classList.toggle('open');
-      main.setAttribute('aria-expanded', fab.classList.contains('open'));
-    });
-    document.addEventListener('click', (e)=>{
-      if(!fab.contains(e.target)) { fab.classList.remove('open'); main.setAttribute('aria-expanded','false'); }
-    });
-    document.addEventListener('keydown', (e)=>{
-      if(e.key==='Escape'){ fab.classList.remove('open'); main.setAttribute('aria-expanded','false'); }
-    });
-  }());
-
-  /* ===== Scroll reveal ===== */
+  // Scroll reveal
   (function(){
     const items = document.querySelectorAll('.reveal');
     const io = new IntersectionObserver((entries)=>{
@@ -707,72 +590,17 @@
     items.forEach(el=>io.observe(el));
   }());
 
-  /* ===== Particles (no library) ===== */
-  (function(){
-    const c = document.getElementById('particles');
-    if(!c) return;
-    const ctx = c.getContext('2d');
-    let w, h, dpr;
-    const dots = [];
-    const DOTS = 78;
-
-    function resize(){
-      dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-      w = c.clientWidth; h = c.clientHeight;
-      c.width = Math.floor(w * dpr);
-      c.height = Math.floor(h * dpr);
-      ctx.setTransform(dpr,0,0,dpr,0,0);
-    }
-    const rand = (min,max)=> Math.random()*(max-min)+min;
-
-    function init(){
-      dots.length = 0;
-      for(let i=0;i<DOTS;i++){
-        dots.push({
-          x: rand(0,w), y: rand(0,h),
-          vx: rand(-0.26,0.26), vy: rand(-0.26,0.26),
-          r: rand(1.1,2.4),
-          a: rand(0.20,0.55)
-        });
-      }
-    }
-
-    function step(){
-      ctx.clearRect(0,0,w,h);
-
-      for(const p of dots){
-        p.x += p.vx; p.y += p.vy;
-        if(p.x<0||p.x>w) p.vx *= -1;
-        if(p.y<0||p.y>h) p.vy *= -1;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-        ctx.fillStyle = `rgba(210,235,255,${p.a})`;
-        ctx.fill();
-      }
-
-      for(let i=0;i<dots.length;i++){
-        for(let j=i+1;j<dots.length;j++){
-          const a = dots[i], b = dots[j];
-          const dx = a.x-b.x, dy = a.y-b.y;
-          const dist = Math.hypot(dx,dy);
-          if(dist < 130){
-            ctx.strokeStyle = `rgba(160,220,255,${(1-dist/130)*0.11})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(a.x,a.y);
-            ctx.lineTo(b.x,b.y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      requestAnimationFrame(step);
-    }
-
-    resize(); init(); step();
-    window.addEventListener('resize', ()=>{ resize(); init(); });
-  }());
+  // Optional: Light/Dark toggle (simple)
+  const themeBtn = document.getElementById('themeBtn');
+  let bright = false;
+  themeBtn.addEventListener('click', ()=>{
+    bright = !bright;
+    document.documentElement.style.setProperty('--bg', bright ? '#f7f8ff' : '#0b0a14');
+    document.documentElement.style.setProperty('--bg2', bright ? '#eef1ff' : '#120b24');
+    document.documentElement.style.setProperty('--text', bright ? '#0b1020' : '#f4f6ff');
+    document.documentElement.style.setProperty('--muted', bright ? '#3b4a6a' : '#b9c3e2');
+    themeBtn.textContent = bright ? '🌙' : '☀️';
+  });
 </script>
 </body>
 </html>
