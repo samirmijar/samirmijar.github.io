@@ -4,29 +4,75 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SM DIGITAL SERVICES • Trusted Digital Services</title>
-<meta name="theme-color" content="#ffffff" />
+<meta name="theme-color" content="#0b1115" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --bg:#0b1115; --card:#0f1822; --soft:#152233;
-    --text:#e9eef4; --muted:#b9c6d3;
-    --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.35);
+    --bg:#0b1115;
+    --card:#0f1822;
+    --soft:#152233;
+    --text:#e9eef4;
+    --muted:#b9c6d3;
+    --radius:18px;
+    --shadow:0 14px 40px rgba(0,0,0,.40);
     --grad:linear-gradient(90deg,#ff7a00,#ff415f);
+    --grad2:linear-gradient(90deg,#00eaff,#6a00ff);
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:Inter,system-ui,Arial,sans-serif;
+    overflow-x:hidden;
+  }
   a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
 
-  /* ===== header ===== */
+  /* ===== PREMIUM BACKGROUND LAYERS ===== */
+  .bg{
+    position:fixed; inset:0; z-index:-1; overflow:hidden;
+    background:
+      radial-gradient(900px 650px at 15% 10%, rgba(255,122,0,.14), transparent 60%),
+      radial-gradient(900px 650px at 85% 20%, rgba(255,65,95,.14), transparent 62%),
+      radial-gradient(900px 650px at 55% 92%, rgba(106,0,255,.14), transparent 60%),
+      #070a12;
+  }
+  #particles{position:absolute; inset:0; width:100%; height:100%}
+  .blob{
+    position:absolute; width:560px; height:560px; border-radius:50%;
+    filter: blur(44px);
+    opacity:.55;
+    animation: float 12s ease-in-out infinite;
+    mix-blend-mode: screen;
+    pointer-events:none;
+  }
+  .b1{left:-160px; top:-180px; background:radial-gradient(circle at 30% 30%, rgba(255,122,0,.95), rgba(255,65,95,.38), transparent 70%); animation-duration:14s;}
+  .b2{right:-180px; top:40px; background:radial-gradient(circle at 30% 30%, rgba(0,234,255,.80), rgba(106,0,255,.45), transparent 70%); animation-duration:16s;}
+  .b3{left:22%; bottom:-260px; background:radial-gradient(circle at 30% 30%, rgba(106,0,255,.85), rgba(255,65,95,.30), transparent 70%); animation-duration:18s;}
+  @keyframes float{
+    0%,100%{transform:translate3d(0,0,0) scale(1)}
+    50%{transform:translate3d(26px,-22px,0) scale(1.04)}
+  }
+  .grain{
+    position:absolute; inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+    opacity:.12; pointer-events:none; mix-blend-mode: overlay;
+  }
+
+  /* ===== HEADER ===== */
   .topbar{
     position:sticky; top:0; z-index:100;
     display:flex; align-items:center; justify-content:space-between;
-    gap:8px; padding:10px 14px; background:#fff; border-bottom:2px solid #eee;
+    gap:10px; padding:10px 14px; background:rgba(255,255,255,.92);
+    border-bottom:1px solid rgba(0,0,0,.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
   .brand{display:flex; align-items:center; gap:10px; color:#111}
   .brand-logo{width:38px; height:38px; object-fit:contain}
-  .brand-name{font-weight:900; letter-spacing:.5px; color:#111; line-height:1; font-size:20px; white-space:nowrap}
+  .brand-name{font-weight:900; letter-spacing:.3px; color:#111; line-height:1; font-size:20px; white-space:nowrap}
   @media (min-width:420px){ .brand-name{font-size:22px} }
   @media (min-width:768px){ .brand-logo{width:44px;height:44px} .brand-name{font-size:26px} }
 
@@ -34,160 +80,500 @@
   .hamburger{
     width:46px; height:46px; border:none; border-radius:999px;
     background:var(--grad); color:#fff; display:grid; place-items:center; cursor:pointer;
-    box-shadow:0 6px 16px rgba(255,65,95,.38);
+    box-shadow:0 10px 22px rgba(255,65,95,.30);
+    transition:transform .15s ease;
   }
+  .hamburger:active{transform:scale(.96)}
   .hamburger svg{width:24px; height:24px; stroke:#fff}
 
   /* drawer */
   .drawer-overlay{
-    position:fixed; inset:0; background:rgba(0,0,0,.4);
+    position:fixed; inset:0; background:rgba(0,0,0,.45);
     opacity:0; pointer-events:none; transition:.2s; z-index:119;
   }
   .drawer{
-    position:fixed; inset:0 0 0 auto; width:82%; max-width:360px; background:#0f1822;
+    position:fixed; inset:0 0 0 auto; width:82%; max-width:360px; background:rgba(15,24,34,.94);
     transform:translateX(100%); transition:.25s ease; box-shadow:var(--shadow); z-index:120;
-    padding:20px 16px; color:#e9eef4; border-left:1px solid rgba(255,255,255,.08);
+    padding:20px 16px; color:#e9eef4; border-left:1px solid rgba(255,255,255,.10);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
-  .drawer .close{position:absolute; top:12px; right:12px; background:transparent; border:0; color:#fff; cursor:pointer; font-size:26px}
-  .drawer .nav-group{margin-top:40px; display:grid; gap:12px}
+  .drawer .close{
+    position:absolute; top:12px; right:12px;
+    background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
+    color:#fff; cursor:pointer; font-size:26px; border-radius:12px; width:44px; height:44px;
+  }
+  .drawer .nav-group{margin-top:54px; display:grid; gap:12px}
   .drawer a{
     display:inline-flex; align-items:center; justify-content:center;
-    padding:12px 18px; border-radius:999px; font-weight:800;
-    background:var(--grad); color:#fff; box-shadow:0 6px 16px rgba(255,65,95,.35)
+    padding:12px 18px; border-radius:999px; font-weight:900;
+    background:var(--grad); color:#fff; box-shadow:0 10px 22px rgba(255,65,95,.25)
   }
-  .drawer a.secondary{background:#152233; border:2px solid rgba(255,255,255,.1); box-shadow:none}
+  .drawer a.secondary{
+    background:rgba(21,34,51,.80);
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:none;
+  }
   .nav-open .drawer{transform:none}
   .nav-open .drawer-overlay{opacity:1; pointer-events:auto}
 
-  /* lights (top only) */
-  .lightbar{display:flex; justify-content:center; gap:18px; padding:8px 0; background:#fff; border-bottom:2px solid #eee}
-  .lightbar span{width:26px; height:26px; border-radius:50%; box-shadow:0 0 10px rgba(0,0,0,.18)}
+  /* top lightbar */
+  .lightbar{
+    display:flex; justify-content:center; gap:18px; padding:8px 0;
+    background:rgba(255,255,255,.92);
+    border-bottom:1px solid rgba(0,0,0,.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .lightbar span{width:26px; height:26px; border-radius:50%; box-shadow:0 0 12px rgba(0,0,0,.18)}
 
-  /* hero */
-  .hero{text-align:center; padding:60px 20px; background:linear-gradient(180deg,#ff9800,#ff5722); color:#fff}
-  .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; font-weight:700; font-size:16px;
-       padding:14px 28px; border-radius:999px; transition:.25s; box-shadow:0 6px 18px rgba(0,0,0,.22)}
-  .btn img{width:20px; height:20px; object-fit:contain; margin-right:2px}
-  .btn-primary{background:var(--grad); color:#fff}
+  /* ===== PAGE WRAP ===== */
+  .container{max-width:1100px;margin:0 auto;padding:18px 14px 110px}
+
+  /* ===== HERO (premium) ===== */
+  .hero{
+    position:relative;
+    padding:34px 16px 18px;
+    border-radius:24px;
+    background:
+      radial-gradient(900px 450px at 20% 10%, rgba(255,122,0,.22), transparent 60%),
+      radial-gradient(900px 450px at 82% 20%, rgba(255,65,95,.22), transparent 62%),
+      radial-gradient(900px 450px at 50% 92%, rgba(0,234,255,.12), transparent 60%),
+      rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:-2px;
+    border-radius:26px;
+    padding:2px;
+    background: linear-gradient(120deg, rgba(255,122,0,.9), rgba(255,65,95,.9), rgba(106,0,255,.85), rgba(0,234,255,.75));
+    background-size:300% 300%;
+    animation: glow 7s linear infinite;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity:.65;
+    pointer-events:none;
+  }
+  @keyframes glow{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
+
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:16px;
+    align-items:center;
+    position:relative;
+    z-index:1;
+  }
+  @media (min-width:900px){
+    .hero-grid{grid-template-columns: 1.2fr .8fr; gap:22px;}
+  }
+
+  .hero h1{
+    margin:0 0 10px;
+    font-weight:900;
+    font-size:30px;
+    line-height:1.1;
+    background:linear-gradient(90deg,#ffffff,#a0f0ff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+  @media (min-width:520px){ .hero h1{font-size:38px} }
+
+  .hero p{margin:0 0 16px;color:#d7e3f0;max-width:58ch}
+
+  .pill-row{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 18px}
+  .pill{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:10px 12px;
+    border-radius:999px;
+    background:rgba(15,24,34,.60);
+    border:1px solid rgba(255,255,255,.12);
+    color:#e9eef4;
+    font-weight:800;
+    font-size:12px;
+  }
+  .pill b{color:#fff}
+
+  /* CTA buttons */
+  .cta-grid{display:grid;grid-template-columns:1fr;gap:12px}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    font-weight:900; font-size:15px;
+    padding:14px 18px;
+    border-radius:999px;
+    transition:.2s;
+    box-shadow:0 12px 26px rgba(0,0,0,.22);
+    border:1px solid rgba(255,255,255,.10);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .btn-primary{background:var(--grad); color:#fff; border-color:transparent}
   .btn-primary:hover{transform:translateY(-2px)}
-  .btn-soft{background:#fff; color:#333; border:2px solid #eee}
-  .btn-soft:hover{background:#f7f7f7; transform:translateY(-2px)}
-  .cta-grid{display:grid;grid-template-columns:1fr;gap:12px;justify-items:center}
-  .cta-grid .btn{width:min(520px,100%)}
-  @media (min-width:520px){ .cta-grid{grid-template-columns:repeat(2,1fr)} }
+  .btn-soft{background:rgba(255,255,255,.06); color:#fff}
+  .btn-soft:hover{transform:translateY(-2px); background:rgba(255,255,255,.09)}
+  @media (min-width:520px){ .cta-grid{grid-template-columns:repeat(3,1fr)} }
 
-  /* Mascot area spacing */
-  .mascot-wrap{margin-top:25px}
+  .hero-card{
+    background:rgba(15,24,34,.55);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:22px;
+    padding:16px;
+    box-shadow:0 14px 40px rgba(0,0,0,.38);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .hero-card .mascot{
+    width:min(280px,100%);
+    margin:0 auto;
+    filter: drop-shadow(0 18px 32px rgba(0,0,0,.45));
+  }
 
-  /* Floating Chat speed-dial (big icons) */
+  /* ===== SECTIONS ===== */
+  .section{margin-top:18px}
+  .section-title{
+    display:flex; align-items:flex-end; justify-content:space-between; gap:10px;
+    margin:18px 2px 12px;
+  }
+  .section-title h2{
+    margin:0;
+    font-size:18px;
+    font-weight:900;
+    background:linear-gradient(90deg,#ffffff,#a0f0ff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+  .section-title a{
+    color:#9ecbff;
+    font-weight:900;
+    font-size:13px;
+    text-decoration:none;
+  }
+
+  /* Cards grid */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+  }
+  @media (min-width:720px){ .grid{grid-template-columns:repeat(4,1fr)} }
+
+  .mini-card{
+    position:relative;
+    border-radius:18px;
+    padding:14px 12px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:0 14px 40px rgba(0,0,0,.35);
+    transition:transform .18s ease, box-shadow .18s ease;
+    overflow:hidden;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    min-height:120px;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .mini-card::after{
+    content:"";
+    position:absolute; inset:-1px;
+    background: radial-gradient(300px 160px at 20% 10%, rgba(255,122,0,.18), transparent 60%),
+                radial-gradient(320px 180px at 90% 20%, rgba(0,234,255,.12), transparent 62%);
+    pointer-events:none;
+  }
+  .mini-card:hover{transform:translateY(-4px); box-shadow:0 22px 60px rgba(0,0,0,.50)}
+  .mini-top{display:flex; align-items:center; gap:10px; position:relative; z-index:1}
+  .mini-top img{width:42px;height:42px;object-fit:contain}
+  .mini-top strong{font-weight:900}
+  .mini-sub{position:relative; z-index:1; font-size:12px; color:#cfe2ff; opacity:.95}
+
+  /* Trust row */
+  .trust{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+  @media (min-width:900px){ .trust{grid-template-columns:repeat(3,1fr)} }
+  .trust-card{
+    border-radius:18px;
+    padding:14px 14px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:0 14px 40px rgba(0,0,0,.35);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .trust-card b{display:block;margin-bottom:4px}
+  .trust-card p{margin:0;color:#d7e3f0;font-size:13px}
+
+  /* Payments */
+  .pay-strip{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    align-items:center;
+    justify-content:center;
+    padding:14px;
+    border-radius:18px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:0 14px 40px rgba(0,0,0,.35);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .pay-strip img{
+    width:44px;height:44px;
+    background:#fff;
+    border-radius:12px;
+    padding:6px;
+  }
+
+  /* Scroll reveal */
+  .reveal{
+    opacity:0;
+    transform: translateY(14px);
+    filter: blur(6px);
+    transition: opacity .7s ease, transform .7s ease, filter .7s ease;
+  }
+  .reveal.show{
+    opacity:1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+
+  /* Floating Chat speed-dial */
   .fab{position:fixed; right:16px; bottom:18px; z-index:9999}
   .fab-main{
     width:62px;height:62px;border:0;border-radius:50%;
     background:var(--grad); color:#fff;
-    display:grid;place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.28);
+    display:grid;place-items:center; box-shadow:0 16px 34px rgba(0,0,0,.32);
     cursor:pointer; transition:transform .15s ease;
   }
   .fab-main:active{transform:scale(.96)}
-  .fab-menu{position:absolute; right:0; bottom:74px; display:flex; flex-direction:column; gap:12px;
-    opacity:0; pointer-events:none; transform:translateY(8px) scale(.98); transform-origin:bottom right;
-    transition:opacity .18s ease, transform .18s ease;
+  .fab-menu{
+    position:absolute; right:0; bottom:74px; display:flex; flex-direction:column; gap:12px;
+    opacity:0; pointer-events:none; transform:translateY(8px) scale(.98);
+    transform-origin:bottom right; transition:opacity .18s ease, transform .18s ease;
   }
   .fab.open .fab-menu{opacity:1; pointer-events:auto; transform:translateY(0) scale(1)}
   .fab-item{
     width:64px;height:64px;border-radius:50%; display:grid;place-items:center;
-    background:#0f1822; border:1px solid rgba(255,255,255,.12);
-    box-shadow:0 10px 22px rgba(0,0,0,.28);
+    background:rgba(15,24,34,.92); border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 14px 28px rgba(0,0,0,.35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
   .fab-item img{width:34px;height:34px;object-fit:contain}
 
-  /* footer */
-  footer{padding:18px 12px; text-align:center; color:#cbd5e1; background:#0f1822; border-top:1px solid rgba(255,255,255,.08)}
+  /* Footer */
+  footer{
+    padding:18px 12px; text-align:center; color:#cbd5e1;
+    background:rgba(15,24,34,.85);
+    border-top:1px solid rgba(255,255,255,.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
 </style>
 </head>
+
 <body>
-
-<!-- ===== HEADER ===== -->
-<header class="topbar">
-  <a class="brand" href="index.html" aria-label="SM DIGITAL SERVICES • Home">
-    <img class="brand-logo" src="png.images/logo-mascot.png" alt="SM Digital Services">
-    <span class="brand-name">SM DIGITAL SERVICES</span>
-  </a>
-  <button class="hamburger sm-menu-toggle" aria-label="Open menu">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-  </button>
-</header>
-
-<!-- ✅ SINGLE TOP LIGHTBAR -->
-<div class="lightbar">
-  <span style="background:#ff3b30"></span>
-  <span style="background:#ff9500"></span>
-  <span style="background:#ffcc00"></span>
-  <span style="background:#34c759"></span>
-  <span style="background:#0a84ff"></span>
-  <span style="background:#af52de"></span>
-</div>
-
-<!-- Drawer overlay + panel -->
-<div class="drawer-overlay" id="drawerOverlay"></div>
-<aside class="drawer" id="drawer" aria-label="Main menu">
-  <button class="close" id="drawerClose" aria-label="Close menu">×</button>
-  <nav class="nav-group">
-    <a href="index.html">Home</a>
-    <a href="shop.html">Shop</a>
-    <a href="todaysoffer.html">Today’s Offer</a>
-    <a href="blog.html" class="secondary">Blog</a>
-    <a href="about.html" class="secondary">About Us</a>
-    <a href="contact.html" class="secondary">Contact Us</a>
-  </nav>
-</aside>
-
-<!-- ===== HERO ===== -->
-<section class="hero">
-  <h1>Welcome to SM Digital Service</h1>
-  <p>Affordable subscriptions, AI tools, and game top-ups in Nepal.</p>
-
-  <div class="cta-grid" style="margin:20px 0;">
-    <a href="todaysoffer.html" class="btn btn-soft">Today’s Offer</a>
-    <a href="shop.html" class="btn btn-primary">Shop Now</a>
-    <a href="contact.html" class="btn btn-soft">Contact Us</a>
+  <!-- Premium background -->
+  <div class="bg" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+    <canvas id="particles"></canvas>
+    <div class="grain"></div>
   </div>
 
-  <div class="mascot-wrap">
-    <img src="png.images/logo-mascots.png" alt="SM Digital Services Mascot"
-         style="max-width:260px; width:100%; height:auto;">
+  <!-- ===== HEADER ===== -->
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="SM DIGITAL SERVICES • Home">
+      <img class="brand-logo" src="png.images/logo-mascot.png" alt="SM Digital Services">
+      <span class="brand-name">SM DIGITAL SERVICES</span>
+    </a>
+    <button class="hamburger sm-menu-toggle" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </header>
+
+  <!-- Top lightbar -->
+  <div class="lightbar">
+    <span style="background:#ff3b30"></span>
+    <span style="background:#ff9500"></span>
+    <span style="background:#ffcc00"></span>
+    <span style="background:#34c759"></span>
+    <span style="background:#0a84ff"></span>
+    <span style="background:#af52de"></span>
   </div>
-</section>
 
-<!-- Floating Chat Us (big) -->
-<div class="fab" id="chatFab" aria-label="Open chat menu">
-  <button class="fab-main" type="button" aria-haspopup="true" aria-expanded="false" title="Chat us">
-    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
-      <path d="M21 12c0 4.418-4.03 8-9 8-1.32 0-2.57-.223-3.7-.627L3 20l.76-3.04C3.27 15.76 3 14.9 3 14c0-4.418 4.03-8 9-8s9 3.582 9 8z" fill="#fff"/>
-    </svg>
-  </button>
-  <nav class="fab-menu" aria-label="Chat channels">
-    <a class="fab-item" href="https://wa.me/9779828560029" target="_blank" rel="noopener" aria-label="WhatsApp">
-      <img src="png.images/logo-whatsapp.png" alt="WhatsApp">
-    </a>
-    <a class="fab-item" href="https://instagram.com/sam.dgital" target="_blank" rel="noopener" aria-label="Instagram">
-      <img src="png.images/logo-instagram.png" alt="Instagram">
-    </a>
-    <a class="fab-item" href="https://facebook.com/yourpage" target="_blank" rel="noopener" aria-label="Facebook">
-      <img src="png.images/logo-facebook.png" alt="Facebook">
-    </a>
-  </nav>
-</div>
+  <!-- Drawer overlay + panel -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="drawer" id="drawer" aria-label="Main menu">
+    <button class="close" id="drawerClose" aria-label="Close menu">×</button>
+    <nav class="nav-group">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="todaysoffer.html">Today’s Offer</a>
+      <a href="blog.html" class="secondary">Blog</a>
+      <a href="about.html" class="secondary">About Us</a>
+      <a href="contact.html" class="secondary">Contact Us</a>
+    </nav>
+  </aside>
 
-<footer>
-  Copyright ©2025 <strong>SM Digital Service</strong> — owned by <strong>Samir Mijar</strong>
-</footer>
+  <main class="container">
+    <!-- ===== HERO ===== -->
+    <section class="hero reveal">
+      <div class="hero-grid">
+        <div>
+          <h1>Trusted Digital Services in Nepal</h1>
+          <p>Get subscriptions, AI tools, and game top-ups with fast delivery and reliable support.</p>
+
+          <div class="pill-row">
+            <span class="pill">⚡ <b>0–30 min</b> delivery</span>
+            <span class="pill">✅ Verified process</span>
+            <span class="pill">💬 Support on WhatsApp</span>
+          </div>
+
+          <div class="cta-grid">
+            <a href="todaysoffer.html" class="btn btn-soft">🔥 Today’s Offer</a>
+            <a href="shop.html" class="btn btn-primary">🛒 Shop Now</a>
+            <a href="contact.html" class="btn btn-soft">☎️ Contact Us</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <img class="mascot" src="png.images/logo-mascots.png" alt="SM Digital Services Mascot">
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FEATURED ===== -->
+    <section class="section reveal">
+      <div class="section-title">
+        <h2>Popular Categories</h2>
+        <a href="shop.html">View all →</a>
+      </div>
+
+      <div class="grid">
+        <a class="mini-card" href="shop.html">
+          <div class="mini-top">
+            <img src="png.images/logo-chatgptai.png" alt="AI Tools">
+            <div>
+              <strong>AI Tools</strong>
+              <div class="mini-sub">ChatGPT • Canva • more</div>
+            </div>
+          </div>
+          <div class="mini-sub">Fast activation • Support included</div>
+        </a>
+
+        <a class="mini-card" href="shop.html">
+          <div class="mini-top">
+            <img src="png.images/logo-freefire.png" alt="Game Top-Up">
+            <div>
+              <strong>Game Top-Up</strong>
+              <div class="mini-sub">Free Fire • PUBG • more</div>
+            </div>
+          </div>
+          <div class="mini-sub">UID top-up • Secure process</div>
+        </a>
+
+        <a class="mini-card" href="shop.html">
+          <div class="mini-top">
+            <img src="png.images/logo-spotifys.png" alt="Subscriptions">
+            <div>
+              <strong>Subscriptions</strong>
+              <div class="mini-sub">Netflix • YouTube • VPN</div>
+            </div>
+          </div>
+          <div class="mini-sub">Affordable plans • Quick delivery</div>
+        </a>
+
+        <a class="mini-card" href="shop.html">
+          <div class="mini-top">
+            <img src="png.images/logo-unipin.png" alt="Gift Cards">
+            <div>
+              <strong>Gift Cards</strong>
+              <div class="mini-sub">iTunes • PSN • Xbox</div>
+            </div>
+          </div>
+          <div class="mini-sub">Instant codes • Easy support</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== TRUST ===== -->
+    <section class="section reveal">
+      <div class="section-title">
+        <h2>Why People Choose Us</h2>
+      </div>
+
+      <div class="trust">
+        <div class="trust-card">
+          <b>✅ Verified & Safe Process</b>
+          <p>We follow a clear process for payments and activation to keep things smooth and secure.</p>
+        </div>
+        <div class="trust-card">
+          <b>⚡ Fast Response</b>
+          <p>Most orders are processed within 0–30 minutes after payment verification.</p>
+        </div>
+        <div class="trust-card">
+          <b>💬 Real Support</b>
+          <p>Need help? Contact us on WhatsApp anytime for guidance and updates.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PAYMENTS ===== -->
+    <section class="section reveal">
+      <div class="section-title">
+        <h2>We Accept Payments</h2>
+      </div>
+
+      <div class="pay-strip">
+        <img src="png.images/logo-esewa.png" alt="eSewa">
+        <img src="png.images/logo-khalti.png" alt="Khalti">
+        <img src="png.images/logo-bank.png" alt="Bank Transfer">
+      </div>
+    </section>
+  </main>
+
+  <!-- Floating Chat Us -->
+  <div class="fab" id="chatFab" aria-label="Open chat menu">
+    <button class="fab-main" type="button" aria-haspopup="true" aria-expanded="false" title="Chat us">
+      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+        <path d="M21 12c0 4.418-4.03 8-9 8-1.32 0-2.57-.223-3.7-.627L3 20l.76-3.04C3.27 15.76 3 14.9 3 14c0-4.418 4.03-8 9-8s9 3.582 9 8z" fill="#fff"/>
+      </svg>
+    </button>
+    <nav class="fab-menu" aria-label="Chat channels">
+      <a class="fab-item" href="https://wa.me/9779828560029" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <img src="png.images/logo-whatsapp.png" alt="WhatsApp">
+      </a>
+      <a class="fab-item" href="https://instagram.com/sam.dgital" target="_blank" rel="noopener" aria-label="Instagram">
+        <img src="png.images/logo-instagram.png" alt="Instagram">
+      </a>
+      <a class="fab-item" href="https://facebook.com/yourpage" target="_blank" rel="noopener" aria-label="Facebook">
+        <img src="png.images/logo-facebook.png" alt="Facebook">
+      </a>
+    </nav>
+  </div>
+
+  <footer>
+    Copyright ©2025 <strong>SM Digital Service</strong> — owned by <strong>Samir Mijar</strong>
+  </footer>
 
 <script>
   // ===== Drawer open/close =====
   const body = document.body;
   const openBtns = document.querySelectorAll('.sm-menu-toggle');
   const overlay = document.getElementById('drawerOverlay');
-  const drawer  = document.getElementById('drawer');
   const closeBtn= document.getElementById('drawerClose');
 
   function openDrawer(){ body.classList.add('nav-open'); }
@@ -212,6 +598,87 @@
     document.addEventListener('keydown', (e)=>{
       if(e.key==='Escape'){ fab.classList.remove('open'); main.setAttribute('aria-expanded','false'); }
     });
+  }());
+
+  /* ===== Scroll reveal ===== */
+  (function(){
+    const items = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('show');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    items.forEach(el=>io.observe(el));
+  }());
+
+  /* ===== Particles (no library) ===== */
+  (function(){
+    const c = document.getElementById('particles');
+    if(!c) return;
+    const ctx = c.getContext('2d');
+    let w, h, dpr;
+    const dots = [];
+    const DOTS = 70;
+
+    function resize(){
+      dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+      w = c.clientWidth; h = c.clientHeight;
+      c.width = Math.floor(w * dpr);
+      c.height = Math.floor(h * dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    function rand(min,max){ return Math.random()*(max-min)+min; }
+
+    function init(){
+      dots.length = 0;
+      for(let i=0;i<DOTS;i++){
+        dots.push({
+          x: rand(0,w), y: rand(0,h),
+          vx: rand(-0.22,0.22), vy: rand(-0.22,0.22),
+          r: rand(1.1,2.3),
+          a: rand(0.22,0.62)
+        });
+      }
+    }
+
+    function step(){
+      ctx.clearRect(0,0,w,h);
+
+      for(const p of dots){
+        p.x += p.vx; p.y += p.vy;
+        if(p.x<0||p.x>w) p.vx *= -1;
+        if(p.y<0||p.y>h) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(200,230,255,${p.a})`;
+        ctx.fill();
+      }
+
+      for(let i=0;i<dots.length;i++){
+        for(let j=i+1;j<dots.length;j++){
+          const a = dots[i], b = dots[j];
+          const dx = a.x-b.x, dy = a.y-b.y;
+          const dist = Math.hypot(dx,dy);
+          if(dist < 120){
+            ctx.strokeStyle = `rgba(160,220,255,${(1-dist/120)*0.10})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x,a.y);
+            ctx.lineTo(b.x,b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    resize(); init(); step();
+    window.addEventListener('resize', ()=>{ resize(); init(); });
   }());
 </script>
 </body>
