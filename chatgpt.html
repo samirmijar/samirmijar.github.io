@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ChatGPT Subscription • SM Digital Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0d0f12; --card:#111623; --line:#23283b; --soft:#151b2e;
+  --text:#eaeaea; --muted:#b9c6d3; --accent:#00c853; --ok:#25D366;
+  --radius:16px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
+.wrap{max-width:860px;margin:0 auto;padding:18px}
+.topbar{display:flex;align-items:center;gap:10px;padding:12px 0}
+.topbar a{color:#9ecbff;text-decoration:none}
+.brand-logo{width:38px;height:38px;object-fit:contain;margin-left:auto}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:14px 0}
+h1{margin:6px 0 0 0;font-size:22px}
+h2,h3{margin:0 0 10px 0;color:#fff}
+p{margin:0 0 10px}
+ul{padding-left:18px;margin:0}
+.muted{color:var(--muted)}
+.warn{color:#ffb3b3;font-weight:700}
+
+input,select{
+  width:100%;padding:12px;border-radius:10px;border:1px solid #2b3148;
+  background:var(--soft);color:#fff;margin:8px 0
+}
+input:focus,select:focus{outline:2px solid var(--accent)}
+
+.pay-row{display:flex;gap:10px;flex-wrap:wrap}
+.pay-btn{
+  flex:1;min-width:110px;background:var(--soft);border:1px solid #2b3148;
+  border-radius:10px;padding:12px;text-align:center;cursor:pointer;font-weight:700
+}
+.pay-btn.active{background:var(--accent);border-color:var(--accent);color:#000}
+
+.cta{
+  background:#ff3b6b;border:none;padding:14px 16px;border-radius:12px;
+  color:#fff;font-weight:800;cursor:pointer;width:100%;margin-top:6px
+}
+.cta[disabled]{opacity:.5;cursor:not-allowed}
+
+.footer-links{display:flex;gap:10px;justify-content:center;margin:18px 0 10px 0}
+.footer-links a{color:#b7b7ff;text-decoration:none}
+
+/* toast */
+#toast{
+  position:fixed;left:50%;bottom:24px;transform:translateX(-50%);
+  background:#0f1822;border:1px solid rgba(255,255,255,.12);
+  color:#e9eef4;padding:10px 14px;border-radius:10px;
+  box-shadow:0 10px 24px rgba(0,0,0,.28);
+  opacity:0;transition:.25s;z-index:9999
+}
+#toast.show{opacity:1}
+
+/* modal */
+.modal-backdrop{
+  position:fixed;inset:0;background:rgba(0,0,0,.65);
+  display:none;align-items:center;justify-content:center;
+  padding:18px;z-index:9990
+}
+.modal{
+  width:100%;max-width:520px;background:#0f1421;
+  border:1px solid #20263a;border-radius:18px;
+  box-shadow:0 20px 60px rgba(0,0,0,.45)
+}
+.modal-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 16px;border-bottom:1px solid #1e2639
+}
+.modal-head h3{margin:0;font-size:18px;color:#00e676}
+.modal-close{
+  background:transparent;border:none;color:#cfd6ff;
+  font-size:22px;cursor:pointer
+}
+.modal-body{padding:14px 16px}
+.summary{
+  background:#0b1220;border:1px solid #20263a;
+  border-radius:12px;padding:12px;margin:10px 0;font-size:14px
+}
+.summary b{color:#cfe2ff}
+.qr-wrap{text-align:center}
+.qr-wrap img{
+  max-width:220px;background:#fff;border-radius:12px;
+  padding:8px;display:block;margin:8px auto
+}
+.note{font-size:13px;color:#ffcdcd;margin:8px 0 0}
+.submit{
+  background:var(--ok);border:none;padding:14px 16px;
+  border-radius:12px;color:#fff;font-weight:800;
+  cursor:pointer;width:100%;margin-top:12px
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+<div class="topbar">
+  <a href="index.html">← Back Home</a>
+  <span style="opacity:.6">/</span>
+  <span>ChatGPT</span>
+  <img class="brand-logo" src="png.images/logo-chatgptai.png" alt="ChatGPT">
+</div>
+
+<h1>ChatGPT Subscription</h1>
+
+<div class="card">
+  <h2>Description</h2>
+  <ul>
+    <li><b>1 Month Subscription</b></li>
+    <li>Delivery Time: ⚡ 0–30 minutes</li>
+    <li>Requirements: 📧 Your email address</li>
+    <li>Activation / access details will be sent to your email after payment verification.</li>
+    <li>💳 Pay via eSewa, Khalti, or Bank transfer</li>
+  </ul>
+  <p class="warn" style="margin-top:8px">
+    Please enter the correct email address.
+  </p>
+</div>
+
+<div class="card">
+  <h2>Your Email (Delivery)</h2>
+  <input id="email" type="email" placeholder="Enter your email" required>
+</div>
+
+<div class="card">
+  <h2>Select Package</h2>
+  <select id="plan">
+    <option value="1 Month ChatGPT Plus — NPR 800" data-price="NPR 800">
+      1 Month ChatGPT Plus — NPR 800
+    </option>
+    <option value="1 Month Business Plan — NPR 1200" data-price="NPR 1200">
+      1 Month Business Plan — NPR 1200
+    </option>
+  </select>
+</div>
+
+<div class="card">
+  <h2>Select Payment Method</h2>
+  <div class="pay-row">
+    <div class="pay-btn" data-method="eSewa" data-qr="png.images/logo-esewaqr.png">eSewa</div>
+    <div class="pay-btn" data-method="Khalti" data-qr="png.images/logo-khaltiqr.png">Khalti</div>
+    <div class="pay-btn" data-method="Bank" data-qr="png.images/logo-bankqr.png">Bank</div>
+  </div>
+  <button id="buyBtn" class="cta" disabled>Buy Now!</button>
+</div>
+
+<div class="footer-links">
+  <a href="https://wa.me/9779828560029" target="_blank">WhatsApp</a>
+  <a href="https://instagram.com/sajilotopup.np" target="_blank">Instagram</a>
+</div>
+
+</div>
+
+<div id="toast"></div>
+
+<div id="modal" class="modal-backdrop">
+<div class="modal">
+<div class="modal-head">
+  <h3>Complete Your Purchase</h3>
+  <button class="modal-close" onclick="closeModal()">×</button>
+</div>
+<div class="modal-body">
+
+<div class="summary">
+  <div><b>Package:</b> <span id="mPlan"></span></div>
+  <div><b>Price:</b> <span id="mPrice"></span></div>
+  <div><b>Email:</b> <span id="mEmail"></span></div>
+  <div><b>Payment:</b> <span id="mMethod"></span></div>
+</div>
+
+<div class="qr-wrap">
+  <h3>Scan and Pay</h3>
+  <img id="mQR" alt="QR">
+</div>
+
+<p class="note">⚠️ Write your real name in payment remarks.</p>
+<input id="txn" type="text" placeholder="Enter Transaction ID">
+
+<button id="submitBtn" class="submit" onclick="submitNow()">Submit Order</button>
+
+</div>
+</div>
+</div>
+
+<script>
+const FORMCARRY_ENDPOINT = 'https://formcarry.com/s/hLCcFIzh4wa-';
+let chosen = { method:'', qr:'' };
+const $ = id => document.getElementById(id);
+
+function toast(msg){
+  const t=$('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+function toggleBtn(){
+  $('buyBtn').disabled = !($('email').value.trim() && chosen.method);
+}
+
+document.querySelectorAll('.pay-btn').forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll('.pay-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    chosen.method=btn.dataset.method;
+    chosen.qr=btn.dataset.qr;
+    toggleBtn();
+  };
+});
+
+$('email').oninput=toggleBtn;
+$('plan').onchange=toggleBtn;
+
+$('buyBtn').onclick=()=>{
+  const p=$('plan').selectedOptions[0];
+  $('mPlan').textContent=p.value;
+  $('mPrice').textContent=p.dataset.price;
+  $('mEmail').textContent=$('email').value;
+  $('mMethod').textContent=chosen.method;
+  $('mQR').src=chosen.qr;
+  $('modal').style.display='flex';
+};
+
+function closeModal(){ $('modal').style.display='none'; }
+
+async function submitNow(){
+  const email=$('email').value;
+  const plan=$('plan').value;
+  const txn=$('txn').value;
+  if(!txn){alert("Enter Transaction ID");return;}
+  const fd=new FormData();
+  fd.append('name','ChatGPT Customer');
+  fd.append('email',email);
+  fd.append('order',`Plan: ${plan} | Payment: ${chosen.method} | TXN: ${txn}`);
+  await fetch(FORMCARRY_ENDPOINT,{method:'POST',body:fd});
+  toast("✅ Order sent successfully!");
+  closeModal();
+}
+</script>
+
+</body>
+</html>
