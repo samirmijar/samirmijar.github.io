@@ -3,101 +3,449 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Shop • SM Digital Services</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <title>Shop • The Sam Store</title>
+  <meta name="theme-color" content="#120b24" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg:#0d0f12;         /* dark page bg */
-      --card:#ffffff;       /* white card */
-      --line:#e7eaf0;
-      --soft:#f7f9fc;
-      --text:#111;
-      --muted:#6b7785;
-      --accent1:#ffb703;    /* lootbar-ish yellow */
-      --accent2:#ff415f;
-      --radius:16px;
+      --bg:#0b0a14;
+      --bg2:#120b24;
+
+      --panel:rgba(255,255,255,.06);
+      --panel2:rgba(255,255,255,.08);
+      --line:rgba(255,255,255,.10);
+
+      --text:#f4f6ff;
+      --muted:#b9c3e2;
+
+      --shadow:0 18px 55px rgba(0,0,0,.48);
+      --radius:18px;
+
+      --accent:#7c3aed;    /* purple */
+      --accent2:#00eaff;   /* cyan */
+      --cta:linear-gradient(90deg,#ff7a00,#ff3d8b);
+
+      --top:rgba(42,25,88,.92);
     }
+
     *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:#eaeaea;font-family:Inter,system-ui,sans-serif}
-    .wrap{max-width:1200px;margin:0 auto;padding:14px}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 600px at 18% 10%, rgba(124,58,237,.18), transparent 60%),
+        radial-gradient(900px 600px at 82% 14%, rgba(0,234,255,.11), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
 
-    /* header */
-    .head-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0}
-    .title{font-weight:900;font-size:28px;margin-right:auto;color:#fff}
-    .search-box{flex:1;min-width:220px}
+    /* ===== Premium background (lightweight) ===== */
+    .mesh{
+      position:fixed; inset:0; z-index:-2; pointer-events:none; opacity:.18;
+      background-image: radial-gradient(rgba(255,255,255,.10) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: radial-gradient(720px 520px at 50% 14%, #000 35%, transparent 75%);
+    }
+    .bg-blobs{
+      position:fixed; inset:0; z-index:-3; pointer-events:none; overflow:hidden;
+    }
+    .blob{
+      position:absolute; width:520px; height:520px; border-radius:50%;
+      filter: blur(46px);
+      opacity:.55;
+      animation: float 14s ease-in-out infinite;
+      mix-blend-mode: screen;
+    }
+    .b1{left:-180px; top:-190px; background:radial-gradient(circle at 30% 30%, rgba(124,58,237,.9), rgba(0,234,255,.28), transparent 70%); animation-duration:15s;}
+    .b2{right:-220px; top:30px; background:radial-gradient(circle at 30% 30%, rgba(0,234,255,.75), rgba(255,61,139,.22), transparent 70%); animation-duration:17s;}
+    .b3{left:18%; bottom:-260px; background:radial-gradient(circle at 30% 30%, rgba(255,61,139,.65), rgba(124,58,237,.22), transparent 70%); animation-duration:19s;}
+    @keyframes float{
+      0%,100%{transform:translate3d(0,0,0) scale(1)}
+      50%{transform:translate3d(26px,-22px,0) scale(1.04)}
+    }
+    .grain{
+      position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.10; mix-blend-mode: overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+    }
+
+    /* ===== Header (same vibe as your Sam Store homepage) ===== */
+    header{
+      position:sticky; top:0; z-index:1000;
+      background:linear-gradient(180deg, var(--top), rgba(42,25,88,.86));
+      border-bottom:1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .topbar{
+      height:74px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 14px;
+      max-width:1200px;
+      margin:0 auto;
+      gap:10px;
+    }
+    .left-icons, .right-icons{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:110px;
+    }
+    .icon-btn{
+      width:44px;height:44px;
+      border-radius:14px;
+      display:grid; place-items:center;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      color:#fff;
+      cursor:pointer;
+      transition:.15s ease;
+      user-select:none;
+    }
+    .icon-btn:hover{transform:translateY(-2px); background:rgba(255,255,255,.09)}
+    .icon-btn:active{transform:scale(.97)}
+    .brand{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-width:0;
+      flex:1;
+    }
+    .brand img{
+      height:40px;
+      width:auto;
+      object-fit:contain;
+      filter: drop-shadow(0 12px 30px rgba(0,0,0,.55));
+    }
+    .brand span{
+      font-weight:900;
+      letter-spacing:.4px;
+      font-size:18px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width:46vw;
+    }
+    @media (min-width:520px){
+      .brand span{font-size:20px}
+      .brand img{height:44px}
+    }
+
+    /* ===== Drawer ===== */
+    .drawer-overlay{
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.60);
+      opacity:0; pointer-events:none;
+      transition:.2s;
+      z-index:1200;
+    }
+    .drawer{
+      position:fixed; inset:0 0 0 auto;
+      width:84%; max-width:380px;
+      transform:translateX(100%);
+      transition:.26s ease;
+      z-index:1210;
+      padding:18px 16px;
+      background:rgba(18,11,36,.95);
+      border-left:1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow:var(--shadow);
+    }
+    .nav-open .drawer{transform:none}
+    .nav-open .drawer-overlay{opacity:1; pointer-events:auto}
+    .drawer .close{
+      position:absolute; top:12px; right:12px;
+      width:46px;height:46px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      color:#fff;
+      font-size:26px;
+      cursor:pointer;
+    }
+    .drawer nav{
+      margin-top:64px;
+      display:grid;
+      gap:12px;
+    }
+    .drawer a{
+      padding:12px 16px;
+      border-radius:14px;
+      font-weight:900;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .drawer a.primary{
+      background:linear-gradient(135deg, rgba(124,58,237,.95), rgba(0,234,255,.55));
+      border-color:transparent;
+    }
+
+    /* ===== Page ===== */
+    .wrap{max-width:1200px;margin:0 auto;padding:16px 14px 110px}
+
+    /* Shop header row */
+    .head-row{
+      display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+      margin:12px 0 10px;
+    }
+    .title{
+      font-weight:950;
+      font-size:22px;
+      letter-spacing:-.2px;
+      margin-right:auto;
+    }
+    @media (min-width:520px){ .title{font-size:26px} }
+
+    .search-box{
+      flex:1;
+      min-width:240px;
+    }
     .search-box input{
-      width:100%;padding:12px 14px;border-radius:12px;border:1px solid #2a3242;
-      background:#121a25;color:#e9eef6;font-size:15px
+      width:100%;
+      padding:12px 14px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.22);
+      color:var(--text);
+      font-size:15px;
+      outline:none;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
+    .search-box input::placeholder{color:rgba(244,246,255,.55)}
+    .search-box input:focus{border-color:rgba(0,234,255,.28)}
 
-    /* tabs */
-    .tabs{display:flex;gap:10px;overflow-x:auto;margin:12px 0}
+    /* Tabs */
+    .tabs{
+      display:flex;
+      gap:10px;
+      overflow-x:auto;
+      padding:6px 2px 2px;
+      margin:10px 0 14px;
+      scrollbar-width:none;
+    }
+    .tabs::-webkit-scrollbar{display:none}
     .tab{
-      padding:10px 16px;border-radius:24px;background:#121a25;cursor:pointer;font-weight:700;
-      border:1px solid #223049;white-space:nowrap;color:#e9eef6
+      padding:10px 14px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:900;
+      font-size:13px;
+      white-space:nowrap;
+      color:#eaf0ff;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      transition:.15s ease;
+      user-select:none;
     }
-    .tab.active{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff;border-color:transparent}
+    .tab:hover{transform:translateY(-2px); background:rgba(255,255,255,.09)}
+    .tab.active{
+      background:linear-gradient(135deg, rgba(124,58,237,.95), rgba(0,234,255,.55));
+      border-color:transparent;
+      box-shadow:0 18px 46px rgba(0,234,255,.12);
+    }
 
-    /* ===== 3×3 grid (Lootbar style) ===== */
+    /* Grid: 2 columns on phones (premium + tappable), 3 on tablet, 4 on desktop */
     .grid{
       display:grid;
-      grid-template-columns:repeat(3,1fr); /* always 3 per row */
-      gap:14px;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
     }
-    /* keep 3 cols on phones as requested */
-    @media (max-width:9999px){ .grid{grid-template-columns:repeat(3,1fr)} }
+    @media (min-width:720px){ .grid{grid-template-columns:repeat(3,1fr)} }
+    @media (min-width:1024px){ .grid{grid-template-columns:repeat(4,1fr)} }
 
-    /* CARD — compact white */
+    /* Premium product card */
     .card{
-      background:var(--card);border:1px solid var(--line);border-radius:18px;
-      padding:10px;display:flex;flex-direction:column;align-items:center;text-align:center;
-      box-shadow:0 6px 18px rgba(0,0,0,.12);
+      position:relative;
+      border-radius:22px;
+      padding:12px;
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.035));
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:0 18px 55px rgba(0,0,0,.35);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      transform:translateY(0);
+      transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      min-height: 220px;
     }
-    .thumb{width:100%;aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:#eef2f7;margin-bottom:10px;display:block}
-    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
-    .title-link{color:inherit;text-decoration:none}
-    .name{font-size:14px;font-weight:900;margin:0;color:#111;line-height:1.25}
+    .card::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(380px 240px at 20% 10%, rgba(124,58,237,.18), transparent 65%),
+        radial-gradient(380px 240px at 90% 30%, rgba(0,234,255,.12), transparent 65%);
+      pointer-events:none;
+    }
+    .card:hover{
+      transform:translateY(-5px);
+      border-color:rgba(0,234,255,.22);
+      box-shadow:0 26px 72px rgba(0,0,0,.48);
+    }
 
-    /* rating line */
+    .thumb{
+      width:100%;
+      aspect-ratio: 1 / 1;
+      border-radius:18px;
+      overflow:hidden;
+      background:rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.10);
+      position:relative;
+      z-index:1;
+    }
+    .thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transform:scale(1);
+      transition:transform .22s ease;
+    }
+    .card:hover .thumb img{transform:scale(1.04)}
+
+    .name{
+      margin:0;
+      font-size:14px;
+      font-weight:950;
+      letter-spacing:-.1px;
+      position:relative;
+      z-index:1;
+    }
+    .title-link{position:relative; z-index:1}
+
     .stats{
-      margin-top:6px;
+      margin-top:auto;
       font-size:12px;
-      color:#333;
-      display:flex;align-items:center;gap:6px;justify-content:center;
+      color:rgba(244,246,255,.78);
+      display:flex;
+      align-items:center;
+      gap:8px;
+      justify-content:center;
+      padding:8px 10px;
+      border-radius:999px;
+      background:rgba(0,0,0,.20);
+      border:1px solid rgba(255,255,255,.10);
+      position:relative;
+      z-index:1;
     }
-    .star{color:#ffb703;font-weight:800}
+    .star{
+      font-weight:950;
+      background:linear-gradient(90deg,#ffd166,#ff3d8b);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
 
-    .note{margin:14px 0 0;padding:12px;border:1px solid #223049;border-radius:12px;background:#0f1822;color:#cfe2ff}
+    .note{
+      margin:14px 0 0;
+      padding:12px 14px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;
+      background:rgba(255,255,255,.05);
+      color:rgba(244,246,255,.78);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
 
-    /* Floating speed-dial */
-    .fab{position:fixed; right:16px; bottom:18px; z-index:9999}
-    .fab-main{
-      width:58px;height:58px;border:0;border-radius:50%;
-      background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:#fff;
-      display:grid;place-items:center; box-shadow:0 10px 24px rgba(0,0,0,.28); cursor:pointer;
+    /* Small reveal animation */
+    .reveal{
+      opacity:0;
+      transform: translateY(10px);
+      transition: opacity .55s ease, transform .55s ease;
     }
-    .fab-menu{position:absolute; right:0; bottom:70px; display:flex; flex-direction:column; gap:10px;
-      opacity:0; pointer-events:none; transform:translateY(8px) scale(.98); transform-origin:bottom right;
-      transition:opacity .18s ease, transform .18s ease;
+    .reveal.show{opacity:1; transform: translateY(0);}
+
+    /* WhatsApp FAB (clean premium) */
+    .wa-fab{
+      position:fixed;
+      right:16px;
+      bottom:18px;
+      z-index:2000;
+      width:62px;height:62px;
+      border-radius:50%;
+      display:grid;place-items:center;
+      background:linear-gradient(135deg,#25D366,#1fbf5a);
+      box-shadow:0 18px 46px rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.14);
+      transition:.15s ease;
     }
-    .fab.open .fab-menu{opacity:1; pointer-events:auto; transform:translateY(0) scale(1)}
-    .fab-item{
-      width:48px; height:48px; border-radius:50%; display:grid; place-items:center;
-      background:#0f1822; border:1px solid rgba(255,255,255,.12); box-shadow:0 8px 18px rgba(0,0,0,.25)
+    .wa-fab:hover{transform:translateY(-3px)}
+    .wa-fab img{width:28px;height:28px}
+
+    footer{
+      margin-top:18px;
+      padding:18px 12px;
+      text-align:center;
+      color:rgba(244,246,255,.68);
+      background:rgba(0,0,0,.18);
+      border-top:1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
-    .fab-item img{width:24px;height:24px;object-fit:contain}
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <div class="head-row">
-      <div class="title">Shop</div>
+  <div class="bg-blobs" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+  <div class="mesh" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="topbar">
+      <div class="left-icons">
+        <a class="icon-btn" href="index.html" title="Home" aria-label="Home">⌂</a>
+        <div class="icon-btn" title="Account" aria-label="Account">👤</div>
+      </div>
+
+      <a class="brand" href="index.html" aria-label="The Sam Store Home">
+        <!-- ✅ LIVE logo -->
+        <img src="png.images/samstore-logo.gif" alt="The Sam Store">
+        <span>The Sam Store</span>
+      </a>
+
+      <div class="right-icons">
+        <button class="icon-btn sm-menu-toggle" title="Menu" aria-label="Menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Drawer -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="drawer" id="drawer" aria-label="Main menu">
+    <button class="close" id="drawerClose" aria-label="Close menu">×</button>
+    <nav>
+      <a class="primary" href="shop.html">SHOP</a>
+      <a href="todaysoffer.html">Today’s Offer</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+  </aside>
+
+  <main class="wrap">
+    <div class="head-row reveal">
+      <div class="title">SHOP</div>
       <div class="search-box">
-        <input id="search" type="search" placeholder="Search products (e.g., Free Fire, PUBG, iTunes)…">
+        <input id="search" type="search" placeholder="Search (Free Fire, PUBG, iTunes, ChatGPT) …" autocomplete="off">
       </div>
     </div>
 
-    <div class="tabs" id="tabs">
+    <div class="tabs reveal" id="tabs">
       <div class="tab active" data-cat="topup">Top Up</div>
       <div class="tab" data-cat="subs">Subscription</div>
       <div class="tab" data-cat="gift">Gift Card & Vouchers</div>
@@ -105,292 +453,333 @@
     </div>
 
     <div id="grid" class="grid">
-      <!-- ===== TOP UP (previous + 11 new) ===== -->
+      <!-- ===== TOP UP ===== -->
       <div class="card topup" data-name="Free Fire diamonds">
         <a href="freefire.html" class="thumb"><img src="/png.images/logo-freefire.png" alt="Free Fire"></a>
         <a href="freefire.html" class="title-link"><h3 class="name">FreeFire</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
 
       <div class="card topup" data-name="PUBG Mobile UC">
         <a href="pubg.html" class="thumb"><img src="/png.images/logo-pubg.png" alt="PUBG Mobile"></a>
         <a href="pubg.html" class="title-link"><h3 class="name">PUBG Mobile</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
 
       <div class="card topup" data-name="Mobile Legends MLBB">
         <a href="mlbb.html" class="thumb"><img src="/png.images/logo-mobilel.png" alt="MLBB"></a>
         <a href="mlbb.html" class="title-link"><h3 class="name">MobileLegends</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
 
       <div class="card topup" data-name="Supercell Store">
         <a href="supercell.html" class="thumb"><img src="/png.images/logo-supercell.png" alt="Supercell"></a>
         <a href="supercell.html" class="title-link"><h3 class="name">Supercell Games</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
 
       <div class="card topup" data-name="eFootball">
         <a href="efootball.html" class="thumb"><img src="/png.images/logo-ios.png" alt="eFootball"></a>
         <a href="efootball.html" class="title-link"><h3 class="name">eFootball</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
 
       <div class="card topup" data-name="Roblox Robux">
         <a href="roblox.html" class="thumb"><img src="/png.images/logo-robux.png" alt="Roblox"></a>
         <a href="roblox.html" class="title-link"><h3 class="name">Roblox</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
 
       <div class="card topup" data-name="TikTok Coins">
         <a href="tiktok.html" class="thumb"><img src="/png.images/logo-tiktoks.png" alt="TikTok"></a>
         <a href="tiktok.html" class="title-link"><h3 class="name">TikTok Coins</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
 
       <div class="card topup" data-name="Chamet Coins">
         <a href="chamet.html" class="thumb"><img src="/png.images/logo-chamet.png" alt="Chamet"></a>
         <a href="chamet.html" class="title-link"><h3 class="name">Chamet Coins</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
 
       <div class="card topup" data-name="Poppo Coins">
         <a href="poppo.html" class="thumb"><img src="/png.images/logo-poppo.png" alt="Poppo"></a>
         <a href="poppo.html" class="title-link"><h3 class="name">Poppo Coins</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
 
-      <!-- NEW 11 -->
       <div class="card topup" data-name="Delta Force">
         <a href="deltaforce.html" class="thumb"><img src="/png.images/logo-delta.png" alt="Delta Force"></a>
         <a href="deltaforce.html" class="title-link"><h3 class="name">Delta Force</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card topup" data-name="Blood Strike">
         <a href="bloodstrike.html" class="thumb"><img src="/png.images/logo-bloodstrike.png" alt="Blood Strike"></a>
         <a href="bloodstrike.html" class="title-link"><h3 class="name">Blood Strike</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card topup" data-name="Honor of Kings">
         <a href="honorofkings.html" class="thumb"><img src="/png.images/logo-hok.png" alt="Honor of Kings"></a>
         <a href="honorofkings.html" class="title-link"><h3 class="name">Honor of Kings</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card topup" data-name="Genshin Impact">
         <a href="genshin.html" class="thumb"><img src="/png.images/logo-genshin.png" alt="Genshin Impact"></a>
         <a href="genshin.html" class="title-link"><h3 class="name">Genshin Impact</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card topup" data-name="Marvel Rivals">
         <a href="marvelrivals.html" class="thumb"><img src="/png.images/logo-marvel.png" alt="Marvel Rivals"></a>
         <a href="marvel.html" class="title-link"><h3 class="name">Marvel Rivals</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card topup" data-name="Arena Breakout Bonds">
         <a href="arenabreakout-bonds.html" class="thumb"><img src="/png.images/logo-arena.png" alt="Arena Breakout Bonds"></a>
         <a href="arenabreakout-bonds.html" class="title-link"><h3 class="name">Arena Breakout • Bonds</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card topup" data-name="LifeAfter">
         <a href="lifeafter.html" class="thumb"><img src="/png.images/logo-lifeafter.png" alt="LifeAfter"></a>
         <a href="lifeafter.html" class="title-link"><h3 class="name">LifeAfter</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card topup" data-name="Call of Duty">
         <a href="callofduty.html" class="thumb"><img src="/png.images/logo-cod.png" alt="Call of Duty"></a>
         <a href="callofduty.html" class="title-link"><h3 class="name">Call of Duty</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card topup" data-name="EFootball iOS">
         <a href="efootball-ios.html" class="thumb"><img src="/png.images/logo-andriod.png" alt="EFootball"></a>
         <a href="efootball-ios.html" class="title-link"><h3 class="name">EFootball (iOS)</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card topup" data-name="Farlight 84">
         <a href="farlight84.html" class="thumb"><img src="/png.images/logo-farlight84.png" alt="Farlight 84"></a>
         <a href="farlight84.html" class="title-link"><h3 class="name">Farlight 84</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card topup" data-name="EA Sports FC">
         <a href="ea-fc.html" class="thumb"><img src="/png.images/logo-fc.png" alt="EA Sports FC"></a>
         <a href="ea-fc.html" class="title-link"><h3 class="name">EA Sports FC</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
 
       <!-- ===== SUBSCRIPTIONS ===== -->
       <div class="card subs" data-name="APEUni VIP">
         <a href="apeuni.html" class="thumb"><img src="/png.images/logo-apeuni.png" alt="APEUni VIP"></a>
         <a href="apeuni.html" class="title-link"><h3 class="name">APEUni VIP</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card subs" data-name="ChatGPT Plus">
         <a href="chatgpt.html" class="thumb"><img src="/png.images/logo-chatgptai.png" alt="ChatGPT Plus"></a>
         <a href="chatgpt.html" class="title-link"><h3 class="name">ChatGPT Plus</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card subs" data-name="Perplexity Pro">
         <a href="perplexity.html" class="thumb"><img src="/png.images/logo-perplexity.png" alt="Perplexity Pro"></a>
         <a href="perplexity.html" class="title-link"><h3 class="name">Perplexity Pro (1Y)</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card subs" data-name="Spotify 12M">
         <a href="spotify.html" class="thumb"><img src="/png.images/logo-spotifys.png" alt="Spotify"></a>
         <a href="spotify.html" class="title-link"><h3 class="name">Spotify (12M Code)</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card subs" data-name="CapCut Pro">
         <a href="capcut.html" class="thumb"><img src="/png.images/logo-capcuts.png" alt="CapCut Pro"></a>
         <a href="capcut.html" class="title-link"><h3 class="name">CapCut Pro</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card subs" data-name="Netflix Premium">
         <a href="netflix.html" class="thumb"><img src="/png.images/logo-netflix.png" alt="Netflix"></a>
         <a href="netflix.html" class="title-link"><h3 class="name">Netflix Premium</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card subs" data-name="Prime Video">
         <a href="primevideo.html" class="thumb"><img src="/png.images/logo-primevideo.png" alt="Prime Video"></a>
         <a href="primevideo.html" class="title-link"><h3 class="name">Prime Video</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card subs" data-name="YouTube Premium">
         <a href="youtube.html" class="thumb"><img src="/png.images/logo-youtube.png" alt="YouTube Premium"></a>
         <a href="youtube.html" class="title-link"><h3 class="name">YouTube Premium</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card subs" data-name="PicsArt Pro">
         <a href="picsart.html" class="thumb"><img src="/png.images/logo-picsart.png" alt="PicsArt Pro"></a>
         <a href="picsart.html" class="title-link"><h3 class="name">PicsArt Pro</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card subs" data-name="Surfshark VPN">
         <a href="surfshark.html" class="thumb"><img src="/png.images/logo-surfshark.png" alt="Surfshark VPN"></a>
         <a href="surfshark.html" class="title-link"><h3 class="name">Surfshark VPN</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card subs" data-name="Canva Pro">
         <a href="canva.html" class="thumb"><img src="/png.images/logo-canva.png" alt="Canva Pro"></a>
         <a href="canva.html" class="title-link"><h3 class="name">Canva Pro</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card subs" data-name="Duolingo Super">
         <a href="duolingo.html" class="thumb"><img src="/png.images/logo-duolingo.png" alt="Duolingo Super"></a>
         <a href="duolingo.html" class="title-link"><h3 class="name">Duolingo Super</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card subs" data-name="Google One + Gemini">
         <a href="googleone.html" class="thumb"><img src="/png.images/logo-google1.png" alt="Google One"></a>
         <a href="googleone.html" class="title-link"><h3 class="name">Google One + Gemini</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card subs" data-name="ElevenLabs">
         <a href="elevenlabs.html" class="thumb"><img src="/png.images/logo-eleven.png" alt="ElevenLabs"></a>
         <a href="elevenlabs.html" class="title-link"><h3 class="name">ElevenLabs</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card subs" data-name="Discord Nitro">
         <a href="discord.html" class="thumb"><img src="/png.images/logo-discord.png" alt="Discord Nitro"></a>
         <a href="discord.html" class="title-link"><h3 class="name">Discord Nitro</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card subs" data-name="Telegram Premium">
         <a href="telegram.html" class="thumb"><img src="/png.images/logo-telegram.png" alt="Telegram Premium"></a>
         <a href="telegram.html" class="title-link"><h3 class="name">Telegram Premium</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
 
       <!-- ===== GIFT CARDS ===== -->
       <div class="card gift" data-name="UNIPIN BD">
         <a href="unipin.html" class="thumb"><img src="/png.images/logo-unipin.png" alt="UNIPIN"></a>
         <a href="unipin.html" class="title-link"><h3 class="name">UNIPIN BD</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card gift" data-name="iTunes USA">
         <a href="itunes.html" class="thumb"><img src="/png.images/logo-itunes.png" alt="iTunes USA"></a>
         <a href="itunes.html" class="title-link"><h3 class="name">iTunes USA</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card gift" data-name="Garena MY Shell">
         <a href="garena-shell.html" class="thumb"><img src="/png.images/logo-shell.png" alt="Garena Shell"></a>
         <a href="garena-shell.html" class="title-link"><h3 class="name">Garena MY Shell</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card gift" data-name="Xbox">
         <a href="xbox.html" class="thumb"><img src="/png.images/logo-xbox.png" alt="Xbox"></a>
         <a href="xbox.html" class="title-link"><h3 class="name">Xbox</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card gift" data-name="Nintendo eShop">
         <a href="nintendo.html" class="thumb"><img src="/png.images/logo-nintendo.png" alt="Nintendo eShop"></a>
         <a href="nintendo.html" class="title-link"><h3 class="name">Nintendo</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
+
       <div class="card gift" data-name="PlayStation PSN">
         <a href="psn.html" class="thumb"><img src="/png.images/logo-playstation.png" alt="PlayStation"></a>
         <a href="psn.html" class="title-link"><h3 class="name">PlayStation (PSN)</h3></a>
-        <div class="stats"><span class="star">★ 5.0</span><span>|</span><span>50+ Sold</span></div>
+        <div class="stats"><span class="star">★ 5.0</span><span>•</span><span>50+ Sold</span></div>
       </div>
     </div>
 
-    <div class="note">Tip: tap any logo or name to open the product page. Use the search bar or tabs to filter.</div>
-  </div>
+    <div class="note reveal">
+      Tip: Tap any logo or name to open the product page. Use the tabs + search to filter quickly.
+    </div>
 
-  <!-- Floating speed-dial (tap to open/close) -->
-  <div class="fab" id="chatFab" aria-label="Open contacts">
-    <button class="fab-main" type="button" aria-haspopup="true" aria-expanded="false">💬</button>
-    <nav class="fab-menu" aria-label="Contact links">
-      <a class="fab-item" href="https://wa.me/9779828560029" target="_blank" rel="noopener" aria-label="WhatsApp">
-        <img src="/png.images/logo-whatsapp.png" alt="">
-      </a>
-      <a class="fab-item" href="https://instagram.com/sajilotopup.np" target="_blank" rel="noopener" aria-label="Instagram">
-        <img src="/png.images/logo-instagram.png" alt="">
-      </a>
-      <a class="fab-item" href="https://facebook.com/sajilotopupnp" target="_blank" rel="noopener" aria-label="Facebook">
-        <img src="/png.images/logo-facebook.png" alt="">
-      </a>
-    </nav>
-  </div>
+    <footer class="reveal">
+      Copyright ©2026 <strong>The Sam Store</strong> — owned by <strong>Samir Mijar</strong>
+    </footer>
+  </main>
 
-<script>
-  // tabs
-  const tabs = document.querySelectorAll('.tab');
-  const cards = document.querySelectorAll('.card');
-  function show(cat){ cards.forEach(c=> c.style.display = c.classList.contains(cat) ? 'flex' : 'none'); }
-  tabs.forEach(t=> t.addEventListener('click', ()=>{
-    tabs.forEach(x=>x.classList.remove('active'));
-    t.classList.add('active');
-    show(t.dataset.cat);
-    document.getElementById('search').value='';
-  }));
-  show('topup');
+  <!-- WhatsApp floating -->
+  <a class="wa-fab" href="https://wa.me/9779828560029" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <img src="png.images/logo-whatsapp.png" alt="WhatsApp">
+  </a>
 
-  // search within active tab
-  document.getElementById('search').addEventListener('input', function(){
-    const q=this.value.toLowerCase(), active=document.querySelector('.tab.active').dataset.cat;
-    cards.forEach(c=>{
-      const okCat=c.classList.contains(active);
-      const okText=(c.dataset.name||c.innerText).toLowerCase().includes(q);
-      c.style.display=(okCat && okText)?'flex':'none';
-    });
-    if(!q) show(active);
-  });
+  <script>
+    // ===== Drawer open/close =====
+    const body = document.body;
+    const overlay = document.getElementById('drawerOverlay');
+    const closeBtn = document.getElementById('drawerClose');
+    const openBtns = document.querySelectorAll('.sm-menu-toggle');
 
-  // floating speed-dial open/close
-  (function(){
-    const fab = document.getElementById('chatFab');
-    if(!fab) return;
-    const main = fab.querySelector('.fab-main');
-    main.addEventListener('click', ()=>{
-      fab.classList.toggle('open');
-      main.setAttribute('aria-expanded', fab.classList.contains('open'));
+    function openDrawer(){ body.classList.add('nav-open'); }
+    function closeDrawer(){ body.classList.remove('nav-open'); }
+
+    openBtns.forEach(b=> b.addEventListener('click', openDrawer));
+    overlay.addEventListener('click', closeDrawer);
+    closeBtn.addEventListener('click', closeDrawer);
+    document.addEventListener('keydown', e=>{ if(e.key === 'Escape') closeDrawer(); });
+
+    // ===== Tabs + Search (same logic, premium UI) =====
+    const tabs = document.querySelectorAll('.tab');
+    const cards = document.querySelectorAll('.card');
+
+    function show(cat){
+      cards.forEach(c => c.style.display = c.classList.contains(cat) ? 'flex' : 'none');
+    }
+
+    tabs.forEach(t => t.addEventListener('click', () => {
+      tabs.forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      show(t.dataset.cat);
+      document.getElementById('search').value = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }));
+
+    show('topup');
+
+    document.getElementById('search').addEventListener('input', function(){
+      const q = this.value.toLowerCase();
+      const active = document.querySelector('.tab.active').dataset.cat;
+      cards.forEach(c => {
+        const okCat = c.classList.contains(active);
+        const okText = (c.dataset.name || c.innerText).toLowerCase().includes(q);
+        c.style.display = (okCat && okText) ? 'flex' : 'none';
+      });
+      if(!q) show(active);
     });
-    document.addEventListener('click', (e)=>{
-      if(!fab.contains(e.target)) { fab.classList.remove('open'); main.setAttribute('aria-expanded','false'); }
-    });
-    document.addEventListener('keydown', (e)=>{
-      if(e.key==='Escape'){ fab.classList.remove('open'); main.setAttribute('aria-expanded','false'); }
-    });
-  }());
-</script>
+
+    // ===== Scroll reveal =====
+    (function(){
+      const items = document.querySelectorAll('.reveal');
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            e.target.classList.add('show');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      items.forEach(el=>io.observe(el));
+    }());
+  </script>
 </body>
 </html>
