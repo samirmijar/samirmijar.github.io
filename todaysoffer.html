@@ -1,401 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Today's Offers • SM Digital Services</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ChatGPT • SM Digital Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --bg:#0b1115;
-      --panel:#0f1822;
-      --card:#152233;
-      --card2:#1e2f44;
-      --text:#e9eef4;
-      --muted:#b9c6d3;
-      --line:rgba(255,255,255,.08);
-      --accent1:#ffb703;
-      --accent2:#ff415f;
-      --ok:#25D366;
-      --radius:16px;
-    }
+<style>
+  :root{
+    --bg:#0d0f12; --card:#111623; --line:#23283b; --soft:#151b2e;
+    --text:#eaeaea; --muted:#b9c6d3; --accent:#00c853; --ok:#25D366;
+    --radius:16px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
+  .wrap{max-width:860px;margin:0 auto;padding:18px}
+  .topbar{display:flex;align-items:center;gap:10px;padding:12px 0}
+  .topbar a{color:#9ecbff;text-decoration:none}
+  .brand-logo{width:38px;height:38px;object-fit:contain;margin-left:auto}
 
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:Inter,system-ui,sans-serif;
-      background: radial-gradient(1200px 800px at 10% 10%, rgba(255,183,3,.10), transparent 55%),
-                  radial-gradient(1000px 700px at 90% 20%, rgba(255,65,95,.12), transparent 60%),
-                  var(--bg);
-      color:var(--text);
-    }
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:14px 0}
+  h1{margin:6px 0 0 0;font-size:22px}
+  h2,h3{margin:0 0 10px 0;color:#fff}
+  p{margin:0 0 10px}
+  ul{padding-left:18px;margin:0}
+  .muted{color:var(--muted)}
+  .warn{color:#ffb3b3;font-weight:700}
 
-    /* Header */
-    header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:12px 18px;
-      background:#fff;
-      border-bottom:2px solid #eee;
-      position:sticky;
-      top:0;
-      z-index:50;
-    }
-    header img{height:40px}
-    header h1{margin:0;font-size:18px;color:#111;letter-spacing:.3px}
-    header a{
-      text-decoration:none;
-      background:#000;
-      color:#fff;
-      padding:7px 16px;
-      border-radius:999px;
-      font-weight:700;
-      font-size:14px;
-    }
+  input,select{
+    width:100%;padding:12px;border-radius:10px;border:1px solid #2b3148;
+    background:var(--soft);color:#fff;margin:8px 0
+  }
+  input:focus,select:focus{outline:2px solid var(--accent)}
 
-    /* Content */
-    .wrap{max-width:980px;margin:0 auto;padding:18px 16px 90px}
-    .section-title{
-      display:flex;align-items:center;justify-content:space-between;gap:10px;
-      margin:18px 0 12px;
-    }
-    h2{margin:0;font-size:20px}
-    .sub{color:var(--muted);font-size:13px;margin-top:6px}
+  .pay-row{display:flex;gap:10px;flex-wrap:wrap}
+  .pay-btn{
+    flex:1;min-width:110px;background:var(--soft);border:1px solid #2b3148;border-radius:10px;
+    padding:12px;text-align:center;cursor:pointer;font-weight:700
+  }
+  .pay-btn.active{background:var(--accent);border-color:var(--accent);color:#000}
 
-    /* Countdown strip */
-    .countdown{
-      background: linear-gradient(90deg, rgba(255,183,3,.16), rgba(255,65,95,.14));
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:12px 14px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      box-shadow: 0 14px 34px rgba(0,0,0,.22);
-    }
-    .cd-left{display:flex;flex-direction:column;gap:2px}
-    .cd-title{font-weight:800}
-    .cd-hint{font-size:12px;color:rgba(233,238,244,.78)}
-    .cd-right{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      font-variant-numeric:tabular-nums;
-      font-weight:800;
-    }
-    .pill{
-      min-width:58px;
-      text-align:center;
-      padding:10px 10px;
-      border-radius:12px;
-      background:rgba(15,24,34,.8);
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
-    }
-    .pill small{display:block;font-size:11px;color:rgba(233,238,244,.70);font-weight:700;margin-top:2px}
+  .cta{background:#ff3b6b;border:none;padding:14px 16px;border-radius:12px;color:#fff;font-weight:800;cursor:pointer;width:100%;margin-top:6px}
+  .cta[disabled]{opacity:.5;cursor:not-allowed}
 
-    /* Grid */
-    .grid{
-      margin-top:14px;
-      display:grid;
-      grid-template-columns:repeat(2, 1fr);
-      gap:14px;
-    }
-    @media (min-width:720px){
-      .grid{grid-template-columns:repeat(3, 1fr)}
-    }
+  .footer-links{display:flex;gap:10px;justify-content:center;margin:18px 0 10px 0}
+  .footer-links a{color:#b7b7ff;text-decoration:none}
 
-    /* Card + glow animation */
-    .card{
-      position:relative;
-      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0)) , var(--card);
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:16px;
-      padding:18px 12px;
-      text-align:center;
-      transition:transform .22s ease, background .22s ease, box-shadow .22s ease;
-      text-decoration:none;
-      color:#fff;
-      overflow:hidden;
-      box-shadow:0 14px 28px rgba(0,0,0,.26);
-    }
-    .card::before{
-      content:"";
-      position:absolute;
-      inset:-40%;
-      background: conic-gradient(from 180deg, rgba(255,183,3,.35), rgba(255,65,95,.35), rgba(37,211,102,.30), rgba(255,183,3,.35));
-      filter: blur(20px);
-      opacity:.10;
-      transform:rotate(0deg);
-      animation: spin 6s linear infinite;
-      pointer-events:none;
-    }
-    .card:hover{
-      transform:translateY(-5px) scale(1.01);
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0)) , var(--card2);
-      box-shadow:0 18px 38px rgba(0,0,0,.34);
-    }
-    @keyframes spin{to{transform:rotate(360deg)}}
+  /* toast */
+  #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f1822;border:1px solid rgba(255,255,255,.12);color:#e9eef4;padding:10px 14px;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.28);opacity:0;transition:.25s;z-index:9999}
+  #toast.show{opacity:1}
 
-    .card img{
-      width:70px;height:70px;
-      object-fit:contain;
-      margin:2px auto 10px;
-      display:block;
-      filter: drop-shadow(0 10px 18px rgba(0,0,0,.25));
-    }
-    .card span{
-      font-weight:800;
-      font-size:15px;
-      display:block;
-      letter-spacing:.2px;
-    }
-    .meta{
-      margin-top:8px;
-      color:rgba(233,238,244,.78);
-      font-size:12px;
-      display:flex;
-      justify-content:center;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-
-    /* Offer badge */
-    .badge{
-      position:absolute;
-      top:10px;left:10px;
-      padding:6px 10px;
-      border-radius:999px;
-      font-size:12px;
-      font-weight:900;
-      color:#111;
-      background:linear-gradient(90deg, var(--accent1), var(--accent2));
-      box-shadow:0 12px 26px rgba(0,0,0,.28);
-      border:1px solid rgba(255,255,255,.25);
-      z-index:2;
-    }
-
-    /* Social / Payment panels */
-    .panel{
-      margin-top:18px;
-      background:rgba(15,24,34,.75);
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:14px;
-      box-shadow:0 14px 34px rgba(0,0,0,.22);
-    }
-    .icons{
-      display:flex;
-      justify-content:center;
-      gap:14px;
-      margin-top:10px;
-      flex-wrap:wrap;
-    }
-    .icons a, .icons img{
-      width:44px;height:44px;
-      border-radius:12px;
-      background:#fff;
-      padding:7px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      box-shadow:0 10px 20px rgba(0,0,0,.22);
-    }
-
-    footer{
-      text-align:center;
-      padding:16px;
-      font-size:14px;
-      background:rgba(15,24,34,.65);
-      color:var(--muted);
-      border-top:1px solid rgba(255,255,255,0.08);
-    }
-
-    /* WhatsApp Floating Button */
-    .wa-fab{
-      position:fixed;
-      right:16px;
-      bottom:16px;
-      z-index:9999;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      text-decoration:none;
-    }
-    .wa-pill{
-      display:none;
-      background:rgba(15,24,34,.92);
-      color:#fff;
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:999px;
-      padding:10px 12px;
-      font-size:13px;
-      font-weight:700;
-      box-shadow:0 18px 38px rgba(0,0,0,.35);
-      white-space:nowrap;
-    }
-    .wa-btn{
-      width:58px;height:58px;
-      border-radius:50%;
-      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.25), transparent 55%),
-                  var(--ok);
-      box-shadow:0 18px 38px rgba(0,0,0,.38);
-      display:grid;
-      place-items:center;
-      border:1px solid rgba(255,255,255,.18);
-    }
-    .wa-btn img{width:28px;height:28px;object-fit:contain}
-    @media (min-width:520px){
-      .wa-pill{display:inline-flex}
-    }
-
-    /* Mobile premium spacing */
-    @media (max-width:420px){
-      header h1{font-size:16px}
-      .wrap{padding:14px 12px 90px}
-      .card{padding:16px 10px}
-      .pill{min-width:54px;padding:9px 8px}
-    }
-  </style>
+  /* modal */
+  .modal-backdrop{
+    position:fixed;inset:0;background:rgba(0,0,0,.65);
+    display:none;align-items:center;justify-content:center;padding:18px;z-index:9990
+  }
+  .modal{width:100%;max-width:520px;background:#0f1421;border:1px solid #20263a;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+  .modal-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #1e2639}
+  .modal-head h3{margin:0;font-size:18px;color:#00e676}
+  .modal-close{background:transparent;border:none;color:#cfd6ff;font-size:22px;cursor:pointer}
+  .modal-body{padding:14px 16px}
+  .summary{background:#0b1220;border:1px solid #20263a;border-radius:12px;padding:12px;margin:10px 0;font-size:14px}
+  .summary b{color:#cfe2ff}
+  .qr-wrap{text-align:center}
+  .qr-wrap img{max-width:220px;background:#fff;border-radius:12px;padding:8px;display:block;margin:8px auto}
+  @media (max-width:420px){ .qr-wrap img{max-width:160px} }
+  .note{font-size:13px;color:#ffcdcd;margin:8px 0 0}
+  .submit{background:var(--ok);border:none;padding:14px 16px;border-radius:12px;color:#fff;font-weight:800;cursor:pointer;width:100%;margin-top:12px}
+</style>
 </head>
+
 <body>
-
-  <!-- Header -->
-  <header>
-    <div style="display:flex;align-items:center;gap:10px;">
-      <img src="png.images/logo-mascot.png" alt="SM Digital Services">
-      <h1>SM DIGITAL SERVICES</h1>
-    </div>
-    <a href="index.html">Home</a>
-  </header>
-
   <div class="wrap">
 
-    <!-- Countdown / Offer Strip -->
-    <div class="countdown" role="status" aria-live="polite">
-      <div class="cd-left">
-        <div class="cd-title">🔥 Limited-Time Offers</div>
-        <div class="cd-hint">Offer ends in (auto countdown)</div>
-      </div>
-      <div class="cd-right">
-        <div class="pill"><div id="d">00</div><small>Days</small></div>
-        <div class="pill"><div id="h">00</div><small>Hours</small></div>
-        <div class="pill"><div id="m">00</div><small>Min</small></div>
-        <div class="pill"><div id="s">00</div><small>Sec</small></div>
-      </div>
+    <div class="topbar">
+      <a href="index.html">← Back Home</a>
+      <span style="opacity:.6">/</span>
+      <span>ChatGPT</span>
+      <img class="brand-logo" src="png.images/logo-chatgptai.png" alt="ChatGPT">
     </div>
 
-    <!-- Today’s Offer -->
-    <div class="section-title" style="margin-top:18px;">
-      <div>
-        <h2>🔥 Today’s Offers</h2>
-        <div class="sub">Tap an offer to open product page</div>
-      </div>
+    <h1>ChatGPT Subscription</h1>
+
+    <div class="card">
+      <h2>Description</h2>
+      <ul>
+        <li><b>1 Month Subscription</b></li>
+        <li>Delivery Time: ⚡ 0–30 minutes</li>
+        <li><b>Activation Options:</b></li>
+        <li>• Activate on your own email (you provide login details or verification code if required)</li>
+        <li>• Or receive a ready-to-use private account (Plus already activated)</li>
+        <li>For activation on your personal email, please contact us on <b>WhatsApp</b>.</li>
+        <li>💳 Pay via eSewa, Khalti, or Bank transfer</li>
+      </ul>
+      <p class="warn" style="margin-top:8px">Please enter the correct email address for delivery.</p>
     </div>
 
-    <div class="grid">
-      <!-- APEUni -->
-      <a href="apeuni.html" class="card">
-        <img src="png.images/logo-apeuni.png" alt="APEUni">
-        <span>APEUni VIP</span>
-        <div class="meta"><span>⚡ 0–30 min</span><span>•</span><span>Secure</span></div>
-      </a>
-
-      <!-- ChatGPT Plus with badge -->
-      <a href="chatgpt.html" class="card">
-        <div class="badge">Rs 800 OFFER</div>
-        <img src="png.images/logo-chatgptai.png" alt="ChatGPT Plus">
-        <span>ChatGPT Plus</span>
-        <div class="meta"><span>📧 Email delivery</span><span>•</span><span>Fast activation</span></div>
-      </a>
+    <div class="card">
+      <h2>Your Email (Delivery)</h2>
+      <input id="email" type="email" placeholder="Enter your email" required>
+      <p class="muted" style="font-size:13px;margin-top:6px">We will contact you if verification is needed.</p>
     </div>
 
-    <!-- Social Media -->
-    <div class="panel">
-      <div class="section-title" style="margin:0;">
-        <h2>🌐 Our Social Media</h2>
-      </div>
-      <div class="icons">
-        <a href="https://facebook.com/yourpage" target="_blank" rel="noopener">
-          <img src="png.images/logo-facebook.png" alt="Facebook">
-        </a>
-        <a href="https://instagram.com/sajilotopup.np" target="_blank" rel="noopener">
-          <img src="png.images/logo-instagram.png" alt="Instagram">
-        </a>
-        <a href="https://tiktok.com/@samirmijar.np" target="_blank" rel="noopener">
-          <img src="png.images/logo-tiktok.png" alt="TikTok">
-        </a>
-      </div>
+    <div class="card">
+      <h2>Select Package</h2>
+      <select id="plan">
+        <option value="1 Month ChatGPT Plus — NPR 800" data-price="NPR 800">1 Month ChatGPT Plus — NPR 800</option>
+        <option value="1 Month Business Plan — NPR 1200" data-price="NPR 1200">1 Month Business Plan — NPR 1200</option>
+      </select>
     </div>
 
-    <!-- Payments -->
-    <div class="panel">
-      <div class="section-title" style="margin:0;">
-        <h2>💳 We Accept</h2>
+    <div class="card">
+      <h2>Select Payment Method</h2>
+      <div class="pay-row">
+        <div class="pay-btn" data-method="eSewa" data-qr="png.images/logo-esewaqr.png">eSewa</div>
+        <div class="pay-btn" data-method="Khalti" data-qr="png.images/logo-khaltiqr.png">Khalti</div>
+        <div class="pay-btn" data-method="Bank" data-qr="png.images/logo-bankqr.png">Bank</div>
       </div>
-      <div class="icons" aria-label="Payment methods">
-        <img src="png.images/logo-esewa.png" alt="eSewa">
-        <img src="png.images/logo-khalti.png" alt="Khalti">
-        <img src="png.images/logo-bank.png" alt="Bank Transfer">
-      </div>
+      <button id="buyBtn" class="cta" disabled>Buy Now!</button>
+    </div>
+
+    <div class="footer-links">
+      <a href="https://wa.me/9779828560029" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://instagram.com/sajilotopup.np" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://tiktok.com/@samirmijar.np" target="_blank" rel="noopener">TikTok</a>
     </div>
 
   </div>
 
-  <!-- Footer -->
-  <footer>
-    Copyright ©2026 SM Digital Service — owned by Samir Mijar
-  </footer>
+  <!-- toast -->
+  <div id="toast"></div>
 
-  <!-- WhatsApp Floating Button -->
-  <a class="wa-fab" href="https://wa.me/9779828560029" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-    <span class="wa-pill">Need help? WhatsApp</span>
-    <span class="wa-btn">
-      <img src="png.images/logo-whatsapp.png" alt="">
-    </span>
-  </a>
+  <!-- MODAL -->
+  <div id="modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <div class="modal-head">
+        <h3 id="modalTitle">Complete Your Purchase</h3>
+        <button class="modal-close" aria-label="Close" onclick="closeModal()">×</button>
+      </div>
 
-  <script>
-    // Countdown timer
-    // Option A (recommended): End today at 23:59:59 (user's device time)
-    const end = new Date();
-    end.setHours(23, 59, 59, 999);
+      <div class="modal-body">
+        <div class="summary">
+          <div><b>Selected Package:</b> <span id="mPlan">—</span></div>
+          <div><b>Price:</b> <span id="mPrice">—</span></div>
+          <div><b>Delivery Email:</b> <span id="mEmail">—</span></div>
+          <div><b>Payment Method:</b> <span id="mMethod">—</span></div>
+        </div>
 
-    // If you want a fixed date/time instead, use:
-    // const end = new Date('2026-02-21T23:59:59');
+        <div class="qr-wrap">
+          <h3>Scan and Pay</h3>
+          <img id="mQR" alt="Payment QR">
+        </div>
 
-    const pad = (n)=> String(Math.max(0, n)).padStart(2,'0');
+        <p class="note">⚠️ Only write your <b>real name</b> in Payment Remarks, please.</p>
+        <input id="txn" type="text" placeholder="Enter Transaction ID or Remarks">
+        <button id="submitBtn" class="submit" onclick="submitNow()">Submit Order</button>
 
-    function tick(){
-      const now = new Date();
-      let diff = end - now;
+        <!-- Fallback POST to Formcarry if JS/AJAX fails -->
+        <form id="fallbackForm" action="https://formcarry.com/s/l4cLdlMhyf-" method="POST" accept-charset="UTF-8" style="display:none" target="_self">
+          <input type="hidden" name="name"  value="ChatGPT Customer">
+          <input type="hidden" name="email" value="">
+          <input type="hidden" name="order" value="">
+          <input type="text" name="_gotcha" style="display:none">
+        </form>
+      </div>
+    </div>
+  </div>
 
-      if(diff <= 0){
-        document.getElementById('d').textContent = '00';
-        document.getElementById('h').textContent = '00';
-        document.getElementById('m').textContent = '00';
-        document.getElementById('s').textContent = '00';
-        return;
-      }
+<script>
+  // Use your Formcarry endpoint (AJAX)
+  const FORMCARRY_ENDPOINT = 'https://formcarry.com/s/hLCcFIzh4wa-';
 
-      const sec = Math.floor(diff/1000);
-      const days = Math.floor(sec / 86400);
-      const hours = Math.floor((sec % 86400) / 3600);
-      const mins = Math.floor((sec % 3600) / 60);
-      const secs = sec % 60;
+  let chosen = { method:'', qr:'' };
 
-      document.getElementById('d').textContent = pad(days);
-      document.getElementById('h').textContent = pad(hours);
-      document.getElementById('m').textContent = pad(mins);
-      document.getElementById('s').textContent = pad(secs);
+  const $ = id => document.getElementById(id);
+
+  function toast(msg){
+    const t = $('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(()=>t.classList.remove('show'), 3000);
+  }
+
+  function toggleBuyBtn(){
+    const ok = $('email').value.trim() && chosen.method;
+    $('buyBtn').disabled = !ok;
+  }
+
+  // payment buttons
+  document.querySelectorAll('.pay-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.pay-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      chosen.method = btn.dataset.method;
+      chosen.qr = btn.dataset.qr;
+      toggleBuyBtn();
+    });
+  });
+
+  // watch inputs
+  ['email','plan'].forEach(id=>{
+    $(id).addEventListener('input', toggleBuyBtn);
+    $(id).addEventListener('change', toggleBuyBtn);
+  });
+
+  // open modal
+  $('buyBtn').addEventListener('click', ()=>{
+    const planOption = $('plan').selectedOptions[0];
+    $('mPlan').textContent   = planOption.value;
+    $('mPrice').textContent  = planOption.dataset.price || '—';
+    $('mEmail').textContent  = $('email').value.trim() || '—';
+    $('mMethod').textContent = chosen.method || '—';
+    $('mQR').src             = chosen.qr || '';
+    $('modal').style.display = 'flex';
+  });
+
+  function closeModal(){ $('modal').style.display = 'none'; }
+
+  async function sendOrderToFormcarry(payload){
+    const fd = new FormData();
+    fd.append('name', payload.name || 'ChatGPT Customer');
+    fd.append('email', payload.email);
+    fd.append('order', payload.order);
+    fd.append('_gotcha','');
+
+    const res = await fetch(FORMCARRY_ENDPOINT, {
+      method:'POST',
+      body: fd,
+      headers: { Accept:'application/json' }
+    });
+
+    let data = {};
+    try{ data = await res.json(); }catch(e){}
+    if(!res.ok || (data && data.status === 'error')) throw new Error('Formcarry submit failed');
+    return data;
+  }
+
+  async function submitNow(){
+    const email = $('email').value.trim();
+    const plan  = $('plan').value;
+    const txn   = $('txn').value.trim();
+
+    if(!email){ alert('Please enter your email for delivery.'); return; }
+    if(!chosen.method){ alert('Please select a payment method.'); return; }
+    if(!txn){ alert('Please enter transaction ID or remarks.'); return; }
+
+    const orderText =
+`ChatGPT Order
+Plan: ${plan}
+Delivery Email: ${email}
+Payment Method: ${chosen.method}
+Transaction/Remarks: ${txn}
+Activation Options: Customer email activation (login/code) OR Ready private account`;
+
+    const btn = $('submitBtn');
+    const old = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    try{
+      await sendOrderToFormcarry({ name:'ChatGPT Customer', email, order: orderText });
+      toast('✅ Order sent! We’ll contact you soon.');
+      closeModal();
+    }catch(e){
+      console.warn('AJAX failed, submitting fallback form.', e);
+      const fallback = $('fallbackForm');
+      fallback.elements['email'].value = email;
+      fallback.elements['order'].value = orderText;
+      fallback.submit();
+    }finally{
+      btn.disabled = false;
+      btn.textContent = old;
     }
+  }
 
-    tick();
-    setInterval(tick, 1000);
-  </script>
-
+  // ESC to close modal
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
+  // click outside to close
+  $('modal').addEventListener('click', (e)=>{ if(e.target === $('modal')) closeModal(); });
+</script>
 </body>
 </html>
