@@ -9,20 +9,34 @@
 
 <style>
   :root{
-    --bg:#0b0a14;
+    /* DARK (default) */
+    --bg:#070712;
     --bg2:#120b24;
-    --top:#2a1958;          /* purple header */
-    --panel:#17122a;        /* cards */
-    --panel2:#1d1634;
+    --top:#2a1958;
+    --panel:rgba(255,255,255,.06);
+    --panel2:rgba(255,255,255,.08);
     --line:rgba(255,255,255,.10);
     --text:#f4f6ff;
     --muted:#b9c3e2;
-    --shadow:0 18px 50px rgba(0,0,0,.45);
-    --radius:18px;
 
-    --accent:#7c3aed;       /* purple */
-    --accent2:#00eaff;      /* cyan */
+    --shadow:0 18px 55px rgba(0,0,0,.55);
+    --radius:22px;
+
     --cta:linear-gradient(90deg,#ff7a00,#ff3d8b);
+    --cta2:linear-gradient(90deg,#7c3aed,#00eaff);
+  }
+
+  /* LIGHT (toggle) */
+  [data-theme="light"]{
+    --bg:#f6f7ff;
+    --bg2:#eef1ff;
+    --top:rgba(255,255,255,.82);
+    --panel:rgba(0,0,0,.04);
+    --panel2:rgba(0,0,0,.06);
+    --line:rgba(0,0,0,.08);
+    --text:#0b1020;
+    --muted:#3e4a68;
+    --shadow:0 18px 55px rgba(9,12,24,.12);
   }
 
   *{box-sizing:border-box}
@@ -31,29 +45,43 @@
     font-family:Inter,system-ui,Arial,sans-serif;
     color:var(--text);
     background:
-      radial-gradient(900px 600px at 20% 10%, rgba(124,58,237,.18), transparent 60%),
-      radial-gradient(900px 600px at 80% 10%, rgba(0,234,255,.10), transparent 60%),
+      radial-gradient(900px 600px at 18% 8%, rgba(124,58,237,.22), transparent 60%),
+      radial-gradient(900px 600px at 82% 10%, rgba(0,234,255,.14), transparent 60%),
+      radial-gradient(900px 700px at 50% 92%, rgba(255,61,139,.14), transparent 60%),
       linear-gradient(180deg, var(--bg), var(--bg2));
     overflow-x:hidden;
   }
   a{color:inherit;text-decoration:none}
   img{display:block;max-width:100%}
 
-  /* subtle dotted/mesh background */
+  /* ===== Premium background details (clean) ===== */
   .mesh{
-    position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.22;
-    background-image: radial-gradient(rgba(255,255,255,.10) 1px, transparent 1px);
+    position:fixed; inset:0; z-index:-2; pointer-events:none;
+    opacity:.18;
+    background-image: radial-gradient(rgba(255,255,255,.14) 1px, transparent 1px);
     background-size: 34px 34px;
-    mask-image: radial-gradient(700px 480px at 50% 22%, #000 35%, transparent 75%);
+    mask-image: radial-gradient(700px 520px at 50% 22%, #000 42%, transparent 78%);
+  }
+  .glow{
+    position:fixed; inset:-30px; z-index:-3; pointer-events:none;
+    background:
+      radial-gradient(520px 420px at 15% 10%, rgba(255,122,0,.14), transparent 60%),
+      radial-gradient(520px 420px at 85% 12%, rgba(0,234,255,.12), transparent 60%),
+      radial-gradient(520px 420px at 50% 88%, rgba(124,58,237,.14), transparent 60%);
+    filter: blur(6px);
   }
 
-  /* ===== Top Header (SAMstore style) ===== */
+  /* ===== Header (clean, SAMstore-like) ===== */
   header{
     position:sticky; top:0; z-index:1000;
-    background:linear-gradient(180deg, rgba(42,25,88,.98), rgba(42,25,88,.92));
+    background:linear-gradient(180deg, rgba(42,25,88,.98), rgba(42,25,88,.90));
     border-bottom:1px solid rgba(255,255,255,.08);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+  }
+  [data-theme="light"] header{
+    background:var(--top);
+    border-bottom:1px solid var(--line);
   }
   .topbar{
     height:74px;
@@ -61,36 +89,35 @@
     align-items:center;
     justify-content:space-between;
     padding:0 14px;
-    max-width:1200px;
+    max-width:1100px;
     margin:0 auto;
     gap:10px;
   }
 
-  .left-icons, .right-icons{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    min-width:110px;
+  .left-icons,.right-icons{
+    display:flex;align-items:center;gap:10px;min-width:110px;
   }
-
   .icon-btn{
     width:44px;height:44px;
     border-radius:14px;
-    display:grid; place-items:center;
+    display:grid;place-items:center;
     background:rgba(255,255,255,.06);
     border:1px solid rgba(255,255,255,.10);
-    color:#fff;
+    color:var(--text);
     cursor:pointer;
     transition:.15s ease;
     user-select:none;
   }
-  .icon-btn:hover{transform:translateY(-2px); background:rgba(255,255,255,.09)}
+  [data-theme="light"] .icon-btn{
+    background:rgba(0,0,0,.05);
+    border:1px solid rgba(0,0,0,.08);
+  }
+  .icon-btn:hover{transform:translateY(-2px)}
   .icon-btn:active{transform:scale(.97)}
 
   .cartWrap{position:relative}
   .badge{
-    position:absolute;
-    top:-7px; right:-7px;
+    position:absolute; top:-7px; right:-7px;
     min-width:18px; height:18px;
     padding:0 6px;
     display:grid; place-items:center;
@@ -111,30 +138,29 @@
     flex:1;
   }
   .brand img{
-    height:40px;
+    height:42px;
     width:auto;
     object-fit:contain;
-    filter: drop-shadow(0 12px 30px rgba(0,0,0,.55));
+    filter: drop-shadow(0 10px 26px rgba(0,0,0,.55));
   }
   .brand span{
     font-weight:900;
-    letter-spacing:.4px;
+    letter-spacing:.2px;
     font-size:18px;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
     max-width:46vw;
   }
-
-  @media (min-width:520px){
+  @media(min-width:520px){
+    .brand img{height:46px}
     .brand span{font-size:20px}
-    .brand img{height:44px}
   }
 
   /* ===== Drawer ===== */
   .drawer-overlay{
     position:fixed; inset:0;
-    background:rgba(0,0,0,.60);
+    background:rgba(0,0,0,.62);
     opacity:0; pointer-events:none;
     transition:.2s;
     z-index:1200;
@@ -152,6 +178,10 @@
     -webkit-backdrop-filter: blur(14px);
     box-shadow:var(--shadow);
   }
+  [data-theme="light"] .drawer{
+    background:rgba(255,255,255,.92);
+    border-left:1px solid rgba(0,0,0,.08);
+  }
   .nav-open .drawer{transform:none}
   .nav-open .drawer-overlay{opacity:1; pointer-events:auto}
 
@@ -161,15 +191,15 @@
     border-radius:14px;
     border:1px solid rgba(255,255,255,.12);
     background:rgba(255,255,255,.06);
-    color:#fff;
+    color:var(--text);
     font-size:26px;
     cursor:pointer;
   }
-  .drawer nav{
-    margin-top:64px;
-    display:grid;
-    gap:12px;
+  [data-theme="light"] .drawer .close{
+    border:1px solid rgba(0,0,0,.10);
+    background:rgba(0,0,0,.05);
   }
+  .drawer nav{margin-top:64px;display:grid;gap:12px}
   .drawer a{
     padding:12px 16px;
     border-radius:14px;
@@ -177,201 +207,147 @@
     background:rgba(255,255,255,.06);
     border:1px solid rgba(255,255,255,.10);
   }
+  [data-theme="light"] .drawer a{
+    background:rgba(0,0,0,.05);
+    border:1px solid rgba(0,0,0,.08);
+  }
   .drawer a.primary{
-    background:linear-gradient(135deg, rgba(124,58,237,.95), rgba(0,234,255,.55));
+    background:var(--cta2);
     border-color:transparent;
+    color:#fff;
   }
 
-  /* ===== Layout ===== */
+  /* ===== Main ===== */
   .container{
-    max-width:1200px;
+    max-width:900px;
     margin:0 auto;
-    padding:16px 14px 110px;
+    padding:18px 14px 120px;
   }
 
-  /* ===== HERO BANNER (like SAMstore big banner) ===== */
+  /* ===== HERO ONLY (clean) ===== */
   .hero{
     margin-top:14px;
-    border-radius:22px;
-    overflow:hidden;
-    border:1px solid rgba(255,255,255,.10);
+    border-radius:28px;
+    border:1px solid var(--line);
     box-shadow:var(--shadow);
-    background:linear-gradient(135deg, rgba(124,58,237,.25), rgba(0,234,255,.10));
+    background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    overflow:hidden;
     position:relative;
   }
   .hero::before{
     content:"";
-    position:absolute; inset:0;
-    background:
-      radial-gradient(900px 360px at 30% 20%, rgba(255,255,255,.10), transparent 60%),
-      radial-gradient(900px 360px at 80% 30%, rgba(255,61,139,.12), transparent 60%);
+    position:absolute; inset:-2px;
+    background: linear-gradient(120deg, rgba(255,122,0,.70), rgba(255,61,139,.65), rgba(124,58,237,.55), rgba(0,234,255,.45));
+    background-size:260% 260%;
+    animation: heroGlow 8s linear infinite;
+    opacity:.28;
     pointer-events:none;
+    filter: blur(18px);
   }
+  @keyframes heroGlow{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
+
   .hero-inner{
     position:relative;
-    padding:22px;
-    display:grid;
-    grid-template-columns:1fr;
-    gap:16px;
-    align-items:center;
-    background:linear-gradient(180deg, rgba(23,18,42,.75), rgba(23,18,42,.45));
+    padding:26px 18px;
+    background:linear-gradient(180deg, rgba(18,11,36,.72), rgba(18,11,36,.42));
   }
-  @media(min-width:900px){
-    .hero-inner{grid-template-columns:1.2fr .8fr; padding:26px}
+  [data-theme="light"] .hero-inner{
+    background:linear-gradient(180deg, rgba(255,255,255,.80), rgba(255,255,255,.55));
   }
 
   .hero h1{
     margin:0 0 10px;
-    font-size:36px;
-    line-height:1.05;
+    font-size:44px;
+    line-height:1.02;
     font-weight:900;
-    letter-spacing:-.6px;
+    letter-spacing:-.8px;
   }
-  @media(min-width:520px){ .hero h1{font-size:46px} }
+  @media(max-width:420px){
+    .hero h1{font-size:38px}
+  }
 
   .hero p{
     margin:0 0 16px;
     color:var(--muted);
-    max-width:62ch;
-    line-height:1.6;
+    line-height:1.65;
+    max-width:60ch;
+    font-size:15px;
   }
 
-  .pillRow{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 18px}
+  /* pills */
+  .pillRow{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:14px 0 18px;
+  }
   .pill{
-    display:inline-flex;align-items:center;gap:8px;
-    padding:10px 12px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:11px 12px;
     border-radius:999px;
-    background:rgba(255,255,255,.07);
-    border:1px solid rgba(255,255,255,.10);
-    font-weight:800;
+    background:var(--panel);
+    border:1px solid var(--line);
+    font-weight:900;
     font-size:12px;
-    color:#eaf0ff;
   }
+  .pill .emo{opacity:.95}
 
-  .ctaRow{
+  /* buttons */
+  .btnRow{
     display:grid;
-    grid-template-columns:1fr;
     gap:12px;
     margin-top:4px;
   }
-  @media(min-width:520px){ .ctaRow{grid-template-columns:repeat(3,1fr)} }
-
   .btn{
-    display:inline-flex;align-items:center;justify-content:center;gap:10px;
-    padding:14px 16px;
-    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:16px 16px;
+    border-radius:18px;
     font-weight:900;
-    border:1px solid rgba(255,255,255,.10);
-    background:rgba(255,255,255,.07);
-    transition:.15s ease;
+    border:1px solid var(--line);
+    background:var(--panel);
+    transition:.16s ease;
+    box-shadow:0 10px 26px rgba(0,0,0,.22);
   }
-  .btn:hover{transform:translateY(-2px); background:rgba(255,255,255,.10)}
+  .btn:hover{transform:translateY(-2px); background:var(--panel2)}
+  .btn:active{transform:scale(.99)}
   .btnPrimary{
     background:var(--cta);
     border-color:transparent;
-    box-shadow:0 18px 46px rgba(255,61,139,.18);
+    color:#fff;
+    box-shadow:0 18px 50px rgba(255,61,139,.18);
   }
-  .btnPrimary:hover{box-shadow:0 22px 60px rgba(255,61,139,.22)}
-
-  .heroArt{
-    border-radius:18px;
-    border:1px solid rgba(255,255,255,.10);
-    background:rgba(0,0,0,.18);
-    padding:16px;
-    display:grid;
-    place-items:center;
-    min-height:220px;
-  }
-  .heroArt img{
-    width:min(320px,100%);
-    filter: drop-shadow(0 24px 40px rgba(0,0,0,.55));
+  .btnPrimary:hover{box-shadow:0 24px 60px rgba(255,61,139,.22)}
+  .btnIcon{
+    width:22px;height:22px;object-fit:contain;
+    filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
   }
 
-  /* ===== Sections ===== */
-  .section{margin-top:18px}
-  .sectionHead{
-    display:flex;align-items:flex-end;justify-content:space-between;gap:10px;
-    margin:18px 2px 12px;
+  /* mascot area (optional, clean) */
+  .hero-bottom{
+    margin-top:18px;
+    display:flex;
+    justify-content:center;
   }
-  .sectionHead h2{
-    margin:0;
-    font-size:18px;
-    font-weight:900;
-  }
-  .sectionHead a{color:#b8c8ff;font-weight:900;font-size:13px}
-
-  /* cards grid like pro SaaS */
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-  }
-  @media(min-width:720px){ .grid{grid-template-columns:repeat(4,1fr)} }
-
-  .card{
-    border-radius:18px;
-    padding:14px;
-    background:linear-gradient(180deg, rgba(15,23,42,.85), rgba(15,23,42,.65));
-    border:1px solid rgba(255,255,255,.10);
-    box-shadow:0 10px 30px rgba(0,0,0,.35);
-    transition:.15s ease;
-    min-height:130px;
-    display:flex;flex-direction:column;justify-content:space-between;
-  }
-  .card:hover{transform:translateY(-4px); border-color:rgba(0,234,255,.20)}
-  .cardTop{display:flex;align-items:center;gap:10px}
-  .cardTop img{
-    width:44px;height:44px;object-fit:contain;
-    border-radius:14px;
-    padding:7px;
-    background:rgba(255,255,255,.07);
-    border:1px solid rgba(255,255,255,.10);
-  }
-  .card strong{font-weight:900}
-  .sub{color:var(--muted);font-size:12px;margin-top:4px}
-  .foot{color:#dfe9ff;font-size:12px;opacity:.92}
-
-  /* Trust */
-  .trust{
-    display:grid;grid-template-columns:1fr;gap:12px;
-  }
-  @media(min-width:900px){ .trust{grid-template-columns:repeat(3,1fr)} }
-  .trustCard{
-    border-radius:18px;
-    padding:14px;
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.10);
-    box-shadow:0 10px 30px rgba(0,0,0,.35);
-  }
-  .trustCard b{display:block;margin-bottom:6px}
-  .trustCard p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
-
-  /* Payments */
-  .payStrip{
-    display:flex;flex-wrap:wrap;gap:12px;
-    align-items:center;justify-content:center;
-    padding:14px;
-    border-radius:18px;
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.10);
-    box-shadow:0 10px 30px rgba(0,0,0,.35);
-  }
-  .payStrip img{
-    width:46px;height:46px;
-    background:#fff;
-    border-radius:14px;
-    padding:6px;
+  .mascot{
+    width:min(320px, 92%);
+    filter: drop-shadow(0 18px 30px rgba(0,0,0,.45));
+    opacity:.98;
   }
 
-  /* WhatsApp FAB */
+  /* WhatsApp floating */
   .wa-fab{
-    position:fixed;
-    right:16px;
-    bottom:18px;
-    z-index:2000;
-    width:62px;height:62px;
-    border-radius:50%;
-    display:grid;place-items:center;
+    position:fixed; right:16px; bottom:18px; z-index:2000;
+    width:62px;height:62px;border-radius:50%;
+    display:grid; place-items:center;
     background:linear-gradient(135deg,#25D366,#1fbf5a);
     box-shadow:0 18px 46px rgba(0,0,0,.35);
     border:1px solid rgba(255,255,255,.14);
@@ -383,23 +359,24 @@
   footer{
     padding:18px 12px;
     text-align:center;
-    color:#cbd5e1;
-    background:rgba(0,0,0,.18);
+    color:var(--muted);
+    background:rgba(0,0,0,.14);
     border-top:1px solid rgba(255,255,255,.08);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
   }
 
-  /* Scroll reveal (very subtle) */
-  .reveal{opacity:0; transform:translateY(14px); transition:opacity .55s ease, transform .55s ease}
+  /* subtle reveal */
+  .reveal{opacity:0; transform:translateY(10px); transition:opacity .55s ease, transform .55s ease}
   .reveal.show{opacity:1; transform:translateY(0)}
 </style>
 </head>
 
 <body>
+  <div class="glow" aria-hidden="true"></div>
   <div class="mesh" aria-hidden="true"></div>
 
-  <!-- HEADER -->
+  <!-- Header -->
   <header>
     <div class="topbar">
       <div class="left-icons">
@@ -410,7 +387,6 @@
       </div>
 
       <a class="brand" href="index.html" aria-label="The Sam Store Home">
-        <!-- ✅ Your LIVE logo -->
         <img src="png.images/samstore-logo.gif" alt="The Sam Store">
         <span>The Sam Store</span>
       </a>
@@ -429,125 +405,45 @@
     <nav>
       <a class="primary" href="shop.html">Shop</a>
       <a href="todaysoffer.html">Today’s Offer</a>
-      <a href="blog.html">Blog</a>
-      <a href="about.html">About Us</a>
       <a href="contact.html">Contact Us</a>
+      <a href="about.html">About Us</a>
     </nav>
   </aside>
 
   <main class="container">
-    <!-- HERO -->
+    <!-- HERO ONLY -->
     <section class="hero reveal">
       <div class="hero-inner">
-        <div>
-          <h1>Charge. Play. Enjoy.</h1>
-          <p>Premium subscriptions, AI tools, and game top-ups — fast delivery and reliable support in Nepal.</p>
+        <h1>Charge. Play. Enjoy.</h1>
+        <p>Premium subscriptions, AI tools, and game top-ups — fast delivery and reliable support in Nepal.</p>
 
-          <div class="pillRow">
-            <span class="pill">⚡ 0–30 min delivery</span>
-            <span class="pill">✅ Verified process</span>
-            <span class="pill">💬 WhatsApp support</span>
-          </div>
-
-          <div class="ctaRow">
-            <a class="btn" href="todaysoffer.html">🔥 Today’s Offer</a>
-            <a class="btn btnPrimary" href="shop.html">🛒 Shop Now</a>
-            <a class="btn" href="contact.html">☎️ Contact Us</a>
-          </div>
+        <div class="pillRow">
+          <span class="pill"><span class="emo">⚡</span> 0–30 min delivery</span>
+          <span class="pill"><span class="emo">✅</span> Verified process</span>
+          <span class="pill"><span class="emo">💬</span> WhatsApp support</span>
         </div>
 
-        <div class="heroArt">
-          <img src="png.images/logo-mascots.png" alt="Mascot">
+        <div class="btnRow">
+          <!-- ✅ Today’s Offer with animated gif icon -->
+          <a class="btn" href="todaysoffer.html">
+            <img class="btnIcon" src="png.images/Referral-gift.gif" alt="">
+            TODAY’S OFFER
+          </a>
+
+          <!-- ✅ SHOP NOW ALL CAPS -->
+          <a class="btn btnPrimary" href="shop.html">
+            🛒 SHOP NOW
+          </a>
+
+          <a class="btn" href="contact.html">
+            ☎️ CONTACT US
+          </a>
         </div>
-      </div>
-    </section>
 
-    <!-- Categories -->
-    <section class="section reveal">
-      <div class="sectionHead">
-        <h2>Popular Categories</h2>
-        <a href="shop.html">View all →</a>
-      </div>
-
-      <div class="grid">
-        <a class="card" href="shop.html">
-          <div class="cardTop">
-            <img src="png.images/logo-chatgptai.png" alt="AI Tools">
-            <div>
-              <strong>AI Tools</strong>
-              <div class="sub">ChatGPT • Canva • more</div>
-            </div>
-          </div>
-          <div class="foot">Fast activation • Support included</div>
-        </a>
-
-        <a class="card" href="shop.html">
-          <div class="cardTop">
-            <img src="png.images/logo-freefire.png" alt="Game Top-Up">
-            <div>
-              <strong>Game Top-Up</strong>
-              <div class="sub">Free Fire • PUBG • more</div>
-            </div>
-          </div>
-          <div class="foot">UID top-up • Secure process</div>
-        </a>
-
-        <a class="card" href="shop.html">
-          <div class="cardTop">
-            <img src="png.images/logo-spotifys.png" alt="Subscriptions">
-            <div>
-              <strong>Subscriptions</strong>
-              <div class="sub">Netflix • YouTube • VPN</div>
-            </div>
-          </div>
-          <div class="foot">Affordable plans • Quick delivery</div>
-        </a>
-
-        <a class="card" href="shop.html">
-          <div class="cardTop">
-            <img src="png.images/logo-unipin.png" alt="Gift Cards">
-            <div>
-              <strong>Gift Cards</strong>
-              <div class="sub">iTunes • PSN • Xbox</div>
-            </div>
-          </div>
-          <div class="foot">Instant codes • Easy support</div>
-        </a>
-      </div>
-    </section>
-
-    <!-- Trust -->
-    <section class="section reveal">
-      <div class="sectionHead">
-        <h2>Why People Choose Us</h2>
-      </div>
-
-      <div class="trust">
-        <div class="trustCard">
-          <b>✅ Verified & Safe Process</b>
-          <p>Clear payment & activation workflow to keep things smooth and secure.</p>
+        <div class="hero-bottom">
+          <!-- optional mascot (remove if you want super-clean) -->
+          <img class="mascot" src="png.images/logo-mascots.png" alt="Mascot">
         </div>
-        <div class="trustCard">
-          <b>⚡ Fast Response</b>
-          <p>Most orders processed within 0–30 minutes after verification.</p>
-        </div>
-        <div class="trustCard">
-          <b>💬 Real Support</b>
-          <p>Contact us on WhatsApp for quick guidance and updates.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Payments -->
-    <section class="section reveal">
-      <div class="sectionHead">
-        <h2>We Accept Payments</h2>
-      </div>
-
-      <div class="payStrip">
-        <img src="png.images/logo-esewa.png" alt="eSewa">
-        <img src="png.images/logo-khalti.png" alt="Khalti">
-        <img src="png.images/logo-bank.png" alt="Bank Transfer">
       </div>
     </section>
   </main>
@@ -558,7 +454,7 @@
   </a>
 
   <footer>
-    Copyright ©2026 <strong>The Sam Store</strong> — owned by <strong>Samir Mijar</strong>
+    © 2026 <strong>The Sam Store</strong> — owned by <strong>Samir Mijar</strong>
   </footer>
 
 <script>
@@ -586,20 +482,31 @@
           io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.15 });
     items.forEach(el=>io.observe(el));
   }());
 
-  // Optional: Light/Dark toggle (simple)
+  // Theme toggle
   const themeBtn = document.getElementById('themeBtn');
-  let bright = false;
+  const root = document.documentElement;
+
+  function setTheme(mode){
+    if(mode === 'light'){
+      root.setAttribute('data-theme','light');
+      themeBtn.textContent = '🌙';
+    }else{
+      root.removeAttribute('data-theme');
+      themeBtn.textContent = '☀️';
+    }
+    localStorage.setItem('samstore_theme', mode);
+  }
+
+  const saved = localStorage.getItem('samstore_theme');
+  if(saved) setTheme(saved);
+
   themeBtn.addEventListener('click', ()=>{
-    bright = !bright;
-    document.documentElement.style.setProperty('--bg', bright ? '#f7f8ff' : '#0b0a14');
-    document.documentElement.style.setProperty('--bg2', bright ? '#eef1ff' : '#120b24');
-    document.documentElement.style.setProperty('--text', bright ? '#0b1020' : '#f4f6ff');
-    document.documentElement.style.setProperty('--muted', bright ? '#3b4a6a' : '#b9c3e2');
-    themeBtn.textContent = bright ? '🌙' : '☀️';
+    const isLight = root.getAttribute('data-theme') === 'light';
+    setTheme(isLight ? 'dark' : 'light');
   });
 </script>
 </body>
