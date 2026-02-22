@@ -1,272 +1,620 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Spotify Premium • Ultra Club Edition</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Spotify Premium • Ultra Club</title>
+<meta name="theme-color" content="#070a10" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --green:#1DB954;
-  --bg:#04060d;
-  --text:#ffffff;
-}
+  :root{
+    --bg:#050812;
+    --panel:rgba(14,18,34,.72);
+    --panel2:rgba(12,16,28,.70);
+    --line:rgba(255,255,255,.10);
+    --text:#f4f6ff;
+    --muted:#aeb7d4;
+    --green:#1DB954;
+    --cyan:#00eaff;
+    --pink:#ff3d8b;
+    --shadow:0 18px 55px rgba(0,0,0,.55);
+    --r:20px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Inter,system-ui,Arial,sans-serif;
+    color:var(--text);
+    background:
+      radial-gradient(900px 650px at 20% 8%, rgba(29,185,84,.20), transparent 55%),
+      radial-gradient(900px 650px at 80% 12%, rgba(0,234,255,.10), transparent 58%),
+      radial-gradient(900px 650px at 55% 92%, rgba(255,61,139,.10), transparent 60%),
+      linear-gradient(180deg, #04060d, #050812);
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
 
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Inter,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  overflow-x:hidden;
-}
+  /* moving club haze */
+  .haze{
+    position:fixed; inset:-40%;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(29,185,84,.18), transparent 46%),
+      radial-gradient(circle at 70% 40%, rgba(0,234,255,.12), transparent 48%),
+      radial-gradient(circle at 45% 75%, rgba(255,61,139,.12), transparent 52%);
+    filter: blur(42px);
+    animation:hazeMove 16s ease-in-out infinite alternate;
+    z-index:-3;
+    opacity:.95;
+  }
+  @keyframes hazeMove{
+    0%{transform:translate3d(-2%, -2%, 0) scale(1)}
+    100%{transform:translate3d(2%, 3%, 0) scale(1.05)}
+  }
 
-/* ===== RGB CLUB BACKGROUND ===== */
-.bg-wave{
-  position:fixed;
-  width:200%;
-  height:200%;
-  top:-50%;
-  left:-50%;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(29,185,84,.25), transparent 40%),
-    radial-gradient(circle at 70% 70%, rgba(0,255,255,.2), transparent 40%),
-    radial-gradient(circle at 50% 50%, rgba(255,0,150,.15), transparent 50%);
-  animation:waveMove 12s linear infinite alternate;
-  z-index:-2;
-}
-@keyframes waveMove{
-  0%{transform:rotate(0deg) scale(1)}
-  100%{transform:rotate(360deg) scale(1.1)}
-}
+  /* subtle grid */
+  .gridbg{
+    position:fixed; inset:0; z-index:-2; pointer-events:none;
+    background-image:
+      linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+    background-size: 42px 42px;
+    opacity:.10;
+    mask-image: radial-gradient(650px 420px at 50% 18%, #000 40%, transparent 78%);
+  }
 
-/* ===== SOUND WAVE LINES ===== */
-.wave-lines{
-  position:fixed;
-  bottom:0;
-  width:100%;
-  height:200px;
-  background:repeating-linear-gradient(
-    90deg,
-    rgba(29,185,84,.3) 0px,
-    rgba(29,185,84,.3) 2px,
-    transparent 2px,
-    transparent 6px
-  );
-  animation:waveScroll 2s linear infinite;
-  opacity:.3;
-  z-index:-1;
-}
-@keyframes waveScroll{
-  from{background-position:0 0}
-  to{background-position:100px 0}
-}
+  /* particles */
+  .p{
+    position:fixed; width:6px; height:6px; border-radius:50%;
+    background:rgba(29,185,84,.95);
+    box-shadow:0 0 18px rgba(29,185,84,.65);
+    opacity:.55;
+    animation:floatUp linear infinite;
+    z-index:-1;
+  }
+  @keyframes floatUp{
+    from{transform:translateY(110vh) translateX(0)}
+    to{transform:translateY(-15vh) translateX(30px)}
+  }
 
-/* ===== FLOATING PARTICLES ===== */
-.particle{
-  position:fixed;
-  width:5px;height:5px;
-  background:var(--green);
-  border-radius:50%;
-  opacity:.6;
-  animation:floatUp 12s linear infinite;
-}
-@keyframes floatUp{
-  from{transform:translateY(100vh)}
-  to{transform:translateY(-10vh)}
-}
+  .wrap{max-width:860px;margin:0 auto;padding:18px 14px 90px}
 
-/* ===== LAYOUT ===== */
-.wrap{
-  max-width:760px;
-  margin:auto;
-  padding:20px;
-  text-align:center;
-}
+  /* top mini header */
+  .top{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:12px 12px;
+    border:1px solid var(--line);
+    border-radius:16px;
+    background:rgba(8,10,18,.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:0 10px 26px rgba(0,0,0,.35);
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px; min-width:0;
+    font-weight:900;
+    letter-spacing:.2px;
+  }
+  .brand img{height:34px;width:auto;object-fit:contain;filter:drop-shadow(0 14px 25px rgba(0,0,0,.55))}
+  .brand span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:60vw}
+  .back{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:10px 12px;
+    border-radius:14px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.10);
+    font-weight:900;
+  }
 
-/* ===== HERO ===== */
-h1{
-  font-size:34px;
-  font-weight:900;
-  text-shadow:0 0 25px var(--green);
-  margin-top:20px;
-}
-.subtitle{
-  opacity:.7;
-  margin-bottom:20px;
-}
+  /* hero */
+  .hero{
+    margin-top:14px;
+    border-radius:24px;
+    border:1px solid rgba(255,255,255,.10);
+    background:linear-gradient(180deg, rgba(18,22,40,.72), rgba(10,12,22,.55));
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    position:relative;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:-2px;
+    background:linear-gradient(120deg, rgba(29,185,84,.70), rgba(0,234,255,.40), rgba(255,61,139,.45));
+    filter: blur(18px);
+    opacity:.35;
+    pointer-events:none;
+  }
+  .hero-inner{
+    position:relative;
+    padding:18px;
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:14px;
+  }
+  @media(min-width:860px){
+    .hero-inner{grid-template-columns: 1.05fr .95fr; align-items:start; padding:22px}
+  }
+  .title{
+    font-size:34px;
+    font-weight:900;
+    line-height:1.05;
+    margin:6px 0 8px;
+    letter-spacing:-.6px;
+  }
+  @media(min-width:520px){ .title{font-size:44px} }
+  .subtitle{
+    margin:0 0 12px;
+    color:var(--muted);
+    line-height:1.6;
+  }
 
-/* ===== 3D VINYL ===== */
-.vinyl{
-  width:160px;height:160px;
-  margin:20px auto;
-  border-radius:50%;
-  background:radial-gradient(circle,#222 20%,#000 60%);
-  border:8px solid #111;
-  box-shadow:0 0 40px rgba(29,185,84,.6);
-  animation:spin 5s linear infinite;
-  transform-style:preserve-3d;
-}
-@keyframes spin{
-  from{transform:rotateY(0deg)}
-  to{transform:rotateY(360deg)}
-}
+  /* equalizer */
+  .eq{display:flex;gap:7px;align-items:flex-end;margin:12px 0 2px}
+  .bar{width:7px;height:18px;border-radius:8px;background:var(--green);animation:beat 1s ease-in-out infinite;opacity:.95}
+  .bar:nth-child(2){animation-delay:.2s}
+  .bar:nth-child(3){animation-delay:.4s}
+  .bar:nth-child(4){animation-delay:.1s}
+  .bar:nth-child(5){animation-delay:.3s}
+  @keyframes beat{0%,100%{height:16px}50%{height:56px}}
 
-/* ===== EQUALIZER ===== */
-.equalizer{
-  display:flex;
-  justify-content:center;
-  gap:6px;
-  margin:20px 0;
-}
-.bar{
-  width:6px;
-  height:30px;
-  background:var(--green);
-  animation:beat 1s infinite ease-in-out;
-}
-.bar:nth-child(2){animation-delay:.2s}
-.bar:nth-child(3){animation-delay:.4s}
-.bar:nth-child(4){animation-delay:.3s}
-.bar:nth-child(5){animation-delay:.1s}
-@keyframes beat{
-  0%,100%{height:25px}
-  50%{height:70px}
-}
+  /* vinyl */
+  .vinylWrap{display:grid;place-items:center;padding:8px 0}
+  .vinyl{
+    width:168px;height:168px;border-radius:50%;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(29,185,84,.9) 0 6px, transparent 6px),
+      radial-gradient(circle at 50% 50%, #0d0f14 0 18%, #05070a 18% 64%, #0d0f14 64% 100%);
+    border:10px solid rgba(255,255,255,.07);
+    box-shadow:0 0 45px rgba(29,185,84,.45);
+    animation:spin 5.2s linear infinite;
+    position:relative;
+  }
+  .vinyl::after{
+    content:"";
+    position:absolute; inset:14px;
+    border-radius:50%;
+    border:1px dashed rgba(255,255,255,.12);
+    opacity:.65;
+  }
+  @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 
-/* ===== CARD ===== */
-.card{
-  background:rgba(20,25,40,.8);
-  backdrop-filter:blur(15px);
-  border-radius:20px;
-  padding:18px;
-  margin:18px 0;
-  border:1px solid rgba(255,255,255,.08);
-  box-shadow:0 0 30px rgba(29,185,84,.2);
-}
+  /* card panel */
+  .panel{
+    background:rgba(12,16,28,.60);
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:22px;
+    box-shadow:0 14px 40px rgba(0,0,0,.45);
+    overflow:hidden;
+  }
+  .panelHead{
+    padding:14px 14px 10px;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    background:linear-gradient(180deg, rgba(255,255,255,.05), transparent);
+  }
+  .panelHead b{font-weight:900}
+  .tag{
+    font-size:12px;
+    font-weight:900;
+    padding:6px 10px;
+    border-radius:999px;
+    background:rgba(29,185,84,.14);
+    border:1px solid rgba(29,185,84,.22);
+    color:#d9ffe7;
+  }
+  .panelBody{padding:14px}
 
-.plan{
-  border:1px solid rgba(255,255,255,.08);
-  padding:14px;
-  border-radius:14px;
-  margin-bottom:12px;
-  cursor:pointer;
-  transition:.3s;
-}
-.plan:hover{
-  transform:translateY(-5px);
-  box-shadow:0 0 25px rgba(29,185,84,.6);
-}
-.plan.active{
-  border-color:var(--green);
-  box-shadow:0 0 30px rgba(29,185,84,.9);
-}
+  /* plan cards */
+  .plans{display:grid; gap:10px; margin-top:6px}
+  .plan{
+    border-radius:16px;
+    padding:14px 14px;
+    border:1px solid rgba(255,255,255,.10);
+    background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    cursor:pointer;
+    transition:.18s ease;
+  }
+  .plan:hover{transform:translateY(-3px); border-color:rgba(0,234,255,.18)}
+  .plan.active{
+    border-color:rgba(29,185,84,.55);
+    box-shadow:0 0 0 2px rgba(29,185,84,.18), 0 18px 45px rgba(29,185,84,.18);
+  }
+  .planLeft{display:flex;flex-direction:column;gap:4px}
+  .planTitle{font-weight:900}
+  .planMeta{font-size:12px;color:var(--muted)}
+  .price{
+    font-weight:900;
+    font-size:18px;
+    color:#eafff3;
+    text-shadow:0 0 18px rgba(29,185,84,.35);
+    white-space:nowrap;
+  }
+  .stockOut{
+    opacity:.55;
+    cursor:not-allowed;
+    filter:saturate(.6);
+  }
+  .pillOut{
+    font-size:12px;
+    font-weight:900;
+    padding:6px 10px;
+    border-radius:999px;
+    background:rgba(255,61,139,.16);
+    border:1px solid rgba(255,61,139,.28);
+    color:#ffd3e6;
+    margin-left:10px;
+  }
 
-.stock{
-  background:#ff3b6b;
-  padding:4px 10px;
-  border-radius:20px;
-  font-size:12px;
-  font-weight:800;
-}
+  /* form */
+  form{margin-top:12px}
+  .formGrid{display:grid;gap:10px}
+  @media(min-width:560px){ .formGrid{grid-template-columns:1fr 1fr} }
 
-/* ===== BUTTON ===== */
-.btn{
-  width:100%;
-  margin-top:14px;
-  padding:14px;
-  border:none;
-  border-radius:14px;
-  font-weight:900;
-  cursor:pointer;
-  background:var(--green);
-  color:#000;
-  box-shadow:0 0 35px rgba(29,185,84,.8);
-  transition:.2s;
-}
-.btn:hover{transform:scale(1.05)}
+  .field{
+    display:flex; flex-direction:column; gap:7px;
+    text-align:left;
+  }
+  label{font-size:12px;color:#dbe3ff;font-weight:900;letter-spacing:.2px}
+  input, select, textarea{
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.10);
+    background:rgba(255,255,255,.06);
+    color:var(--text);
+    padding:12px 12px;
+    outline:none;
+    font-size:14px;
+  }
+  input::placeholder, textarea::placeholder{color:rgba(255,255,255,.45)}
+  textarea{min-height:90px;resize:vertical}
+  .hint{font-size:12px;color:rgba(255,255,255,.60);margin-top:2px}
 
-.whatsapp{
-  display:block;
-  margin-top:16px;
-  padding:12px;
-  border-radius:14px;
-  background:#25D366;
-  color:#fff;
-  font-weight:900;
-}
-.note{
-  font-size:13px;
-  opacity:.7;
-  margin-top:10px;
-}
+  /* payment chips */
+  .payRow{
+    display:flex; flex-wrap:wrap; gap:10px;
+    margin-top:8px;
+  }
+  .chip{
+    padding:10px 12px;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.10);
+    background:rgba(255,255,255,.05);
+    font-weight:900;
+    font-size:12px;
+    cursor:pointer;
+    transition:.15s ease;
+    user-select:none;
+  }
+  .chip:hover{transform:translateY(-2px)}
+  .chip.active{
+    border-color:rgba(0,234,255,.35);
+    box-shadow:0 0 0 2px rgba(0,234,255,.10);
+  }
+
+  /* buttons */
+  .btnRow{display:grid;gap:10px;margin-top:12px}
+  .btn{
+    width:100%;
+    padding:14px 14px;
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,.10);
+    background:rgba(255,255,255,.07);
+    color:#fff;
+    font-weight:900;
+    cursor:pointer;
+    transition:.15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.10)}
+  .btnPrimary{
+    background:linear-gradient(90deg, rgba(29,185,84,1), rgba(0,234,255,.65));
+    border-color:transparent;
+    color:#00110a;
+    box-shadow:0 18px 50px rgba(29,185,84,.18);
+  }
+  .btnPrimary:hover{box-shadow:0 22px 70px rgba(29,185,84,.24)}
+  .btnWA{
+    background:linear-gradient(90deg, #25D366, #1fbf5a);
+    border-color:transparent;
+    color:#00110a;
+    box-shadow:0 18px 50px rgba(37,211,102,.18);
+  }
+
+  /* description */
+  details{
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,.10);
+    background:rgba(255,255,255,.04);
+    padding:10px 12px;
+    margin-top:12px;
+  }
+  summary{
+    cursor:pointer;
+    font-weight:900;
+    list-style:none;
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+  }
+  summary::-webkit-details-marker{display:none}
+  .desc{
+    margin-top:10px;
+    color:rgba(255,255,255,.72);
+    line-height:1.7;
+    font-size:13px;
+    text-align:left;
+  }
+  .desc b{color:#fff}
+
+  /* toast */
+  .toast{
+    position:fixed;
+    left:50%;
+    bottom:18px;
+    transform:translateX(-50%);
+    background:rgba(0,0,0,.60);
+    border:1px solid rgba(255,255,255,.12);
+    color:#fff;
+    padding:10px 12px;
+    border-radius:999px;
+    font-weight:900;
+    font-size:13px;
+    box-shadow:0 16px 44px rgba(0,0,0,.45);
+    opacity:0;
+    pointer-events:none;
+    transition:.18s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index:9999;
+  }
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(-6px)}
+
+  /* small */
+  .fine{margin-top:10px;font-size:12px;color:rgba(255,255,255,.60);line-height:1.6;text-align:left}
 </style>
 </head>
 
 <body>
+  <div class="haze" aria-hidden="true"></div>
+  <div class="gridbg" aria-hidden="true"></div>
 
-<div class="bg-wave"></div>
-<div class="wave-lines"></div>
+  <script>
+    // particles
+    for(let i=0;i<28;i++){
+      const d=document.createElement('div');
+      d.className='p';
+      d.style.left=(Math.random()*100)+'vw';
+      d.style.animationDuration=(7+Math.random()*10)+'s';
+      d.style.animationDelay=(-Math.random()*12)+'s';
+      d.style.opacity=(0.25+Math.random()*0.5);
+      d.style.transform=`translateY(${Math.random()*120}vh)`;
+      document.body.appendChild(d);
+    }
+  </script>
+
+  <div class="wrap">
+    <div class="top">
+      <a class="back" href="shop.html">← Back to Shop</a>
+      <div class="brand">
+        <!-- if you want your Sam Store live logo here, replace src -->
+        <img src="png.images/samstore-logo.gif" alt="The Sam Store">
+        <span>The Sam Store</span>
+      </div>
+      <div style="min-width:88px"></div>
+    </div>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="eq" aria-hidden="true">
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+          </div>
+          <h1 class="title">Spotify Premium</h1>
+          <p class="subtitle">
+            Ultra Club Edition — clean, fast delivery via Email/WhatsApp. Choose your plan and submit details below.
+          </p>
+
+          <div class="vinylWrap" aria-hidden="true">
+            <div class="vinyl"></div>
+          </div>
+
+          <details>
+            <summary>
+              Description & Benefits
+              <span style="opacity:.7">＋</span>
+            </summary>
+            <div class="desc">
+              <b>Download and Listen Anywhere</b> — No VPN needed.<br>
+              Listen to your favourite artists, songs and albums — Nepali, Hindi, English and worldwide.<br><br>
+
+              <b>Delivery:</b> Quick delivery via Email / WhatsApp.<br>
+              <b>Account:</b> Premium can be activated on your <b>existing account</b> (email/password) or we can <b>provide a Premium account</b>.<br><br>
+
+              <b>Spotify Premium gives you:</b> Skip any track, offline listening, higher audio quality, and more.
+              <br><br>
+              Spotify is free in Nepal, but <b>Spotify Premium is paid</b>. Now you can pay easily via
+              <b>eSewa, Khalti, IME Pay, Bank Transfer, FonePay</b>.
+            </div>
+          </details>
+        </div>
+
+        <div class="panel">
+          <div class="panelHead">
+            <b>Select Plan</b>
+            <span class="tag" id="selectedTag">3 Months • Rs 750</span>
+          </div>
+
+          <div class="panelBody">
+            <div class="plans" id="plans">
+              <div class="plan active" data-plan="Spotify Premium – 3 Months" data-price="750" data-stock="in">
+                <div class="planLeft">
+                  <div class="planTitle">Spotify Premium – 3 Months</div>
+                  <div class="planMeta">Email delivered • Fast activation</div>
+                </div>
+                <div class="price">Rs 750</div>
+              </div>
+
+              <div class="plan stockOut" data-plan="Spotify Premium – 12 Months" data-price="3500" data-stock="out" aria-disabled="true">
+                <div class="planLeft">
+                  <div class="planTitle">
+                    Spotify Premium – 12 Months <span class="pillOut">Stock Out</span>
+                  </div>
+                  <div class="planMeta">Currently unavailable</div>
+                </div>
+                <div class="price">Rs 3500</div>
+              </div>
+            </div>
+
+            <!-- ===== FORM (Formcarry) ===== -->
+            <!-- IMPORTANT: Replace the action URL with your Formcarry endpoint -->
+            <form id="orderForm" action="https://formcarry.com/s/REPLACE_WITH_YOUR_FORMCARRY_ID" method="POST" accept-charset="UTF-8">
+              <!-- Hidden fields -->
+              <input type="hidden" name="service" value="Spotify Premium">
+              <input type="hidden" name="selected_plan" id="f_plan" value="Spotify Premium – 3 Months">
+              <input type="hidden" name="price_npr" id="f_price" value="750">
+              <input type="hidden" name="payment_method" id="f_pay" value="eSewa">
+
+              <div class="formGrid">
+                <div class="field">
+                  <label for="email">Email (Required)</label>
+                  <input id="email" name="customer_email" type="email" placeholder="yourname@gmail.com" required>
+                  <div class="hint">We deliver activation / details on this email.</div>
+                </div>
+
+                <div class="field">
+                  <label for="password">Password (Required)</label>
+                  <input id="password" name="account_password" type="text" placeholder="your account password" required>
+                  <div class="hint">If you choose “Existing account”, we use this to activate premium.</div>
+                </div>
+
+                <div class="field">
+                  <label for="accountType">Account Type</label>
+                  <select id="accountType" name="account_type" required>
+                    <option value="Existing account (activate on my email)">Existing account (activate on my email)</option>
+                    <option value="Provide me a Premium account">Provide me a Premium account</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="phone">WhatsApp Number (Optional)</label>
+                  <input id="phone" name="whatsapp_number" type="tel" placeholder="98XXXXXXXX">
+                  <div class="hint">For quick updates on WhatsApp.</div>
+                </div>
+              </div>
+
+              <div class="field" style="margin-top:10px">
+                <label>Payment Method</label>
+                <div class="payRow" id="payRow">
+                  <div class="chip active" data-pay="eSewa">eSewa</div>
+                  <div class="chip" data-pay="Khalti">Khalti</div>
+                  <div class="chip" data-pay="Bank Transfer">Bank</div>
+                  <div class="chip" data-pay="FonePay">FonePay</div>
+                  <div class="chip" data-pay="IME Pay">IME Pay</div>
+                </div>
+                <div class="hint">Choose payment method you will use.</div>
+              </div>
+
+              <div class="field" style="margin-top:10px">
+                <label for="note">Extra Note (Optional)</label>
+                <textarea id="note" name="note" placeholder="Example: Please activate today / I already paid / Payment screenshot sent on WhatsApp…"></textarea>
+              </div>
+
+              <div class="btnRow">
+                <button class="btn btnPrimary" type="submit">PLACE ORDER</button>
+                <button class="btn btnWA" type="button" id="waBtn">CONTACT ON WHATSAPP</button>
+              </div>
+
+              <div class="fine">
+                ✅ Delivery: Email / WhatsApp<br>
+                ✅ Payment: eSewa / Khalti / Bank / FonePay / IME Pay<br>
+                ⚠️ If using existing account, you can change your password after activation.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast">Saved</div>
 
 <script>
-for(let i=0;i<30;i++){
-  let p=document.createElement("div");
-  p.className="particle";
-  p.style.left=Math.random()*100+"vw";
-  p.style.animationDuration=(6+Math.random()*10)+"s";
-  document.body.appendChild(p);
-}
-</script>
+  const toast = (msg)=>{
+    const t=document.getElementById('toast');
+    t.textContent=msg;
+    t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'), 1200);
+  };
 
-<div class="wrap">
+  // Plan select (disable stock out)
+  const planEls = document.querySelectorAll('.plan');
+  const selectedTag = document.getElementById('selectedTag');
+  const f_plan = document.getElementById('f_plan');
+  const f_price = document.getElementById('f_price');
 
-<h1>Spotify Premium</h1>
-<div class="subtitle">Ultra Club Edition — Feel The Beat</div>
+  function setPlan(el){
+    const stock = el.getAttribute('data-stock');
+    if(stock === 'out') return;
 
-<div class="equalizer">
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
-</div>
+    planEls.forEach(x=>x.classList.remove('active'));
+    el.classList.add('active');
 
-<div class="vinyl"></div>
+    const plan = el.getAttribute('data-plan');
+    const price = el.getAttribute('data-price');
 
-<div class="card">
-<div class="plan active">
-<strong>Spotify Premium – 3 Months</strong>
-<div>750 Rs</div>
-</div>
+    selectedTag.textContent = (plan.includes('3') ? '3 Months' : plan) + ' • Rs ' + price;
+    f_plan.value = plan;
+    f_price.value = price;
 
-<div class="plan" style="opacity:.6;cursor:not-allowed;">
-<strong>Spotify Premium – 12 Months <span class="stock">Stock Out</span></strong>
-<div>3500 Rs</div>
-</div>
+    toast('Plan selected: ' + plan);
+  }
+  planEls.forEach(el=>el.addEventListener('click', ()=>setPlan(el)));
 
-<button class="btn">Place Order</button>
-
-<a class="whatsapp" href="https://wa.me/9779828560029" target="_blank">
-Contact on WhatsApp
-</a>
-
-<p class="note">
-Activation details will be sent to your email after payment verification.
-</p>
-
-</div>
-</div>
-
-<script>
-document.querySelectorAll(".plan").forEach(p=>{
-  p.addEventListener("click",()=>{
-    if(p.style.cursor==="not-allowed") return;
-    document.querySelectorAll(".plan").forEach(x=>x.classList.remove("active"));
-    p.classList.add("active");
+  // Payment chips
+  const chips = document.querySelectorAll('.chip');
+  const f_pay = document.getElementById('f_pay');
+  chips.forEach(c=>{
+    c.addEventListener('click', ()=>{
+      chips.forEach(x=>x.classList.remove('active'));
+      c.classList.add('active');
+      f_pay.value = c.getAttribute('data-pay');
+      toast('Payment: ' + f_pay.value);
+    });
   });
-});
-</script>
 
+  // WhatsApp button with prefilled message
+  document.getElementById('waBtn').addEventListener('click', ()=>{
+    const plan = f_plan.value;
+    const price = f_price.value;
+    const email = document.getElementById('email').value || '(not entered)';
+    const pass = document.getElementById('password').value || '(not entered)';
+    const accType = document.getElementById('accountType').value;
+    const phone = document.getElementById('phone').value || '';
+    const pay = f_pay.value;
+
+    const msg =
+`Hello! I want Spotify Premium.
+
+Plan: ${plan}
+Price: Rs ${price}
+Account Type: ${accType}
+
+Email: ${email}
+Password: ${pass}
+WhatsApp: ${phone}
+Payment Method: ${pay}
+
+Please guide me for payment / activation.`;
+
+    const url = "https://wa.me/9779828560029?text=" + encodeURIComponent(msg);
+    window.open(url, "_blank");
+  });
+
+  // Improve details summary plus icon toggle
+  const det = document.querySelector('details');
+  const sum = det.querySelector('summary span');
+  det.addEventListener('toggle', ()=>{
+    sum.textContent = det.open ? '－' : '＋';
+  });
+</script>
 </body>
 </html>
