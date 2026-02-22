@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Today's Offers • SM Digital Services</title>
+  <title>Today's Offers • The Sam Store</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
   <style>
@@ -177,6 +177,15 @@
       border:1px solid rgba(255,255,255,.25);
       z-index:2;
     }
+    /* subtle pulse for badges */
+    .badge.pulse{
+      animation:pulse 1.6s ease-in-out infinite;
+      transform-origin:center;
+    }
+    @keyframes pulse{
+      0%,100%{filter:brightness(1); transform:scale(1)}
+      50%{filter:brightness(1.15); transform:scale(1.04)}
+    }
 
     /* Social / Payment panels */
     .panel{
@@ -266,8 +275,9 @@
   <!-- Header -->
   <header>
     <div style="display:flex;align-items:center;gap:10px;">
-      <img src="png.images/logo-mascot.png" alt="SM Digital Services">
-      <h1>SM DIGITAL SERVICES</h1>
+      <!-- Use your live logo if you want: png.images/samstore-logo.gif -->
+      <img src="png.images/samstore-logo.gif" alt="The Sam Store">
+      <h1>THE SAM STORE</h1>
     </div>
     <a href="index.html">Home</a>
   </header>
@@ -304,12 +314,20 @@
         <div class="meta"><span>⚡ 0–30 min</span><span>•</span><span>Secure</span></div>
       </a>
 
-      <!-- ChatGPT Plus with badge -->
+      <!-- ChatGPT Plus -->
       <a href="chatgpt.html" class="card">
-        <div class="badge">Rs 800 OFFER</div>
+        <div class="badge pulse">Rs 800 OFFER</div>
         <img src="png.images/logo-chatgptai.png" alt="ChatGPT Plus">
         <span>ChatGPT Plus</span>
         <div class="meta"><span>📧 Email delivery</span><span>•</span><span>Fast activation</span></div>
+      </a>
+
+      <!-- Spotify Premium 3 Month -->
+      <a href="spotify.html" class="card">
+        <div class="badge pulse">Rs 750 • 3 MONTH</div>
+        <img src="png.images/logo-spotifys.png" alt="Spotify Premium">
+        <span>Spotify Premium</span>
+        <div class="meta"><span>📧 Email delivery</span><span>•</span><span>Quick activation</span></div>
       </a>
     </div>
 
@@ -347,7 +365,7 @@
 
   <!-- Footer -->
   <footer>
-    Copyright ©2026 SM Digital Service — owned by Samir Mijar
+    Copyright ©2026 The Sam Store — owned by Samir Mijar
   </footer>
 
   <!-- WhatsApp Floating Button -->
@@ -359,13 +377,9 @@
   </a>
 
   <script>
-    // Countdown timer
-    // Option A (recommended): End today at 23:59:59 (user's device time)
+    // Countdown timer: ends today at 23:59:59 (user device time)
     const end = new Date();
     end.setHours(23, 59, 59, 999);
-
-    // If you want a fixed date/time instead, use:
-    // const end = new Date('2026-02-21T23:59:59');
 
     const pad = (n)=> String(Math.max(0, n)).padStart(2,'0');
 
