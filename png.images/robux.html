@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roblox Gift Card US • Email Delivery</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#070b14;
+  --card:#101826;
+  --neon:#00c3ff;
+  --hot1:#ffb703;
+  --hot2:#ff2d7a;
+  --text:#ffffff;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,sans-serif;
+  background:radial-gradient(circle at 20% 20%, rgba(0,195,255,.12), transparent 40%), var(--bg);
+  color:var(--text);
+}
+.wrap{max-width:950px;margin:auto;padding:20px}
+h1{text-align:center;font-size:34px;font-weight:900;text-shadow:0 0 20px var(--neon)}
+.subtitle{text-align:center;opacity:.8;margin-bottom:10px}
+.delivery{text-align:center;color:#00ffcc;font-weight:800;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+
+.stock-box{
+  margin:20px auto;
+  text-align:center;
+  background:rgba(255,255,255,.05);
+  padding:10px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.08);
+}
+.stock-box span{color:#ffb703;font-weight:900}
+
+.card{
+  background:var(--card);
+  border-radius:20px;
+  padding:20px;
+  margin-top:20px;
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 0 30px rgba(0,195,255,.2);
+}
+
+.plan{
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:14px;
+  padding:15px;
+  margin-bottom:12px;
+  cursor:pointer;
+  transition:.25s;
+}
+.plan:hover{transform:translateY(-4px);box-shadow:0 0 20px var(--neon)}
+.plan.active{border-color:var(--hot1);box-shadow:0 0 25px var(--hot2)}
+
+.popular{
+  background:linear-gradient(90deg,var(--hot1),var(--hot2));
+  padding:3px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:900;
+  color:#000;
+  margin-left:8px;
+}
+
+input,select{
+  width:100%;
+  padding:12px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.1);
+  background:#1a2333;
+  color:#fff;
+  margin-top:10px;
+}
+
+.pay-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.pay-btn{
+  flex:1;
+  padding:12px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.1);
+  text-align:center;
+  cursor:pointer;
+  background:rgba(255,255,255,.05);
+}
+.pay-btn.active{background:linear-gradient(90deg,var(--hot1),var(--hot2));color:#000;font-weight:900}
+
+.btn{
+  width:100%;
+  margin-top:18px;
+  padding:14px;
+  border:none;
+  border-radius:14px;
+  font-weight:900;
+  cursor:pointer;
+  background:linear-gradient(90deg,var(--hot1),var(--hot2));
+  color:#000;
+}
+.notice{margin-top:10px;color:#ff5e5e;font-weight:700;font-size:13px}
+
+h2{margin-top:0}
+.muted{opacity:.8;font-size:14px}
+ul,ol{opacity:.85}
+
+.wa-fab{
+  position:fixed;
+  right:16px;
+  bottom:16px;
+  width:60px;height:60px;
+  border-radius:50%;
+  background:#25D366;
+  display:grid;place-items:center;
+}
+.wa-fab img{width:28px}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+<h1>ROBLOX GIFT CARD US</h1>
+<div class="subtitle">Email Delivery • Nepal</div>
+<div class="delivery">⚡ 10 Minute Delivery</div>
+
+<div class="stock-box">
+Only <span id="stock">--</span> left today!
+</div>
+
+<div class="card">
+
+<div class="plan active" data-plan="10$ USD (1000 Robux) - 1880 Rs">
+<strong>10$ USD (1000 Robux)</strong>
+<span class="popular">POPULAR</span>
+<div>1880 Rs</div>
+</div>
+
+<div class="plan" data-plan="25$ USD (2500 Robux) - 3880 Rs">
+<strong>25$ USD (2500 Robux)</strong>
+<div>3880 Rs</div>
+</div>
+
+<div class="plan" data-plan="50$ USD (5250 Robux) - 7699 Rs">
+<strong>50$ USD (5250 Robux)</strong>
+<div>7699 Rs</div>
+</div>
+
+<div class="plan" data-plan="100$ USD (11000 Robux) - 15350 Rs">
+<strong>100$ USD (11000 Robux)</strong>
+<div>15350 Rs</div>
+</div>
+
+<input type="email" id="email" placeholder="Enter Your Email for Delivery" required>
+
+<h3>Payment Method</h3>
+<div class="pay-row">
+<div class="pay-btn" data-method="eSewa">eSewa</div>
+<div class="pay-btn" data-method="Khalti">Khalti</div>
+<div class="pay-btn" data-method="Bank Transfer">Bank</div>
+</div>
+
+<button class="btn" onclick="orderNow()">Place Order</button>
+
+<div class="notice">
+All Purchases are NON-REFUNDABLE and NON-RETURNABLE.
+</div>
+
+</div>
+
+<!-- PRODUCT DETAILS -->
+<div class="card">
+<h2>About This Product</h2>
+<p class="muted">
+Get your 100% genuine Roblox Gift Card US delivered instantly to your email.
+Redeem for Robux or Roblox Premium membership.
+Fast, secure, and trusted digital delivery in Nepal.
+</p>
+
+<h3>Why Buy From The Sam Store?</h3>
+<ul>
+<li>Instant Email Delivery</li>
+<li>US Region Supported</li>
+<li>Redeem for Robux or Premium</li>
+<li>100% Genuine Codes</li>
+<li>Easy Payment via eSewa, Khalti, Bank</li>
+</ul>
+
+<h3>How To Redeem</h3>
+<ol>
+<li>Visit roblox.com/redeem</li>
+<li>Login to your account</li>
+<li>Enter your code</li>
+<li>Click Redeem</li>
+<li>Use credit for Robux or Premium</li>
+</ol>
+</div>
+
+</div>
+
+<a class="wa-fab" href="https://wa.me/9779828560029" target="_blank">
+<img src="png.images/logo-whatsapp.png">
+</a>
+
+<script>
+let selectedPlan="10$ USD (1000 Robux) - 1880 Rs";
+let paymentMethod="";
+
+document.querySelectorAll(".plan").forEach(p=>{
+  p.addEventListener("click",()=>{
+    document.querySelectorAll(".plan").forEach(x=>x.classList.remove("active"));
+    p.classList.add("active");
+    selectedPlan=p.dataset.plan;
+  });
+});
+
+document.querySelectorAll(".pay-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".pay-btn").forEach(x=>x.classList.remove("active"));
+    btn.classList.add("active");
+    paymentMethod=btn.dataset.method;
+  });
+});
+
+function orderNow(){
+  let email=document.getElementById("email").value;
+  if(!email||!paymentMethod){
+    alert("Please enter email and select payment method.");
+    return;
+  }
+  let msg=`Hello! I want to purchase Roblox Gift Card.\nPlan: ${selectedPlan}\nDelivery Email: ${email}\nPayment Method: ${paymentMethod}`;
+  window.open("https://wa.me/9779828560029?text="+encodeURIComponent(msg));
+}
+
+document.getElementById("stock").innerText=Math.floor(Math.random()*15)+5;
+</script>
+
+</body>
+</html>
