@@ -1,681 +1,417 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Samir Mijar | Follow Jesus • Share the Gospel</title>
-
-  <meta name="description" content="Samir Mijar — sharing faith, hope, God's Word and the Gospel of Jesus Christ.">
-  <meta name="author" content="Samir Mijar">
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #fafafa;
-      color: #222;
-      line-height: 1.6;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* NAVBAR */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(10px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 8%;
-      z-index: 1000;
-      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-    }
-
-    .logo {
-      font-size: 23px;
-      font-weight: bold;
-      color: #1d4f91;
-    }
-
-    .logo span {
-      color: #c79a28;
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 25px;
-    }
-
-    nav ul li a {
-      font-size: 15px;
-      color: #333;
-      transition: 0.3s;
-    }
-
-    nav ul li a:hover {
-      color: #1d4f91;
-    }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      padding: 130px 8% 70px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 50px;
-      background:
-        linear-gradient(rgba(255,255,255,0.93), rgba(255,255,255,0.93)),
-        url("photo1.jpg") center/cover;
-    }
-
-    .hero-text {
-      max-width: 650px;
-    }
-
-    .small-title {
-      color: #c79a28;
-      font-weight: bold;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 15px;
-    }
-
-    .hero h1 {
-      font-size: clamp(45px, 7vw, 80px);
-      line-height: 1.05;
-      color: #163d70;
-      margin-bottom: 20px;
-    }
-
-    .hero h1 span {
-      color: #c79a28;
-    }
-
-    .hero p {
-      font-size: 19px;
-      color: #555;
-      margin-bottom: 30px;
-      max-width: 600px;
-    }
-
-    .buttons {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 13px 24px;
-      border-radius: 30px;
-      font-weight: bold;
-      transition: 0.3s;
-      display: inline-block;
-    }
-
-    .btn-primary {
-      background: #1d4f91;
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background: #143969;
-      transform: translateY(-2px);
-    }
-
-    .btn-outline {
-      border: 2px solid #1d4f91;
-      color: #1d4f91;
-    }
-
-    .btn-outline:hover {
-      background: #1d4f91;
-      color: white;
-    }
-
-    /* PROFILE PHOTO */
-    .profile-container {
-      min-width: 320px;
-      text-align: center;
-    }
-
-    .profile {
-      width: 320px;
-      height: 320px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 8px solid white;
-      box-shadow: 0 15px 50px rgba(0,0,0,0.15);
-    }
-
-    /* GENERAL SECTIONS */
-    section {
-      padding: 90px 8%;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 50px;
-    }
-
-    .section-title h2 {
-      font-size: 38px;
-      color: #163d70;
-      margin-bottom: 10px;
-    }
-
-    .section-title p {
-      color: #777;
-    }
-
-    /* ABOUT */
-    .about {
-      background: white;
-    }
-
-    .about-content {
-      max-width: 900px;
-      margin: auto;
-      text-align: center;
-    }
-
-    .about-content p {
-      font-size: 18px;
-      color: #555;
-      margin-bottom: 20px;
-    }
-
-    .verse {
-      margin: 35px auto;
-      padding: 30px;
-      max-width: 800px;
-      background: #f4f7fb;
-      border-left: 5px solid #c79a28;
-      border-radius: 10px;
-    }
-
-    .verse p {
-      font-size: 21px;
-      font-style: italic;
-      color: #333;
-    }
-
-    .verse strong {
-      color: #1d4f91;
-    }
-
-    /* GOSPEL */
-    .gospel {
-      background: #f5f7fa;
-    }
-
-    .gospel-grid {
-      max-width: 1100px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-    }
-
-    .gospel-card {
-      background: white;
-      padding: 30px;
-      border-radius: 15px;
-      text-align: center;
-      box-shadow: 0 5px 25px rgba(0,0,0,0.05);
-      transition: 0.3s;
-    }
-
-    .gospel-card:hover {
-      transform: translateY(-7px);
-    }
-
-    .gospel-icon {
-      font-size: 40px;
-      margin-bottom: 15px;
-    }
-
-    .gospel-card h3 {
-      color: #163d70;
-      margin-bottom: 10px;
-    }
-
-    .gospel-card p {
-      color: #666;
-    }
-
-    /* GALLERY */
-    .gallery {
-      background: white;
-    }
-
-    .gallery-grid {
-      max-width: 1100px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-
-    .gallery-item {
-      height: 280px;
-      overflow: hidden;
-      border-radius: 15px;
-      background: #eee;
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: 0.5s;
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.08);
-    }
-
-    /* VERSE SECTION */
-    .daily-verse {
-      background: #163d70;
-      color: white;
-      text-align: center;
-    }
-
-    .daily-verse h2 {
-      font-size: 35px;
-      margin-bottom: 20px;
-    }
-
-    .daily-verse p {
-      max-width: 800px;
-      margin: auto;
-      font-size: 22px;
-      font-style: italic;
-    }
-
-    .daily-verse small {
-      display: block;
-      margin-top: 15px;
-      color: #e8c96a;
-      font-weight: bold;
-    }
-
-    /* CONTACT */
-    .contact {
-      background: #fafafa;
-    }
-
-    .contact-box {
-      max-width: 800px;
-      margin: auto;
-      background: white;
-      padding: 40px;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 5px 30px rgba(0,0,0,0.06);
-    }
-
-    .contact-box p {
-      margin: 12px 0;
-      color: #555;
-    }
-
-    .contact-box a {
-      color: #1d4f91;
-      font-weight: bold;
-    }
-
-    /* FOOTER */
-    footer {
-      background: #102b4d;
-      color: white;
-      text-align: center;
-      padding: 35px 20px;
-    }
-
-    footer p {
-      margin: 7px 0;
-      color: #d8e0eb;
-    }
-
-    .footer-verse {
-      color: #e8c96a;
-      font-style: italic;
-      margin-bottom: 15px;
-    }
-
-    /* MOBILE */
-    @media (max-width: 850px) {
-
-      nav {
-        padding: 15px 5%;
-      }
-
-      nav ul {
-        gap: 12px;
-      }
-
-      nav ul li a {
-        font-size: 13px;
-      }
-
-      .hero {
-        flex-direction: column-reverse;
-        text-align: center;
-        padding: 130px 6% 70px;
-      }
-
-      .profile {
-        width: 240px;
-        height: 240px;
-      }
-
-      .profile-container {
-        min-width: auto;
-      }
-
-      .buttons {
-        justify-content: center;
-      }
-
-      .gospel-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 500px) {
-
-      nav {
-        position: absolute;
-      }
-
-      nav ul {
-        display: none;
-      }
-
-      .hero h1 {
-        font-size: 48px;
-      }
-
-      section {
-        padding: 70px 6%;
-      }
-
-      .gallery-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .gallery-item {
-        height: 300px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Samir Mijar — following Jesus Christ, sharing the Gospel, God's Word, faith, hope and encouragement.">
+<meta name="author" content="Samir Mijar">
+<meta name="theme-color" content="#102c4d">
+<title>Samir Mijar | Faith • Hope • Jesus</title>
+
+<style>
+:root{
+  --bg:#f8fafc; --card:#ffffff; --text:#17202a; --muted:#687586;
+  --navy:#102c4d; --blue:#1e5a92; --gold:#c9a13b; --line:#e6ebf1;
+  --soft:#eef4f9; --shadow:0 18px 55px rgba(16,44,77,.10);
+}
+[data-theme="dark"]{
+  --bg:#0b1420; --card:#111e2d; --text:#edf3f9; --muted:#aab7c6;
+  --navy:#e9f1f8; --blue:#6ea9dc; --gold:#e0bd5b; --line:#26384c;
+  --soft:#142537; --shadow:0 18px 55px rgba(0,0,0,.30);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;transition:background .3s,color .3s}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.container{width:min(1120px,92%);margin:auto}
+header{
+  position:fixed;inset:0 0 auto 0;z-index:1000;
+  background:color-mix(in srgb,var(--card) 88%,transparent);
+  backdrop-filter:blur(16px);border-bottom:1px solid var(--line)
+}
+.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{font-weight:900;font-size:22px;letter-spacing:-.5px;color:var(--navy)}
+.brand span{color:var(--gold)}
+.navlinks{display:flex;gap:24px;align-items:center}
+.navlinks a{font-size:14px;font-weight:700;color:var(--muted)}
+.navlinks a:hover{color:var(--blue)}
+.actions{display:flex;gap:8px;align-items:center}
+.icon-btn,.lang-select{
+  border:1px solid var(--line);background:var(--card);color:var(--text);
+  border-radius:12px;padding:9px 11px;cursor:pointer
+}
+.lang-select{font-weight:700}
+.hero{
+  min-height:100vh;padding:130px 0 80px;display:grid;grid-template-columns:1.08fr .92fr;
+  gap:60px;align-items:center;overflow:hidden;position:relative
+}
+.hero:before{
+  content:"";position:absolute;width:520px;height:520px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,161,59,.20),transparent 68%);
+  right:-180px;top:100px;pointer-events:none
+}
+.eyebrow{color:var(--gold);font-weight:900;text-transform:uppercase;letter-spacing:3px;font-size:13px;margin-bottom:18px}
+h1{font-size:clamp(48px,7vw,82px);line-height:.98;letter-spacing:-3px;color:var(--navy);margin-bottom:24px}
+h1 em{font-style:normal;color:var(--blue)}
+.hero p{font-size:19px;color:var(--muted);max-width:650px}
+.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:999px;font-weight:800;border:1px solid transparent;transition:.25s}
+.btn-primary{background:var(--navy);color:var(--bg)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.btn-outline{border-color:var(--line);background:var(--card);color:var(--navy)}
+.btn-outline:hover{border-color:var(--blue)}
+.hero-card{position:relative}
+.profile-wrap{
+  width:min(420px,90vw);aspect-ratio:1/1;margin:auto;border-radius:38px;
+  padding:9px;background:linear-gradient(145deg,var(--gold),var(--blue));
+  box-shadow:var(--shadow);transform:rotate(2deg)
+}
+.profile-wrap img{width:100%;height:100%;object-fit:cover;border-radius:31px;transform:rotate(-2deg)}
+.cross-badge{
+  position:absolute;left:10px;bottom:-15px;background:var(--card);border:1px solid var(--line);
+  border-radius:20px;padding:15px 18px;box-shadow:var(--shadow);font-weight:900;color:var(--navy)
+}
+.cross-badge span{color:var(--gold);font-size:22px;margin-right:8px}
+section{padding:95px 0}
+.section-head{text-align:center;max-width:700px;margin:0 auto 48px}
+.section-head .eyebrow{margin-bottom:9px}
+.section-head h2{font-size:clamp(34px,5vw,52px);letter-spacing:-1.5px;color:var(--navy);line-height:1.05}
+.section-head p{color:var(--muted);margin-top:12px}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:stretch}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:32px;box-shadow:var(--shadow)}
+.card h3{color:var(--navy);font-size:25px;margin-bottom:12px}
+.card p{color:var(--muted)}
+.verse-box{display:flex;flex-direction:column;justify-content:center;background:linear-gradient(135deg,var(--navy),#1b527f);color:white;border:none}
+.verse-box .cross{font-size:32px;color:#e6c96c;margin-bottom:10px}
+.verse-box blockquote{font-size:24px;line-height:1.45;font-style:italic}
+.verse-box cite{display:block;margin-top:18px;color:#e6c96c;font-style:normal;font-weight:800}
+.gospel{background:var(--soft)}
+.gospel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.gospel-card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:var(--shadow)}
+.num{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--soft);color:var(--blue);font-weight:900;margin-bottom:18px}
+.gospel-card h3{color:var(--navy);margin-bottom:9px}
+.gospel-card p{color:var(--muted)}
+.animated-verse{background:var(--navy);color:white;text-align:center;position:relative;overflow:hidden}
+.animated-verse h2{font-size:14px;letter-spacing:3px;text-transform:uppercase;color:#e6c96c;margin-bottom:18px}
+.animated-verse .verse-text{font-size:clamp(24px,4vw,38px);max-width:900px;margin:auto;min-height:105px;opacity:0;transform:translateY(12px);transition:.7s}
+.animated-verse .verse-text.show{opacity:1;transform:none}
+.animated-verse .ref{margin-top:18px;color:#c8d7e7;font-weight:800}
+.gallery{background:var(--bg)}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.gallery-item{aspect-ratio:4/5;overflow:hidden;border-radius:22px;background:var(--soft);border:1px solid var(--line)}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.gallery-item:hover img{transform:scale(1.045)}
+.connect{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.contact-list{display:grid;gap:12px;margin-top:20px}
+.contact-link{padding:15px 16px;border:1px solid var(--line);border-radius:15px;background:var(--card);display:flex;justify-content:space-between;align-items:center}
+.contact-link strong{color:var(--navy)}
+.contact-link span{color:var(--muted);font-size:14px}
+.socials{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.social{padding:11px 15px;border-radius:12px;background:var(--soft);color:var(--navy);font-weight:800;border:1px solid var(--line)}
+footer{padding:38px 0;background:#081d32;color:#dbe7f1;text-align:center}
+footer .footer-brand{font-size:22px;font-weight:900;color:white}
+footer .footer-brand span{color:#e6c96c}
+footer p{margin-top:8px;color:#a9bbcb}
+.menu-btn{display:none}
+@media(max-width:850px){
+  .navlinks{display:none}.menu-btn{display:block}
+  .hero{grid-template-columns:1fr;text-align:center;padding-top:120px}
+  .hero p{margin:auto}.buttons{justify-content:center}
+  .about-grid,.connect{grid-template-columns:1fr}
+  .gospel-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+  .nav{height:64px}.actions .lang-select{max-width:85px}
+  .hero{padding-top:100px}
+  h1{letter-spacing:-2px}
+  section{padding:72px 0}
+  .gallery-grid{grid-template-columns:1fr}
+  .card{padding:24px}
+}
+</style>
 </head>
 
 <body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#home">Samir<span>.</span></a>
+    <nav class="navlinks">
+      <a href="#home" data-i18n="navHome">Home</a>
+      <a href="#about" data-i18n="navAbout">About</a>
+      <a href="#gospel" data-i18n="navGospel">Gospel</a>
+      <a href="#gallery" data-i18n="navGallery">Gallery</a>
+      <a href="#contact" data-i18n="navContact">Contact</a>
+    </nav>
+    <div class="actions">
+      <select class="lang-select" id="language" aria-label="Language">
+        <option value="en">EN</option><option value="ne">नेपाली</option>
+        <option value="hi">हिन्दी</option><option value="zh">中文</option>
+      </select>
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">☾</button>
+      <button class="icon-btn menu-btn" onclick="alert('Use the navigation links above or scroll the page.')">☰</button>
+    </div>
+  </div>
+</header>
 
-  <!-- NAVIGATION -->
-  <nav>
-    <div class="logo">Samir<span>.</span></div>
+<main>
+<section class="hero container" id="home">
+  <div>
+    <div class="eyebrow" data-i18n="eyebrow">Faith • Hope • Jesus</div>
+    <h1 data-i18n="heroTitle">Living for <em>Jesus Christ.</em></h1>
+    <p data-i18n="heroText">Welcome to my personal website. My desire is to follow Jesus, grow in His Word, and share the hope of the Gospel with others.</p>
+    <div class="buttons">
+      <a href="#gospel" class="btn btn-primary" data-i18n="discover">Discover the Gospel →</a>
+      <a href="#contact" class="btn btn-outline" data-i18n="connect">Let's Connect</a>
+    </div>
+  </div>
+  <div class="hero-card">
+    <div class="profile-wrap"><img src="profile.jpg" alt="Samir Mijar"></div>
+    <div class="cross-badge"><span>✝</span><span data-i18n="badge">Jesus is the center</span></div>
+  </div>
+</section>
 
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#gospel">Gospel</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-
-  <!-- HERO -->
-  <section class="hero" id="home">
-
-    <div class="hero-text">
-
-      <div class="small-title">Faith • Hope • Jesus</div>
-
-      <h1>
-        Living for<br>
-        <span>Jesus Christ.</span>
-      </h1>
-
-      <p>
-        Welcome to my personal website. My desire is to follow Jesus,
-        grow in His Word, and share the hope of the Gospel with others.
-      </p>
-
-      <div class="buttons">
-        <a href="#gospel" class="btn btn-primary">
-          Discover the Gospel
-        </a>
-
-        <a href="#contact" class="btn btn-outline">
-          Contact Me
-        </a>
+<section id="about">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow" data-i18n="aboutEyebrow">My journey</div>
+      <h2 data-i18n="aboutTitle">A life centered on Christ</h2>
+      <p data-i18n="aboutIntro">This is a personal space to share faith, God's Word, worship, encouragement and the Gospel of Jesus Christ.</p>
+    </div>
+    <div class="about-grid">
+      <div class="card">
+        <h3 data-i18n="aboutCardTitle">Hello, I'm Samir.</h3>
+        <p data-i18n="aboutCardText">I want to use my life, my voice and the opportunities God gives me to encourage people to know Jesus, read the Bible, pray and walk faithfully with Him.</p>
+        <br>
+        <p data-i18n="aboutCardText2">You may find Bible verses, Gospel messages, worship, personal reflections, photos and other things that point back to God.</p>
       </div>
-
-    </div>
-
-
-    <!-- PROFILE PHOTO -->
-    <div class="profile-container">
-      <img src="profile.jpg"
-           alt="Samir Mijar"
-           class="profile">
-    </div>
-
-  </section>
-
-
-  <!-- ABOUT -->
-  <section class="about" id="about">
-
-    <div class="section-title">
-      <h2>About Me</h2>
-      <p>A little about my journey of faith</p>
-    </div>
-
-    <div class="about-content">
-
-      <p>
-        Hello, I'm <strong>Samir Mijar</strong>.
-        This website is a place where I want to share my faith,
-        thoughts, Bible verses, worship, and the message of Jesus Christ.
-      </p>
-
-      <p>
-        I believe that Jesus Christ is the way, the truth, and the life.
-        My prayer is that everything shared here will encourage people
-        to know God, read His Word, and walk closer with Him.
-      </p>
-
-      <div class="verse">
-        <p>
-          “For God so loved the world that he gave his one and only Son,
-          that whoever believes in him shall not perish but have eternal life.”
-        </p>
-
-        <strong>— John 3:16</strong>
+      <div class="card verse-box">
+        <div class="cross">✝</div>
+        <blockquote data-i18n="john">“For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.”</blockquote>
+        <cite>— John 3:16</cite>
       </div>
-
     </div>
+  </div>
+</section>
 
-  </section>
-
-
-  <!-- GOSPEL -->
-  <section class="gospel" id="gospel">
-
-    <div class="section-title">
-      <h2>The Gospel</h2>
-      <p>The good news of Jesus Christ</p>
+<section class="gospel" id="gospel">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow" data-i18n="gospelEyebrow">The good news</div>
+      <h2 data-i18n="gospelTitle">The Gospel of Jesus Christ</h2>
+      <p data-i18n="gospelIntro">The heart of the Christian message is simple: God loves us, Jesus saves, and we are invited to follow Him.</p>
     </div>
-
     <div class="gospel-grid">
-
-      <div class="gospel-card">
-        <div class="gospel-icon">❤️</div>
-
-        <h3>God Loves You</h3>
-
-        <p>
-          God created you and loves you deeply.
-          His love is greater than our failures and mistakes.
-        </p>
-      </div>
-
-
-      <div class="gospel-card">
-        <div class="gospel-icon">✝️</div>
-
-        <h3>Jesus Saves</h3>
-
-        <p>
-          Jesus Christ died for our sins and rose again.
-          Through Him we can receive forgiveness and new life.
-        </p>
-      </div>
-
-
-      <div class="gospel-card">
-        <div class="gospel-icon">🙏</div>
-
-        <h3>Follow Jesus</h3>
-
-        <p>
-          The Christian life is a journey of trusting Jesus,
-          reading God's Word, praying, loving others, and growing in faith.
-        </p>
-      </div>
-
+      <div class="gospel-card"><div class="num">01</div><h3 data-i18n="g1t">God Loves You</h3><p data-i18n="g1p">God created you and loves you. His love reaches us even in our weakness and failures.</p></div>
+      <div class="gospel-card"><div class="num">02</div><h3 data-i18n="g2t">Jesus Saves</h3><p data-i18n="g2p">Jesus Christ died for our sins and rose again. Through Him we can receive forgiveness and new life.</p></div>
+      <div class="gospel-card"><div class="num">03</div><h3 data-i18n="g3t">Follow Jesus</h3><p data-i18n="g3p">Trust Jesus, turn toward God, learn His Word, pray, love others and grow in faith each day.</p></div>
     </div>
+  </div>
+</section>
 
-  </section>
+<section class="animated-verse">
+  <div class="container">
+    <h2 data-i18n="word">God's Word</h2>
+    <div class="verse-text show" id="verseText"></div>
+    <div class="ref" id="verseRef"></div>
+  </div>
+</section>
 
-
-  <!-- BIBLE VERSE -->
-  <section class="daily-verse">
-
-    <h2>God's Word</h2>
-
-    <p>
-      “Your word is a lamp for my feet, a light on my path.”
-    </p>
-
-    <small>— Psalm 119:105</small>
-
-  </section>
-
-
-  <!-- GALLERY -->
-  <section class="gallery" id="gallery">
-
-    <div class="section-title">
-      <h2>Moments & Memories</h2>
-      <p>Faith, life, nature and ministry</p>
+<section id="gallery">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow" data-i18n="galleryEyebrow">Moments</div>
+      <h2 data-i18n="galleryTitle">Faith • Life • Memories</h2>
+      <p data-i18n="galleryIntro">A few moments from my journey. More photos can be added anytime.</p>
     </div>
-
-
     <div class="gallery-grid">
-
-      <!-- PHOTO 1 -->
-      <div class="gallery-item">
-        <img src="photo1.jpg"
-             alt="Samir Mijar photo 1">
-      </div>
-
-      <!-- PHOTO 2 -->
-      <div class="gallery-item">
-        <img src="photo2.jpg"
-             alt="Samir Mijar photo 2">
-      </div>
-
-      <!-- PHOTO 3 -->
-      <div class="gallery-item">
-        <img src="photo3.jpg"
-             alt="Samir Mijar photo 3">
-      </div>
-
-      <!-- PHOTO 4 -->
-      <div class="gallery-item">
-        <img src="photo4.jpg"
-             alt="Samir Mijar photo 4">
-      </div>
-
+      <div class="gallery-item"><img src="photo1.png" alt="Samir Mijar portrait"></div>
+      <div class="gallery-item"><img src="photo2.png" alt="Samir Mijar photos"></div>
+      <div class="gallery-item"><img src="profile.jpg" alt="Samir Mijar formal portrait"></div>
+      <div class="gallery-item"><img src="photo4.jpg" onerror="this.src='photo4.svg'" alt="Fourth photo placeholder"></div>
     </div>
+  </div>
+</section>
 
-  </section>
-
-
-  <!-- CONTACT -->
-  <section class="contact" id="contact">
-
-    <div class="section-title">
-      <h2>Let's Connect</h2>
-      <p>Feel free to reach out</p>
+<section id="contact">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow" data-i18n="contactEyebrow">Connect</div>
+      <h2 data-i18n="contactTitle">Let's stay connected</h2>
+      <p data-i18n="contactIntro">If you want to talk, encourage one another in faith, or simply say hello, feel free to reach out.</p>
     </div>
-
-    <div class="contact-box">
-
-      <p>
-        📧 Email:
-        <a href="mailto:official.samirmijar@gmail.com">
-          official.samirmijar@gmail.com
-        </a>
-      </p>
-
-      <p>
-        📱 Phone:
-        <a href="tel:+9779747892202">
-          +977 9747892202
-        </a>
-      </p>
-
-      <br>
-
-      <a href="mailto:official.samirmijar@gmail.com"
-         class="btn btn-primary">
-        Send Me an Email
-      </a>
-
+    <div class="connect">
+      <div class="card">
+        <h3 data-i18n="contactCardTitle">Contact Me</h3>
+        <div class="contact-list">
+          <a class="contact-link" href="mailto:official.samirmijar@gmail.com"><strong>✉ Email</strong><span>official.samirmijar@gmail.com</span></a>
+          <a class="contact-link" href="tel:+9779747892202"><strong>☎ Phone</strong><span>+977 9747892202</span></a>
+          <a class="contact-link" href="https://wa.me/9779747892202" target="_blank" rel="noopener"><strong>💬 WhatsApp</strong><span>Message me</span></a>
+        </div>
+      </div>
+      <div class="card">
+        <h3 data-i18n="socialTitle">Social Media</h3>
+        <p data-i18n="socialText">Add your social links below whenever you are ready.</p>
+        <div class="socials">
+          <a class="social" href="#" onclick="return false">Instagram</a>
+          <a class="social" href="#" onclick="return false">TikTok</a>
+          <a class="social" href="#" onclick="return false">YouTube</a>
+          <a class="social" href="#" onclick="return false">Facebook</a>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
+</main>
 
-  </section>
+<footer>
+  <div class="container">
+    <div class="footer-brand">Samir<span>.</span></div>
+    <p data-i18n="footerVerse">“I can do all things through Christ who strengthens me.” — Philippians 4:13</p>
+    <p>© 2026 Samir Mijar • <span data-i18n="footerText">Jesus Christ is the center.</span> ✝</p>
+  </div>
+</footer>
 
+<script>
+const translations = {
+en:{
+navHome:"Home",navAbout:"About",navGospel:"Gospel",navGallery:"Gallery",navContact:"Contact",
+eyebrow:"Faith • Hope • Jesus",heroTitle:"Living for <em>Jesus Christ.</em>",
+heroText:"Welcome to my personal website. My desire is to follow Jesus, grow in His Word, and share the hope of the Gospel with others.",
+discover:"Discover the Gospel →",connect:"Let's Connect",badge:"Jesus is the center",
+aboutEyebrow:"My journey",aboutTitle:"A life centered on Christ",
+aboutIntro:"This is a personal space to share faith, God's Word, worship, encouragement and the Gospel of Jesus Christ.",
+aboutCardTitle:"Hello, I'm Samir.",
+aboutCardText:"I want to use my life, my voice and the opportunities God gives me to encourage people to know Jesus, read the Bible, pray and walk faithfully with Him.",
+aboutCardText2:"You may find Bible verses, Gospel messages, worship, personal reflections, photos and other things that point back to God.",
+john:"“For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.”",
+gospelEyebrow:"The good news",gospelTitle:"The Gospel of Jesus Christ",
+gospelIntro:"The heart of the Christian message is simple: God loves us, Jesus saves, and we are invited to follow Him.",
+g1t:"God Loves You",g1p:"God created you and loves you. His love reaches us even in our weakness and failures.",
+g2t:"Jesus Saves",g2p:"Jesus Christ died for our sins and rose again. Through Him we can receive forgiveness and new life.",
+g3t:"Follow Jesus",g3p:"Trust Jesus, turn toward God, learn His Word, pray, love others and grow in faith each day.",
+word:"God's Word",galleryEyebrow:"Moments",galleryTitle:"Faith • Life • Memories",
+galleryIntro:"A few moments from my journey. More photos can be added anytime.",
+contactEyebrow:"Connect",contactTitle:"Let's stay connected",
+contactIntro:"If you want to talk, encourage one another in faith, or simply say hello, feel free to reach out.",
+contactCardTitle:"Contact Me",socialTitle:"Social Media",
+socialText:"Add your social links below whenever you are ready.",
+footerVerse:"“I can do all things through Christ who strengthens me.” — Philippians 4:13",
+footerText:"Jesus Christ is the center."
+},
+ne:{
+navHome:"गृहपृष्ठ",navAbout:"मेरो बारेमा",navGospel:"सुसमाचार",navGallery:"फोटोहरू",navContact:"सम्पर्क",
+eyebrow:"विश्वास • आशा • येशू",heroTitle:"येशू <em>ख्रीष्टका लागि जीवन।</em>",
+heroText:"मेरो व्यक्तिगत वेबसाइटमा स्वागत छ। मेरो इच्छा येशूलाई पछ्याउने, उहाँको वचनमा बढ्ने र अरूहरूसँग सुसमाचारको आशा बाँड्ने हो।",
+discover:"सुसमाचार जान्नुहोस् →",connect:"सम्पर्क गर्नुहोस्",badge:"येशू नै केन्द्र हुनुहुन्छ",
+aboutEyebrow:"मेरो यात्रा",aboutTitle:"ख्रीष्टमा केन्द्रित जीवन",
+aboutIntro:"यो विश्वास, परमेश्वरको वचन, आराधना, उत्साह र येशू ख्रीष्टको सुसमाचार बाँड्ने व्यक्तिगत स्थान हो।",
+aboutCardTitle:"नमस्कार, म समीर हुँ।",
+aboutCardText:"परमेश्वरले दिनुभएको जीवन, आवाज र अवसरलाई प्रयोग गरेर मानिसहरूलाई येशूलाई चिन्न, बाइबल पढ्न, प्रार्थना गर्न र उहाँसँग विश्वासयोग्य भएर हिँड्न उत्साह दिन चाहन्छु।",
+aboutCardText2:"यहाँ बाइबलका पदहरू, सुसमाचारका सन्देशहरू, आराधना, व्यक्तिगत विचार र परमेश्वरतर्फ संकेत गर्ने अन्य सामग्रीहरू भेट्नुहुनेछ।",
+john:"“किनकि परमेश्वरले संसारलाई यस्तो प्रेम गर्नुभयो कि उहाँले आफ्ना एकमात्र पुत्र दिनुभयो, उहाँमाथि विश्वास गर्ने कोही पनि नाश नहोस्, तर उसले अनन्त जीवन पाओस्।”",
+gospelEyebrow:"सुसमाचार",gospelTitle:"येशू ख्रीष्टको सुसमाचार",
+gospelIntro:"ख्रीष्टियन सन्देशको हृदय सरल छ: परमेश्वरले हामीलाई प्रेम गर्नुहुन्छ, येशूले बचाउनुहुन्छ र हामीलाई उहाँलाई पछ्याउन बोलाउनुहुन्छ।",
+g1t:"परमेश्वरले तपाईंलाई प्रेम गर्नुहुन्छ",g1p:"परमेश्वरले तपाईंलाई सृष्टि गर्नुभयो र प्रेम गर्नुहुन्छ। हाम्रो कमजोरी र असफलतामाझ पनि उहाँको प्रेम रहन्छ।",
+g2t:"येशूले बचाउनुहुन्छ",g2p:"येशू ख्रीष्ट हाम्रा पापका लागि मर्नुभयो र फेरि जीवित हुनुभयो। उहाँद्वारा क्षमा र नयाँ जीवन पाउन सक्छौँ।",
+g3t:"येशूलाई पछ्याउनुहोस्",g3p:"येशूमाथि भरोसा गर्नुहोस्, परमेश्वरतर्फ फर्कनुहोस्, उहाँको वचन सिक्नुहोस्, प्रार्थना गर्नुहोस् र हरेक दिन विश्वासमा बढ्नुहोस्।",
+word:"परमेश्वरको वचन",galleryEyebrow:"सम्झनाहरू",galleryTitle:"विश्वास • जीवन • सम्झनाहरू",
+galleryIntro:"मेरो यात्राका केही क्षणहरू। चाहनुहुँदा थप फोटोहरू राख्न सकिन्छ।",
+contactEyebrow:"सम्पर्क",contactTitle:"जोडिइरहनुहोस्",
+contactIntro:"कुरा गर्न, विश्वासमा एकअर्कालाई उत्साह दिन वा सामान्य अभिवादन गर्न चाहनुहुन्छ भने सम्पर्क गर्नुहोस्।",
+contactCardTitle:"मसँग सम्पर्क गर्नुहोस्",socialTitle:"सामाजिक सञ्जाल",
+socialText:"तयार भएपछि यहाँ आफ्ना सामाजिक सञ्जालका लिंकहरू राख्न सक्नुहुन्छ।",
+footerVerse:"“मलाई शक्ति दिनुहुने ख्रीष्टमा म सबै कुरा गर्न सक्छु।” — फिलिप्पी ४:१३",
+footerText:"येशू ख्रीष्ट नै केन्द्र हुनुहुन्छ।"
+},
+hi:{
+navHome:"होम",navAbout:"मेरे बारे में",navGospel:"सुसमाचार",navGallery:"फोटो",navContact:"संपर्क",
+eyebrow:"विश्वास • आशा • यीशु",heroTitle:"यीशु <em>मसीह के लिए जीवन।</em>",
+heroText:"मेरी व्यक्तिगत वेबसाइट पर आपका स्वागत है। मेरी इच्छा यीशु का अनुसरण करना, उनके वचन में बढ़ना और दूसरों के साथ सुसमाचार की आशा साझा करना है।",
+discover:"सुसमाचार जानें →",connect:"संपर्क करें",badge:"यीशु ही केंद्र हैं",
+aboutEyebrow:"मेरी यात्रा",aboutTitle:"मसीह पर केंद्रित जीवन",
+aboutIntro:"यह विश्वास, परमेश्वर के वचन, आराधना, प्रोत्साहन और यीशु मसीह के सुसमाचार को साझा करने का व्यक्तिगत स्थान है।",
+aboutCardTitle:"नमस्ते, मैं समीर हूँ।",
+aboutCardText:"मैं अपने जीवन, अपनी आवाज़ और परमेश्वर द्वारा दिए गए अवसरों का उपयोग करके लोगों को यीशु को जानने, बाइबल पढ़ने, प्रार्थना करने और विश्वास में चलने के लिए प्रोत्साहित करना चाहता हूँ।",
+aboutCardText2:"यहाँ बाइबल के पद, सुसमाचार के संदेश, आराधना, व्यक्तिगत विचार और परमेश्वर की ओर संकेत करने वाली अन्य सामग्री मिलेगी।",
+john:"“क्योंकि परमेश्वर ने जगत से ऐसा प्रेम किया कि उसने अपना एकलौता पुत्र दे दिया, ताकि जो कोई उस पर विश्वास करे वह नाश न हो, परन्तु अनन्त जीवन पाए।”",
+gospelEyebrow:"सुसमाचार",gospelTitle:"यीशु मसीह का सुसमाचार",
+gospelIntro:"मसीही संदेश का केंद्र सरल है: परमेश्वर हमसे प्रेम करते हैं, यीशु बचाते हैं और हमें उनका अनुसरण करने के लिए बुलाते हैं।",
+g1t:"परमेश्वर आपसे प्रेम करते हैं",g1p:"परमेश्वर ने आपको बनाया और आपसे प्रेम करते हैं। हमारी कमजोरी और असफलताओं में भी उनका प्रेम बना रहता है।",
+g2t:"यीशु बचाते हैं",g2p:"यीशु मसीह हमारे पापों के लिए मरे और फिर जी उठे। उनके द्वारा हमें क्षमा और नया जीवन मिलता है।",
+g3t:"यीशु का अनुसरण करें",g3p:"यीशु पर भरोसा करें, परमेश्वर की ओर लौटें, उनके वचन को सीखें, प्रार्थना करें और प्रतिदिन विश्वास में बढ़ें।",
+word:"परमेश्वर का वचन",galleryEyebrow:"यादें",galleryTitle:"विश्वास • जीवन • यादें",
+galleryIntro:"मेरी यात्रा के कुछ पल। जब चाहें और फोटो जोड़ सकते हैं।",
+contactEyebrow:"संपर्क",contactTitle:"जुड़े रहें",
+contactIntro:"बात करना हो, विश्वास में एक-दूसरे को प्रोत्साहित करना हो या केवल नमस्ते कहना हो, संपर्क करें।",
+contactCardTitle:"मुझसे संपर्क करें",socialTitle:"सोशल मीडिया",
+socialText:"जब तैयार हों, यहाँ अपने सोशल मीडिया लिंक जोड़ सकते हैं।",
+footerVerse:"“जो मुझे सामर्थ देता है, उसमें मैं सब कुछ कर सकता हूँ।” — फिलिप्पियों 4:13",
+footerText:"यीशु मसीह ही केंद्र हैं।"
+},
+zh:{
+navHome:"首页",navAbout:"关于我",navGospel:"福音",navGallery:"照片",navContact:"联系",
+eyebrow:"信心 • 盼望 • 耶稣",heroTitle:"为<em>耶稣基督而活。</em>",
+heroText:"欢迎来到我的个人网站。我的愿望是跟随耶稣，在祂的话语中成长，并与他人分享福音的盼望。",
+discover:"认识福音 →",connect:"联系我",badge:"耶稣是中心",
+aboutEyebrow:"我的旅程",aboutTitle:"以基督为中心的生命",
+aboutIntro:"这里分享信仰、神的话语、敬拜、鼓励以及耶稣基督的福音。",
+aboutCardTitle:"你好，我是 Samir。",
+aboutCardText:"我愿意使用神所赐的生命、声音和机会，鼓励人认识耶稣、阅读圣经、祷告，并忠心地与祂同行。",
+aboutCardText2:"这里会分享圣经经文、福音信息、敬拜、个人感想、照片以及指向神的内容。",
+john:"“神爱世人，甚至将他的独生子赐给他们，叫一切信他的，不至灭亡，反得永生。”",
+gospelEyebrow:"好消息",gospelTitle:"耶稣基督的福音",
+gospelIntro:"基督教信息的核心很简单：神爱我们，耶稣拯救我们，并邀请我们跟随祂。",
+g1t:"神爱你",g1p:"神创造了你，也深爱着你。在我们的软弱和失败中，祂的爱仍然不改变。",
+g2t:"耶稣拯救",g2p:"耶稣基督为我们的罪死而复活。借着祂，我们可以得到赦免和新生命。",
+g3t:"跟随耶稣",g3p:"信靠耶稣，归向神，学习祂的话语，祷告，爱人，并每天在信心中成长。",
+word:"神的话语",galleryEyebrow:"片段",galleryTitle:"信仰 • 生活 • 回忆",
+galleryIntro:"我的旅程中的一些时刻。以后可以随时添加更多照片。",
+contactEyebrow:"联系",contactTitle:"保持联系",
+contactIntro:"如果你想交流、在信仰中彼此鼓励，或者只是打个招呼，欢迎联系我。",
+contactCardTitle:"联系我",socialTitle:"社交媒体",
+socialText:"准备好后，可以在这里添加你的社交媒体链接。",
+footerVerse:"“我靠着那加给我力量的，凡事都能做。” — 腓立比书 4:13",
+footerText:"耶稣基督是中心。"
+}
+};
 
-  <!-- FOOTER -->
-  <footer>
+const verses = {
+en:[["“Your word is a lamp for my feet, a light on my path.”","Psalm 119:105"],["“I am the way and the truth and the life.”","John 14:6"],["“The Lord is my shepherd; I lack nothing.”","Psalm 23:1"],["“Be strong and courageous. Do not be afraid.”","Joshua 1:9"]],
+ne:[["“तपाईंको वचन मेरो खुट्टाको निम्ति बत्ती र मेरो बाटोको निम्ति उज्यालो हो।”","भजनसंग्रह ११९:१०५"],["“बाटो, सत्य र जीवन म नै हुँ।”","यूहन्ना १४:६"],["“परमप्रभु मेरा गोठाला हुनुहुन्छ; मलाई केही कुराको अभाव हुनेछैन।”","भजनसंग्रह २३:१"],["“बलियो र साहसी होओ। नडराओ।”","यहोशू १:९"]],
+hi:[["“तेरा वचन मेरे पाँव के लिए दीपक और मेरे मार्ग के लिए उजियाला है।”","भजन 119:105"],["“मार्ग, सत्य और जीवन मैं ही हूँ।”","यूहन्ना 14:6"],["“यहोवा मेरा चरवाहा है; मुझे कुछ घटी न होगी।”","भजन 23:1"],["“मज़बूत और साहसी बनो। मत डरो।”","यहोशू 1:9"]],
+zh:[["“你的话是我脚前的灯，是我路上的光。”","诗篇 119:105"],["“我就是道路、真理、生命。”","约翰福音 14:6"],["“耶和华是我的牧者，我必不致缺乏。”","诗篇 23:1"],["“你当刚强壮胆，不要惧怕。”","约书亚记 1:9"]]
+};
 
-    <div class="footer-verse">
-      “I can do all things through Christ who strengthens me.”
-      — Philippians 4:13
-    </div>
+let currentLang="en", verseIndex=0;
+const $=s=>document.querySelector(s);
 
-    <p>© 2026 Samir Mijar. All rights reserved.</p>
-
-    <p>Jesus Christ is the center. ✝️</p>
-
-  </footer>
-
+function applyLanguage(lang){
+  currentLang=lang;
+  document.documentElement.lang=lang;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key=el.dataset.i18n;
+    if(translations[lang][key]!==undefined) el.innerHTML=translations[lang][key];
+  });
+  renderVerse();
+}
+function renderVerse(){
+  const v=verses[currentLang][verseIndex%verses[currentLang].length];
+  const el=$("#verseText");
+  el.classList.remove("show");
+  setTimeout(()=>{el.textContent=v[0];$("#verseRef").textContent="— "+v[1];el.classList.add("show")},180);
+}
+$("#language").addEventListener("change",e=>applyLanguage(e.target.value));
+$("#themeToggle").addEventListener("click",()=>{
+  const dark=document.documentElement.dataset.theme==="dark";
+  document.documentElement.dataset.theme=dark?"":"dark";
+  $("#themeToggle").textContent=dark?"☾":"☀";
+  localStorage.setItem("theme",dark?"light":"dark");
+});
+if(localStorage.getItem("theme")==="dark"){document.documentElement.dataset.theme="dark";$("#themeToggle").textContent="☀"}
+setInterval(()=>{verseIndex++;renderVerse()},7000);
+renderVerse();
+</script>
 </body>
 </html>
