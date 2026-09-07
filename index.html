@@ -87,11 +87,30 @@ section{padding:95px 0}
 .verse-box blockquote{font-size:24px;line-height:1.45;font-style:italic}
 .verse-box cite{display:block;margin-top:18px;color:#e6c96c;font-style:normal;font-weight:800}
 .gospel{background:var(--soft)}
+.testimony-block{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:32px 36px;box-shadow:var(--shadow);margin-bottom:22px}
+.testimony-block h3{color:var(--navy);font-size:24px;margin-bottom:12px}
+.testimony-block p{color:var(--muted);margin-bottom:14px}
+.principles-list{list-style:none;display:grid;gap:10px;margin:4px 0 16px}
+.principles-list li{padding-left:26px;position:relative;color:var(--muted)}
+.principles-list li:before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:900}
+.testimony-closing{font-weight:800;color:var(--navy);margin-top:14px}
+.testimony-verse{color:var(--blue);font-weight:800;font-style:italic;display:block}
+.testimony-quote{background:linear-gradient(135deg,var(--navy),#1b527f);color:#fff;border-radius:24px;padding:36px;text-align:center;margin-top:8px}
+.testimony-quote p{font-size:19px;font-style:italic;line-height:1.7;color:#fff}
+.testimony-quote cite{display:block;margin-top:16px;color:#e6c96c;font-weight:800;font-style:normal}
 .gospel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .gospel-card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:var(--shadow)}
 .num{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--soft);color:var(--blue);font-weight:900;margin-bottom:18px}
 .gospel-card h3{color:var(--navy);margin-bottom:9px}
 .gospel-card p{color:var(--muted)}
+.steps-list{display:grid;gap:18px;margin-top:6px}
+.step-item{display:flex;gap:16px;align-items:flex-start}
+.step-num{flex:none;width:36px;height:36px;border-radius:50%;background:var(--soft);color:var(--blue);font-weight:900;display:grid;place-items:center}
+.step-item p{color:var(--muted)}
+.prayer-card{background:linear-gradient(135deg,var(--navy),#1b527f);color:#fff;border:none}
+.prayer-card h3{color:#fff}
+.prayer-card p{color:#dbe7f1;font-style:italic;line-height:1.75}
+.respond-note{text-align:center;margin-top:30px;color:var(--muted);max-width:680px;margin-left:auto;margin-right:auto}
 .animated-verse{background:var(--navy);color:white;text-align:center;position:relative;overflow:hidden}
 .animated-verse h2{font-size:14px;letter-spacing:3px;text-transform:uppercase;color:#e6c96c;margin-bottom:18px}
 .animated-verse .verse-text{font-size:clamp(24px,4vw,38px);max-width:900px;margin:auto;min-height:105px;opacity:0;transform:translateY(12px);transition:.7s}
@@ -102,7 +121,7 @@ section{padding:95px 0}
 .gallery-item{aspect-ratio:4/5;overflow:hidden;border-radius:22px;background:var(--soft);border:1px solid var(--line)}
 .gallery-item img{width:100%;height:100%;object-fit:cover;transition:.5s}
 .gallery-item:hover img{transform:scale(1.045)}
-.connect{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.connect{display:grid;grid-template-columns:1fr;gap:24px;max-width:560px;margin:0 auto}
 .contact-list{display:grid;gap:12px;margin-top:20px}
 .contact-link{padding:15px 16px;border:1px solid var(--line);border-radius:15px;background:var(--card);display:flex;justify-content:space-between;align-items:center}
 .contact-link strong{color:var(--navy)}
@@ -140,7 +159,9 @@ footer p{margin-top:8px;color:#a9bbcb}
     <nav class="navlinks">
       <a href="#home" data-i18n="navHome">Home</a>
       <a href="#about" data-i18n="navAbout">About</a>
+      <a href="#testimony" data-i18n="navTestimony">Testimony</a>
       <a href="#gospel" data-i18n="navGospel">Gospel</a>
+      <a href="#respond" data-i18n="navRespond">Respond</a>
       <a href="#gallery" data-i18n="navGallery">Gallery</a>
       <a href="#contact" data-i18n="navContact">Contact</a>
     </nav>
@@ -195,6 +216,58 @@ footer p{margin-top:8px;color:#a9bbcb}
   </div>
 </section>
 
+<section id="testimony">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow" data-i18n="testimonyEyebrow">My story</div>
+      <h2 data-i18n="testimonyTitle">From Chains To Purpose</h2>
+      <p data-i18n="testimonyIntro">I'm sharing my full story because I believe that if my darkest moments can help even one person find the light, every hardship was worth it.</p>
+    </div>
+
+    <div class="testimony-block">
+      <h3 data-i18n="t1Title">Before: A Childhood In The Shadows</h3>
+      <p data-i18n="t1Text">I come from a deeply impoverished and struggling family. Decades ago, during the Panchayat era, my grandfather and father suffered unimaginable pain — the army confiscated our land and property, destroying twenty-eight houses in our village. Stripped of everything and lacking formal education, my father survived by working as a merchant, selling turmeric just to put food in our mouths. Surrounded by this poverty, our family was also deeply trapped in superstition and shamanism. As a child I was constantly sick, dragged from one shaman to another, forced to pour water on Peepal trees in a desperate search for healing. My father suffered severe mental breakdowns, and our home lacked peace. But about twelve years ago, after a severe crisis put my father in the hospital, he became the first believer in our house. Six months later, our entire family followed. I was only eleven or twelve and didn't fully understand who Jesus was — I just loved going to church to sing and praise.</p>
+      <span class="testimony-verse" data-i18n="t1Verse">Psalm 34:18 — The Lord is close to the brokenhearted.</span>
+    </div>
+
+    <div class="testimony-block">
+      <h3 data-i18n="t2Title">Lost Years: Fear, Isolation And Addiction</h3>
+      <p data-i18n="t2Text">Despite my family finding faith, my teenage years were a battlefield. I was the quietest one in school — an extreme introvert who struggled to speak, painfully shy, crippled by fear, with no confidence and no vision for my future. After passing the 10th grade and entering college, I started working online — providing digital solutions, managing social media, designing logos, and selling gift cards and top-ups. I started earning money, but without wisdom that money became a trap. I fell into a cycle of modern addictions: online gaming, pornography, masturbation, and endless hours lost to movies and mobile reels. Worse, I fell into online gambling, mistaking it for investment, and lost the money I had worked so hard to earn. These distractions completely stalled my walk with God. I had no friends, and I carried that weight alone. I would try to pray, fall back into the same cycle, and try again. Nobody understood the silent weight I was carrying.</p>
+      <span class="testimony-verse" data-i18n="t2Verse">2 Timothy 1:7 — God has not given us a spirit of fear, but of power, love and a sound mind.</span>
+    </div>
+
+    <div class="testimony-block">
+      <h3 data-i18n="t3Title">The Turning Point: Meeting The Truth</h3>
+      <p data-i18n="t3Text">The turning point came when I realized these digital escapes were destroying my peace, my happiness, and my life. I started seeking God desperately — reading my Bible and watching videos on how to break free from addiction. Jesus met me exactly where I was and healed me step by step. He became my actual Friend — the boy who had no friends and couldn't speak to anyone found his ultimate confidant in God. I finally understood the truth of John 8:32: "The truth will set you free." When the Holy Spirit began working in my life, He gave me the vision I had lacked my entire youth.</p>
+      <span class="testimony-verse" data-i18n="t3Verse">John 8:32 — The truth will set you free.</span>
+      <span class="testimony-verse" data-i18n="t3Verse2">2 Corinthians 5:17 — If anyone is in Christ, he is a new creation; the old has gone, the new has come.</span>
+    </div>
+
+    <div class="testimony-block">
+      <h3 data-i18n="t4Title">Today: Surrendered To Jesus</h3>
+      <p data-i18n="t4Text">Looking back, I do not regret a single part of my past. Every failure and every lost dollar was a lesson God used to teach me discipline and dependence on Him. As I step into my twenty-fourth year, I now live by a set of principles to protect my mind and honor God, anchored by Matthew 6:33 — seeking His kingdom first:</p>
+      <ul class="principles-list">
+        <li data-i18n="t4L1">Put God first in everything.</li>
+        <li data-i18n="t4L2">Build physical and mental discipline.</li>
+        <li data-i18n="t4L3">Learn the power of saying "No."</li>
+        <li data-i18n="t4L4">Forgive the past — and forgive your father.</li>
+        <li data-i18n="t4L5">Build your business and personal brand with integrity.</li>
+        <li data-i18n="t4L6">Never abandon your family.</li>
+        <li data-i18n="t4L7">Never, ever give up.</li>
+      </ul>
+      <p data-i18n="t4Text2">Today, God has removed my fear and replaced it with His confidence. He has given me the incredible privilege to simply serve in my church. I know He is still preparing me for His kingdom. My life is for Jesus, and I will spread heavenly love wherever I go. God always answers our prayers — He takes the broken and the addicted and turns them into warriors for His kingdom.</p>
+      <span class="testimony-verse" data-i18n="t4Verse">Matthew 6:33 — Seek first His kingdom.</span>
+      <span class="testimony-verse" data-i18n="t4Verse2">Revelation 12:11 — They triumphed by the blood of the Lamb and the word of their testimony.</span>
+      <p class="testimony-closing" data-i18n="t4Closing">Jesus is coming soon — repent and seek God.</p>
+    </div>
+
+    <div class="testimony-quote">
+      <p data-i18n="testimonyQuote">If you see yourself in my addictions, my fear, or my family's brokenness — know that the same God who found me in the dark can find you too. Your past is not your final chapter.</p>
+      <cite data-i18n="testimonyQuoteCite">Philippians 4:13 — I can do all things through Christ who strengthens me.</cite>
+    </div>
+  </div>
+</section>
+
 <section class="gospel" id="gospel">
   <div class="container">
     <div class="section-head">
@@ -203,10 +276,37 @@ footer p{margin-top:8px;color:#a9bbcb}
       <p data-i18n="gospelIntro">The heart of the Christian message is simple: God loves us, Jesus saves, and we are invited to follow Him.</p>
     </div>
     <div class="gospel-grid">
-      <div class="gospel-card"><div class="num">01</div><h3 data-i18n="g1t">God Loves You</h3><p data-i18n="g1p">God created you and loves you. His love reaches us even in our weakness and failures.</p></div>
-      <div class="gospel-card"><div class="num">02</div><h3 data-i18n="g2t">Jesus Saves</h3><p data-i18n="g2p">Jesus Christ died for our sins and rose again. Through Him we can receive forgiveness and new life.</p></div>
-      <div class="gospel-card"><div class="num">03</div><h3 data-i18n="g3t">Follow Jesus</h3><p data-i18n="g3p">Trust Jesus, turn toward God, learn His Word, pray, love others and grow in faith each day.</p></div>
+      <div class="gospel-card"><div class="num">01</div><h3 data-i18n="g1t">God Created You</h3><p data-i18n="g1p">You are not an accident. God made you in His image and loves you deeply (Genesis 1:27; Jeremiah 29:11).</p></div>
+      <div class="gospel-card"><div class="num">02</div><h3 data-i18n="g2t">Sin Separates Us</h3><p data-i18n="g2p">Everyone has sinned and falls short of God's standard, and sin separates us from a holy God (Romans 3:23).</p></div>
+      <div class="gospel-card"><div class="num">03</div><h3 data-i18n="g3t">The Price of Sin</h3><p data-i18n="g3p">The wages of sin is death, but God offers eternal life as a free gift through Jesus Christ (Romans 6:23).</p></div>
+      <div class="gospel-card"><div class="num">04</div><h3 data-i18n="g4t">Jesus Died For You</h3><p data-i18n="g4p">While we were still sinners, Christ died for us. His death paid a price we could never pay ourselves (Romans 5:8).</p></div>
+      <div class="gospel-card"><div class="num">05</div><h3 data-i18n="g5t">Jesus Rose Again</h3><p data-i18n="g5p">On the third day Jesus rose from the dead, defeating sin and death and proving He is the Son of God (1 Corinthians 15:3-4).</p></div>
+      <div class="gospel-card"><div class="num">06</div><h3 data-i18n="g6t">New Life In Him</h3><p data-i18n="g6p">If you believe in your heart and confess Jesus as Lord, you will be saved and receive eternal life (Romans 10:9).</p></div>
     </div>
+  </div>
+</section>
+
+<section id="respond">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow" data-i18n="respondEyebrow">Your next step</div>
+      <h2 data-i18n="respondTitle">Ready to follow Jesus?</h2>
+      <p data-i18n="respondIntro">Wherever you are in the world, God is near, and this step is simple:</p>
+    </div>
+    <div class="about-grid">
+      <div class="card">
+        <div class="steps-list">
+          <div class="step-item"><div class="step-num">1</div><p data-i18n="step1">Admit — Recognize that you have sinned and need God's forgiveness.</p></div>
+          <div class="step-item"><div class="step-num">2</div><p data-i18n="step2">Believe — Trust that Jesus died for your sins and rose again.</p></div>
+          <div class="step-item"><div class="step-num">3</div><p data-i18n="step3">Confess — Speak to God in prayer and receive Jesus as your Lord and Savior.</p></div>
+        </div>
+      </div>
+      <div class="card prayer-card">
+        <h3 data-i18n="prayerTitle">A simple prayer</h3>
+        <p data-i18n="prayerText">Dear God, I know I have sinned and need Your forgiveness. I believe Jesus died for me and rose again. I turn to You now and receive Jesus as my Lord and Savior. Thank You for loving me and giving me new life. In Jesus' name, Amen.</p>
+      </div>
+    </div>
+    <p class="respond-note" data-i18n="respondNote">If you prayed this prayer and meant it, you have taken the first step of faith. Reach out — I would love to encourage you and help with your next step.</p>
   </div>
 </section>
 
@@ -250,16 +350,6 @@ footer p{margin-top:8px;color:#a9bbcb}
           <a class="contact-link" href="https://wa.me/9779747892202" target="_blank" rel="noopener"><strong>💬 WhatsApp</strong><span>Message me</span></a>
         </div>
       </div>
-      <div class="card">
-        <h3 data-i18n="socialTitle">Social Media</h3>
-        <p data-i18n="socialText">Add your social links below whenever you are ready.</p>
-        <div class="socials">
-          <a class="social" href="#" onclick="return false">Instagram</a>
-          <a class="social" href="#" onclick="return false">TikTok</a>
-          <a class="social" href="#" onclick="return false">YouTube</a>
-          <a class="social" href="#" onclick="return false">Facebook</a>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -276,7 +366,7 @@ footer p{margin-top:8px;color:#a9bbcb}
 <script>
 const translations = {
 en:{
-navHome:"Home",navAbout:"About",navGospel:"Gospel",navGallery:"Gallery",navContact:"Contact",
+navHome:"Home",navAbout:"About",navGospel:"Gospel",navRespond:"Respond",navGallery:"Gallery",navContact:"Contact",navTestimony:"Testimony",
 eyebrow:"Faith • Hope • Jesus",heroTitle:"Living for <em>Jesus Christ.</em>",
 heroText:"Welcome to my personal website. My desire is to follow Jesus, grow in His Word, and share the hope of the Gospel with others.",
 discover:"Discover the Gospel →",connect:"Let's Connect",badge:"Jesus is the center",
@@ -286,22 +376,59 @@ aboutCardTitle:"Hello, I'm Samir.",
 aboutCardText:"I want to use my life, my voice and the opportunities God gives me to encourage people to know Jesus, read the Bible, pray and walk faithfully with Him.",
 aboutCardText2:"You may find Bible verses, Gospel messages, worship, personal reflections, photos and other things that point back to God.",
 john:"“For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.”",
+testimonyEyebrow:"My story",testimonyTitle:"From Chains To Purpose",
+testimonyIntro:"I'm sharing my full story because I believe that if my darkest moments can help even one person find the light, every hardship was worth it.",
+t1Title:"Before: A Childhood In The Shadows",
+t1Text:"I come from a deeply impoverished and struggling family. Decades ago, during the Panchayat era, my grandfather and father suffered unimaginable pain — the army confiscated our land and property, destroying twenty-eight houses in our village. Stripped of everything and lacking formal education, my father survived by working as a merchant, selling turmeric just to put food in our mouths. Surrounded by this poverty, our family was also deeply trapped in superstition and shamanism. As a child I was constantly sick, dragged from one shaman to another, forced to pour water on Peepal trees in a desperate search for healing. My father suffered severe mental breakdowns, and our home lacked peace. But about twelve years ago, after a severe crisis put my father in the hospital, he became the first believer in our house. Six months later, our entire family followed. I was only eleven or twelve and didn't fully understand who Jesus was — I just loved going to church to sing and praise.",
+t1Verse:"Psalm 34:18 — The Lord is close to the brokenhearted.",
+t2Title:"Lost Years: Fear, Isolation And Addiction",
+t2Text:"Despite my family finding faith, my teenage years were a battlefield. I was the quietest one in school — an extreme introvert who struggled to speak, painfully shy, crippled by fear, with no confidence and no vision for my future. After passing the 10th grade and entering college, I started working online — providing digital solutions, managing social media, designing logos, and selling gift cards and top-ups. I started earning money, but without wisdom that money became a trap. I fell into a cycle of modern addictions: online gaming, pornography, masturbation, and endless hours lost to movies and mobile reels. Worse, I fell into online gambling, mistaking it for investment, and lost the money I had worked so hard to earn. These distractions completely stalled my walk with God. I had no friends, and I carried that weight alone. I would try to pray, fall back into the same cycle, and try again. Nobody understood the silent weight I was carrying.",
+t2Verse:"2 Timothy 1:7 — God has not given us a spirit of fear, but of power, love and a sound mind.",
+t3Title:"The Turning Point: Meeting The Truth",
+t3Text:"The turning point came when I realized these digital escapes were destroying my peace, my happiness, and my life. I started seeking God desperately — reading my Bible and watching videos on how to break free from addiction. Jesus met me exactly where I was and healed me step by step. He became my actual Friend — the boy who had no friends and couldn't speak to anyone found his ultimate confidant in God. I finally understood the truth of John 8:32: \"The truth will set you free.\" When the Holy Spirit began working in my life, He gave me the vision I had lacked my entire youth.",
+t3Verse:"John 8:32 — The truth will set you free.",
+t3Verse2:"2 Corinthians 5:17 — If anyone is in Christ, he is a new creation; the old has gone, the new has come.",
+t4Title:"Today: Surrendered To Jesus",
+t4Text:"Looking back, I do not regret a single part of my past. Every failure and every lost dollar was a lesson God used to teach me discipline and dependence on Him. As I step into my twenty-fourth year, I now live by a set of principles to protect my mind and honor God, anchored by Matthew 6:33 — seeking His kingdom first:",
+t4L1:"Put God first in everything.",
+t4L2:"Build physical and mental discipline.",
+t4L3:"Learn the power of saying \"No.\"",
+t4L4:"Forgive the past — and forgive your father.",
+t4L5:"Build your business and personal brand with integrity.",
+t4L6:"Never abandon your family.",
+t4L7:"Never, ever give up.",
+t4Text2:"Today, God has removed my fear and replaced it with His confidence. He has given me the incredible privilege to simply serve in my church. I know He is still preparing me for His kingdom. My life is for Jesus, and I will spread heavenly love wherever I go. God always answers our prayers — He takes the broken and the addicted and turns them into warriors for His kingdom.",
+t4Verse:"Matthew 6:33 — Seek first His kingdom.",
+t4Verse2:"Revelation 12:11 — They triumphed by the blood of the Lamb and the word of their testimony.",
+t4Closing:"Jesus is coming soon — repent and seek God.",
+testimonyQuote:"If you see yourself in my addictions, my fear, or my family's brokenness — know that the same God who found me in the dark can find you too. Your past is not your final chapter.",
+testimonyQuoteCite:"Philippians 4:13 — I can do all things through Christ who strengthens me.",
 gospelEyebrow:"The good news",gospelTitle:"The Gospel of Jesus Christ",
-gospelIntro:"The heart of the Christian message is simple: God loves us, Jesus saves, and we are invited to follow Him.",
-g1t:"God Loves You",g1p:"God created you and loves you. His love reaches us even in our weakness and failures.",
-g2t:"Jesus Saves",g2p:"Jesus Christ died for our sins and rose again. Through Him we can receive forgiveness and new life.",
-g3t:"Follow Jesus",g3p:"Trust Jesus, turn toward God, learn His Word, pray, love others and grow in faith each day.",
+gospelIntro:"The gospel means \"good news.\" It is God's message of love and salvation for every person, in every nation, language and background.",
+g1t:"God Created You",g1p:"You are not an accident. God made you in His image and loves you deeply (Genesis 1:27; Jeremiah 29:11).",
+g2t:"Sin Separates Us",g2p:"Everyone has sinned and falls short of God's standard, and sin separates us from a holy God (Romans 3:23).",
+g3t:"The Price of Sin",g3p:"The wages of sin is death, but God offers eternal life as a free gift through Jesus Christ (Romans 6:23).",
+g4t:"Jesus Died For You",g4p:"While we were still sinners, Christ died for us. His death paid a price we could never pay ourselves (Romans 5:8).",
+g5t:"Jesus Rose Again",g5p:"On the third day Jesus rose from the dead, defeating sin and death and proving He is the Son of God (1 Corinthians 15:3-4).",
+g6t:"New Life In Him",g6p:"If you believe in your heart and confess Jesus as Lord, you will be saved and receive eternal life (Romans 10:9).",
+respondEyebrow:"Your next step",respondTitle:"Ready to follow Jesus?",
+respondIntro:"Wherever you are in the world, God is near, and this step is simple:",
+step1:"Admit — Recognize that you have sinned and need God's forgiveness.",
+step2:"Believe — Trust that Jesus died for your sins and rose again.",
+step3:"Confess — Speak to God in prayer and receive Jesus as your Lord and Savior.",
+prayerTitle:"A simple prayer",
+prayerText:"Dear God, I know I have sinned and need Your forgiveness. I believe Jesus died for me and rose again. I turn to You now and receive Jesus as my Lord and Savior. Thank You for loving me and giving me new life. In Jesus' name, Amen.",
+respondNote:"If you prayed this prayer and meant it, you have taken the first step of faith. Reach out — I would love to encourage you and help with your next step.",
 word:"God's Word",galleryEyebrow:"Moments",galleryTitle:"Faith • Life • Memories",
 galleryIntro:"A few moments from my journey. More photos can be added anytime.",
 contactEyebrow:"Connect",contactTitle:"Let's stay connected",
 contactIntro:"If you want to talk, encourage one another in faith, or simply say hello, feel free to reach out.",
-contactCardTitle:"Contact Me",socialTitle:"Social Media",
-socialText:"Add your social links below whenever you are ready.",
+contactCardTitle:"Contact Me",
 footerVerse:"“I can do all things through Christ who strengthens me.” — Philippians 4:13",
 footerText:"Jesus Christ is the center."
 },
 ne:{
-navHome:"गृहपृष्ठ",navAbout:"मेरो बारेमा",navGospel:"सुसमाचार",navGallery:"फोटोहरू",navContact:"सम्पर्क",
+navHome:"गृहपृष्ठ",navAbout:"मेरो बारेमा",navGospel:"सुसमाचार",navRespond:"प्रतिक्रिया",navGallery:"फोटोहरू",navContact:"सम्पर्क",navTestimony:"मेरो कथा",
 eyebrow:"विश्वास • आशा • येशू",heroTitle:"येशू <em>ख्रीष्टका लागि जीवन।</em>",
 heroText:"मेरो व्यक्तिगत वेबसाइटमा स्वागत छ। मेरो इच्छा येशूलाई पछ्याउने, उहाँको वचनमा बढ्ने र अरूहरूसँग सुसमाचारको आशा बाँड्ने हो।",
 discover:"सुसमाचार जान्नुहोस् →",connect:"सम्पर्क गर्नुहोस्",badge:"येशू नै केन्द्र हुनुहुन्छ",
@@ -311,22 +438,59 @@ aboutCardTitle:"नमस्कार, म समीर हुँ।",
 aboutCardText:"परमेश्वरले दिनुभएको जीवन, आवाज र अवसरलाई प्रयोग गरेर मानिसहरूलाई येशूलाई चिन्न, बाइबल पढ्न, प्रार्थना गर्न र उहाँसँग विश्वासयोग्य भएर हिँड्न उत्साह दिन चाहन्छु।",
 aboutCardText2:"यहाँ बाइबलका पदहरू, सुसमाचारका सन्देशहरू, आराधना, व्यक्तिगत विचार र परमेश्वरतर्फ संकेत गर्ने अन्य सामग्रीहरू भेट्नुहुनेछ।",
 john:"“किनकि परमेश्वरले संसारलाई यस्तो प्रेम गर्नुभयो कि उहाँले आफ्ना एकमात्र पुत्र दिनुभयो, उहाँमाथि विश्वास गर्ने कोही पनि नाश नहोस्, तर उसले अनन्त जीवन पाओस्।”",
+testimonyEyebrow:"मेरो कथा",testimonyTitle:"साङ्लाबाट उद्देश्यतर्फ",
+testimonyIntro:"म आफ्नो पूरा कथा साझा गर्दैछु किनभने मलाई विश्वास छ, यदि मेरो सबैभन्दा अँध्यारो समयले एक जनालाई पनि उज्यालो भेट्टाउन मद्दत गर्छ भने, हरेक कष्ट सार्थक थियो।",
+t1Title:"पहिले: बाल्यकालको अँध्यारो",
+t1Text:"म एउटा अत्यन्त गरिब र संघर्षरत परिवारबाट आएको हुँ। दशकौं अघि, पञ्चायत कालमा, सेनाले हाम्रो जग्गा र सम्पत्ति खोसेर हाम्रो गाउँका अठ्ठाइस घरहरू ध्वस्त पारेपछि मेरा हजुरबुबा र बुबाले असीमित पीडा भोग्नुभयो। सबथोक गुमाएर र औपचारिक शिक्षाबिना, मेरा बुबाले घरघरमा बेसार बेचेर गुजारा चलाउनुभयो। यो गरिबीले घेरिएको हाम्रो परिवार अन्धविश्वास र धामीझाँक्रीमा पनि गहिरो गरी फसेको थियो। बालककालमा म सधैं बिरामी हुन्थें, एक धामीदेखि अर्को धामीसम्म लगिन्थें, निको हुने आशामा पीपलको रूखमा पानी हाल्न बाध्य पारिन्थें। मेरा बुबाले गम्भीर मानसिक टुटफुट भोग्नुभयो, र हाम्रो घरमा शान्ति थिएन। तर लगभग बाह्र वर्षअघि, एउटा गम्भीर संकटले बुबालाई अस्पताल पुर्‍याएपछि, उहाँ हाम्रो घरका पहिलो विश्वासी बन्नुभयो। छ महिनापछि हाम्रो सम्पूर्ण परिवार उहाँलाई पछ्यायो। म एघार वा बाह्र वर्षको मात्र थिएँ र येशू को हुनुहुन्थ्यो भनेर पूर्ण रूपमा बुझ्दिनथें — मलाई त गीत गाउन र प्रशंसा गर्न चर्च जान मन पर्थ्यो।",
+t1Verse:"भजनसंग्रह ३४:१८ — परमप्रभु टुटेको हृदयवालाहरूको नजिक हुनुहुन्छ।",
+t2Title:"हराएका वर्षहरू: डर, एक्लोपन र लत",
+t2Text:"मेरो परिवारले विश्वास भेट्टाए पनि, मेरो किशोरावस्था एउटा युद्धभूमि थियो। म स्कूलमा सबैभन्दा शान्त थिएँ — बोल्न संघर्ष गर्ने अत्यन्त अन्तर्मुखी, अत्यन्तै लजालु, डरले गाँजिएको, आत्मविश्वासविहीन र भविष्यको कुनै सपना नभएको। दशौं कक्षा पास गरेर कलेज पुगेपछि, मैले अनलाइन काम गर्न थालें — डिजिटल समाधानहरू दिने, सामाजिक सञ्जाल व्यवस्थापन गर्ने, लोगो डिजाइन गर्ने, र गिफ्ट कार्ड तथा टपअप बेच्ने। म पैसा कमाउन थालें, तर बुद्धिविना त्यो पैसा नै पासो बन्यो। म आधुनिक लतहरूको चक्रमा फसें: अनलाइन गेमिङ, अश्लील सामग्री, हस्तमैथुन, र चलचित्र तथा मोबाइल रिलमा गुमेका असंख्य घण्टा। झन् नराम्रो, म अनलाइन जुवामा फसें, त्यसलाई लगानी सम्झेर, र मैले यति मेहनतले कमाएको पैसा गुमाएँ। यी विकर्षणहरूले परमेश्वरसँगको मेरो यात्रा पूर्ण रूपमा रोक्यो। मसँग कुनै साथी थिएनन्, र म यो भार एक्लै बोकें। म प्रार्थना गर्ने प्रयास गर्थें, फेरि पतन हुन्थें, र फेरि उठ्ने प्रयास गर्थें। यो मौन भार कसैले पनि बुझ्दैनथे।",
+t2Verse:"२ तिमोथी १:७ — परमेश्वरले हामीलाई डरको आत्मा दिनुभएको छैन, तर शक्ति, प्रेम र संयमको आत्मा दिनुभएको छ।",
+t3Title:"मोड बिन्दु: सत्यसँगको भेट",
+t3Text:"जब मैले महसुस गरें कि यी डिजिटल पलायनहरूले मेरो शान्ति, मेरो खुशी र मेरो जीवन नष्ट गर्दैछन्, त्यही मोड बिन्दु आयो। मैले परमेश्वरलाई साँच्चै खोज्न थालें — बाइबल पढ्दै र लतबाट मुक्त हुने उपायहरू भिडियोमा हेर्दै। येशू मलाई जहाँ थिएँ त्यहीं भेट्नुभयो र चरणबद्ध रूपमा निको पार्नुभयो। उहाँ मेरो साँचो मित्र बन्नुभयो — कसैसँग साथी नभएको, बोल्न नसक्ने केटोले परमेश्वरमा आफ्नो अन्तिम भरोसाको साथी भेट्टायो। मैले अन्ततः यूहन्ना ८:३२ को सत्य बुझें: 'सत्यले तिमीहरूलाई स्वतन्त्र गर्नेछ।' जब पवित्र आत्मा मेरो जीवनमा काम गर्न थाल्नुभयो, उहाँले मेरो सम्पूर्ण युवावस्थामा नभएको दृष्टि मलाई दिनुभयो।",
+t3Verse:"यूहन्ना ८:३२ — सत्यले तिमीहरूलाई स्वतन्त्र गर्नेछ।",
+t3Verse2:"२ कोरिन्थी ५:१७ — यदि कोही ख्रीष्टमा छ भने, ऊ नयाँ सृष्टि हो; पुरानो कुरा बितिगयो, हेर, नयाँ कुरा आएको छ।",
+t4Title:"आज: येशूलाई समर्पित",
+t4Text:"पछाडि फर्केर हेर्दा, मलाई आफ्नो विगतको कुनै पनि भागमा पछुतो छैन — हरेक असफलता र हरेक गुमेको पैसा परमेश्वरले मलाई अनुशासन र उहाँमाथिको निर्भरता सिकाउन प्रयोग गर्नुभएको पाठ थियो। मेरो चौबीसौं वर्षमा पाइला राख्दा, म अब मत्ती ६:३३ मा टेकेर, पहिले उहाँको राज्य खोज्ने केही सिद्धान्तहरूमा बाँच्छु, जसले मेरो मन सुरक्षित राख्छ र परमेश्वरलाई सम्मान गर्छ:",
+t4L1:"परमेश्वरलाई सबैभन्दा पहिले राख्नुहोस्।",
+t4L2:"शारीरिक र मानसिक अनुशासन निर्माण गर्नुहोस्।",
+t4L3:"'होइन' भन्ने शक्ति सिक्नुहोस्।",
+t4L4:"विगतलाई क्षमा गर्नुहोस् — र आफ्नो बुबालाई क्षमा गर्नुहोस्।",
+t4L5:"आफ्नो व्यापार र व्यक्तिगत ब्रान्ड इमानदारीका साथ निर्माण गर्नुहोस्।",
+t4L6:"आफ्नो परिवारलाई कहिल्यै नछोड्नुहोस्।",
+t4L7:"कहिल्यै, कहिल्यै हार नमान्नुहोस्।",
+t4Text2:"आज, परमेश्वरले मेरो डर हटाउनुभयो र त्यसको ठाउँमा उहाँको आत्मविश्वास दिनुभयो। उहाँले मलाई मेरो चर्चमा साधारण रूपमा सेवा गर्ने अद्भुत विशेषाधिकार दिनुभएको छ। मलाई थाहा छ उहाँले मलाई अझै उहाँको राज्यको लागि तयार पार्दै हुनुहुन्छ। मेरो जीवन येशूको लागि हो, र म जहाँ जान्छु त्यहाँ स्वर्गीय प्रेम फैलाउनेछु। परमेश्वरले सधैं हाम्रा प्रार्थनाहरूको जवाफ दिनुहुन्छ — उहाँले टुटेका र लतमा परेकाहरूलाई लिनुहुन्छ र उहाँको राज्यका योद्धाहरूमा परिणत गर्नुहुन्छ।",
+t4Verse:"मत्ती ६:३३ — पहिले उहाँको राज्य खोज।",
+t4Verse2:"प्रकाश १२:११ — तिनीहरूले थुमाको रगत र आफ्नो गवाहीको वचनद्वारा विजय पाए।",
+t4Closing:"येशू चाँडै आउँदै हुनुहुन्छ — पश्चाताप गर्नुहोस् र परमेश्वरलाई खोज्नुहोस्।",
+testimonyQuote:"यदि तपाईंले मेरो लत, मेरो डर, वा मेरो परिवारको भाँचिएको अवस्थामा आफूलाई देख्नुहुन्छ भने — थाहा पाउनुहोस् कि मलाई अँध्यारोमा भेट्टाउनुभएको त्यही परमेश्वरले तपाईंलाई पनि भेट्टाउन सक्नुहुन्छ। तपाईंको विगत तपाईंको अन्तिम अध्याय होइन।",
+testimonyQuoteCite:"फिलिप्पी ४:१३ — मलाई शक्ति दिनुहुने ख्रीष्टमा म सबै कुरा गर्न सक्छु।",
 gospelEyebrow:"सुसमाचार",gospelTitle:"येशू ख्रीष्टको सुसमाचार",
-gospelIntro:"ख्रीष्टियन सन्देशको हृदय सरल छ: परमेश्वरले हामीलाई प्रेम गर्नुहुन्छ, येशूले बचाउनुहुन्छ र हामीलाई उहाँलाई पछ्याउन बोलाउनुहुन्छ।",
-g1t:"परमेश्वरले तपाईंलाई प्रेम गर्नुहुन्छ",g1p:"परमेश्वरले तपाईंलाई सृष्टि गर्नुभयो र प्रेम गर्नुहुन्छ। हाम्रो कमजोरी र असफलतामाझ पनि उहाँको प्रेम रहन्छ।",
-g2t:"येशूले बचाउनुहुन्छ",g2p:"येशू ख्रीष्ट हाम्रा पापका लागि मर्नुभयो र फेरि जीवित हुनुभयो। उहाँद्वारा क्षमा र नयाँ जीवन पाउन सक्छौँ।",
-g3t:"येशूलाई पछ्याउनुहोस्",g3p:"येशूमाथि भरोसा गर्नुहोस्, परमेश्वरतर्फ फर्कनुहोस्, उहाँको वचन सिक्नुहोस्, प्रार्थना गर्नुहोस् र हरेक दिन विश्वासमा बढ्नुहोस्।",
+gospelIntro:"सुसमाचारको अर्थ 'राम्रो खबर' हो। यो हरेक जाति, भाषा र पृष्ठभूमिका मानिसहरूका लागि परमेश्वरको प्रेम र मुक्तिको सन्देश हो।",
+g1t:"परमेश्वरले तपाईंलाई सृष्टि गर्नुभयो",g1p:"तपाईं संयोगले बन्नुभएको होइन। परमेश्वरले तपाईंलाई आफ्नै स्वरूपमा बनाउनुभयो र गहिरो प्रेम गर्नुहुन्छ (उत्पत्ति १:२७; यर्मिया २९:११)।",
+g2t:"पापले हामीलाई अलग गर्छ",g2p:"सबैले पाप गरेका छन् र परमेश्वरको मापदण्डमा पुग्न सकेका छैनन्, र पापले हामीलाई पवित्र परमेश्वरबाट अलग गर्छ (रोमी ३:२३)।",
+g3t:"पापको मूल्य",g3p:"पापको ज्याला मृत्यु हो, तर परमेश्वरले येशू ख्रीष्टद्वारा अनन्त जीवनको सित्तैंको उपहार दिनुहुन्छ (रोमी ६:२३)।",
+g4t:"येशू तपाईंको लागि मर्नुभयो",g4p:"हामी पापी छँदा नै ख्रीष्ट हाम्रा लागि मर्नुभयो। उहाँको मृत्युले हामीले तिर्न नसक्ने मूल्य तिरिदियो (रोमी ५:८)।",
+g5t:"येशू फेरि जीवित हुनुभयो",g5p:"तेस्रो दिन येशू मृतकबाट जीवित हुनुभयो, पाप र मृत्युलाई पराजित गर्नुभयो, र आफू परमेश्वरका पुत्र हुनुहुन्छ भनी प्रमाणित गर्नुभयो (१ कोरिन्थी १५:३-४)।",
+g6t:"उहाँमा नयाँ जीवन",g6p:"यदि तपाईंले हृदयदेखि विश्वास गर्नुभयो र येशूलाई प्रभु भनी स्वीकार गर्नुभयो भने, तपाईं बचाइनुहुनेछ र अनन्त जीवन पाउनुहुनेछ (रोमी १०:९)।",
+respondEyebrow:"तपाईंको अर्को कदम",respondTitle:"येशूलाई पछ्याउन तयार हुनुहुन्छ?",
+respondIntro:"तपाईं संसारको जुनसुकै ठाउँमा हुनुहुन्छ भने पनि, परमेश्वर नजिकै हुनुहुन्छ, र यो कदम सरल छ:",
+step1:"स्वीकार गर्नुहोस् — तपाईंले पाप गर्नुभएको र परमेश्वरको क्षमा चाहिएको महसुस गर्नुहोस्।",
+step2:"विश्वास गर्नुहोस् — येशू तपाईंको पापका लागि मर्नुभयो र फेरि जीवित हुनुभयो भनी भरोसा गर्नुहोस्।",
+step3:"स्वीकार गर्नुहोस् — प्रार्थनामा परमेश्वरसँग कुरा गर्नुहोस् र येशूलाई आफ्नो प्रभु र मुक्तिदाताको रूपमा ग्रहण गर्नुहोस्।",
+prayerTitle:"एउटा सरल प्रार्थना",
+prayerText:"प्रिय परमेश्वर, मलाई थाहा छ मैले पाप गरेको छु र तपाईंको क्षमा चाहिन्छ। म विश्वास गर्छु येशू मेरो लागि मर्नुभयो र फेरि जीवित हुनुभयो। म अहिले तपाईंतर्फ फर्कन्छु र येशूलाई मेरो प्रभु र मुक्तिदाताको रूपमा ग्रहण गर्छु। मलाई प्रेम गर्नुभएकोमा र नयाँ जीवन दिनुभएकोमा धन्यवाद। येशूको नाउँमा, आमेन।",
+respondNote:"यदि तपाईंले यो प्रार्थना गर्नुभयो र मनैदेखि भन्नुभयो भने, तपाईंले विश्वासको पहिलो कदम चाल्नुभएको छ। सम्पर्क गर्नुहोस् — म तपाईंलाई उत्साह दिन र अर्को कदम चाल्न मद्दत गर्न चाहन्छु।",
 word:"परमेश्वरको वचन",galleryEyebrow:"सम्झनाहरू",galleryTitle:"विश्वास • जीवन • सम्झनाहरू",
 galleryIntro:"मेरो यात्राका केही क्षणहरू। चाहनुहुँदा थप फोटोहरू राख्न सकिन्छ।",
 contactEyebrow:"सम्पर्क",contactTitle:"जोडिइरहनुहोस्",
 contactIntro:"कुरा गर्न, विश्वासमा एकअर्कालाई उत्साह दिन वा सामान्य अभिवादन गर्न चाहनुहुन्छ भने सम्पर्क गर्नुहोस्।",
-contactCardTitle:"मसँग सम्पर्क गर्नुहोस्",socialTitle:"सामाजिक सञ्जाल",
-socialText:"तयार भएपछि यहाँ आफ्ना सामाजिक सञ्जालका लिंकहरू राख्न सक्नुहुन्छ।",
+contactCardTitle:"मसँग सम्पर्क गर्नुहोस्",
 footerVerse:"“मलाई शक्ति दिनुहुने ख्रीष्टमा म सबै कुरा गर्न सक्छु।” — फिलिप्पी ४:१३",
 footerText:"येशू ख्रीष्ट नै केन्द्र हुनुहुन्छ।"
 },
 hi:{
-navHome:"होम",navAbout:"मेरे बारे में",navGospel:"सुसमाचार",navGallery:"फोटो",navContact:"संपर्क",
+navHome:"होम",navAbout:"मेरे बारे में",navGospel:"सुसमाचार",navRespond:"प्रतिक्रिया",navGallery:"फोटो",navContact:"संपर्क",navTestimony:"मेरी कहानी",
 eyebrow:"विश्वास • आशा • यीशु",heroTitle:"यीशु <em>मसीह के लिए जीवन।</em>",
 heroText:"मेरी व्यक्तिगत वेबसाइट पर आपका स्वागत है। मेरी इच्छा यीशु का अनुसरण करना, उनके वचन में बढ़ना और दूसरों के साथ सुसमाचार की आशा साझा करना है।",
 discover:"सुसमाचार जानें →",connect:"संपर्क करें",badge:"यीशु ही केंद्र हैं",
@@ -336,22 +500,59 @@ aboutCardTitle:"नमस्ते, मैं समीर हूँ।",
 aboutCardText:"मैं अपने जीवन, अपनी आवाज़ और परमेश्वर द्वारा दिए गए अवसरों का उपयोग करके लोगों को यीशु को जानने, बाइबल पढ़ने, प्रार्थना करने और विश्वास में चलने के लिए प्रोत्साहित करना चाहता हूँ।",
 aboutCardText2:"यहाँ बाइबल के पद, सुसमाचार के संदेश, आराधना, व्यक्तिगत विचार और परमेश्वर की ओर संकेत करने वाली अन्य सामग्री मिलेगी।",
 john:"“क्योंकि परमेश्वर ने जगत से ऐसा प्रेम किया कि उसने अपना एकलौता पुत्र दे दिया, ताकि जो कोई उस पर विश्वास करे वह नाश न हो, परन्तु अनन्त जीवन पाए।”",
+testimonyEyebrow:"मेरी कहानी",testimonyTitle:"बेड़ियों से उद्देश्य तक",
+testimonyIntro:"मैं अपनी पूरी कहानी इसलिए साझा कर रहा हूँ क्योंकि मुझे विश्वास है कि यदि मेरे सबसे अंधेरे पल किसी एक व्यक्ति को भी रोशनी पाने में मदद करें, तो हर कठिनाई सार्थक थी।",
+t1Title:"पहले: बचपन के साये",
+t1Text:"मैं एक अत्यंत गरीब, संघर्षरत परिवार से आता हूँ। दशकों पहले, पंचायत काल में, सेना ने हमारी ज़मीन और संपत्ति छीन ली और हमारे गाँव के अट्ठाईस घर उजाड़ दिए। सब कुछ खोने और औपचारिक शिक्षा न होने पर भी, मेरे पिता घर-घर हल्दी बेचकर गुज़ारा करते थे। इस गरीबी से घिरे होने के साथ, हमारा परिवार अंधविश्वास और झाड़-फूँक में भी गहराई से फँसा था। बचपन में मैं लगातार बीमार रहता था, मुझे एक ओझा से दूसरे ओझा तक ले जाया जाता था, और चंगाई की आस में पीपल के पेड़ों पर पानी चढ़ाने को कहा जाता था। मेरे पिता गंभीर मानसिक टूटन से गुज़रे, और घर में शांति नहीं थी। लेकिन करीब बारह साल पहले, एक गंभीर संकट ने मेरे पिता को अस्पताल पहुँचाया और वे हमारे परिवार में पहले विश्वासी बने। छह महीने बाद हमारा पूरा परिवार उनके पीछे चला। मैं केवल ग्यारह या बारह साल का था, और यीशु कौन हैं यह पूरी तरह नहीं समझता था — मुझे बस गाना गाने और आराधना करने के लिए चर्च जाना अच्छा लगता था।",
+t1Verse:"भजन 34:18 — यहोवा टूटे मन वालों के निकट रहता है।",
+t2Title:"खोए हुए साल: डर, अकेलापन और लत",
+t2Text:"मेरे परिवार को विश्वास मिलने के बावजूद, मेरी किशोरावस्था एक युद्धक्षेत्र थी। मैं स्कूल में सबसे शांत था — बोलने में संघर्ष करने वाला अत्यंत अंतर्मुखी, बेहद शर्मीला, डर से जकड़ा हुआ, आत्मविश्वास और भविष्य के किसी सपने के बिना। दसवीं पास करके कॉलेज पहुँचने पर, मैंने ऑनलाइन काम करना शुरू किया — डिजिटल समाधान देना, सोशल मीडिया संभालना, लोगो डिज़ाइन करना, और गिफ्ट कार्ड व टॉप-अप बेचना। मैं पैसा कमाने लगा, लेकिन बुद्धि के बिना वह पैसा ही जाल बन गया। मैं आधुनिक व्यसनों के चक्र में फँस गया: ऑनलाइन गेमिंग, अश्लील सामग्री, हस्तमैथुन, और फिल्मों तथा मोबाइल रील में गँवाए गए अनगिनत घंटे। इससे भी बुरा, मैं ऑनलाइन जुए में फँस गया, उसे निवेश समझकर, और अपनी मेहनत की कमाई गँवा दी। इन विकर्षणों ने परमेश्वर के साथ मेरी यात्रा को पूरी तरह रोक दिया। मेरा कोई दोस्त नहीं था, और मैं यह बोझ अकेला उठाता रहा। मैं प्रार्थना करने की कोशिश करता, फिर गिर जाता, और फिर उठने की कोशिश करता। यह मौन बोझ किसी को समझ नहीं आता था।",
+t2Verse:"2 तीमुथियुस 1:7 — परमेश्वर ने हमें भय की नहीं, वरन शक्ति, प्रेम और संयम की आत्मा दी है।",
+t3Title:"मोड़ का क्षण: सत्य से मुलाकात",
+t3Text:"जब मुझे एहसास हुआ कि ये डिजिटल पलायन मेरी शांति, मेरी खुशी और मेरे जीवन को नष्ट कर रहे हैं, तभी वह मोड़ आया। मैंने परमेश्वर को गंभीरता से खोजना शुरू किया — बाइबल पढ़ी और व्यसन से मुक्त होने के तरीकों पर वीडियो देखे। यीशु मुझसे वहीं मिले जहाँ मैं था और मुझे धीरे-धीरे चंगा किया। वे मेरे सच्चे मित्र बन गए — जिस लड़के का कोई दोस्त नहीं था, किसी से बात नहीं कर पाता था, उसे परमेश्वर में अपना अंतिम विश्वासपात्र मिल गया। मैंने अंततः यूहन्ना 8:32 का सत्य समझा: 'सत्य तुम्हें स्वतंत्र कर देगा।' जब पवित्र आत्मा ने मेरे जीवन में काम करना शुरू किया, उसने मुझे वह दृष्टि दी जो मेरी पूरी युवावस्था में नहीं थी।",
+t3Verse:"यूहन्ना 8:32 — सत्य तुम्हें स्वतंत्र कर देगा।",
+t3Verse2:"2 कुरिन्थियों 5:17 — यदि कोई मसीह में है, तो वह नई सृष्टि है; पुरानी बातें बीत गईं, देखो, नई बातें आ गई हैं।",
+t4Title:"आज: यीशु को समर्पित",
+t4Text:"पीछे मुड़कर देखने पर, मुझे अपने अतीत के किसी भी हिस्से का पछतावा नहीं है — हर असफलता और हर गँवाया हुआ पैसा परमेश्वर द्वारा मुझे अनुशासन और उन पर निर्भरता सिखाने का एक सबक था। अपने चौबीसवें वर्ष में कदम रखते हुए, अब मैं मत्ती 6:33 पर आधारित, पहले उसके राज्य को खोजने वाले कुछ सिद्धांतों से जीता हूँ, जो मेरे मन की रक्षा करते हैं और परमेश्वर का सम्मान करते हैं:",
+t4L1:"परमेश्वर को सबसे पहले रखें।",
+t4L2:"शारीरिक और मानसिक अनुशासन बनाएं।",
+t4L3:"'ना' कहने की शक्ति सीखें।",
+t4L4:"अतीत को क्षमा करें — और अपने पिता को क्षमा करें।",
+t4L5:"अपने व्यवसाय और व्यक्तिगत ब्रांड को ईमानदारी से बनाएं।",
+t4L6:"अपने परिवार को कभी न छोड़ें।",
+t4L7:"कभी, कभी हार न मानें।",
+t4Text2:"आज, परमेश्वर ने मेरा डर हटाया है और उसकी जगह अपना आत्मविश्वास दिया है। उन्होंने मुझे अपने चर्च में सीधे सेवा करने का अद्भुत सुअवसर दिया है। मुझे पता है कि वे मुझे अभी भी अपने राज्य के लिए तैयार कर रहे हैं। मेरा जीवन यीशु के लिए है, और मैं जहाँ भी जाऊँगा स्वर्गीय प्रेम फैलाऊँगा। परमेश्वर हमेशा हमारी प्रार्थनाओं का उत्तर देते हैं — वे टूटे हुओं और व्यसनी लोगों को लेकर उन्हें अपने राज्य के योद्धा बना देते हैं।",
+t4Verse:"मत्ती 6:33 — पहले उसके राज्य को खोजो।",
+t4Verse2:"प्रकाशितवाक्य 12:11 — उन्होंने मेम्ने के लहू और अपनी गवाही के वचन से विजय पाई।",
+t4Closing:"यीशु शीघ्र आ रहे हैं — पश्चाताप करें और परमेश्वर को खोजें।",
+testimonyQuote:"यदि आप मेरी लत, मेरे डर, या मेरे परिवार की टूटन में खुद को देखते हैं — जान लें कि जिस परमेश्वर ने मुझे अंधकार में पाया, वही आपको भी पा सकते हैं। आपका अतीत आपका अंतिम अध्याय नहीं है।",
+testimonyQuoteCite:"फिलिप्पियों 4:13 — जो मुझे सामर्थ देता है, उसमें मैं सब कुछ कर सकता हूँ।",
 gospelEyebrow:"सुसमाचार",gospelTitle:"यीशु मसीह का सुसमाचार",
-gospelIntro:"मसीही संदेश का केंद्र सरल है: परमेश्वर हमसे प्रेम करते हैं, यीशु बचाते हैं और हमें उनका अनुसरण करने के लिए बुलाते हैं।",
-g1t:"परमेश्वर आपसे प्रेम करते हैं",g1p:"परमेश्वर ने आपको बनाया और आपसे प्रेम करते हैं। हमारी कमजोरी और असफलताओं में भी उनका प्रेम बना रहता है।",
-g2t:"यीशु बचाते हैं",g2p:"यीशु मसीह हमारे पापों के लिए मरे और फिर जी उठे। उनके द्वारा हमें क्षमा और नया जीवन मिलता है।",
-g3t:"यीशु का अनुसरण करें",g3p:"यीशु पर भरोसा करें, परमेश्वर की ओर लौटें, उनके वचन को सीखें, प्रार्थना करें और प्रतिदिन विश्वास में बढ़ें।",
+gospelIntro:"सुसमाचार का अर्थ है 'अच्छी खबर'। यह हर जाति, भाषा और पृष्ठभूमि के लोगों के लिए परमेश्वर के प्रेम और उद्धार का संदेश है।",
+g1t:"परमेश्वर ने आपको बनाया",g1p:"आप संयोग से नहीं बने। परमेश्वर ने आपको अपने स्वरूप में बनाया और आपसे गहरा प्रेम करते हैं (उत्पत्ति 1:27; यिर्मयाह 29:11)।",
+g2t:"पाप हमें अलग करता है",g2p:"सभी ने पाप किया है और परमेश्वर के मापदंड से चूक गए हैं, और पाप हमें पवित्र परमेश्वर से अलग करता है (रोमियों 3:23)।",
+g3t:"पाप का मूल्य",g3p:"पाप की मजदूरी मृत्यु है, परन्तु परमेश्वर यीशु मसीह के द्वारा अनन्त जीवन का मुफ्त उपहार देते हैं (रोमियों 6:23)।",
+g4t:"यीशु आपके लिए मरे",g4p:"जब हम पापी ही थे, तभी मसीह हमारे लिए मरे। उनकी मृत्यु ने वह कीमत चुकाई जो हम कभी नहीं चुका सकते थे (रोमियों 5:8)।",
+g5t:"यीशु फिर जी उठे",g5p:"तीसरे दिन यीशु मरे हुओं में से जी उठे, पाप और मृत्यु को हराया, और सिद्ध किया कि वे परमेश्वर के पुत्र हैं (1 कुरिन्थियों 15:3-4)।",
+g6t:"उनमें नया जीवन",g6p:"यदि आप अपने हृदय से विश्वास करें और यीशु को प्रभु मानकर अंगीकार करें, तो आप उद्धार पाएंगे और अनन्त जीवन प्राप्त करेंगे (रोमियों 10:9)।",
+respondEyebrow:"आपका अगला कदम",respondTitle:"यीशु का अनुसरण करने के लिए तैयार हैं?",
+respondIntro:"आप दुनिया में कहीं भी हों, परमेश्वर पास हैं, और यह कदम सरल है:",
+step1:"स्वीकार करें — पहचानें कि आपने पाप किया है और परमेश्वर की क्षमा की आवश्यकता है।",
+step2:"विश्वास करें — भरोसा करें कि यीशु आपके पापों के लिए मरे और फिर जी उठे।",
+step3:"अंगीकार करें — प्रार्थना में परमेश्वर से बात करें और यीशु को अपना प्रभु और उद्धारकर्ता मानें।",
+prayerTitle:"एक सरल प्रार्थना",
+prayerText:"प्रिय परमेश्वर, मैं जानता/जानती हूँ कि मैंने पाप किया है और मुझे आपकी क्षमा चाहिए। मैं विश्वास करता/करती हूँ कि यीशु मेरे लिए मरे और फिर जी उठे। मैं अभी आपकी ओर फिरता/फिरती हूँ और यीशु को अपना प्रभु और उद्धारकर्ता मानता/मानती हूँ। मुझसे प्रेम करने और नया जीवन देने के लिए धन्यवाद। यीशु के नाम में, आमीन।",
+respondNote:"यदि आपने यह प्रार्थना दिल से की है, तो आपने विश्वास का पहला कदम उठाया है। संपर्क करें — मुझे आपको प्रोत्साहित करने और अगला कदम उठाने में मदद करने में खुशी होगी।",
 word:"परमेश्वर का वचन",galleryEyebrow:"यादें",galleryTitle:"विश्वास • जीवन • यादें",
 galleryIntro:"मेरी यात्रा के कुछ पल। जब चाहें और फोटो जोड़ सकते हैं।",
 contactEyebrow:"संपर्क",contactTitle:"जुड़े रहें",
 contactIntro:"बात करना हो, विश्वास में एक-दूसरे को प्रोत्साहित करना हो या केवल नमस्ते कहना हो, संपर्क करें।",
-contactCardTitle:"मुझसे संपर्क करें",socialTitle:"सोशल मीडिया",
-socialText:"जब तैयार हों, यहाँ अपने सोशल मीडिया लिंक जोड़ सकते हैं।",
+contactCardTitle:"मुझसे संपर्क करें",
 footerVerse:"“जो मुझे सामर्थ देता है, उसमें मैं सब कुछ कर सकता हूँ।” — फिलिप्पियों 4:13",
 footerText:"यीशु मसीह ही केंद्र हैं।"
 },
 zh:{
-navHome:"首页",navAbout:"关于我",navGospel:"福音",navGallery:"照片",navContact:"联系",
+navHome:"首页",navAbout:"关于我",navGospel:"福音",navRespond:"回应",navGallery:"照片",navContact:"联系",navTestimony:"我的见证",
 eyebrow:"信心 • 盼望 • 耶稣",heroTitle:"为<em>耶稣基督而活。</em>",
 heroText:"欢迎来到我的个人网站。我的愿望是跟随耶稣，在祂的话语中成长，并与他人分享福音的盼望。",
 discover:"认识福音 →",connect:"联系我",badge:"耶稣是中心",
@@ -361,17 +562,54 @@ aboutCardTitle:"你好，我是 Samir。",
 aboutCardText:"我愿意使用神所赐的生命、声音和机会，鼓励人认识耶稣、阅读圣经、祷告，并忠心地与祂同行。",
 aboutCardText2:"这里会分享圣经经文、福音信息、敬拜、个人感想、照片以及指向神的内容。",
 john:"“神爱世人，甚至将他的独生子赐给他们，叫一切信他的，不至灭亡，反得永生。”",
+testimonyEyebrow:"我的见证",testimonyTitle:"从捆绑到使命",
+testimonyIntro:"我分享我完整的故事，是因为我相信，即使我最黑暗的时刻能帮助一个人找到光，所有的苦难都是值得的。",
+t1Title:"从前：童年的阴影",
+t1Text:"我出身于一个极度贫穷、挣扎求存的家庭。几十年前，在旁遮亚特时期，军队没收了我们的土地和财产，摧毁了我们村庄二十八户人家的房屋。失去了一切，也没有受过正规教育，我父亲靠沿街叫卖姜黄维持生计。除了贫穷，我们家还深陷迷信与巫术——我小时候常年生病，被一个巫师带到另一个巫师那里，甚至被要求向菩提树浇水以求医治。我父亲经历了严重的精神崩溃，家中没有平安。但大约十二年前，一场严重的危机让父亲住进医院，之后他成为我们家中第一位信徒。六个月后，我们全家都信了主。当时我只有十一二岁，还不完全明白耶稣是谁——我只是喜欢去教会唱诗歌、赞美神。",
+t1Verse:"诗篇34:18——耶和华靠近伤心的人。",
+t2Title:"迷失的岁月：恐惧、孤独与沉溺",
+t2Text:"尽管我的家人找到了信仰，我的青少年时期却是一场战斗。我是学校里最沉默的人——极度内向，不善言辞，极其害羞，被恐惧困住，没有自信，对未来也没有任何梦想。高中毕业进入大学后，我开始在网上工作——提供数字服务、管理社交媒体、设计标志、销售礼品卡和话费充值。我开始赚钱，但缺乏智慧，那些钱反而成了陷阱。我陷入了各种现代沉溺的循环：网络游戏、色情内容、手淫，以及在电影和手机短视频上耗费的无数小时。更糟的是，我陷入了网络赌博，误以为那是「投资」，最终失去了辛苦赚来的钱。这些干扰完全阻断了我与神同行的道路。我没有朋友，独自承受着这份重担。我努力祷告，却又跌倒，然后再次努力站起来。这份沉默的重担没有人理解。",
+t2Verse:"提摩太后书1:7——神赐给我们的不是胆怯的心，乃是刚强、仁爱、谨守的心。",
+t3Title:"转折点：遇见真理",
+t3Text:"当我意识到这些数字逃避正在摧毁我的平安、快乐和生命时，转折点来了。我开始迫切寻求神——读圣经，观看关于如何摆脱沉溺的视频。耶稣在我所在之处与我相遇，一步步医治了我。祂成了我真正的朋友——那个没有朋友、不会与人交谈的男孩，在神那里找到了最终的知己。我终于明白了约翰福音8:32的真理：「真理必叫你们得以自由。」当圣灵开始在我生命中运行时，祂赐给我整个青春岁月都不曾拥有的异象。",
+t3Verse:"约翰福音8:32——真理必叫你们得以自由。",
+t3Verse2:"哥林多后书5:17——若有人在基督里，他就是新造的人，旧事已过，都变成新的了。",
+t4Title:"如今：完全降服于耶稣",
+t4Text:"回顾过去，我不后悔任何一部分——每一次失败、每一分损失的钱，都是神用来教导我纪律与倚靠祂的功课。踏入二十四岁，我如今凭着马太福音6:33——先求祂的国——所立的一些原则生活，用来保守我的心思、荣耀神：",
+t4L1:"凡事以神为先。",
+t4L2:"操练身体与心志的纪律。",
+t4L3:"学会说「不」的力量。",
+t4L4:"饶恕过去——也饶恕你的父亲。",
+t4L5:"以正直建立你的事业与个人品牌。",
+t4L6:"永不离弃你的家人。",
+t4L7:"永不、永不放弃。",
+t4Text2:"如今，神除去了我的恐惧，赐给我祂的自信。祂给了我在教会中单单服事的宝贵机会。我知道祂仍在为祂的国预备我。我的生命是为耶稣而活，无论我走到哪里，都要传扬属天的爱。神总是垂听我们的祷告——祂使破碎的人、沉溺的人，成为祂国度的勇士。",
+t4Verse:"马太福音6:33——先求祂的国。",
+t4Verse2:"启示录12:11——他们是靠着羔羊的血和自己所见证的道战胜了他。",
+t4Closing:"耶稣快要再来了——当悔改，寻求神。",
+testimonyQuote:"如果你在我的沉溺、我的恐惧，或我家庭的破碎中看见了自己——请知道，那位在黑暗中寻见我的神，同样能寻见你。你的过去不是你的最后一章。",
+testimonyQuoteCite:"腓立比书4:13——我靠着那加给我力量的，凡事都能做。",
 gospelEyebrow:"好消息",gospelTitle:"耶稣基督的福音",
-gospelIntro:"基督教信息的核心很简单：神爱我们，耶稣拯救我们，并邀请我们跟随祂。",
-g1t:"神爱你",g1p:"神创造了你，也深爱着你。在我们的软弱和失败中，祂的爱仍然不改变。",
-g2t:"耶稣拯救",g2p:"耶稣基督为我们的罪死而复活。借着祂，我们可以得到赦免和新生命。",
-g3t:"跟随耶稣",g3p:"信靠耶稣，归向神，学习祂的话语，祷告，爱人，并每天在信心中成长。",
+gospelIntro:"福音的意思是「好消息」。这是神向每一个民族、语言和背景的人所传的爱与救恩的信息。",
+g1t:"神创造了你",g1p:"你不是偶然存在的。神照着自己的形象造了你，并深深爱你（创世记1:27；耶利米书29:11）。",
+g2t:"罪使我们与神隔绝",g2p:"世人都犯了罪，亏缺了神的荣耀，罪使我们与圣洁的神隔绝（罗马书3:23）。",
+g3t:"罪的代价",g3p:"罪的工价乃是死，惟有神的恩赐，在耶稣基督里乃是永生（罗马书6:23）。",
+g4t:"耶稣为你而死",g4p:"趁我们还作罪人的时候，基督为我们死。祂的死付上了我们无法偿还的代价（罗马书5:8）。",
+g5t:"耶稣复活了",g5p:"第三天耶稣从死里复活，胜过罪与死亡，证明祂是神的儿子（哥林多前书15:3-4）。",
+g6t:"在祂里面得新生命",g6p:"你若心里相信，口里承认耶稣为主，就必得救，并得着永生（罗马书10:9）。",
+respondEyebrow:"你的下一步",respondTitle:"预备好跟随耶稣了吗？",
+respondIntro:"无论你身在世界何处，神都与你相近，这一步很简单：",
+step1:"承认——认识到自己有罪，需要神的赦免。",
+step2:"相信——相信耶稣为你的罪而死，并且复活了。",
+step3:"宣认——在祷告中向神说话，接受耶稣作你的主和救主。",
+prayerTitle:"一个简单的祷告",
+prayerText:"亲爱的神，我知道我犯了罪，需要你的赦免。我相信耶稣为我死，又复活了。我现在转向你，接受耶稣作我的主和救主。感谢你爱我，赐给我新生命。奉耶稣的名祷告，阿们。",
+respondNote:"如果你真心做了这个祷告，你已经迈出了信心的第一步。欢迎联系我——我很乐意鼓励你，并帮助你迈出下一步。",
 word:"神的话语",galleryEyebrow:"片段",galleryTitle:"信仰 • 生活 • 回忆",
 galleryIntro:"我的旅程中的一些时刻。以后可以随时添加更多照片。",
 contactEyebrow:"联系",contactTitle:"保持联系",
 contactIntro:"如果你想交流、在信仰中彼此鼓励，或者只是打个招呼，欢迎联系我。",
-contactCardTitle:"联系我",socialTitle:"社交媒体",
-socialText:"准备好后，可以在这里添加你的社交媒体链接。",
+contactCardTitle:"联系我",
 footerVerse:"“我靠着那加给我力量的，凡事都能做。” — 腓立比书 4:13",
 footerText:"耶稣基督是中心。"
 }
